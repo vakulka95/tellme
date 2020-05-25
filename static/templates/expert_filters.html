@@ -1,0 +1,33 @@
+<div class="card shadow">
+    <article class="card-group-item">
+        <header class="card-header">
+            <h3 class="title">Фільтри</h3>
+        </header>
+        <div class="filter-content">
+            <div class="card-body">
+                <form class="form" action="/admin/expert" method="GET">
+                    <label for="status">Статус</label>
+                    <select class="custom-select" id="status" name="status">
+                        <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                        <option {{ if (eq .queries.status "on_review") }} selected {{ end}} value="on_review">На модерації</option>
+                        <option {{ if (eq .queries.status "blocked") }} selected {{ end}} value="blocked">Заблокований</option>
+                        <option {{ if (eq .queries.status "active") }} selected {{ end}} value="active">Активний</option>
+                    </select>
+
+                    <br>
+
+                    <label for="specializations">Спеціалізації </label>
+                    <select multiple class="custom-select" id="specializations" name="specializations">
+                        {{ range $spec, $specOpt := .queries.specializations }}
+                            <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
+                        {{ end }}
+                    </select>
+
+                    <br>
+
+                    <button type="submit" class="btn btn-primary">Вибрати</button>
+                </form>
+            </div>
+        </div>
+    </article>
+</div>

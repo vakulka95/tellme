@@ -1,0 +1,426 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Fight COVID-19 in UA",
+    "contact": {
+      "name": "Fight COVID-19 in UA"
+    },
+    "version": "v0.1.0"
+  },
+  "paths": {
+    "/api/v1/diagnosis": {
+      "get": {
+        "consumes": ["application/json", "multipart/form-data"],
+        "produces": ["application/json"],
+        "tags": ["main"],
+        "summary": "Get diagnosis list. List is used for expert's specializations and requisition diagnosis. Key: EN tag, Value: UA description",
+        "operationId": "apiGetDiagnosisList",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/map%5Bstring%5Dstring"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/expert": {
+      "post": {
+        "consumes": ["application/json", "multipart/form-data"],
+        "produces": ["application/json"],
+        "tags": ["main"],
+        "summary": "Request provide help. Register expert(psychologist)",
+        "operationId": "apiExpertRegister",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/representation.CreateExpertRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/representation.CreateExpertResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "422": {
+            "description": "UnprocessableEntity",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/expert/{expertId}/document": {
+      "post": {
+        "consumes": ["application/json", "multipart/form-data"],
+        "produces": ["application/json"],
+        "tags": ["main"],
+        "summary": "Upload expert's *.png images of education. Restrictions: only png, up to 8Mb by file. Up to 5 files for one expert",
+        "operationId": "apiUploadExpertDoc",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Expert's identifier",
+            "name": "expertId",
+            "in": "path",
+            "required": true
+          }, 
+          {
+            "type": "string",
+            "description": "Expert's image in png format up to 8Mb size",
+            "name": "image",
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/requisition": {
+      "post": {
+        "consumes": ["application/json", "multipart/form-data"],
+        "produces": ["application/json"],
+        "tags": ["main"],
+        "summary": "Create user requisition",
+        "operationId": "apiRequisitionCreate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/representation.CreateRequisitionRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/representation.CreateRequisitionResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "422": {
+            "description": "UnprocessableEntity",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/validate/expert/email": {
+      "get": {
+        "consumes": ["application/json", "multipart/form-data"],
+        "produces": ["application/json"],
+        "tags": ["main"],
+        "summary": "Validate unique expert email",
+        "operationId": "apiValidateExpertEmail",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/representation.ValidateExpertEmailRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "422": {
+            "description": "UnprocessableEntity",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/validate/expert/phone": {
+      "get": {
+        "consumes": ["application/json", "multipart/form-data"],
+        "produces": ["application/json"],
+        "tags": ["main"],
+        "summary": "Validate unique expert phone",
+        "operationId": "apiValidateExpertPhone",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/representation.ValidateExpertPhoneRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "422": {
+            "description": "UnprocessableEntity",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "map[string]string": {},
+    "representation.CreateExpertRequest": {
+      "required": [
+        "name", 
+        "gender", 
+        "phone", 
+        "email", 
+        "password", 
+        "specializations", 
+        "education"
+      ],
+      "properties": {
+        "education": {
+          "description": "Validation: not be empty",
+          "type": "string",
+          "maximum": 256
+        },
+        "email": {
+          "description": "Validation: required one @ symbol",
+          "type": "string",
+          "maximum": 128
+        },
+        "gender": {
+          "description": "Validation: 'male' or 'female'",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name and surname in one field. Validation: not be empty",
+          "type": "string",
+          "maximum": 256
+        },
+        "password": {
+          "description": "Validation: minimum 7 symbols, maximum: no limit, at least 1 digit, at least 1 upper case",
+          "type": "string"
+        },
+        "phone": {
+          "description": "Validation: required 10 digits",
+          "type": "string"
+        },
+        "specializations": {
+          "description": "Validation: only allowed keys from /api/v1/diagnosis endpoint",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "representation.CreateExpertResponse": {
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "description": "Just expert's identifier",
+          "type": "string"
+        }
+      }
+    },
+    "representation.CreateRequisitionRequest": {
+      "required": [
+        "name", 
+        "gender", 
+        "phone", 
+        "diagnosis", 
+        "diagnosisDescription", 
+        "expertGender", 
+        "feedbackType", 
+        "feedbackContact", 
+        "feedbackTime", 
+        "feedbackWeekDay", 
+        "isAdult"
+      ],
+      "properties": {
+        "diagnosis": {
+          "description": "Validation: only allowed keys from /api/v1/diagnosis endpoint",
+          "type": "string"
+        },
+        "diagnosisDescription": {
+          "description": "Just diagnosis description text",
+          "type": "string"
+        },
+        "expertGender": {
+          "description": "Validation: 'male' or 'female'",
+          "type": "string"
+        },
+        "feedbackContact": {
+          "description": "Validation: could be empty only if 'phone' feedback type specified",
+          "type": "string",
+          "maximum": 128
+        },
+        "feedbackTime": {
+          "description": "Validation: 8:00, 13:00, 16:00",
+          "type": "string"
+        },
+        "feedbackType": {
+          "description": "Validation: 'skype', 'zoom', 'phone', 'viber', 'telegram' allowed only",
+          "type": "string"
+        },
+        "feedbackWeekDay": {
+          "description": "Validation: Day of week: mon, tue, wed, thu, fri, sat, sun",
+          "type": "string"
+        },
+        "gender": {
+          "description": "Validation: 'male' or 'female'",
+          "type": "string"
+        },
+        "isAdult": {
+          "description": "Validation: must be 'true'",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Name and surname in one field. Validation: not be empty",
+          "type": "string",
+          "maximum": 256
+        },
+        "phone": {
+          "description": "Validation: required 10 digits",
+          "type": "string"
+        }
+      }
+    },
+    "representation.CreateRequisitionResponse": {
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "description": "Just requisition's identifier",
+          "type": "string"
+        }
+      }
+    },
+    "representation.GatewayError": {
+      "required": ["code"],
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      }
+    },
+    "representation.ValidateExpertEmailRequest": {
+      "required": ["email"],
+      "properties": {
+        "email": {
+          "description": "Validation: required one @ symbol",
+          "type": "string",
+          "maximum": 128
+        }
+      }
+    },
+    "representation.ValidateExpertPhoneRequest": {
+      "required": ["phone"],
+      "properties": {
+        "phone": {
+          "description": "Validation: required 10 digits",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

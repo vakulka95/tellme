@@ -1,0 +1,37 @@
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.so
+
+# local files
+*.local
+
+/_obj
+/_test
+/bin
+
+*.cgo1.go
+*.cgo2.c
+_cgo_defun.c
+_cgo_gotypes.go
+_cgo_export.*
+
+_testmain.go
+
+*.exe
+*.test
+*.prof
+
+# Atom go-plus
+github.com/*
+gopkg.in/*
+golang.org/*
+
+# Gogland
+.idea/*
+examples/
+document/
+dist/
+app/config/.env.prod
+endurance/venv
+*.dump%

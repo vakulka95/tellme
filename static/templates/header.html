@@ -1,0 +1,50 @@
+<!--header.html-->
+
+<!doctype html>
+<html>
+
+<head>
+    <title>Tell Me</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#563d7c">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="/static/styles/bootstrap-4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="/static/styles/bootstrap-4.4.1/css/bootstrap-grid.min.css" rel="stylesheet" >
+    <link href="/static/styles/bootstrap-4.4.1/css/bootstrap-reboot.min.css" rel="stylesheet">
+    <link href="/static/styles/bootstrap-4.4.1/css/custom.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+    <script src="/static/styles/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+    <script src="/static/styles/bootstrap-4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/styles/bootstrap-4.4.1/js/custom.js"></script>
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="/admin">Розкажи мені</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        {{ if .metadata.logged_in }}
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link " href="/admin/requisition"><i class="fa fa-telegram"></i> Заявки</a>
+                </li>
+                {{ if eq .metadata.role "admin" }}
+                <li class="nav-item">
+                    <a class="nav-link " href="/admin/expert?limit=10&offset=0"><i class="fa fa-address-card-o"></i> Психологи</a>
+                </li>
+                {{ end }}
+                <li class="nav-item">
+                    <a class="nav-link " href="/admin/logout"><i class="fa fa-user"></i> Вихід</a>
+                </li>
+            </ul>
+        </div>
+        {{end}}
+    </div>
+</nav>
