@@ -141,7 +141,6 @@ func (s *swagger) init() {
 	s.ws.Route(s.ws.PUT("/review").
 		To(s.apiConfirmReview).
 		Doc("Confirm user review about expert").
-		Param(restful.QueryParameter("token", "Service token which is identifier of review item")).
 		Returns(http.StatusCreated, "Created", representation.ConfirmReviewResponse{}).
 		Returns(http.StatusConflict, "Conflict", representation.ErrConflict).
 		Returns(http.StatusNotFound, "NotFound", representation.ErrNotFound).

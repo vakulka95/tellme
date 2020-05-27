@@ -189,12 +189,6 @@
         "operationId": "apiConfirmReview",
         "parameters": [
           {
-            "type": "string",
-            "description": "Service token which is identifier of review item",
-            "name": "token",
-            "in": "query"
-          }, 
-          {
             "name": "body",
             "in": "body",
             "required": true,
@@ -336,7 +330,8 @@
         "consultation_count", 
         "consultation_review", 
         "expert_point", 
-        "expert_review"
+        "expert_review", 
+        "token"
       ],
       "properties": {
         "consultation_count": {
@@ -358,6 +353,10 @@
         },
         "platform_review": {
           "description": "Platform review",
+          "type": "string"
+        },
+        "token": {
+          "description": "Token to authorize review request",
           "type": "string"
         }
       }
