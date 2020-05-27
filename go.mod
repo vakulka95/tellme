@@ -6,6 +6,8 @@ require (
 	github.com/avast/retry-go v2.6.0+incompatible
 	github.com/caarlos0/env v3.5.0+incompatible
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/doug-martin/goqu v5.0.0+incompatible
+	github.com/doug-martin/goqu/v9 v9.9.0
 	github.com/emicklei/go-restful v2.12.0+incompatible
 	github.com/emicklei/go-restful-openapi v1.3.0
 	github.com/gin-gonic/contrib v0.0.0-20191209060500-d6e26eeaa607 // indirect
