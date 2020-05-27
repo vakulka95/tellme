@@ -21,6 +21,7 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
+                                <th>Психолог</th>
                                 <th>Задоволення від консультації</th>
                                 <th>Оцінка психолога</th>
                                 <th>Кількість консультацій</th>
@@ -30,6 +31,7 @@
                             <tbody>
                             {{ range $i, $item := .data.items }}
                                 <tr class="table-row">
+                                    <td class="table-div" data-href="/admin/review/{{ $item.id }}">{{ $item.expert_username }}</td>
                                     <td class="table-div" data-href="/admin/review/{{ $item.id }}">{{ $item.consultation_review }}</td>
                                     <td class="table-div" data-href="/admin/review/{{ $item.id }}">{{ $item.expert_point }}</td>
                                     <td class="table-div" data-href="/admin/review/{{ $item.id }}">{{ $item.consultation_count }}</td>

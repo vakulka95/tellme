@@ -99,6 +99,7 @@ func RequisitionListPersistenceToAPI(r *model.RequisitionList) gin.H {
 func RequisitionItemPersistenceToAPI(r *model.Requisition) gin.H {
 	return gin.H{
 		"id":                    r.ID,
+		"expert_id":             r.ExpertID,
 		"username":              r.Username,
 		"gender":                r.Gender,
 		"phone":                 r.Phone,
@@ -144,6 +145,7 @@ func ReviewListPersistenceToAPI(r *model.ReviewList) gin.H {
 		items[i] = gin.H{
 			"id":                  v.ID,
 			"expert_id":           v.ExpertID,
+			"expert_username":     v.ExpertUsername,
 			"requisition_id":      v.RequisitionID,
 			"platform_review":     v.PlatformReview,
 			"consultation_count":  v.ConsultationCount,

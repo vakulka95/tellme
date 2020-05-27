@@ -45,8 +45,8 @@
                                     {{ with (eq $status "completed") }}<td class="text-center table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-success">Виконаний</span></td>{{ end }}
 
                                     <td class="text-center">
-                                        <a class="btn btn-secondary {{ if (ne $item.status "created") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="takeRequisitionAPI(this)" role="button">Взяти</a>
-                                        <a class="btn btn-success {{ if (ne $item.status "processing") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="completeRequisitionAPI(this)" role="button">Завершити</a>
+                                        <a class="btn btn-secondary {{ if (eq $item.status "processing") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="takeRequisitionAPI(this)" role="button">Взяти</a>
+                                        <a class="btn btn-success {{ if (eq $item.status "completed") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="completeRequisitionAPI(this)" role="button">Завершити</a>
                                     </td>
                                 </tr>
                             {{ end }}

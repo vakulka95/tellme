@@ -50,6 +50,7 @@ func (s *apiserver) registerHandlers() {
 	s.engine.POST("/admin/requisition", authentication, allAuthorization, s.webAdminRequisitionList)
 	s.engine.GET("/admin/requisition/:requisitionId", authentication, allAuthorization, s.webAdminRequisitionItem)
 	s.engine.PUT("/admin/requisition/:requisitionId/take", authentication, allAuthorization, s.webAdminRequisitionTake)
+	s.engine.PUT("/admin/requisition/:requisitionId/discard", authentication, allAuthorization, s.webAdminRequisitionDiscard)
 	s.engine.PUT("/admin/requisition/:requisitionId/complete", authentication, allAuthorization, s.webAdminRequisitionComplete)
 
 	//

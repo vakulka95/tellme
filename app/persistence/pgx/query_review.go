@@ -106,6 +106,7 @@ func (r *Repository) GetReviewList(q *model.QueryReviewList) (*model.ReviewList,
 	rawListQuery := `
 	SELECT 	id,
 			expert_id,
+			expert_username,
 			requisition_id,
 			platform_review,
 			consultation_count,
@@ -116,11 +117,11 @@ func (r *Repository) GetReviewList(q *model.QueryReviewList) (*model.ReviewList,
 			status,
 			updated_at,
 			created_at
-	  FROM reviews
+	  FROM v$reviews
 `
 
 	rawCountQuery := `
-			SELECT count(id) FROM reviews
+			SELECT count(id) FROM v$reviews
 `
 
 	listQuery, listArgs := q.BuildWhereOrder(rawListQuery)
@@ -136,6 +137,7 @@ func (r *Repository) GetReviewList(q *model.QueryReviewList) (*model.ReviewList,
 		if err = rows.Scan(
 			&item.ID,
 			&item.ExpertID,
+			&item.ExpertUsername,
 			&item.RequisitionID,
 			&item.PlatformReview,
 			&item.ConsultationCount,

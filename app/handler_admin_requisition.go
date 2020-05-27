@@ -99,10 +99,40 @@ func (s *apiserver) webAdminRequisitionItem(c *gin.Context) {
 }
 
 func (s *apiserver) webAdminRequisitionTake(c *gin.Context) {
-	expertID, _ := c.Get("userID")
+	const logPref = "webAdminRequisitionTake"
+
+	var (
+		role, _       = c.Get("role")
+		iExpertID, _  = c.Get("userID")
+		requisitionID = c.Param("requisitionId")
+	)
+
+	expertID := iExpertID.(string)
+
+	if role == UserRoleAdmin {
+		requisitionRes, err := s.repository.GetRequisition(requisitionID)
+		if err != nil {
+			log.Printf("(ERR) %s: failed to get expert view [%s]: %v", logPref, requisitionID, err)
+			c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+			return
+		}
+		expertID = requisitionRes.ExpertID
+	}
+
+	_, err := s.repository.UpdateRequisitionStatus(&model.Requisition{ID: requisitionID, ExpertID: expertID, Status: model.RequisitionStatusProcessing})
+	if err != nil {
+		log.Printf("(ERR) Failed to update requisition: %v", err)
+		c.AbortWithStatus(http.StatusInternalServerError)
+		return
+	}
+
+	c.Status(http.StatusAccepted)
+}
+
+func (s *apiserver) webAdminRequisitionDiscard(c *gin.Context) {
 	requisitionID := c.Param("requisitionId")
 
-	_, err := s.repository.UpdateRequisitionStatus(&model.Requisition{ID: requisitionID, ExpertID: expertID.(string), Status: model.RequisitionStatusProcessing})
+	_, err := s.repository.UpdateRequisitionStatus(&model.Requisition{ID: requisitionID, Status: model.RequisitionStatusCreated})
 	if err != nil {
 		log.Printf("(ERR) Failed to update requisition: %v", err)
 		c.AbortWithStatus(http.StatusInternalServerError)
@@ -113,10 +143,27 @@ func (s *apiserver) webAdminRequisitionTake(c *gin.Context) {
 }
 
 func (s *apiserver) webAdminRequisitionComplete(c *gin.Context) {
-	expertID, _ := c.Get("userID")
-	requisitionID := c.Param("requisitionId")
+	const logPref = "webAdminRequisitionComplete"
 
-	_, err := s.repository.UpdateRequisitionStatus(&model.Requisition{ID: requisitionID, ExpertID: expertID.(string), Status: model.RequisitionStatusCompleted})
+	var (
+		role, _       = c.Get("role")
+		iExpertID, _  = c.Get("userID")
+		requisitionID = c.Param("requisitionId")
+	)
+
+	expertID := iExpertID.(string)
+
+	if role == UserRoleAdmin {
+		requisitionRes, err := s.repository.GetRequisition(requisitionID)
+		if err != nil {
+			log.Printf("(ERR) %s: failed to get expert view [%s]: %v", logPref, requisitionID, err)
+			c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+			return
+		}
+		expertID = requisitionRes.ExpertID
+	}
+
+	_, err := s.repository.UpdateRequisitionStatus(&model.Requisition{ID: requisitionID, ExpertID: expertID, Status: model.RequisitionStatusCompleted})
 	if err != nil {
 		log.Printf("(ERR) Failed to update requisition: %v", err)
 		c.AbortWithStatus(http.StatusInternalServerError)

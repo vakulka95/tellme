@@ -14,6 +14,7 @@ const (
 type Review struct {
 	ID                 string    `db:"id"`
 	ExpertID           string    `db:"expert_id"`
+	ExpertUsername     string    `db:"expert_username"`
 	RequisitionID      string    `db:"requisition_id"`
 	PlatformReview     string    `db:"platform_review"`
 	ConsultationCount  int       `db:"consultation_count"`

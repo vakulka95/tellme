@@ -80,6 +80,22 @@ function takeRequisitionAPI(requisition){
     })
 }
 
+
+function discardRequisitionAPI(requisition){
+    let requisitionId = $(requisition).data('requisition-id');
+
+    $.ajax({
+        url: '/admin/requisition/'+requisitionId+'/discard',
+        type: 'PUT',
+        success: function (result) {
+            document.location.reload();
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
 function completeRequisitionAPI(requisition){
     let requisitionId = $(requisition).data('requisition-id');
 
