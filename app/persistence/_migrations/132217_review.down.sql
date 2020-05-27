@@ -1,3 +1,5 @@
+DROP TABLE reviews;
+
 CREATE OR REPLACE VIEW v$experts       AS
 SELECT  e.id                AS id,
         e.username          AS username,

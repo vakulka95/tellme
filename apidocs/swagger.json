@@ -180,6 +180,69 @@
         }
       }
     },
+    "/api/v1/review": {
+      "put": {
+        "consumes": ["application/json", "multipart/form-data"],
+        "produces": ["application/json"],
+        "tags": ["main"],
+        "summary": "Confirm user review about expert",
+        "operationId": "apiConfirmReview",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Service token which is identifier of review item",
+            "name": "token",
+            "in": "query"
+          }, 
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/representation.ConfirmReviewRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/representation.ConfirmReviewResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "422": {
+            "description": "UnprocessableEntity",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/representation.GatewayError"
+            }
+          }
+        }
+      }
+    },
     "/api/v1/validate/expert/email": {
       "get": {
         "consumes": ["application/json", "multipart/form-data"],
@@ -267,6 +330,47 @@
   },
   "definitions": {
     "map[string]string": {},
+    "representation.ConfirmReviewRequest": {
+      "required": [
+        "platform_review", 
+        "consultation_count", 
+        "consultation_review", 
+        "expert_point", 
+        "expert_review"
+      ],
+      "properties": {
+        "consultation_count": {
+          "description": "Consultation count",
+          "type": "integer",
+          "format": "int32"
+        },
+        "consultation_review": {
+          "description": "Consultation satisfaction",
+          "type": "string"
+        },
+        "expert_point": {
+          "description": "Expert point: min - 1, max - 10",
+          "type": "string"
+        },
+        "expert_review": {
+          "description": "Expert work review",
+          "type": "string"
+        },
+        "platform_review": {
+          "description": "Platform review",
+          "type": "string"
+        }
+      }
+    },
+    "representation.ConfirmReviewResponse": {
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "description": "Just review's identifier",
+          "type": "string"
+        }
+      }
+    },
     "representation.CreateExpertRequest": {
       "required": [
         "name", 
@@ -347,7 +451,7 @@
           "type": "string"
         },
         "expertGender": {
-          "description": "Validation: 'male' or 'female'",
+          "description": "Validation: 'male', 'female', 'no_matter'",
           "type": "string"
         },
         "feedbackContact": {

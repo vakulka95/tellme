@@ -17,6 +17,7 @@ import (
 
 func (s *apiserver) apiExpertRegister(c *gin.Context) {
 	const logPref = "apiExpertRegister"
+
 	var (
 		err       error
 		expertReq = &representation.CreateExpertRequest{}
@@ -73,7 +74,7 @@ func (s *apiserver) apiUploadExpertDoc(c *gin.Context) {
 		return
 	}
 
-	if expert.Status != model.StatusOnReview {
+	if expert.Status != model.ExpertStatusOnReview {
 		log.Printf("(ERR) %s: expert [%s] already processed", logPref, expertID)
 		c.AbortWithStatusJSON(http.StatusConflict, representation.ErrExpertAlreadyProcessed)
 		return
@@ -100,7 +101,7 @@ func (s *apiserver) apiUploadExpertDoc(c *gin.Context) {
 			c.AbortWithStatusJSON(http.StatusNotFound, representation.ErrNotFound)
 			return
 		}
-		log.Printf("(ERR) failed to update expert [%s] document urls: %v", logPref, err)
+		log.Printf("(ERR) %s: failed to update expert [%s] document urls: %v", logPref, expertID, err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
 		return
 	}
@@ -110,6 +111,8 @@ func (s *apiserver) apiUploadExpertDoc(c *gin.Context) {
 }
 
 func (s *apiserver) apiValidateExpertPhone(c *gin.Context) {
+	const logPref = "apiValidateExpertPhone"
+
 	var (
 		err       error
 		expertReq = &representation.ValidateExpertPhoneRequest{}
@@ -126,7 +129,7 @@ func (s *apiserver) apiValidateExpertPhone(c *gin.Context) {
 			c.Status(http.StatusOK)
 			return
 		}
-		log.Printf("(ERR) Failed to find expert by phone: %v", err)
+		log.Printf("(ERR) %s: ailed to find expert by phone: %v", logPref, err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
 		return
 	}
@@ -135,6 +138,8 @@ func (s *apiserver) apiValidateExpertPhone(c *gin.Context) {
 }
 
 func (s *apiserver) apiValidateExpertEmail(c *gin.Context) {
+	const logPref = "apiValidateExpertEmail"
+
 	var (
 		err       error
 		expertReq = &representation.ValidateExpertEmailRequest{}
@@ -151,7 +156,7 @@ func (s *apiserver) apiValidateExpertEmail(c *gin.Context) {
 			c.Status(http.StatusOK)
 			return
 		}
-		log.Printf("(ERR) Failed to find expert by email: %v", err)
+		log.Printf("(ERR) %s: failed to find expert by email: %v", logPref, err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
 		return
 	}

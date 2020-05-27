@@ -4,48 +4,13 @@ import (
 	"fmt"
 	"strings"
 	"time"
-
-	"github.com/lib/pq"
 )
 
 const (
-	StatusActive   = "active"
-	StatusBlocked  = "blocked"
-	StatusOnReview = "on_review"
-
-	StatusCreated    = "created"
-	StatusProcessing = "processing"
-	StatusCompleted  = "completed"
+	RequisitionStatusCreated    = "created"
+	RequisitionStatusProcessing = "processing"
+	RequisitionStatusCompleted  = "completed"
 )
-
-type Expert struct {
-	ID              string         `db:"id"`
-	Username        string         `db:"username"`
-	Gender          string         `db:"gender"`
-	Phone           string         `db:"phone"`
-	Email           string         `db:"email"`
-	Password        string         `db:"password"`
-	Specializations pq.StringArray `db:"specializations"`
-	Education       string         `db:"education"`
-	DocumentURLs    pq.StringArray `db:"document_urls"`
-	ProcessingCount int            `db:"processing_count"`
-	CompletedCount  int            `db:"completed_count"`
-	Status          string         `db:"status"`
-	UpdatedAt       time.Time      `db:"updated_at"`
-	CreatedAt       time.Time      `db:"created_at"`
-}
-
-type QueryExpertList struct {
-	Limit           int
-	Offset          int
-	Status          string
-	Specializations pq.StringArray
-}
-
-type ExpertList struct {
-	Items []*Expert `db:"items"`
-	Total int       `db:"total"`
-}
 
 type Requisition struct {
 	ID                   string    `db:"id"`
@@ -67,48 +32,16 @@ type Requisition struct {
 }
 
 type QueryRequisitionList struct {
-	Limit           int            `db:"limit"`
-	Offset          int            `db:"offset"`
-	Status          string         `db:"status"`
-	ExpertID        string         `db:"expert_id"`
-	FeedbackTime    string         `db:"feedback_time"`
-	FeedbackWeekDay string         `db:"feedback_week_day"`
-	Specializations pq.StringArray `db:"specializations"`
+	Limit           int      `db:"limit"`
+	Offset          int      `db:"offset"`
+	Status          string   `db:"status"`
+	ExpertID        string   `db:"expert_id"`
+	FeedbackTime    string   `db:"feedback_time"`
+	FeedbackWeekDay string   `db:"feedback_week_day"`
+	Specializations []string `db:"specializations"`
 }
 
-func (q *QueryRequisitionList) SqlxBuildWhere() string {
-	query := ""
-
-	if q.Status != "" {
-		query = query + ` status=:status AND`
-	}
-
-	if len(q.Specializations) != 0 {
-		query = query + ` diagnosis=any(:specializations) AND`
-	}
-
-	if q.ExpertID != "" {
-		query = query + ` expert_id=:expert_id AND`
-	}
-
-	if q.FeedbackWeekDay != "" {
-		query = query + ` feedback_week_day=:feedback_week_day AND`
-	}
-
-	if q.FeedbackTime != "" {
-		query = query + ` feedback_time=:feedback_time AND`
-	}
-
-	query = strings.TrimSuffix(query, "AND")
-
-	if query == "" {
-		return ""
-	}
-
-	return " WHERE " + query
-}
-
-func (q *QueryRequisitionList) PgxBuildWhereOrder(rawQuery string) (string, []interface{}) {
+func (q *QueryRequisitionList) BuildWhereOrder(rawQuery string) (string, []interface{}) {
 	rawArgs := map[string]interface{}{}
 
 	if q.Status != "" {
@@ -155,6 +88,7 @@ func (q *QueryRequisitionList) PgxBuildWhereOrder(rawQuery string) (string, []in
 
 		query = strings.TrimSuffix(query, "AND")
 	}
+
 	// ordering
 	query = query + fmt.Sprintf(" ORDER BY created_at DESC LIMIT $%d OFFSET $%d", index, index+1)
 	args = append(args, q.Limit, q.Offset)
@@ -162,7 +96,7 @@ func (q *QueryRequisitionList) PgxBuildWhereOrder(rawQuery string) (string, []in
 	return query, args
 }
 
-func (q *QueryRequisitionList) PgxBuildWhere(rawQuery string) (string, []interface{}) {
+func (q *QueryRequisitionList) BuildWhere(rawQuery string) (string, []interface{}) {
 	rawArgs := map[string]interface{}{}
 
 	if q.Status != "" {
@@ -212,13 +146,4 @@ func (q *QueryRequisitionList) PgxBuildWhere(rawQuery string) (string, []interfa
 type RequisitionList struct {
 	Items []*Requisition `db:"items"`
 	Total int            `db:"total"`
-}
-
-type Admin struct {
-	ID        string    `db:"id"`
-	Username  string    `db:"username"`
-	Password  string    `db:"password"`
-	Status    string    `db:"status"`
-	UpdatedAt time.Time `db:"updated_at"`
-	CreatedAt time.Time `db:"created_at"`
 }

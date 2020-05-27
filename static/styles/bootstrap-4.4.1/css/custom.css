@@ -86,3 +86,11 @@ h6, .h6 {
     background: #4e555b;
     color: #fff;
 }
+
+.table-div {
+    cursor:pointer;
+}
+
+ul {
+    list-style-type: none;
+}

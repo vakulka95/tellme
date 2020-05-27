@@ -21,7 +21,7 @@ type Environment struct {
 
 	ServePort string `env:"SERVE_PORT" envDefault:"8080"`
 
-	PostgresDriver            string        `env:"POSTGRES_DRIVER" envDefault:"sqlx"`
+	PostgresDriver            string        `env:"POSTGRES_DRIVER" envDefault:"pgx"`
 	PostgresHost              string        `env:"POSTGRES_HOST,required"`
 	PostgresPort              string        `env:"POSTGRES_PORT,required"`
 	PostgresUsername          string        `env:"POSTGRES_USERNAME,required"`

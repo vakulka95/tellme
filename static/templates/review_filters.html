@@ -1,0 +1,24 @@
+<!--expert_filters.html-->
+
+<div class="card shadow">
+    <article class="card-group-item">
+        <header class="card-header">
+            <h3 class="title">Фільтри</h3>
+        </header>
+        <div class="filter-content">
+            <div class="card-body">
+                <form class="form" action="/admin/review" method="GET">
+                    <label for="status">Статус</label>
+                    <select class="custom-select" id="status" name="status">
+                        <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                        <option {{ if (eq .queries.status "requested") }} selected {{ end}} value="requested">Відгук очікується</option>
+                        <option {{ if (eq .queries.status "completed") }} selected {{ end}} value="completed">Відповів</option>
+                    </select>
+                    <br/>
+                    <hr/>
+                    <button type="submit" class="btn btn-primary">Вибрати</button>
+                </form>
+            </div>
+        </div>
+    </article>
+</div>

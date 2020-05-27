@@ -1,187 +1,60 @@
-<!--requisition_list.html-->
+<!-- requisition_list.html-->
 
 {{ template "header.html" .}}
 
-<div class="container">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <div class="display-flex align-center">
-                <h5 class="m-0 font-weight-bold">Заявки</h5>
-                <div class="ml-auto display-flex align-center">
-
-                    <form class="form-inline" action="/admin/requisition" method="GET">
-
-                        <div class="row">
-
-                            <div class="col">
-                                <label class="my-1 mr-2" for="feedback_week_day">День</label>
-                                <select class="custom-select my-1 mr-sm-2" id="feedback_week_day" name="feedback_week_day">
-                                    <option {{ if (eq .queries.feedback_week_day "") }} selected {{ end }} value="">Всі</option>
-                                    <option {{ if (eq .queries.feedback_week_day "mon") }} selected {{ end }} value="mon">Понеділок</option>
-                                    <option {{ if (eq .queries.feedback_week_day "tue") }} selected {{ end }} value="tue">Вівторок</option>
-                                    <option {{ if (eq .queries.feedback_week_day "wed") }} selected {{ end }} value="wed">Середа</option>
-                                    <option {{ if (eq .queries.feedback_week_day "thu") }} selected {{ end }} value="thu">Четвер</option>
-                                    <option {{ if (eq .queries.feedback_week_day "fri") }} selected {{ end }} value="fri">П'ятниця</option>
-                                    <option {{ if (eq .queries.feedback_week_day "sat") }} selected {{ end }} value="sat">Субота</option>
-                                    <option {{ if (eq .queries.feedback_week_day "sun") }} selected {{ end }} value="sun">Неділя</option>
-                                </select>
-                            </div>
-
-                            <div class="col">
-                                <label class="my-1 mr-2" for="feedback_time">Час</label>
-                                <select class="custom-select my-1 mr-sm-2" id="feedback_time" name="feedback_time">
-                                    <option {{ if (eq .queries.feedback_time "") }} selected {{ end }} value="">Всі</option>
-                                    <option {{ if (eq .queries.feedback_time "8:00") }} selected {{ end }} value="8:00">8:00</option>
-                                    <option {{ if (eq .queries.feedback_time "13:00") }} selected {{ end }} value="13:00">13:00</option>
-                                    <option {{ if (eq .queries.feedback_time "18:00") }} selected {{ end }} value="18:00">18:00</option>
-                                </select>
-                            </div>
-
-                            <div class="col">
-                                <label class="my-1 mr-2" for="status">Статус</label>
-                                <select class="custom-select my-1 mr-sm-2" id="status" name="status">
-                                    <option {{ if (eq .queries.status "created") }} selected {{ end }} value="created">Не в роботі</option>
-                                    <option {{ if (eq .queries.status "processing") }} selected {{ end }} value="processing">В роботі</option>
-                                    <option {{ if (eq .queries.status "completed") }} selected {{ end }} value="completed">Виконаний</option>
-                                </select>
-                            </div>
-
-                            <div class="col">
-                                <label class="my-1 mr-2" for="specializations">Спеціалізації</label>
-                                <select multiple class="custom-select my-1 mr-sm-2" id="specializations" name="specializations">
-                                    {{ range $spec, $specOpt := .queries.specializations }}
-                                        <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
-                                    {{ end }}
-                                </select>
-                            </div>
-
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary my-1">Вибрати</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            {{ template "requisition_filters.html" . }}
         </div>
 
-        <div class="card-body">
-            <div class="alert alert-secondary" role="alert">
-                Всього вибрано: {{ .data.total }} заявок. {{ .pagination.page.TotalPages }} сторінок.
-            </div>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Ім'я</th>
-                        <th>Стать</th>
-                        <th>Телефон</th>
-                        <th>Діагноз</th>
-                        <th>Статус</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {{ range $i, $item := .data.items }}
-                        <tr>
-                            <td>{{ $item.username }}</td>
-                            {{ $gender := $item.gender }}
-                            {{ with (eq $gender "male") }}<td class="text-center"><span class="badge badge-pill badge-info">Чол.</span></td>{{ end }}
-                            {{ with (eq $gender "female") }}<td class="text-center"><span class="badge badge-pill badge-primary">Жін.</span></td>{{ end }}
-                            <td>{{ $item.phone }}</td>
-                            <td><span class="badge badge-pill badge-primary">{{ $item.diagnosis }}</span></td>
-                            {{ $status := $item.status }}
-                            {{ with (eq $status "created") }}<td class="text-center"><span class="badge badge-pill badge-warning">Не в роботі</span></td>{{ end }}
-                            {{ with (eq $status "processing") }}<td class="text-center"><span class="badge badge-pill badge-info">В роботі</span></td>{{ end }}
-                            {{ with (eq $status "completed") }}<td class="text-center"><span class="badge badge-pill badge-success">Виконаний</span></td>{{ end }}
+        <div class="col-sm-9">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h3 class="panel-title">Заявки</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-secondary" role="alert">
+                        Всього вибрано: {{ .data.total }} заявок. {{ .pagination.page.TotalPages }} сторінок.
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Ім'я</th>
+                                <th>Стать</th>
+                                <th>Телефон</th>
+                                <th>Діагноз</th>
+                                <th>Статус</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{ range $i, $item := .data.items }}
+                                <tr class="table-row">
+                                    <td class="table-div" data-href="/admin/requisition/{{ $item.id }}">{{ $item.username }}</td>
+                                    {{ $gender := $item.gender }}
+                                    {{ with (eq $gender "male") }}<td class="text-center table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-info">Чол.</span></td>{{ end }}
+                                    {{ with (eq $gender "female") }}<td class="text-center table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-primary">Жін.</span></td>{{ end }}
+                                    <td class="table-div" data-href="/admin/requisition/{{ $item.id }}">{{ $item.phone }}</td>
+                                    <td class="table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-primary">{{ $item.diagnosis }}</span></td>
 
-                            <td class="text-center">
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#requisitionDetails{{ $i }}">Деталі</button>
-                                <a class="btn btn-secondary btn-sm {{ if (ne $item.status "created") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="takeRequisitionAPI(this)" role="button">Взяти</a>
-                                <a class="btn btn-success btn-sm {{ if (ne $item.status "processing") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="completeRequisitionAPI(this)" role="button">Завершити</a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="requisitionDetails{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="requisitionDetailsTitle{{ $i }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="requisitionDetailsTitle{{ $i }}">Заявка - {{ $item.username }}</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Закрити">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <dl class="row" >
-                                                    <dt class="col-sm-3 text-sm-left">ID</dt>
-                                                    <dd class="col-sm-9 text-sm-left">
-                                                        <p>{{ $item.id }}</p>
-                                                    </dd>
-                                                    <dt class="col-sm-3 text-sm-left">Ім'я</dt>
-                                                    <dd class="col-sm-9 text-sm-left">
-                                                        <p>{{ $item.username }}</p>
-                                                    </dd>
-                                                    <dt class="col-sm-3 text-sm-left">Стать</dt>
-                                                    <dd class="col-sm-9 text-sm-left">
-                                                        {{ with (eq $gender "male") }}<span class="badge badge-pill badge-info">Чол.</span>{{ end }}
-                                                        {{ with (eq $gender "female") }}<span class="badge badge-pill badge-primary">Жін.</span>{{ end }}
-                                                    </dd>
-                                                    <dt class="col-sm-3 text-sm-left">День зворотнього зв'язку</dt>
-                                                    <dd class="col-sm-9 text-sm-left">
-                                                        <p>{{ $item.feedback_week_day }}</p>
-                                                    </dd>
-                                                    <dt class="col-sm-3 text-sm-left">Час зворотнього зв'язку</dt>
-                                                    <dd class="col-sm-9 text-sm-left">
-                                                        <p>{{ $item.feedback_time }}</p>
-                                                    </dd>
-                                                    <dt class="col-sm-3 text-sm-left">Стать психолога</dt>
-                                                    <dd class="col-sm-9 text-sm-left">
-                                                        {{ with (eq $item.expert_gender "male") }}<span class="badge badge-pill badge-info">Чол.</span>{{ end }}
-                                                        {{ with (eq $item.expert_gender "female") }}<span class="badge badge-pill badge-primary">Жін.</span>{{ end }}
-                                                    </dd>
-                                                    <dt class="col-sm-3 text-sm-left">Зворотній зв'язок</dt>
-                                                    <dd class="col-sm-9 text-sm-left">
-                                                        <p>{{ $item.feedback_type }}</p>
-                                                    </dd>
-                                                    {{ if (ne $item.feedback_type "phone") }}
-                                                    <dt class="col-sm-3 text-sm-left">Зворотній контакт</dt>
-                                                    <dd class="col-sm-9 text-sm-left">
-                                                        <p>{{ $item.feedback_contact }}</p>
-                                                    </dd>
-                                                    {{ end }}
-                                                    <dt class="col-sm-3 text-sm-left">Телефон</dt>
-                                                    <dd class="col-sm-9 text-sm-left">
-                                                        <p>{{ $item.phone }}</p>
-                                                    </dd>
-                                                    <dt class="col-sm-3 text-sm-left">Діагноз</dt>
-                                                    <dd class="col-sm-9 text-sm-left">
-                                                        <span class="badge badge-pill badge-primary">{{ $item.diagnosis }}</span>
-                                                    </dd>
-                                                    <dt class="col-sm-3 text-sm-left">Опис діагнозу</dt>
-                                                    <dd class="col-sm-9 text-sm-left">
-                                                        <p >{{ $item.diagnosis_description }}</p>
-                                                    </dd>
-                                                    <dt class="col-sm-3 text-sm-left">Статус</dt>
-                                                    <dd class="col-sm-9 text-sm-left">
-                                                        {{ with (eq $status "created") }}<span class="badge badge-pill badge-warning" id="requisition-{{ $item.id }}-status">Не в роботі</span>{{ end }}
-                                                        {{ with (eq $status "processing") }}<span class="badge badge-pill badge-info" id="requisition-{{ $item.id }}-status">В роботі</span>{{ end }}
-                                                        {{ with (eq $status "completed") }}<span class="badge badge-pill badge-success" id="requisition-{{ $item.id }}-status">Виконаний</span>{{ end }}
-                                                    </dd>
-                                                </dl>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
-                                                <a class="btn btn-secondary {{ if (ne $item.status "created") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="takeRequisitionAPI(this)" role="button">Взяти</a>
-                                                <a class="btn btn-success {{ if (ne $item.status "processing") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="completeRequisitionAPI(this)" role="button">Завершити</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Modal -->
-                            </td>
-                        </tr>
-                    {{ end }}
-                    </tbody>
-                </table>
-                {{ template "requisition_pagging.html" .pagination }}
+                                    {{ $status := $item.status }}
+                                    {{ with (eq $status "created") }}<td class="text-center table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-warning">Не в роботі</span></td>{{ end }}
+                                    {{ with (eq $status "processing") }}<td class="text-center table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-info">В роботі</span></td>{{ end }}
+                                    {{ with (eq $status "completed") }}<td class="text-center table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-success">Виконаний</span></td>{{ end }}
+
+                                    <td class="text-center">
+                                        <a class="btn btn-secondary {{ if (ne $item.status "created") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="takeRequisitionAPI(this)" role="button">Взяти</a>
+                                        <a class="btn btn-success {{ if (ne $item.status "processing") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="completeRequisitionAPI(this)" role="button">Завершити</a>
+                                    </td>
+                                </tr>
+                            {{ end }}
+                            </tbody>
+                        </table>
+                        {{ template "requisition_pagging.html" .pagination }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

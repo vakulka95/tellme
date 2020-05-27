@@ -1,0 +1,72 @@
+<!--review_item.html-->
+
+{{ template "header.html" .}}
+<div class="container">
+    <div class="card shadow">
+        <div class="card-header">
+            <div class="d-inline-block">
+                <h3 class="panel-title">Відгук {{ .review.id }}</h3>
+            </div>
+            <div class="d-inline-block float-right">
+                <button type="button" class="btn btn-secondary" onclick="javascript:history.back()">Назад</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <span class="bottom-line d-block mx-auto mt-3 mb-4"></span>
+            <div class="row my-2 mx-auto">
+                <div class="col-3 text-right border-right border-dark">ID</div>
+                <div class="col-9 pl-4">{{ .review.id }}</div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col-3 text-right border-right border-dark">Заявка</div>
+                <div class="col-9 pl-4">
+                    <a class="badge badge-pill badge-info" href="/admin/requisition/{{ .review.requisition_id }}" role="button">Детальніше</a>
+                </div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col-3 text-right border-right border-dark">Психолог</div>
+                <div class="col-9 pl-4">
+                    <a class="badge badge-pill badge-info" href="/admin/expert/{{ .review.expert_id }}" role="button">Детальніше</a>
+                </div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col-3 text-right border-right border-dark">Задоволення від консультації</div>
+                <div class="col-9 pl-4">{{ .review.consultation_review }}</div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col-3 text-right border-right border-dark">Кількість наданих консультацій</div>
+                <div class="col-9 pl-4">{{ .review.consultation_count }}</div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col-3 text-right border-right border-dark">Враження від роботи з психологом</div>
+                <div class="col-9 pl-4">{{ .review.expert_review }}</div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col-3 text-right border-right border-dark">Оцінка психолога</div>
+                <div class="col-9 pl-4">{{ .review.expert_point }}</div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col-3 text-right border-right border-dark">TODO: delete token</div>
+                <div class="col-9 pl-4">{{ .review.token }}</div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col-3 text-right border-right border-dark">Враження від платформи</div>
+                <div class="col-9 pl-4">{{ .review.platform_review }}</div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col-3 text-right border-right border-dark">Статус</div>
+                <div class="col-9 pl-4">
+                    {{ $status := .review.status }}
+                    {{ with (eq $status "requested") }}<td class="text-center"><span class="badge badge-pill badge-warning">Відгук очікується</span></td>{{ end }}
+                    {{ with (eq $status "completed") }}<td class="text-center"><span class="badge badge-pill badge-success">Відповів</span></td>{{ end }}
+                </div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col-3 text-right border-right border-dark">Дата запиту</div>
+                <div class="col-9 pl-4">{{ .review.created_at }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ template "footer.html" . }}

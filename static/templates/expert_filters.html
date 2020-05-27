@@ -1,3 +1,5 @@
+<!--expert_filters.html-->
+
 <div class="card shadow">
     <article class="card-group-item">
         <header class="card-header">
@@ -13,18 +15,16 @@
                         <option {{ if (eq .queries.status "blocked") }} selected {{ end}} value="blocked">Заблокований</option>
                         <option {{ if (eq .queries.status "active") }} selected {{ end}} value="active">Активний</option>
                     </select>
-
-                    <br>
-
+                    <br/>
+                    <hr/>
                     <label for="specializations">Спеціалізації </label>
                     <select multiple class="custom-select" id="specializations" name="specializations">
                         {{ range $spec, $specOpt := .queries.specializations }}
                             <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
                         {{ end }}
                     </select>
-
-                    <br>
-
+                    <br/>
+                    <hr/>
                     <button type="submit" class="btn btn-primary">Вибрати</button>
                 </form>
             </div>

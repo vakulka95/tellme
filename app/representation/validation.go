@@ -9,7 +9,7 @@ import (
 	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 
-	"gitlab.com/tellmecomua/tellme.api/util/validation"
+	"gitlab.com/tellmecomua/tellme.api/pkg/util/validation"
 )
 
 func ExpertAPItoPersistence(e *CreateExpertRequest) (*model.Expert, error) {
@@ -73,7 +73,7 @@ func ExpertAPItoPersistence(e *CreateExpertRequest) (*model.Expert, error) {
 		Specializations: e.Specializations,
 		Education:       e.Education,
 		DocumentURLs:    make([]string, 0),
-		Status:          model.StatusOnReview,
+		Status:          model.ExpertStatusOnReview,
 	}, nil
 }
 
@@ -130,6 +130,18 @@ func RequisitionAPItoPersistence(r *CreateRequisitionRequest) (*model.Requisitio
 		FeedbackTime:         r.FeedbackTime,
 		FeedbackWeekDay:      r.FeedbackWeekDay,
 		IsAdult:              r.IsAdult,
-		Status:               model.StatusCreated,
+		Status:               model.RequisitionStatusCreated,
+	}, nil
+}
+
+func ReviewAPItoPersistence(r *ConfirmReviewRequest) (*model.Review, error) {
+	return &model.Review{
+		PlatformReview:     r.PlatformReview,
+		ConsultationCount:  r.ConsultationCount,
+		ConsultationReview: r.ConsultationReview,
+		ExpertPoint:        r.ExpertPoint,
+		ExpertReview:       r.ExpertReview,
+		Token:              r.Token,
+		Status:             model.ReviewStatusCompleted,
 	}, nil
 }

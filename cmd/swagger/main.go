@@ -29,6 +29,7 @@ func (s *swagger) apiUploadExpertDoc(*restful.Request, *restful.Response)     {}
 func (s *swagger) apiRequisitionCreate(*restful.Request, *restful.Response)   {}
 func (s *swagger) apiValidateExpertPhone(*restful.Request, *restful.Response) {}
 func (s *swagger) apiValidateExpertEmail(*restful.Request, *restful.Response) {}
+func (s *swagger) apiConfirmReview(*restful.Request, *restful.Response)       {}
 
 func (s *swagger) genSwagger() error {
 	s.init()
@@ -135,5 +136,19 @@ func (s *swagger) init() {
 		Returns(http.StatusInternalServerError, "InternalServerError", representation.ErrInternal).
 		Reads(representation.CreateRequisitionRequest{}).
 		Writes(representation.CreateRequisitionResponse{}).
+		Metadata(restfulspec.KeyOpenAPITags, []string{"main"}))
+
+	s.ws.Route(s.ws.PUT("/review").
+		To(s.apiConfirmReview).
+		Doc("Confirm user review about expert").
+		Param(restful.QueryParameter("token", "Service token which is identifier of review item")).
+		Returns(http.StatusCreated, "Created", representation.ConfirmReviewResponse{}).
+		Returns(http.StatusConflict, "Conflict", representation.ErrConflict).
+		Returns(http.StatusNotFound, "NotFound", representation.ErrNotFound).
+		Returns(http.StatusBadRequest, "BadRequest", representation.ErrInvalidRequest).
+		Returns(http.StatusUnprocessableEntity, "UnprocessableEntity", representation.ErrInvalidRequest).
+		Returns(http.StatusInternalServerError, "InternalServerError", representation.ErrInternal).
+		Reads(representation.ConfirmReviewRequest{}).
+		Writes(representation.ConfirmReviewResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, []string{"main"}))
 }

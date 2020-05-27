@@ -1,0 +1,51 @@
+<!--review_list.html-->
+
+{{ template "header.html" .}}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            {{ template "review_filters.html" . }}
+        </div>
+
+        <div class="col-sm-9">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h3 class="panel-title">Відгуки</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-secondary" role="alert">
+                        Всього вибрано: {{ .data.total }} відгуків. {{ .pagination.page.TotalPages }} сторінок.
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Задоволення від консультації</th>
+                                <th>Оцінка психолога</th>
+                                <th>Кількість консультацій</th>
+                                <th>Статус</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{ range $i, $item := .data.items }}
+                                <tr class="table-row">
+                                    <td class="table-div" data-href="/admin/review/{{ $item.id }}">{{ $item.consultation_review }}</td>
+                                    <td class="table-div" data-href="/admin/review/{{ $item.id }}">{{ $item.expert_point }}</td>
+                                    <td class="table-div" data-href="/admin/review/{{ $item.id }}">{{ $item.consultation_count }}</td>
+                                    {{ $status := $item.status }}
+                                    {{ with (eq $status "requested") }}<td class="text-center table-div" data-href="/admin/review/{{ $item.id }}"><span class="badge badge-pill badge-warning">Відповідь очікується</span></td>{{ end }}
+                                    {{ with (eq $status "completed") }}<td class="text-center table-div" data-href="/admin/expert/{{ $item.id }}"><span class="badge badge-pill badge-success">Відповів</span></td>{{ end }}
+                                </tr>
+                            {{ end }}
+                            </tbody>
+                        </table>
+                        {{ template "review_pagging.html" .pagination }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ template "footer.html" . }}

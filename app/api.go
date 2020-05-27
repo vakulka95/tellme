@@ -15,7 +15,6 @@ import (
 	"gitlab.com/tellmecomua/tellme.api/app/config"
 	"gitlab.com/tellmecomua/tellme.api/app/persistence"
 	"gitlab.com/tellmecomua/tellme.api/app/persistence/pgx"
-	"gitlab.com/tellmecomua/tellme.api/app/persistence/sqlx"
 	"gitlab.com/tellmecomua/tellme.api/pkg/sms"
 )
 
@@ -45,12 +44,7 @@ func (s *apiserver) init() error {
 }
 
 func (s *apiserver) connectRepository() error {
-	switch s.config.PostgresDriver {
-	case "sqlx":
-		s.repository = sqlx.New(s.config)
-	case "pgx":
-		s.repository = pgx.New(s.config)
-	}
+	s.repository = pgx.New(s.config)
 	return s.repository.Connect()
 }
 

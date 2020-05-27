@@ -23,7 +23,7 @@ func (s *apiserver) login(login, password string) (string, string, error) { // r
 	expert, err := s.repository.GetExpertByEmail(strings.ToLower(login))
 	if err == nil {
 
-		if expert.Status != model.StatusActive {
+		if expert.Status != model.ExpertStatusActive {
 			return "", "", ErrUserIsBlocked
 		}
 
@@ -43,7 +43,7 @@ func (s *apiserver) login(login, password string) (string, string, error) { // r
 		return "", "", fmt.Errorf("failed to get user for auth: %v", err)
 	}
 
-	if admin.Status != model.StatusActive {
+	if admin.Status != model.AdminStatusActive {
 		return "", "", fmt.Errorf("user is blocked")
 	}
 

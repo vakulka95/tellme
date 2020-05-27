@@ -7,17 +7,15 @@ import (
 	"github.com/jackc/pgx/v4/pgxpool"
 
 	"gitlab.com/tellmecomua/tellme.api/app/config"
-	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
 )
 
 type Repository struct {
-	e       *config.Environment
-	cli     *pgxpool.Pool
-	queries map[string]string
+	e   *config.Environment
+	cli *pgxpool.Pool
 }
 
 func New(e *config.Environment) *Repository {
-	return &Repository{e: e, queries: model.GetRawQueries()}
+	return &Repository{e: e}
 }
 
 func (r *Repository) Connect() error {

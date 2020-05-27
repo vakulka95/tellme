@@ -36,7 +36,7 @@ function deleteExpertAPI(expert){
         url: '/admin/expert/'+expertId,
         type: 'DELETE',
         success: function (result) {
-            document.location.reload();
+            history.back();
         },
         error: function (error) {
             console.log(error);
@@ -94,3 +94,9 @@ function completeRequisitionAPI(requisition){
         }
     })
 }
+
+$(document).ready(function($) {
+    $(".table-div").click(function() {
+        window.document.location = $(this).data("href");
+    });
+});
