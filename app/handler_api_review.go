@@ -24,14 +24,6 @@ func (s *apiserver) apiReviewConfirm(c *gin.Context) {
 		return
 	}
 
-	token := c.Query("token")
-	if strings.TrimSpace(token) == "" {
-		log.Printf("(ERR) %s: empty token", logPref)
-		c.AbortWithStatusJSON(http.StatusBadRequest, representation.ErrInvalidRequest)
-		return
-	}
-
-	reviewReq.Token = token
 	review, err := representation.ReviewAPItoPersistence(reviewReq)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, representation.ErrInvalidRequest)
@@ -55,6 +47,7 @@ func (s *apiserver) apiReviewConfirm(c *gin.Context) {
 		return
 	}
 
+	review.ID = reviewRes.ID
 	reviewRes, err = s.repository.UpdateReviewBodyStatus(review)
 	if err != nil {
 		if strings.Contains(err.Error(), "constraint") {

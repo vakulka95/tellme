@@ -70,9 +70,9 @@ type ConfirmReviewRequest struct {
 	PlatformReview     string `json:"platform_review" description:"Platform review"`
 	ConsultationCount  int    `json:"consultation_count" description:"Consultation count"`
 	ConsultationReview string `json:"consultation_review" description:"Consultation satisfaction"`
-	ExpertPoint        string `json:"expert_point" description:"Expert point: min - 1, max - 10"`
+	ExpertPoint        int    `json:"expert_point" description:"Expert point: min - 1, max - 5"`
 	ExpertReview       string `json:"expert_review" description:"Expert work review"`
-	Token              string `json:"-"`
+	Token              string `json:"token" description:"Token to authorize review request"`
 }
 
 type ConfirmReviewResponse struct {
