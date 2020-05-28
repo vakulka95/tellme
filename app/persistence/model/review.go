@@ -19,7 +19,7 @@ type Review struct {
 	PlatformReview     string    `db:"platform_review"`
 	ConsultationCount  int       `db:"consultation_count"`
 	ConsultationReview string    `db:"consultation_review"`
-	ExpertPoint        string    `db:"expert_point"`
+	ExpertPoint        int       `db:"expert_point"`
 	ExpertReview       string    `db:"expert_review"`
 	Token              string    `db:"token"`
 	Status             string    `db:"status"`

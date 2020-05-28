@@ -5,7 +5,7 @@ CREATE TABLE reviews (
     platform_review             TEXT            NOT NULL,
     consultation_count          INTEGER         NOT NULL,
     consultation_review         TEXT            NOT NULL,
-    expert_point                VARCHAR(32)     NOT NULL,
+    expert_point                INTEGER         NOT NULL,
     expert_review               TEXT            NOT NULL,
     token                       VARCHAR(64)     NOT NULL,
     status                      VARCHAR(16)     NOT NULL DEFAULT 'requested',

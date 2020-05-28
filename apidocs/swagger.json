@@ -344,8 +344,9 @@
           "type": "string"
         },
         "expert_point": {
-          "description": "Expert point: min - 1, max - 10",
-          "type": "string"
+          "description": "Expert point: min - 1, max - 5",
+          "type": "integer",
+          "format": "int32"
         },
         "expert_review": {
           "description": "Expert work review",
