@@ -1,24 +1,20 @@
 package main
 
 import (
-	"fmt"
+	"log"
 
-	goqu "github.com/doug-martin/goqu/v9"
-
-	// import the dialect
-	_ "github.com/doug-martin/goqu/v9/dialect/postgres"
+	"gitlab.com/tellmecomua/tellme.api/pkg/postgres"
 )
 
 func main() {
+	sql, args := postgres.NewQueryBuilder().
+		Select("id", "id_2").
+		From("users").
+		Where(
+			postgres.NewNotEqual("status", "active"),
+		).
+		Build()
 
-	goqu.Dialect("postgres")
-
-	// use dialect.From to get a dataset to build your SQL
-	ds := goqu.From("test").Where(goqu.Ex{"id": 10})
-	sql, args, err := ds.ToSQL()
-	if err != nil {
-		fmt.Println("An error occurred while generating the SQL", err.Error())
-	} else {
-		fmt.Println(sql, args)
-	}
+	log.Printf("sql: [%s]", sql)
+	log.Printf("args: %+v", args)
 }
