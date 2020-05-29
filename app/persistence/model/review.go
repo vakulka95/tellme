@@ -64,7 +64,7 @@ func (q *QueryReviewList) BuildWhereOrder(rawQuery string) (string, []interface{
 	}
 
 	// ordering
-	query = query + fmt.Sprintf(" ORDER BY created_at DESC LIMIT $%d OFFSET $%d", index, index+1)
+	query = query + fmt.Sprintf(" ORDER BY updated_at DESC LIMIT $%d OFFSET $%d", index, index+1)
 	args = append(args, q.Limit, q.Offset)
 
 	return query, args

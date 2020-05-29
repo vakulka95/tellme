@@ -3,6 +3,7 @@ package pgx
 import (
 	"context"
 	"log"
+	"time"
 
 	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
 )
@@ -207,7 +208,8 @@ func (r *Repository) UpdateReviewBodyStatus(v *model.Review) (*model.Review, err
            consultation_review=$4,
            expert_point=$5,
            expert_review=$6,
-		   status=$7
+		   status=$7,
+		   updated_at=$8
      WHERE id=$1`
 
 	var ctx = context.TODO()
@@ -220,6 +222,7 @@ func (r *Repository) UpdateReviewBodyStatus(v *model.Review) (*model.Review, err
 		v.ExpertPoint,
 		v.ExpertReview,
 		v.Status,
+		time.Now(),
 	)
 	if err != nil {
 		return nil, err
