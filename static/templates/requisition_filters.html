@@ -49,6 +49,13 @@
                     </select>
                     <br/>
                     <hr/>
+                    <label for="datetime_from">Дата/час від</label>
+                    <input id="datetime_from" name="datetime_from" placeholder="yyyy-mm-ddT00:00" type="datetime-local" value="{{ .queries.datetime_from }}">
+                    <br/>
+                    <label for="datetime_to">Дата/час  до</label>
+                    <input id="datetime_to" name="datetime_to" placeholder="yyyy-mm-ddT00:00" type="datetime-local" value="{{ .queries.datetime_to }}">
+                    <br/>
+                    <hr/>
                     <button type="submit" class="btn btn-primary">Вибрати</button>
                 </form>
             </div>

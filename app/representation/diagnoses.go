@@ -10,6 +10,8 @@ var Diagnoses = map[string]string{
 	"depression":                    "Депресія",
 	"phobias":                       "Фобії",
 	"obsessive_compulsive_disorder": "Обсесивно-компульсивний розлад(нав'язливі думки та дії)",
+	"family_problem":                "Проблеми в сімейних стосунках",
+	"parents_children_problem":      "Проблеми у стосунках батьків і дітей",
 	"other":                         "Інше",
 }
 
@@ -23,6 +25,8 @@ var DiagnosesStripped = map[string]string{
 	"depression":                    "Депресія",
 	"phobias":                       "Фобії",
 	"obsessive_compulsive_disorder": "Обсесивно-компульсивний розлад",
+	"family_problem":                "Проблеми в сімейних стосунках",
+	"parents_children_problem":      "Проблеми у стосунках батьків і дітей",
 	"other":                         "Інше",
 }
 
@@ -42,6 +46,8 @@ func GenerateDiagnosesOptions(sel []string) map[string]*DiagnosesOptions {
 		"depression":                    {Translated: "Депресія"},
 		"phobias":                       {Translated: "Фобії"},
 		"obsessive_compulsive_disorder": {Translated: "Обсесивно-компульсивний розлад"},
+		"family_problem":                {Translated: "Проблеми в сімейних стосунках"},
+		"parents_children_problem":      {Translated: "Проблеми у стосунках батьків і дітей"},
 		"other":                         {Translated: "Інше"},
 	}
 	for _, v := range sel {

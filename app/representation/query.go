@@ -3,7 +3,9 @@ package representation
 import (
 	"bytes"
 	"fmt"
+	"log"
 	"math"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/paginater"
@@ -17,14 +19,29 @@ const (
 )
 
 type QueryListParams struct {
-	Limit           int      `form:"limit"`
-	Offset          int      `form:"offset"`
-	Status          string   `form:"status"`
-	FeedbackTime    string   `form:"feedback_time"`
-	FeedbackWeekDay string   `form:"feedback_week_day"`
-	Specializations []string `form:"specializations"`
-	ExpertID        string   `form:"expert_id"`
-	Search          string   `form:"search"`
+	Limit           int        `form:"limit"`
+	Offset          int        `form:"offset"`
+	Status          string     `form:"status"`
+	FeedbackTime    string     `form:"feedback_time"`
+	FeedbackWeekDay string     `form:"feedback_week_day"`
+	Specializations []string   `form:"specializations"`
+	ExpertID        string     `form:"expert_id"`
+	Search          string     `form:"search"`
+	CreatedAtFrom   *time.Time `form:"datetime_from" time_format:"2006-01-02T15:04"`
+	CreatedAtTo     *time.Time `form:"datetime_to" time_format:"2006-01-02T15:04"`
+}
+
+func (q *QueryListParams) GetDatetimeRange() (from string, to string) {
+	if q.CreatedAtFrom != nil && !q.CreatedAtFrom.IsZero() {
+		from = q.CreatedAtFrom.Format("2006-01-02T15:04")
+	}
+
+	if q.CreatedAtTo != nil && !q.CreatedAtTo.IsZero() {
+		to = q.CreatedAtTo.Format("2006-01-02T15:04")
+	}
+
+	log.Printf(">>> from: %s, to: %s", from, to)
+	return
 }
 
 func QueryExpertAPItoPersistence(q *QueryListParams) *model.QueryExpertList {
@@ -55,6 +72,8 @@ func QueryRequisitionAPItoPersistence(q *QueryListParams) *model.QueryRequisitio
 		Specializations: q.Specializations,
 		ExpertID:        q.ExpertID,
 		Search:          q.Search,
+		CreatedAtFrom:   q.CreatedAtFrom,
+		CreatedAtTo:     q.CreatedAtTo,
 	}
 }
 
@@ -79,6 +98,8 @@ func (q *QueryListParams) generateQuery() string {
 		buf.WriteString(fmt.Sprintf("&specializations=%s", v))
 	}
 
+	from, to := q.GetDatetimeRange()
+	buf.WriteString(fmt.Sprintf("&datetime_from=%s&datetime_to=%s", from, to))
 	buf.WriteString(fmt.Sprintf("&feedback_week_day=%s", q.FeedbackWeekDay))
 	buf.WriteString(fmt.Sprintf("&feedback_time=%s", q.FeedbackTime))
 	buf.WriteString(fmt.Sprintf("&expert_id=%s", q.ExpertID))

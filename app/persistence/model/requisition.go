@@ -35,14 +35,16 @@ type Requisition struct {
 }
 
 type QueryRequisitionList struct {
-	Limit           int      `db:"limit"`
-	Offset          int      `db:"offset"`
-	Status          string   `db:"status"`
-	ExpertID        string   `db:"expert_id"`
-	FeedbackTime    string   `db:"feedback_time"`
-	FeedbackWeekDay string   `db:"feedback_week_day"`
-	Specializations []string `db:"specializations"`
-	Search          string   `db:"search"`
+	Limit           int        `db:"limit"`
+	Offset          int        `db:"offset"`
+	Status          string     `db:"status"`
+	ExpertID        string     `db:"expert_id"`
+	FeedbackTime    string     `db:"feedback_time"`
+	FeedbackWeekDay string     `db:"feedback_week_day"`
+	Specializations []string   `db:"specializations"`
+	Search          string     `db:"search"`
+	CreatedAtFrom   *time.Time `db:"created_at"`
+	CreatedAtTo     *time.Time `db:"created_at"`
 }
 
 func DiscoverRequisitionExpression(search string) postgres.Expression {

@@ -1,6 +1,9 @@
 package postgres
 
-import "strings"
+import (
+	"strings"
+	"time"
+)
 
 // Integer
 type intVal struct {
@@ -51,5 +54,22 @@ func (v sliceStringVal) Valid() bool {
 }
 
 func (v sliceStringVal) Arg() interface{} {
+	return v.v
+}
+
+// Timestamp
+type timestampVal struct {
+	v *time.Time
+}
+
+func NewTimestamp(v *time.Time) Value {
+	return timestampVal{v: v}
+}
+
+func (v timestampVal) Valid() bool {
+	return v.v != nil && !v.v.IsZero()
+}
+
+func (v timestampVal) Arg() interface{} {
 	return v.v
 }

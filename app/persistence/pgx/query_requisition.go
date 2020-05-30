@@ -138,6 +138,8 @@ func (r *Repository) GetRequisitionList(q *model.QueryRequisitionList) (*model.R
 			postgres.NewExpression("feedback_time", postgres.NewString(q.FeedbackTime), postgres.OperatorEqual),
 			postgres.NewExpression("feedback_week_day", postgres.NewString(q.FeedbackWeekDay), postgres.OperatorEqual),
 			postgres.NewExpression("diagnosis", postgres.NewSliceString(q.Specializations), postgres.OperatorAny),
+			postgres.NewExpression("created_at", postgres.NewTimestamp(q.CreatedAtFrom), postgres.OperatorGreaterEqualOrEqual),
+			postgres.NewExpression("created_at", postgres.NewTimestamp(q.CreatedAtTo), postgres.OperatorLessThenOrEqual),
 			model.DiscoverRequisitionExpression(q.Search),
 		).
 		OrderBy("created_at").

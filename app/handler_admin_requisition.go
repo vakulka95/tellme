@@ -47,6 +47,7 @@ func (s *apiserver) webAdminRequisitionList(c *gin.Context) {
 		return
 	}
 
+	datetimeFrom, datetimeTo := qlp.GetDatetimeRange()
 	c.HTML(http.StatusOK, "requisition_list.html",
 		gin.H{
 			"metadata": gin.H{
@@ -61,6 +62,8 @@ func (s *apiserver) webAdminRequisitionList(c *gin.Context) {
 				"specializations":   representation.GenerateDiagnosesOptions(qlp.Specializations),
 				"feedback_time":     qlp.FeedbackTime,
 				"feedback_week_day": qlp.FeedbackWeekDay,
+				"datetime_from":     datetimeFrom,
+				"datetime_to":       datetimeTo,
 			},
 		},
 	)
