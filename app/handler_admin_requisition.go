@@ -56,6 +56,7 @@ func (s *apiserver) webAdminRequisitionList(c *gin.Context) {
 			"data":       representation.RequisitionListPersistenceToAPI(list),
 			"pagination": qlp.GeneratePagination(list.Total),
 			"queries": gin.H{
+				"search":            qlp.Search,
 				"status":            qlp.Status,
 				"specializations":   representation.GenerateDiagnosesOptions(qlp.Specializations),
 				"feedback_time":     qlp.FeedbackTime,

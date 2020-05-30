@@ -43,6 +43,7 @@ func (s *apiserver) webAdminExpertList(c *gin.Context) {
 			"data":       representation.ExpertListPersistenceToAPI(list),
 			"pagination": qlp.GeneratePagination(list.Total),
 			"queries": gin.H{
+				"search":          qlp.Search,
 				"status":          qlp.Status,
 				"specializations": representation.GenerateDiagnosesOptions(qlp.Specializations),
 			},

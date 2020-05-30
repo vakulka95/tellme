@@ -9,7 +9,7 @@ import (
 type queryBuilder struct {
 	columns  []string
 	table    string
-	where    []WhereExpression
+	where    []Expression
 	orderBy  string
 	orderDir OrderDir
 	limit    int
@@ -30,7 +30,7 @@ func (b *queryBuilder) From(table string) QueryBuilder {
 	return b
 }
 
-func (b *queryBuilder) Where(expressions ...WhereExpression) QueryBuilder {
+func (b *queryBuilder) Where(expressions ...Expression) QueryBuilder {
 	b.where = expressions
 	return b
 }
@@ -69,20 +69,27 @@ func (b *queryBuilder) Build() (string, []interface{}) {
 	args := make([]interface{}, 0, len(b.where))
 
 	if len(b.where) > 0 {
-		buff.WriteString(" WHERE ")
-
 		where := make([]string, 0, len(b.where))
-		for i, exp := range b.where {
-			args = append(args, exp.GetArg())
-			where = append(where, exp.Build(i+1))
+		index := 1
+		for _, exp := range b.where {
+			if !exp.Valid() {
+				continue
+			}
+
+			args = append(args, exp.Arg())
+			where = append(where, exp.Build(index))
+			index++
 		}
 
-		buff.WriteString(strings.Join(where, " AND "))
+		if len(where) > 0 {
+			buff.WriteString(" WHERE ")
+			buff.WriteString(strings.Join(where, " AND "))
+		}
 	}
 
 	// ordering
 	if b.orderBy != "" {
-		exp := fmt.Sprintf(" ORDER BY %s ORDER DIR %s ", b.orderBy, b.orderDir)
+		exp := fmt.Sprintf(" ORDER BY %s %s ", b.orderBy, b.orderDir)
 		buff.WriteString(exp)
 	}
 
@@ -109,15 +116,22 @@ func (b *queryBuilder) BuildCount() (string, []interface{}) {
 	args := make([]interface{}, 0, len(b.where))
 
 	if len(b.where) > 0 {
-		buff.WriteString(" WHERE ")
-
 		where := make([]string, 0, len(b.where))
-		for i, exp := range b.where {
-			args = append(args, exp.GetArg())
-			where = append(where, exp.Build(i+1))
+		index := 1
+		for _, exp := range b.where {
+			if !exp.Valid() {
+				continue
+			}
+
+			args = append(args, exp.Arg())
+			where = append(where, exp.Build(index))
+			index++
 		}
 
-		buff.WriteString(strings.Join(where, " AND "))
+		if len(where) > 0 {
+			buff.WriteString(" WHERE ")
+			buff.WriteString(strings.Join(where, " AND "))
+		}
 	}
 
 	return buff.String(), args

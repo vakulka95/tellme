@@ -4,9 +4,8 @@ import (
 	"context"
 	"log"
 
-	"github.com/jackc/pgx/v4"
-
 	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
+	"gitlab.com/tellmecomua/tellme.api/pkg/postgres"
 )
 
 func (r *Repository) GetExpert(id string) (*model.Expert, error) {
@@ -198,39 +197,49 @@ func (r *Repository) GetExpertByPhone(phone string) (*model.Expert, error) {
 func (r *Repository) GetExpertList(q *model.QueryExpertList) (*model.ExpertList, error) {
 	var (
 		ctx  = context.TODO()
-		list = &model.ExpertList{Items: make([]*model.Expert, 0, 20)} // pseudo default capacity
+		list = &model.ExpertList{Items: make([]*model.Expert, 0, q.Limit)} // pseudo default capacity
 	)
 
-	query := `
-			SELECT 	id,
-					username,
-					gender,
-					phone,
-					email,
-					password,
-					specializations,
-					education,
-					document_urls,
-					status,
-					updated_at,
-					created_at,
-					processing_count,
-					completed_count,
-					review_count
-			  FROM v$experts
-`
+	query := postgres.NewQueryBuilder().
+		Select(
+			"id",
+			"username",
+			"gender",
+			"phone",
+			"email",
+			"password",
+			"specializations",
+			"education",
+			"document_urls",
+			"status",
+			"updated_at",
+			"created_at",
+			"processing_count",
+			"completed_count",
+			"review_count",
+		).
+		From("v$experts").
+		Where(
+			postgres.NewExpression("status", postgres.NewString(q.Status), postgres.OperatorEqual),
+			postgres.NewExpression("specializations", postgres.NewSliceString(q.Specializations), postgres.OperatorContains),
+			model.DiscoverExpertExpression(q.Search),
+		).
+		OrderBy("created_at").
+		OrderDir(postgres.OrderDirDESC).
+		Limit(q.Limit).
+		Offset(q.Offset)
 
-	count := `
-			SELECT count(id) FROM experts
-`
-	listRows, countRow, err := r.queryExpertList(ctx, q, query, count)
+	listQuery, listArgs := query.Build()
+	countQuery, countArgs := query.BuildCount()
+
+	rows, err := r.cli.Query(ctx, listQuery, listArgs...)
 	if err != nil {
 		return nil, err
 	}
 
-	for listRows.Next() {
+	for rows.Next() {
 		item := &model.Expert{}
-		if err := listRows.Scan(
+		if err = rows.Scan(
 			&item.ID,
 			&item.Username,
 			&item.Gender,
@@ -253,82 +262,12 @@ func (r *Repository) GetExpertList(q *model.QueryExpertList) (*model.ExpertList,
 		list.Items = append(list.Items, item)
 	}
 
-	if err := countRow.Scan(&list.Total); err != nil {
+	err = r.cli.QueryRow(ctx, countQuery, countArgs...).Scan(&list.Total)
+	if err != nil {
 		return nil, err
 	}
 
 	return list, nil
-}
-
-func (r *Repository) queryExpertList(ctx context.Context, q *model.QueryExpertList, query, count string) (pgx.Rows, pgx.Row, error) {
-	switch {
-	case q.Status != "" && len(q.Specializations) != 0:
-
-		query = query + ` WHERE status=$3 AND specializations @> $4  ORDER BY created_at desc LIMIT $1 OFFSET $2`
-		count = count + ` WHERE status=$1 AND specializations @> $2`
-
-		rows, err := r.cli.Query(ctx, query, q.Limit, q.Offset, q.Status, q.Specializations)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		return rows, r.cli.QueryRow(ctx, count, q.Status, q.Specializations), nil
-
-	case q.Status != "" && len(q.Specializations) == 0:
-
-		query = query + ` WHERE status=$3  ORDER BY created_at desc LIMIT $1 OFFSET $2`
-		count = count + ` WHERE status=$1`
-
-		rows, err := r.cli.Query(ctx, query, q.Limit, q.Offset, q.Status)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		return rows, r.cli.QueryRow(ctx, count, q.Status), nil
-
-	case q.Status == "" && len(q.Specializations) != 0:
-
-		query = query + ` WHERE specializations @> $3  ORDER BY created_at desc LIMIT $1 OFFSET $2`
-		count = count + ` WHERE specializations @> $1`
-
-		rows, err := r.cli.Query(ctx, query, q.Limit, q.Offset, q.Specializations)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		return rows, r.cli.QueryRow(ctx, count, q.Specializations), nil
-
-	default:
-		const query = `
-	SELECT 	id,
-			username,
-			gender,
-			phone,
-			email,
-			password,
-			specializations,
-			education,
-			document_urls,
-			status,
-			updated_at,
-			created_at,
-			processing_count,
-			completed_count,
-			review_count
-	  FROM v$experts
-  ORDER BY created_at desc
-	 LIMIT $1
-	OFFSET $2
-`
-
-		rows, err := r.cli.Query(ctx, query, q.Limit, q.Offset)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		const countQuery = `SELECT COUNT(id) FROM experts`
-		return rows, r.cli.QueryRow(ctx, countQuery), nil
-	}
 }
 
 func (r *Repository) CreateExpert(e *model.Expert) (*model.Expert, error) {
@@ -377,7 +316,7 @@ func (r *Repository) DeleteExpert(e *model.Expert) error {
 }
 
 func (r *Repository) UpdateExpertStatus(e *model.Expert) (*model.Expert, error) {
-	const query = `UPDATE experts SET status=$1 WHERE id=$2`
+	const query = `UPDATE experts SET status=$1, updated_at=now() WHERE id=$2`
 
 	var ctx = context.TODO()
 
@@ -390,7 +329,7 @@ func (r *Repository) UpdateExpertStatus(e *model.Expert) (*model.Expert, error) 
 }
 
 func (r *Repository) UpdateExpertPassword(e *model.Expert) (*model.Expert, error) {
-	const query = `UPDATE experts SET password=$1 WHERE id=$2`
+	const query = `UPDATE experts SET password=$1, updated_at=now() WHERE id=$2`
 
 	var ctx = context.TODO()
 
@@ -403,7 +342,7 @@ func (r *Repository) UpdateExpertPassword(e *model.Expert) (*model.Expert, error
 }
 
 func (r *Repository) UpdateExpertDocumentURLs(e *model.Expert) (*model.Expert, error) {
-	const query = `UPDATE experts SET document_urls=$1 WHERE id=$2`
+	const query = `UPDATE experts SET document_urls=$1, updated_at=now() WHERE id=$2`
 
 	var ctx = context.TODO()
 

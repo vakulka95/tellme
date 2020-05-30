@@ -24,6 +24,7 @@ type QueryListParams struct {
 	FeedbackWeekDay string   `form:"feedback_week_day"`
 	Specializations []string `form:"specializations"`
 	ExpertID        string   `form:"expert_id"`
+	Search          string   `form:"search"`
 }
 
 func QueryExpertAPItoPersistence(q *QueryListParams) *model.QueryExpertList {
@@ -36,6 +37,7 @@ func QueryExpertAPItoPersistence(q *QueryListParams) *model.QueryExpertList {
 		Offset:          q.Offset,
 		Status:          q.Status,
 		Specializations: q.Specializations,
+		Search:          q.Search,
 	}
 }
 
@@ -52,6 +54,7 @@ func QueryRequisitionAPItoPersistence(q *QueryListParams) *model.QueryRequisitio
 		FeedbackWeekDay: q.FeedbackWeekDay,
 		Specializations: q.Specializations,
 		ExpertID:        q.ExpertID,
+		Search:          q.Search,
 	}
 }
 
@@ -79,6 +82,7 @@ func (q *QueryListParams) generateQuery() string {
 	buf.WriteString(fmt.Sprintf("&feedback_week_day=%s", q.FeedbackWeekDay))
 	buf.WriteString(fmt.Sprintf("&feedback_time=%s", q.FeedbackTime))
 	buf.WriteString(fmt.Sprintf("&expert_id=%s", q.ExpertID))
+	buf.WriteString(fmt.Sprintf("&search=%s", q.Search))
 
 	return buf.String()
 }

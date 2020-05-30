@@ -1,68 +1,54 @@
 package postgres
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
-/*
-=	equal	ARRAY[1.1,2.1,3.1]::int[] = ARRAY[1,2,3]	t
-<>	not equal	ARRAY[1,2,3] <> ARRAY[1,2,4]	t
-<	less than	ARRAY[1,2,3] < ARRAY[1,2,4]	t
->	greater than	ARRAY[1,4,3] > ARRAY[1,2,4]	t
-<=	less than or equal	ARRAY[1,2,3] <= ARRAY[1,2,3]	t
->=	greater than or equal	ARRAY[1,4,3] >= ARRAY[1,4,3]	t
-@>	contains	ARRAY[1,4,3] @> ARRAY[3,1]	t
-<@	is contained by
-*/
-
-// equal exp
-type equal struct {
-	fieldName string
-	arg       interface{}
+type expression struct {
+	field string
+	value Value
+	build BuildOperatorExpression
 }
 
-func NewEqual(fieldName string, arg interface{}) WhereExpression {
-	return equal{fieldName: fieldName, arg: arg}
+func NewExpression(field string, value Value, build BuildOperatorExpression) *expression {
+	return &expression{field: field, value: value, build: build}
 }
 
-func (e equal) Build(n int) string {
-	return fmt.Sprintf("%s=$%d", e.fieldName, n)
+func (e *expression) Build(n int) string {
+	return fmt.Sprintf("( %s )", e.build(e.field, n))
 }
 
-func (e equal) GetArg() interface{} {
-	return e.arg
+func (e *expression) Arg() interface{} {
+	return e.value.Arg()
 }
 
-// notEqual exp
-type notEqual struct {
-	fieldName string
-	arg       interface{}
+func (e *expression) Valid() bool {
+	return e.value.Valid()
 }
 
-func NewNotEqual(fieldName string, arg interface{}) WhereExpression {
-	return notEqual{fieldName: fieldName, arg: arg}
+type orExpression struct {
+	fields []string
+	value  Value
+	build  BuildOperatorExpression
 }
 
-func (e notEqual) Build(n int) string {
-	return fmt.Sprintf("%s<>$%d", e.fieldName, n)
+func NewOrExpression(value Value, build BuildOperatorExpression, fields ...string) *orExpression {
+	return &orExpression{fields: fields, value: value, build: build}
 }
 
-func (e notEqual) GetArg() interface{} {
-	return e.arg
+func (e *orExpression) Build(n int) string {
+	fields := make([]string, 0, len(e.fields))
+	for _, f := range e.fields {
+		fields = append(fields, e.build(f, n))
+	}
+	return fmt.Sprintf("( %s )", strings.Join(fields, " OR "))
 }
 
-// in exp
-type in struct {
-	fieldName string
-	arg       interface{}
+func (e *orExpression) Arg() interface{} {
+	return e.value.Arg()
 }
 
-func NewIn(fieldName string, arg interface{}) WhereExpression {
-	return in{fieldName: fieldName, arg: arg}
-}
-
-func (e in) Build(n int) string {
-	return fmt.Sprintf("%s in $%d", e.fieldName, n)
-}
-
-func (e in) GetArg() interface{} {
-	return e.arg
+func (e *orExpression) Valid() bool {
+	return e.value.Valid()
 }

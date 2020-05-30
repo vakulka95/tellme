@@ -8,6 +8,9 @@
         <div class="filter-content">
             <div class="card-body">
                 <form class="form" action="/admin/requisition" method="GET">
+                    <label for="search">ID, Ім'я або Телефон</label>
+                    <input class="form-control clearable" id="search" name="search" type="text" placeholder="Пошук" value="{{ .queries.search }}">
+                    <hr/>
                     <label for="feedback_week_day">День</label>
                     <select class="custom-select" id="feedback_week_day" name="feedback_week_day">
                         <option {{ if (eq .queries.feedback_week_day "") }} selected {{ end }} value="">Всі</option>

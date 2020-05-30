@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
+	"gitlab.com/tellmecomua/tellme.api/pkg/postgres"
 )
 
 func (r *Repository) GetRequisition(id string) (*model.Requisition, error) {
@@ -111,32 +112,41 @@ func (r *Repository) GetRequisitionList(q *model.QueryRequisitionList) (*model.R
 		list = &model.RequisitionList{Items: make([]*model.Requisition, 0, 20)} // pseudo default capacity
 	)
 
-	rawListQuery := `
-			SELECT 	id,
-					expert_id,
-					username,
-					gender,
-					phone,
-					diagnosis,
-					diagnosis_description,
-					expert_gender,
-					feedback_type,
-					feedback_contact,
-					feedback_time,
-					feedback_week_day,
-					is_adult,
-					status,
-					created_at,
-					updated_at
-			FROM requisitions
- `
+	query := postgres.NewQueryBuilder().
+		Select(
+			"id",
+			"expert_id",
+			"username",
+			"gender",
+			"phone",
+			"diagnosis",
+			"diagnosis_description",
+			"expert_gender",
+			"feedback_type",
+			"feedback_contact",
+			"feedback_time",
+			"feedback_week_day",
+			"is_adult",
+			"status",
+			"created_at",
+			"updated_at",
+		).
+		From("requisitions").
+		Where(
+			postgres.NewExpression("status", postgres.NewString(q.Status), postgres.OperatorEqual),
+			postgres.NewExpression("expert_id", postgres.NewString(q.ExpertID), postgres.OperatorEqual),
+			postgres.NewExpression("feedback_time", postgres.NewString(q.FeedbackTime), postgres.OperatorEqual),
+			postgres.NewExpression("feedback_week_day", postgres.NewString(q.FeedbackWeekDay), postgres.OperatorEqual),
+			postgres.NewExpression("diagnosis", postgres.NewSliceString(q.Specializations), postgres.OperatorAny),
+			model.DiscoverRequisitionExpression(q.Search),
+		).
+		OrderBy("created_at").
+		OrderDir(postgres.OrderDirDESC).
+		Limit(q.Limit).
+		Offset(q.Offset)
 
-	rawCountQuery := `
-			SELECT count(id) FROM requisitions
- `
-
-	listQuery, listArgs := q.BuildWhereOrder(rawListQuery)
-	countQuery, countArgs := q.BuildWhere(rawCountQuery)
+	listQuery, listArgs := query.Build()
+	countQuery, countArgs := query.BuildCount()
 
 	rows, err := r.cli.Query(ctx, listQuery, listArgs...)
 	if err != nil {
@@ -166,7 +176,6 @@ func (r *Repository) GetRequisitionList(q *model.QueryRequisitionList) (*model.R
 			log.Printf("failed to scan requisition: %v", err)
 			continue
 		}
-
 		list.Items = append(list.Items, item)
 	}
 
@@ -179,7 +188,7 @@ func (r *Repository) GetRequisitionList(q *model.QueryRequisitionList) (*model.R
 }
 
 func (r *Repository) UpdateRequisitionStatus(q *model.Requisition) (*model.Requisition, error) {
-	const query = `UPDATE requisitions SET status=$2, expert_id=$3 WHERE id=$1`
+	const query = `UPDATE requisitions SET status=$2, expert_id=$3, updated_at=now() WHERE id=$1`
 
 	var ctx = context.TODO()
 

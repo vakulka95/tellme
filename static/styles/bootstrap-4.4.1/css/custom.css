@@ -94,3 +94,12 @@ h6, .h6 {
 ul {
     list-style-type: none;
 }
+
+.clearable{
+    background: #fff url(http://bijudesigner.com/blog/wp-content/uploads/2015/06/download.gif) no-repeat right -10px center;
+    padding: 3px 18px 3px 4px; /* Use the same right padding (18) in jQ! */
+    transition: background 0.4s;
+}
+.clearable.x  { background-position: right 5px center; }
+
+.clearable.onX{ cursor: pointer; }

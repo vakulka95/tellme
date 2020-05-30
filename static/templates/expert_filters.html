@@ -8,6 +8,9 @@
         <div class="filter-content">
             <div class="card-body">
                 <form class="form" action="/admin/expert" method="GET">
+                    <label for="search">ID, Ім'я, EMail або Телефон</label>
+                    <input class="form-control clearable" id="search" name="search" type="text" placeholder="Пошук" value="{{ .queries.search }}">
+                    <hr/>
                     <label for="status">Статус</label>
                     <select class="custom-select" id="status" name="status">
                         <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>

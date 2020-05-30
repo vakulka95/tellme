@@ -3,9 +3,9 @@ package pgx
 import (
 	"context"
 	"log"
-	"time"
 
 	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
+	"gitlab.com/tellmecomua/tellme.api/pkg/postgres"
 )
 
 func (r *Repository) GetReview(id string) (*model.Review, error) {
@@ -104,29 +104,34 @@ func (r *Repository) GetReviewList(q *model.QueryReviewList) (*model.ReviewList,
 		list = &model.ReviewList{Items: make([]*model.Review, 0, 20)} // pseudo default capacity
 	)
 
-	rawListQuery := `
-	SELECT 	id,
-			expert_id,
-			expert_username,
-			requisition_id,
-			platform_review,
-			consultation_count,
-			consultation_review,
-			expert_point,
-			expert_review,
-			token,
-			status,
-			updated_at,
-			created_at
-	  FROM v$reviews
-`
+	query := postgres.NewQueryBuilder().
+		Select(
+			"id",
+			"expert_id",
+			"expert_username",
+			"requisition_id",
+			"platform_review",
+			"consultation_count",
+			"consultation_review",
+			"expert_point",
+			"expert_review",
+			"token",
+			"status",
+			"updated_at",
+			"created_at",
+		).
+		From("v$reviews").
+		Where(
+			postgres.NewExpression("status", postgres.NewString(q.Status), postgres.OperatorEqual),
+			postgres.NewExpression("expert_id", postgres.NewString(q.ExpertID), postgres.OperatorEqual),
+		).
+		OrderBy("created_at").
+		OrderDir(postgres.OrderDirDESC).
+		Limit(q.Limit).
+		Offset(q.Offset)
 
-	rawCountQuery := `
-			SELECT count(id) FROM v$reviews
-`
-
-	listQuery, listArgs := q.BuildWhereOrder(rawListQuery)
-	countQuery, countArgs := q.BuildWhere(rawCountQuery)
+	listQuery, listArgs := query.Build()
+	countQuery, countArgs := query.BuildCount()
 
 	rows, err := r.cli.Query(ctx, listQuery, listArgs...)
 	if err != nil {
@@ -153,7 +158,6 @@ func (r *Repository) GetReviewList(q *model.QueryReviewList) (*model.ReviewList,
 			log.Printf("failed to scan review: %v", err)
 			continue
 		}
-
 		list.Items = append(list.Items, item)
 	}
 
@@ -209,7 +213,7 @@ func (r *Repository) UpdateReviewBodyStatus(v *model.Review) (*model.Review, err
            expert_point=$5,
            expert_review=$6,
 		   status=$7,
-		   updated_at=$8
+		   updated_at=now()
      WHERE id=$1`
 
 	var ctx = context.TODO()
@@ -222,7 +226,6 @@ func (r *Repository) UpdateReviewBodyStatus(v *model.Review) (*model.Review, err
 		v.ExpertPoint,
 		v.ExpertReview,
 		v.Status,
-		time.Now(),
 	)
 	if err != nil {
 		return nil, err

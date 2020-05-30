@@ -1,9 +1,12 @@
 package model
 
 import (
-	"fmt"
 	"strings"
 	"time"
+
+	"gitlab.com/tellmecomua/tellme.api/pkg/postgres"
+
+	uuid "github.com/satori/go.uuid"
 )
 
 const (
@@ -39,108 +42,24 @@ type QueryRequisitionList struct {
 	FeedbackTime    string   `db:"feedback_time"`
 	FeedbackWeekDay string   `db:"feedback_week_day"`
 	Specializations []string `db:"specializations"`
+	Search          string   `db:"search"`
 }
 
-func (q *QueryRequisitionList) BuildWhereOrder(rawQuery string) (string, []interface{}) {
-	rawArgs := map[string]interface{}{}
+func DiscoverRequisitionExpression(search string) postgres.Expression {
 
-	if q.Status != "" {
-		rawArgs["status"] = q.Status
+	_, err := uuid.FromString(search)
+	if err == nil {
+		return postgres.NewExpression("id", postgres.NewString(search), postgres.OperatorEqual)
 	}
 
-	if len(q.Specializations) != 0 {
-		rawArgs["diagnosis"] = q.Specializations
+	phone := strings.TrimPrefix(search, "+")
+	phone = strings.TrimPrefix(phone, "3")
+	phone = strings.TrimPrefix(phone, "8")
+	if strings.IndexFunc(phone, isNotDigit) == -1 {
+		return postgres.NewExpression("phone", postgres.NewString(phone), postgres.OperatorLike)
 	}
 
-	if q.ExpertID != "" {
-		rawArgs["expert_id"] = q.ExpertID
-	}
-
-	if q.FeedbackWeekDay != "" {
-		rawArgs["feedback_week_day"] = q.FeedbackWeekDay
-	}
-
-	if q.FeedbackTime != "" {
-		rawArgs["feedback_time"] = q.FeedbackTime
-	}
-
-	var (
-		index = 1
-		query = rawQuery
-		args  = make([]interface{}, 0)
-	)
-
-	if len(rawArgs) != 0 {
-
-		query = rawQuery + " WHERE "
-		for key, arg := range rawArgs {
-
-			// workaround!!
-			if key == "diagnosis" {
-				query = query + fmt.Sprintf(" %s=any($%d) AND", key, index)
-			} else {
-				query = query + fmt.Sprintf(" %s=$%d AND", key, index)
-			}
-			args = append(args, arg)
-
-			index++
-		}
-
-		query = strings.TrimSuffix(query, "AND")
-	}
-
-	// ordering
-	query = query + fmt.Sprintf(" ORDER BY created_at DESC LIMIT $%d OFFSET $%d", index, index+1)
-	args = append(args, q.Limit, q.Offset)
-
-	return query, args
-}
-
-func (q *QueryRequisitionList) BuildWhere(rawQuery string) (string, []interface{}) {
-	rawArgs := map[string]interface{}{}
-
-	if q.Status != "" {
-		rawArgs["status"] = q.Status
-	}
-
-	if len(q.Specializations) != 0 {
-		rawArgs["diagnosis"] = q.Specializations
-	}
-
-	if q.ExpertID != "" {
-		rawArgs["expert_id"] = q.ExpertID
-	}
-
-	if q.FeedbackWeekDay != "" {
-		rawArgs["feedback_week_day"] = q.FeedbackWeekDay
-	}
-
-	if q.FeedbackTime != "" {
-		rawArgs["feedback_time"] = q.FeedbackTime
-	}
-
-	if len(rawArgs) == 0 {
-		return rawQuery, []interface{}{}
-	}
-
-	index := 1
-	args := make([]interface{}, 0)
-	query := rawQuery + " WHERE "
-
-	for key, arg := range rawArgs {
-
-		// workaround!!
-		if key == "diagnosis" {
-			query = query + fmt.Sprintf(" %s=any($%d) AND", key, index)
-		} else {
-			query = query + fmt.Sprintf(" %s=$%d AND", key, index)
-		}
-		args = append(args, arg)
-
-		index++
-	}
-
-	return strings.TrimSuffix(query, "AND"), args
+	return postgres.NewExpression("lower(username)", postgres.NewString(strings.ToLower(search)), postgres.OperatorLike)
 }
 
 type RequisitionList struct {
