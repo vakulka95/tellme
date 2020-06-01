@@ -170,7 +170,6 @@ func ReviewItemPersistenceToAPI(v *model.Review) gin.H {
 		"consultation_review": v.ConsultationReview,
 		"expert_point":        v.ExpertPoint,
 		"expert_review":       v.ExpertReview,
-		"token":               v.Token, // TODO: remove
 		"status":              v.Status,
 		"updated_at":          v.UpdatedAt.Format(timestampLayout),
 		"created_at":          v.CreatedAt.Format(timestampLayout),

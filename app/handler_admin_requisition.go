@@ -1,13 +1,18 @@
 package app
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"strings"
 
+	"github.com/avast/retry-go"
 	"github.com/gin-gonic/gin"
+	uuid "github.com/satori/go.uuid"
+
 	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
 	"gitlab.com/tellmecomua/tellme.api/app/representation"
+	"gitlab.com/tellmecomua/tellme.api/pkg/util/generator"
 )
 
 func (s *apiserver) webIndexPage(c *gin.Context) {
@@ -149,30 +154,54 @@ func (s *apiserver) webAdminRequisitionDiscard(c *gin.Context) {
 func (s *apiserver) webAdminRequisitionComplete(c *gin.Context) {
 	const logPref = "webAdminRequisitionComplete"
 
-	var (
-		role, _       = c.Get("role")
-		iExpertID, _  = c.Get("userID")
-		requisitionID = c.Param("requisitionId")
-	)
+	var requisitionID = c.Param("requisitionId")
 
-	expertID := iExpertID.(string)
-
-	if role == UserRoleAdmin {
-		requisitionRes, err := s.repository.GetRequisition(requisitionID)
-		if err != nil {
-			log.Printf("(ERR) %s: failed to get expert view [%s]: %v", logPref, requisitionID, err)
-			c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
-			return
-		}
-		expertID = requisitionRes.ExpertID
+	requisitionRes, err := s.repository.GetRequisition(requisitionID)
+	if err != nil {
+		log.Printf("(ERR) %s: failed to get expert view [%s]: %v", logPref, requisitionID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
 	}
+	expertID := requisitionRes.ExpertID
 
-	_, err := s.repository.UpdateRequisitionStatus(&model.Requisition{ID: requisitionID, ExpertID: expertID, Status: model.RequisitionStatusCompleted})
+	_, err = s.repository.UpdateRequisitionStatus(&model.Requisition{ID: requisitionID, ExpertID: expertID, Status: model.RequisitionStatusCompleted})
 	if err != nil {
 		log.Printf("(ERR) Failed to update requisition: %v", err)
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	}
 
+	go func() {
+		err := retry.Do(
+			func() error {
+				return s.requestRequisitionReview(requisitionRes.Phone, requisitionID, expertID)
+			},
+		)
+		if err != nil {
+			log.Printf("(WARN) Failed to send request for requisition review sms: %v", err)
+		}
+	}()
+
 	c.Status(http.StatusAccepted)
+}
+
+func (s *apiserver) requestRequisitionReview(requisitionPhone, requisitionID, expertID string) error {
+	token := generator.NewReviewToken()
+	_, err := s.repository.CreateReview(
+		&model.Review{
+			ID:            uuid.NewV4().String(),
+			ExpertID:      expertID,
+			RequisitionID: requisitionID,
+			Token:         token,
+			Status:        model.ReviewStatusRequested,
+		},
+	)
+	if err != nil {
+		return err
+	}
+
+	return s.smscli.SendRequisitionReview(
+		requisitionPhone,
+		fmt.Sprintf("https://%s/review?token=%s", s.config.DomainName, token),
+	)
 }

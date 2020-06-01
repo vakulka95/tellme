@@ -81,7 +81,7 @@ func (s *apiserver) registerHandlers() {
 	s.engine.POST("/api/v1/requisition", s.cors, s.apiRequisitionCreate)
 	s.engine.OPTIONS("/api/v1/requisition", s.cors)
 
-	s.engine.PUT("/api/v1/review", s.cors, s.apiReviewConfirm)
+	s.engine.POST("/api/v1/review", s.cors, s.apiReviewConfirm)
 	s.engine.OPTIONS("/api/v1/review", s.cors)
 
 	//

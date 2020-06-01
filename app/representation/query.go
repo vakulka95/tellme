@@ -3,7 +3,6 @@ package representation
 import (
 	"bytes"
 	"fmt"
-	"log"
 	"math"
 	"time"
 
@@ -35,12 +34,9 @@ func (q *QueryListParams) GetDatetimeRange() (from string, to string) {
 	if q.CreatedAtFrom != nil && !q.CreatedAtFrom.IsZero() {
 		from = q.CreatedAtFrom.Format("2006-01-02T15:04")
 	}
-
 	if q.CreatedAtTo != nil && !q.CreatedAtTo.IsZero() {
 		to = q.CreatedAtTo.Format("2006-01-02T15:04")
 	}
-
-	log.Printf(">>> from: %s, to: %s", from, to)
 	return
 }
 

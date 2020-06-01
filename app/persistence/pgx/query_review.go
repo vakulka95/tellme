@@ -172,6 +172,7 @@ func (r *Repository) GetReviewList(q *model.QueryReviewList) (*model.ReviewList,
 func (r *Repository) CreateReview(v *model.Review) (*model.Review, error) {
 	const query = `
 	INSERT INTO reviews (
+			id,
 			expert_id,
 			requisition_id,
 			platform_review,
@@ -181,7 +182,7 @@ func (r *Repository) CreateReview(v *model.Review) (*model.Review, error) {
 			expert_review,
 			token,
 			status
-	) VALUES ($1, $2, $3, $4, $5, $6)`
+	) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`
 
 	var ctx = context.TODO()
 

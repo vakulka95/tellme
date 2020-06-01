@@ -138,7 +138,7 @@ func (s *swagger) init() {
 		Writes(representation.CreateRequisitionResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, []string{"main"}))
 
-	s.ws.Route(s.ws.PUT("/review").
+	s.ws.Route(s.ws.POST("/review").
 		To(s.apiConfirmReview).
 		Doc("Confirm user review about expert").
 		Returns(http.StatusCreated, "Created", representation.ConfirmReviewResponse{}).

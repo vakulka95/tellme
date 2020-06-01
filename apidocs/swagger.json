@@ -181,7 +181,7 @@
       }
     },
     "/api/v1/review": {
-      "put": {
+      "post": {
         "consumes": ["application/json", "multipart/form-data"],
         "produces": ["application/json"],
         "tags": ["main"],
