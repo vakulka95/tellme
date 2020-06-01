@@ -88,6 +88,7 @@ func (s *apiserver) registerHandlers() {
 	// Service API
 	//
 	s.engine.GET("/service/v1/pg_stat", s.serviceDatabaseStat)
+	s.engine.POST("/service/v1/send_not_reviewed_requisition", s.serviceSendRequisitionReview)
 }
 
 func (s *apiserver) cors(c *gin.Context) {

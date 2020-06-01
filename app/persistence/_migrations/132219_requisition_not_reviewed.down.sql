@@ -1,0 +1,1 @@
+DROP VIEW v$requisition_not_reviewed;

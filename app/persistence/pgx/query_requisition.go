@@ -201,3 +201,39 @@ func (r *Repository) UpdateRequisitionStatus(q *model.Requisition) (*model.Requi
 
 	return &model.Requisition{ID: q.ID}, nil
 }
+
+func (r *Repository) GetNotReviewedRequisition() ([]*model.Requisition, error) {
+	var (
+		ctx  = context.TODO()
+		list = make([]*model.Requisition, 0, 20) // pseudo default capacity
+	)
+
+	const query = `
+	SELECT id,
+		   expert_id,
+		   phone
+	  FROM v$requisition_not_reviewed
+     WHERE review_id is null 
+	   AND status='completed'
+`
+
+	rows, err := r.cli.Query(ctx, query)
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next() {
+		item := &model.Requisition{}
+		if err = rows.Scan(
+			&item.ID,
+			&item.ExpertID,
+			&item.Phone,
+		); err != nil {
+			log.Printf("failed to scan requisition for not reviewed status: %v", err)
+			continue
+		}
+		list = append(list, item)
+	}
+
+	return list, nil
+}

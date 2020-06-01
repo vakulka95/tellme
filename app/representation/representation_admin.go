@@ -19,6 +19,12 @@ var week = map[string]string{
 	"sun": "Неділя",
 }
 
+var feedbackTime = map[string]string{
+	"8:00":  "8:00-13:00",
+	"13:00": "13:00-18:00",
+	"18:00": "18:00-21:00",
+}
+
 type Expert struct {
 	ID              string   `json:"id"`
 	Username        string   `json:"username"`
@@ -88,7 +94,7 @@ func RequisitionListPersistenceToAPI(r *model.RequisitionList) gin.H {
 			"feedback_contact":      v.FeedbackContact,
 			"status":                v.Status,
 			"feedback_week_day":     week[v.FeedbackWeekDay],
-			"feedback_time":         v.FeedbackTime,
+			"feedback_time":         feedbackTime[v.FeedbackTime],
 			"updated_at":            v.UpdatedAt.Format(timestampLayout),
 			"created_at":            v.CreatedAt.Format(timestampLayout),
 		}
@@ -110,7 +116,7 @@ func RequisitionItemPersistenceToAPI(r *model.Requisition) gin.H {
 		"feedback_contact":      r.FeedbackContact,
 		"status":                r.Status,
 		"feedback_week_day":     week[r.FeedbackWeekDay],
-		"feedback_time":         r.FeedbackTime,
+		"feedback_time":         feedbackTime[r.FeedbackTime],
 		"updated_at":            r.UpdatedAt.Format(timestampLayout),
 		"created_at":            r.CreatedAt.Format(timestampLayout),
 	}

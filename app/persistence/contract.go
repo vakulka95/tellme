@@ -23,6 +23,7 @@ type Repository interface {
 	CreateRequisition(req *model.Requisition) (*model.Requisition, error)
 	GetRequisitionList(q *model.QueryRequisitionList) (*model.RequisitionList, error)
 	UpdateRequisitionStatus(q *model.Requisition) (*model.Requisition, error)
+	GetNotReviewedRequisition() ([]*model.Requisition, error)
 
 	// Admins
 	GetAdminByLogin(login string) (*model.Admin, error)
