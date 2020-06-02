@@ -4,8 +4,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/avast/retry-go"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -25,20 +23,11 @@ func (s *apiserver) serviceSendRequisitionReview(c *gin.Context) {
 	}
 
 	for _, item := range list {
-
 		log.Printf("Phone: %s, ID: %s, ExpertID: %s", item.Phone, item.ID, item.ExpertID)
-
-		go func() {
-			err := retry.Do(
-				func() error {
-					return s.requestRequisitionReview(item.Phone, item.ID, item.ExpertID)
-				},
-			)
-			if err != nil {
-				log.Printf("(WARN) Failed to send request for requisition review sms: %v", err)
-			}
-		}()
-
+		err := s.requestRequisitionReview(item.Phone, item.ID, item.ExpertID)
+		if err != nil {
+			log.Printf("(WARN) Failed to send request for requisition review sms: %v", err)
+		}
 	}
 
 	c.Status(http.StatusAccepted)
