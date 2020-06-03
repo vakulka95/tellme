@@ -52,14 +52,30 @@ func (s *apiserver) webAdminRequisitionList(c *gin.Context) {
 		return
 	}
 
+	var (
+		renderedList gin.H
+		role         = iRole.(string)
+	)
+
+	if !isExpert {
+		renderedList = representation.RequisitionListPersistenceToAPIForAdmin(list)
+	} else {
+		iUserID, ok := c.Get("userID")
+		if !ok {
+			c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+			return
+		}
+		renderedList = representation.RequisitionListPersistenceToAPIForExpert(list, iUserID.(string))
+	}
+
 	datetimeFrom, datetimeTo := qlp.GetDatetimeRange()
 	c.HTML(http.StatusOK, "requisition_list.html",
 		gin.H{
 			"metadata": gin.H{
 				"logged_in": true,
-				"role":      iRole.(string),
+				"role":      role,
 			},
-			"data":       representation.RequisitionListPersistenceToAPI(list),
+			"data":       renderedList,
 			"pagination": qlp.GeneratePagination(list.Total),
 			"queries": gin.H{
 				"search":            qlp.Search,
@@ -96,13 +112,29 @@ func (s *apiserver) webAdminRequisitionItem(c *gin.Context) {
 		return
 	}
 
+	var (
+		item gin.H
+		role = iRole.(string)
+	)
+
+	if role == UserRoleAdmin {
+		item = representation.RequisitionItemPersistenceToAPIForAdmin(requisitionRes)
+	} else {
+		iUserID, ok := c.Get("userID")
+		if !ok {
+			c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+			return
+		}
+		item = representation.RequisitionItemPersistenceToAPIForExpert(requisitionRes, iUserID.(string))
+	}
+
 	c.HTML(http.StatusOK, "requisition_item.html",
 		gin.H{
 			"metadata": gin.H{
 				"logged_in": true,
-				"role":      iRole.(string),
+				"role":      role,
 			},
-			"requisition": representation.RequisitionItemPersistenceToAPI(requisitionRes),
+			"requisition": item,
 		},
 	)
 }

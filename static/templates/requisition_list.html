@@ -32,11 +32,11 @@
                             <tbody>
                             {{ range $i, $item := .data.items }}
                                 <tr class="table-row">
-                                    <td class="table-div" data-href="/admin/requisition/{{ $item.id }}">{{ $item.username }}</td>
+                                    <td class="table-div" data-href="/admin/requisition/{{ $item.id }}">{{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}</td>
                                     {{ $gender := $item.gender }}
                                     {{ with (eq $gender "male") }}<td class="text-center table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-info">Чол.</span></td>{{ end }}
                                     {{ with (eq $gender "female") }}<td class="text-center table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-primary">Жін.</span></td>{{ end }}
-                                    <td class="table-div" data-href="/admin/requisition/{{ $item.id }}">{{ $item.phone }}</td>
+                                    <td class="table-div" data-href="/admin/requisition/{{ $item.id }}">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</td>
                                     <td class="table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-primary">{{ $item.diagnosis }}</span></td>
 
                                     {{ $status := $item.status }}

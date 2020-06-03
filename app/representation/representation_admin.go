@@ -79,7 +79,41 @@ type RequisitionList struct {
 	Total int     `json:"total"`
 }
 
-func RequisitionListPersistenceToAPI(r *model.RequisitionList) gin.H {
+func RequisitionListPersistenceToAPIForExpert(r *model.RequisitionList, userID string) gin.H {
+	items := make([]gin.H, len(r.Items))
+	for i, v := range r.Items {
+
+		phone := ""
+		username := ""
+		feedbackContact := ""
+
+		if v.ExpertID == userID {
+			phone = v.Phone
+			username = v.Username
+			feedbackContact = v.FeedbackContact
+		}
+
+		items[i] = gin.H{
+			"id":                    v.ID,
+			"username":              username,
+			"gender":                v.Gender,
+			"phone":                 phone,
+			"diagnosis":             DiagnosesStripped[v.Diagnosis],
+			"diagnosis_description": v.DiagnosisDescription,
+			"expert_gender":         v.ExpertGender,
+			"feedback_type":         v.FeedbackType,
+			"feedback_contact":      feedbackContact,
+			"status":                v.Status,
+			"feedback_week_day":     week[v.FeedbackWeekDay],
+			"feedback_time":         feedbackTime[v.FeedbackTime],
+			"updated_at":            v.UpdatedAt.Format(timestampLayout),
+			"created_at":            v.CreatedAt.Format(timestampLayout),
+		}
+	}
+	return gin.H{"items": items, "total": r.Total}
+}
+
+func RequisitionListPersistenceToAPIForAdmin(r *model.RequisitionList) gin.H {
 	items := make([]gin.H, len(r.Items))
 	for i, v := range r.Items {
 		items[i] = gin.H{
@@ -102,7 +136,7 @@ func RequisitionListPersistenceToAPI(r *model.RequisitionList) gin.H {
 	return gin.H{"items": items, "total": r.Total}
 }
 
-func RequisitionItemPersistenceToAPI(r *model.Requisition) gin.H {
+func RequisitionItemPersistenceToAPIForAdmin(r *model.Requisition) gin.H {
 	return gin.H{
 		"id":                    r.ID,
 		"expert_id":             r.ExpertID,
@@ -114,6 +148,36 @@ func RequisitionItemPersistenceToAPI(r *model.Requisition) gin.H {
 		"expert_gender":         r.ExpertGender,
 		"feedback_type":         r.FeedbackType,
 		"feedback_contact":      r.FeedbackContact,
+		"status":                r.Status,
+		"feedback_week_day":     week[r.FeedbackWeekDay],
+		"feedback_time":         feedbackTime[r.FeedbackTime],
+		"updated_at":            r.UpdatedAt.Format(timestampLayout),
+		"created_at":            r.CreatedAt.Format(timestampLayout),
+	}
+}
+
+func RequisitionItemPersistenceToAPIForExpert(r *model.Requisition, userID string) gin.H {
+	phone := ""
+	username := ""
+	feedbackContact := ""
+
+	if r.ExpertID == userID {
+		phone = r.Phone
+		username = r.Username
+		feedbackContact = r.FeedbackContact
+	}
+
+	return gin.H{
+		"id":                    r.ID,
+		"expert_id":             r.ExpertID,
+		"username":              username,
+		"gender":                r.Gender,
+		"phone":                 phone,
+		"diagnosis":             DiagnosesStripped[r.Diagnosis],
+		"diagnosis_description": r.DiagnosisDescription,
+		"expert_gender":         r.ExpertGender,
+		"feedback_type":         r.FeedbackType,
+		"feedback_contact":      feedbackContact,
 		"status":                r.Status,
 		"feedback_week_day":     week[r.FeedbackWeekDay],
 		"feedback_time":         feedbackTime[r.FeedbackTime],

@@ -29,7 +29,7 @@
             {{ end }}
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Ім'я</div>
-                <div class="col-9 pl-4">{{ .requisition.username }}</div>
+                <div class="col-9 pl-4">{{ if (ne .requisition.username "") }}{{ .requisition.username }}{{ else }}Недоступно{{ end }}</div>
             </div>
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Стать</div>
@@ -63,12 +63,12 @@
             {{ if (ne .requisition.feedback_type "phone") }}
                 <div class="row my-2 mx-auto">
                     <div class="col-3 text-right border-right border-dark">Зворотній контакт</div>
-                    <div class="col-9 pl-4">{{ .requisition.feedback_contact }}</div>
+                    <div class="col-9 pl-4">{{ if (ne .requisition.feedback_contact "") }}{{ .requisition.feedback_contact }}{{ else }}Недоступно{{ end }}</div>
                 </div>
             {{ end }}
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Телефон</div>
-                <div class="col-9 pl-4">{{ .requisition.phone }}</div>
+                <div class="col-9 pl-4">{{ if (ne .requisition.phone "") }}{{ .requisition.phone }}{{ else }}Недоступно{{ end }}</div>
             </div>
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Спеціалізація</div>
