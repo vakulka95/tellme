@@ -315,6 +315,35 @@ func (r *Repository) DeleteExpert(e *model.Expert) error {
 	return err
 }
 
+func (r *Repository) UpdateExpert(e *model.Expert) (*model.Expert, error) {
+	const query = `
+	UPDATE experts
+	   SET username=$1,
+		   gender=$2,
+		   phone=$3,
+		   education=$4,
+		   specializations=$5,
+           updated_at=now()
+	 WHERE id=$6
+`
+
+	var ctx = context.TODO()
+
+	_, err := r.cli.Exec(ctx, query,
+		e.Username,
+		e.Gender,
+		e.Phone,
+		e.Education,
+		e.Specializations,
+		e.ID,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return &model.Expert{ID: e.ID}, nil
+}
+
 func (r *Repository) UpdateExpertStatus(e *model.Expert) (*model.Expert, error) {
 	const query = `UPDATE experts SET status=$1, updated_at=now() WHERE id=$2`
 
@@ -347,6 +376,19 @@ func (r *Repository) UpdateExpertDocumentURLs(e *model.Expert) (*model.Expert, e
 	var ctx = context.TODO()
 
 	_, err := r.cli.Exec(ctx, query, e.DocumentURLs, e.ID)
+	if err != nil {
+		return nil, err
+	}
+
+	return &model.Expert{ID: e.ID}, nil
+}
+
+func (r *Repository) UpdateExpertSpecializations(e *model.Expert) (*model.Expert, error) {
+	const query = `UPDATE experts SET specializations=$1, updated_at=now() WHERE id=$2`
+
+	var ctx = context.TODO()
+
+	_, err := r.cli.Exec(ctx, query, e.Specializations, e.ID)
 	if err != nil {
 		return nil, err
 	}

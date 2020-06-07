@@ -44,6 +44,11 @@
                     <a class="nav-link " href="/admin/review?limit=10&offset=0"><i class="fa fa-commenting-o" aria-hidden="true"></i> Відгуки</a>
                 </li>
                 {{ end }}
+                {{ if eq .metadata.role "expert" }}
+                <li class="nav-item">
+                    <a class="nav-link " href="/admin/profile"><i class="fa fa-address-card-o" aria-hidden="true"></i> Мій профіль</a>
+                </li>
+                {{ end }}
                 <li class="nav-item">
                     <a class="nav-link " href="/admin/logout"><i class="fa fa-user"></i> Вихід</a>
                 </li>

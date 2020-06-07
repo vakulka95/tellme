@@ -145,3 +145,49 @@ func ReviewAPItoPersistence(r *ConfirmReviewRequest) (*model.Review, error) {
 		Status:             model.ReviewStatusCompleted,
 	}, nil
 }
+
+func ExpertAdminFormToPersistence(e *UpdateExpertRequest, isAdmin bool) (*model.Expert, error) {
+
+	if !isAdmin {
+		// Name
+		if strings.TrimSpace(e.Username) == "" {
+			return nil, fmt.Errorf("name mustn't be empty")
+		}
+
+		// Gender
+		if ok := allowedGender[e.Gender]; !ok {
+			return nil, fmt.Errorf("invalid gender %s", e.Gender)
+		}
+
+		// Phone
+		e.Phone = strings.TrimPrefix(e.Phone, "+")
+		if err := validation.ValidatePhoneNumber(e.Phone); err != nil {
+			return nil, err
+		}
+
+		// Education
+		if strings.TrimSpace(e.Education) == "" {
+			return nil, fmt.Errorf("education mustn't be empty")
+		}
+	}
+
+	// Specializations
+	for _, v := range e.Specializations {
+		if _, ok := Diagnoses[v]; !ok {
+			return nil, fmt.Errorf("diagnosis %s isn't supported", v)
+		}
+	}
+
+	if len(e.Specializations) == 0 {
+		return nil, fmt.Errorf("specialization mustn't be empty")
+	}
+
+	return &model.Expert{
+		ID:              e.ID,
+		Username:        e.Username,
+		Gender:          e.Gender,
+		Phone:           e.Phone,
+		Specializations: e.Specializations,
+		Education:       e.Education,
+	}, nil
+}

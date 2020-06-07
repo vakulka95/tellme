@@ -14,9 +14,11 @@ type Repository interface {
 	GetExpertList(q *model.QueryExpertList) (*model.ExpertList, error)
 	CreateExpert(e *model.Expert) (*model.Expert, error)
 	DeleteExpert(e *model.Expert) error
+	UpdateExpert(e *model.Expert) (*model.Expert, error)
 	UpdateExpertStatus(e *model.Expert) (*model.Expert, error)
 	UpdateExpertPassword(e *model.Expert) (*model.Expert, error)
 	UpdateExpertDocumentURLs(e *model.Expert) (*model.Expert, error)
+	UpdateExpertSpecializations(e *model.Expert) (*model.Expert, error)
 
 	// Requisitions
 	GetRequisition(id string) (*model.Requisition, error)

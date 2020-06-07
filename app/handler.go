@@ -22,6 +22,7 @@ func (s *apiserver) registerHandlers() {
 	authentication := s.authenticationInterceptor()
 	allAuthorization := s.authorizationInterceptor(UserRoleExpert, UserRoleAdmin)
 	adminAuthorization := s.authorizationInterceptor(UserRoleAdmin)
+	expertAuthorization := s.authorizationInterceptor(UserRoleExpert)
 
 	//
 	// Admin Auth
@@ -37,6 +38,9 @@ func (s *apiserver) registerHandlers() {
 	s.engine.GET("/admin/expert", authentication, adminAuthorization, s.webAdminExpertList)
 	s.engine.POST("/admin/expert", authentication, adminAuthorization, s.webAdminExpertList)
 	s.engine.GET("/admin/expert/:expertId", authentication, adminAuthorization, s.webAdminExpertItem)
+	s.engine.POST("/admin/expert/:expertId", authentication, adminAuthorization, s.webAdminUpdateExpertItem)
+	s.engine.POST("/admin/expert/:expertId/document", authentication, adminAuthorization, s.webAdminUploadExpertDocument)
+	s.engine.GET("/admin/profile", authentication, expertAuthorization, s.webAdminExpertProfile)
 
 	s.engine.PUT("/admin/expert/:expertId/block", authentication, adminAuthorization, s.webAdminExpertBlock)
 	s.engine.PUT("/admin/expert/:expertId/activate", authentication, adminAuthorization, s.webAdminExpertActivate)
@@ -56,9 +60,9 @@ func (s *apiserver) registerHandlers() {
 	//
 	// Admin Review
 	//
-	s.engine.GET("/admin/review", authentication, allAuthorization, s.webAdminReviewList)
-	s.engine.POST("/admin/review", authentication, allAuthorization, s.webAdminReviewList)
-	s.engine.GET("/admin/review/:reviewId", authentication, allAuthorization, s.webAdminReviewItem)
+	s.engine.GET("/admin/review", authentication, adminAuthorization, s.webAdminReviewList)
+	s.engine.POST("/admin/review", authentication, adminAuthorization, s.webAdminReviewList)
+	s.engine.GET("/admin/review/:reviewId", authentication, adminAuthorization, s.webAdminReviewItem)
 
 	//
 	// Main API

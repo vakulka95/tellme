@@ -187,17 +187,13 @@ func RequisitionItemPersistenceToAPIForExpert(r *model.Requisition, userID strin
 }
 
 func ExpertViewItemPersistenceToAPI(v *model.Expert) gin.H {
-	specs := make([]string, len(v.Specializations))
-	for j, k := range v.Specializations {
-		specs[j] = Diagnoses[k]
-	}
 	return gin.H{
 		"id":               v.ID,
 		"username":         v.Username,
 		"gender":           v.Gender,
 		"phone":            v.Phone,
 		"email":            v.Email,
-		"specializations":  specs,
+		"specializations":  GenerateDiagnosesOptions(v.Specializations),
 		"education":        v.Education,
 		"document_urls":    v.DocumentURLs,
 		"processing_count": v.ProcessingCount,
@@ -248,4 +244,13 @@ func ReviewItemPersistenceToAPI(v *model.Review) gin.H {
 
 type UpdatePasswordRequest struct {
 	Password string `json:"password"`
+}
+
+type UpdateExpertRequest struct {
+	ID              string   `form:"-"`
+	Username        string   `form:"username"`
+	Phone           string   `form:"phone"`
+	Gender          string   `form:"gender"`
+	Education       string   `form:"education"`
+	Specializations []string `form:"specializations"`
 }

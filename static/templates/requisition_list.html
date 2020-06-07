@@ -21,6 +21,7 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
+                                <th>Дата</th>
                                 <th>Ім'я</th>
                                 <th>Стать</th>
                                 <th>Телефон</th>
@@ -32,6 +33,7 @@
                             <tbody>
                             {{ range $i, $item := .data.items }}
                                 <tr class="table-row">
+                                    <td class="table-div" data-href="/admin/requisition/{{ $item.id }}">{{ $item.created_at }}</td>
                                     <td class="table-div" data-href="/admin/requisition/{{ $item.id }}">{{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}</td>
                                     {{ $gender := $item.gender }}
                                     {{ with (eq $gender "male") }}<td class="text-center table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-info">Чол.</span></td>{{ end }}

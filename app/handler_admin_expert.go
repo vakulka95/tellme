@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/gin-gonic/gin/binding"
+
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 
@@ -84,6 +86,141 @@ func (s *apiserver) webAdminExpertItem(c *gin.Context) {
 	)
 }
 
+func (s *apiserver) webAdminUpdateExpertItem(c *gin.Context) {
+	const logPref = "webAdminUpdateExpertItem"
+
+	iRole, ok := c.Get("role")
+	if !ok {
+		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		return
+	}
+
+	var (
+		expertID   = c.Param("expertId")
+		expertRole = iRole.(string)
+		req        = &representation.UpdateExpertRequest{}
+	)
+
+	err := c.MustBindWith(req, binding.FormPost)
+	if err != nil {
+		log.Printf("(ERR) %s: failed to bind request form: %v", logPref, err)
+		c.AbortWithStatusJSON(http.StatusBadRequest, representation.ErrInvalidRequest)
+		return
+	}
+	req.ID = expertID
+
+	expert, err := representation.ExpertAdminFormToPersistence(req, expertRole == UserRoleAdmin)
+	if err != nil {
+		log.Printf("(ERR) %s: invalid request: %v", logPref, err)
+		c.AbortWithStatusJSON(http.StatusBadRequest, representation.ErrInvalidRequest)
+		return
+	}
+
+	if expertRole == UserRoleExpert {
+		_, err = s.repository.UpdateExpert(expert)
+	} else {
+		_, err = s.repository.UpdateExpertSpecializations(expert)
+	}
+	if err != nil {
+		if strings.Contains(err.Error(), "no rows") {
+			log.Printf("(ERR) %s: expert [%s] not found", logPref, expertID)
+			c.AbortWithStatusJSON(http.StatusNotFound, representation.ErrNotFound)
+			return
+		}
+		log.Printf("(ERR) %s: failed to get expert view [%s]: %v", logPref, expertID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
+	}
+
+	expertRes, err := s.repository.GetExpertView(expertID)
+	if err != nil {
+		if strings.Contains(err.Error(), "no rows") {
+			log.Printf("(ERR) %s: expert [%s] not found", logPref, expertID)
+			c.AbortWithStatusJSON(http.StatusNotFound, representation.ErrNotFound)
+			return
+		}
+		log.Printf("(ERR) %s: failed to get expert view [%s]: %v", logPref, expertID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
+	}
+
+	c.HTML(http.StatusOK, "expert_item.html",
+		gin.H{
+			"metadata": gin.H{
+				"logged_in": true,
+				"role":      expertRole,
+			},
+			"expert": representation.ExpertViewItemPersistenceToAPI(expertRes),
+		},
+	)
+}
+
+func (s *apiserver) webAdminUploadExpertDocument(c *gin.Context) {
+	const logPref = "webAdminUploadExpertDocument"
+
+	iRole, ok := c.Get("role")
+	if !ok {
+		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		return
+	}
+
+	expertID := c.Param("expertId")
+	if strings.TrimSpace(expertID) == "" {
+		log.Printf("(ERR) %s: empty expertId", logPref)
+		c.AbortWithStatusJSON(http.StatusBadRequest, representation.ErrInvalidRequest)
+		return
+	}
+
+	expert, err := s.repository.GetExpert(expertID)
+	if err != nil {
+		if strings.Contains(err.Error(), "no rows") {
+			log.Printf("(ERR) %s: expert [%s] not found", logPref, expertID)
+			c.AbortWithStatusJSON(http.StatusNotFound, representation.ErrNotFound)
+			return
+		}
+		log.Printf("(ERR) %s: failed to get expert [%s]: %v", logPref, expertID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
+	}
+
+	lendoc := len(expert.DocumentURLs)
+	if lendoc >= maxExpertDocumentCount {
+		log.Printf("(ERR) %s: expert [%s] already processed", logPref, expertID)
+		c.AbortWithStatusJSON(http.StatusConflict, representation.ErrExpertAlreadyProcessed)
+		return
+	}
+
+	c.Request.Header.Add("Content-Type", "multipart/form-data")
+	filename, err := s.saveUploadedFile(c, expertID, lendoc)
+	if err != nil {
+		log.Printf("(ERR) %s: saveUploadedFile error: %v", logPref, err)
+		return
+	}
+
+	expert.DocumentURLs = append(expert.DocumentURLs, s.generateDocumentURL(expertID, filename))
+	_, err = s.repository.UpdateExpertDocumentURLs(expert)
+	if err != nil {
+		if strings.Contains(err.Error(), "no rows") {
+			log.Printf("(ERR) %s: expert [%s] failed to upload doc urls: %v", logPref, expertID, err)
+			c.AbortWithStatusJSON(http.StatusNotFound, representation.ErrNotFound)
+			return
+		}
+		log.Printf("(ERR) %s: failed to update expert [%s] document urls: %v", logPref, expertID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
+	}
+
+	c.HTML(http.StatusOK, "expert_item.html",
+		gin.H{
+			"metadata": gin.H{
+				"logged_in": true,
+				"role":      iRole.(string),
+			},
+			"expert": representation.ExpertViewItemPersistenceToAPI(expert),
+		},
+	)
+}
+
 func (s *apiserver) webAdminExpertBlock(c *gin.Context) {
 	expertID := c.Param("expertId")
 
@@ -148,4 +285,47 @@ func (s *apiserver) webAdminExpertDelete(c *gin.Context) {
 	}
 
 	c.Status(http.StatusAccepted)
+}
+
+func (s *apiserver) webAdminExpertProfile(c *gin.Context) {
+	const logPref = "webAdminExpertItem"
+
+	iRole, ok := c.Get("role")
+	if !ok {
+		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		return
+	}
+
+	iUserID, ok := c.Get("userID")
+	if !ok {
+		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		return
+	}
+
+	var (
+		role     = iRole.(string)
+		expertID = iUserID.(string)
+	)
+
+	expertRes, err := s.repository.GetExpertView(expertID)
+	if err != nil {
+		if strings.Contains(err.Error(), "no rows") {
+			log.Printf("(ERR) %s: expert [%s] not found", logPref, expertID)
+			c.AbortWithStatusJSON(http.StatusNotFound, representation.ErrNotFound)
+			return
+		}
+		log.Printf("(ERR) %s: failed to get expert view [%s]: %v", logPref, expertID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
+	}
+
+	c.HTML(http.StatusOK, "expert_item.html",
+		gin.H{
+			"metadata": gin.H{
+				"logged_in": true,
+				"role":      role,
+			},
+			"expert": representation.ExpertViewItemPersistenceToAPI(expertRes),
+		},
+	)
 }
