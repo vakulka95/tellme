@@ -16,7 +16,16 @@ import (
 )
 
 func (s *apiserver) webIndexPage(c *gin.Context) {
-	c.Redirect(http.StatusTemporaryRedirect, "/admin/requisition?limit=10&offset=0")
+	iRole, ok := c.Get("role")
+	if !ok {
+		c.Redirect(http.StatusFound, "admin/login")
+	}
+
+	if iRole.(string) == UserRoleAdmin {
+		c.Redirect(http.StatusFound, "/admin/requisition?limit=10&offset=0")
+		return
+	}
+	c.Redirect(http.StatusFound, "/admin/profile")
 }
 
 func (s *apiserver) webAdminRequisitionList(c *gin.Context) {
@@ -30,7 +39,7 @@ func (s *apiserver) webAdminRequisitionList(c *gin.Context) {
 
 	iRole, ok := c.Get("role")
 	if !ok {
-		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		c.Redirect(http.StatusFound, "/admin/login")
 		return
 	}
 
@@ -62,10 +71,16 @@ func (s *apiserver) webAdminRequisitionList(c *gin.Context) {
 	} else {
 		iUserID, ok := c.Get("userID")
 		if !ok {
-			c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+			c.Redirect(http.StatusFound, "/admin/login")
 			return
 		}
 		renderedList = representation.RequisitionListPersistenceToAPIForExpert(list, iUserID.(string))
+	}
+
+	iStatus, ok := c.Get("status")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
 	}
 
 	datetimeFrom, datetimeTo := qlp.GetDatetimeRange()
@@ -74,6 +89,7 @@ func (s *apiserver) webAdminRequisitionList(c *gin.Context) {
 			"metadata": gin.H{
 				"logged_in": true,
 				"role":      role,
+				"status":    iStatus.(string),
 			},
 			"data":       renderedList,
 			"pagination": qlp.GeneratePagination(list.Total),
@@ -95,7 +111,7 @@ func (s *apiserver) webAdminRequisitionItem(c *gin.Context) {
 
 	iRole, ok := c.Get("role")
 	if !ok {
-		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		c.Redirect(http.StatusFound, "/admin/login")
 		return
 	}
 
@@ -122,10 +138,16 @@ func (s *apiserver) webAdminRequisitionItem(c *gin.Context) {
 	} else {
 		iUserID, ok := c.Get("userID")
 		if !ok {
-			c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+			c.Redirect(http.StatusFound, "/admin/login")
 			return
 		}
 		item = representation.RequisitionItemPersistenceToAPIForExpert(requisitionRes, iUserID.(string))
+	}
+
+	iStatus, ok := c.Get("status")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
 	}
 
 	c.HTML(http.StatusOK, "requisition_item.html",
@@ -133,6 +155,7 @@ func (s *apiserver) webAdminRequisitionItem(c *gin.Context) {
 			"metadata": gin.H{
 				"logged_in": true,
 				"role":      role,
+				"status":    iStatus.(string),
 			},
 			"requisition": item,
 		},

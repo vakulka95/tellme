@@ -38,3 +38,36 @@ func (r *Repository) GetAdminByLogin(login string) (*model.Admin, error) {
 
 	return admin, nil
 }
+
+func (r *Repository) GetAdmin(id string) (*model.Admin, error) {
+
+	const query = `
+	SELECT id,
+		   username,
+		   password,
+		   status,
+		   updated_at,
+		   created_at
+	  FROM admins
+	 WHERE id=$1
+`
+	var (
+		ctx   = context.TODO()
+		admin = &model.Admin{}
+	)
+
+	err := r.cli.QueryRow(ctx, query, id).
+		Scan(
+			&admin.ID,
+			&admin.Username,
+			&admin.Password,
+			&admin.Status,
+			&admin.UpdatedAt,
+			&admin.CreatedAt,
+		)
+	if err != nil {
+		return nil, err
+	}
+
+	return admin, nil
+}

@@ -38,6 +38,7 @@
                 <div class="col-3 text-right border-right border-dark">Email</div>
                 <div class="col-9 pl-4">{{ .expert.email }}</div>
             </div>
+            {{ if eq .metadata.role "admin" }}
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Пароль</div>
                 <div class="col-9 pl-4">
@@ -50,6 +51,7 @@
                     </div>
                 </div>
             </div>
+            {{ end }}
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Освіта</div>
                 <div class="col-9 pl-4">{{ .expert.education }}</div>

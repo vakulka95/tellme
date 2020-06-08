@@ -33,9 +33,11 @@
         {{ if .metadata.logged_in }}
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
+                {{ if eq .metadata.status "active" }}
                 <li class="nav-item">
                     <a class="nav-link " href="/admin/requisition"><i class="fa fa-telegram"></i> Заявки</a>
                 </li>
+                {{ end }}
                 {{ if eq .metadata.role "admin" }}
                 <li class="nav-item">
                     <a class="nav-link " href="/admin/expert?limit=10&offset=0"><i class="fa fa-address-card-o"></i> Психологи</a>
@@ -54,6 +56,6 @@
                 </li>
             </ul>
         </div>
-        {{end}}
+        {{ end }}
     </div>
 </nav>

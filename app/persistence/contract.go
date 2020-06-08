@@ -28,6 +28,7 @@ type Repository interface {
 	GetNotReviewedRequisition() ([]*model.Requisition, error)
 
 	// Admins
+	GetAdmin(id string) (*model.Admin, error)
 	GetAdminByLogin(login string) (*model.Admin, error)
 
 	// Reviews

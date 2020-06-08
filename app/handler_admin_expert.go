@@ -32,7 +32,13 @@ func (s *apiserver) webAdminExpertList(c *gin.Context) {
 
 	iRole, ok := c.Get("role")
 	if !ok {
-		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
+	}
+
+	iStatus, ok := c.Get("status")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
 		return
 	}
 
@@ -41,6 +47,7 @@ func (s *apiserver) webAdminExpertList(c *gin.Context) {
 			"metadata": gin.H{
 				"logged_in": true,
 				"role":      iRole.(string),
+				"status":    iStatus.(string),
 			},
 			"data":       representation.ExpertListPersistenceToAPI(list),
 			"pagination": qlp.GeneratePagination(list.Total),
@@ -58,7 +65,7 @@ func (s *apiserver) webAdminExpertItem(c *gin.Context) {
 
 	iRole, ok := c.Get("role")
 	if !ok {
-		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		c.Redirect(http.StatusFound, "/admin/login")
 		return
 	}
 
@@ -75,11 +82,18 @@ func (s *apiserver) webAdminExpertItem(c *gin.Context) {
 		return
 	}
 
+	iStatus, ok := c.Get("status")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
+	}
+
 	c.HTML(http.StatusOK, "expert_item.html",
 		gin.H{
 			"metadata": gin.H{
 				"logged_in": true,
 				"role":      iRole.(string),
+				"status":    iStatus.(string),
 			},
 			"expert": representation.ExpertViewItemPersistenceToAPI(expertRes),
 		},
@@ -91,7 +105,7 @@ func (s *apiserver) webAdminUpdateExpertItem(c *gin.Context) {
 
 	iRole, ok := c.Get("role")
 	if !ok {
-		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		c.Redirect(http.StatusFound, "/admin/login")
 		return
 	}
 
@@ -144,11 +158,18 @@ func (s *apiserver) webAdminUpdateExpertItem(c *gin.Context) {
 		return
 	}
 
+	iStatus, ok := c.Get("status")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
+	}
+
 	c.HTML(http.StatusOK, "expert_item.html",
 		gin.H{
 			"metadata": gin.H{
 				"logged_in": true,
 				"role":      expertRole,
+				"status":    iStatus,
 			},
 			"expert": representation.ExpertViewItemPersistenceToAPI(expertRes),
 		},
@@ -160,7 +181,7 @@ func (s *apiserver) webAdminUploadExpertDocument(c *gin.Context) {
 
 	iRole, ok := c.Get("role")
 	if !ok {
-		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		c.Redirect(http.StatusFound, "/admin/login")
 		return
 	}
 
@@ -210,11 +231,18 @@ func (s *apiserver) webAdminUploadExpertDocument(c *gin.Context) {
 		return
 	}
 
+	iStatus, ok := c.Get("status")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
+	}
+
 	c.HTML(http.StatusOK, "expert_item.html",
 		gin.H{
 			"metadata": gin.H{
 				"logged_in": true,
 				"role":      iRole.(string),
+				"status":    iStatus.(string),
 			},
 			"expert": representation.ExpertViewItemPersistenceToAPI(expert),
 		},
@@ -292,13 +320,13 @@ func (s *apiserver) webAdminExpertProfile(c *gin.Context) {
 
 	iRole, ok := c.Get("role")
 	if !ok {
-		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		c.Redirect(http.StatusFound, "/admin/login")
 		return
 	}
 
 	iUserID, ok := c.Get("userID")
 	if !ok {
-		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		c.Redirect(http.StatusFound, "/admin/login")
 		return
 	}
 
@@ -319,11 +347,18 @@ func (s *apiserver) webAdminExpertProfile(c *gin.Context) {
 		return
 	}
 
+	iStatus, ok := c.Get("status")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
+	}
+
 	c.HTML(http.StatusOK, "expert_item.html",
 		gin.H{
 			"metadata": gin.H{
 				"logged_in": true,
 				"role":      role,
+				"status":    iStatus.(string),
 			},
 			"expert": representation.ExpertViewItemPersistenceToAPI(expertRes),
 		},

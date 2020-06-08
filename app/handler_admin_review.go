@@ -30,7 +30,13 @@ func (s *apiserver) webAdminReviewList(c *gin.Context) {
 
 	iRole, ok := c.Get("role")
 	if !ok {
-		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
+	}
+
+	iStatus, ok := c.Get("status")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
 		return
 	}
 
@@ -39,6 +45,7 @@ func (s *apiserver) webAdminReviewList(c *gin.Context) {
 			"metadata": gin.H{
 				"logged_in": true,
 				"role":      iRole.(string),
+				"status":    iStatus.(string),
 			},
 			"data":       representation.ReviewListPersistenceToAPI(list),
 			"pagination": qlp.GeneratePagination(list.Total),
@@ -55,7 +62,7 @@ func (s *apiserver) webAdminReviewItem(c *gin.Context) {
 
 	iRole, ok := c.Get("role")
 	if !ok {
-		c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+		c.Redirect(http.StatusFound, "/admin/login")
 		return
 	}
 
@@ -72,11 +79,18 @@ func (s *apiserver) webAdminReviewItem(c *gin.Context) {
 		return
 	}
 
+	iStatus, ok := c.Get("status")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
+	}
+
 	c.HTML(http.StatusOK, "review_item.html",
 		gin.H{
 			"metadata": gin.H{
 				"logged_in": true,
 				"role":      iRole.(string),
+				"status":    iStatus.(string),
 			},
 			"review": representation.ReviewItemPersistenceToAPI(reviewRes),
 		},

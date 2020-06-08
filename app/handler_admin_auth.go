@@ -23,7 +23,7 @@ func (s *apiserver) webAdminLogin(c *gin.Context) {
 	}
 
 	c.SetCookie(authCookieKey, token, int(s.config.AccessTokenDuration.Seconds()), "", "", false, true)
-	c.Redirect(http.StatusTemporaryRedirect, "/admin/requisition")
+	c.Redirect(http.StatusFound, "/admin")
 }
 
 func (s *apiserver) webAdminGetLoginPage(c *gin.Context) {
@@ -32,5 +32,5 @@ func (s *apiserver) webAdminGetLoginPage(c *gin.Context) {
 
 func (s *apiserver) webAdminLogout(c *gin.Context) {
 	c.SetCookie(authCookieKey, "", -1, "", "", false, true)
-	c.Redirect(http.StatusTemporaryRedirect, "/admin")
+	c.Redirect(http.StatusFound, "/admin")
 }

@@ -4,6 +4,8 @@ import (
 	"path"
 	"strings"
 
+	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,6 +26,9 @@ func (s *apiserver) registerHandlers() {
 	adminAuthorization := s.authorizationInterceptor(UserRoleAdmin)
 	expertAuthorization := s.authorizationInterceptor(UserRoleExpert)
 
+	statusActiveAuthentication := s.checkStatusInterceptor(model.ExpertStatusActive)
+	statusAllAuthentication := s.checkStatusInterceptor(model.ExpertStatusActive, model.ExpertStatusBlocked, model.ExpertStatusOnReview)
+
 	//
 	// Admin Auth
 	//
@@ -35,34 +40,32 @@ func (s *apiserver) registerHandlers() {
 	//
 	// Admin Expert
 	//
-	s.engine.GET("/admin/expert", authentication, adminAuthorization, s.webAdminExpertList)
-	s.engine.POST("/admin/expert", authentication, adminAuthorization, s.webAdminExpertList)
-	s.engine.GET("/admin/expert/:expertId", authentication, adminAuthorization, s.webAdminExpertItem)
-	s.engine.POST("/admin/expert/:expertId", authentication, adminAuthorization, s.webAdminUpdateExpertItem)
-	s.engine.POST("/admin/expert/:expertId/document", authentication, adminAuthorization, s.webAdminUploadExpertDocument)
-	s.engine.GET("/admin/profile", authentication, expertAuthorization, s.webAdminExpertProfile)
+	s.engine.GET("/admin/expert", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertList)
+	s.engine.POST("/admin/expert", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertList)
+	s.engine.GET("/admin/expert/:expertId", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertItem)
+	s.engine.POST("/admin/expert/:expertId", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminUpdateExpertItem)
+	s.engine.POST("/admin/expert/:expertId/document", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminUploadExpertDocument)
+	s.engine.GET("/admin/profile", authentication, expertAuthorization, statusAllAuthentication, s.webAdminExpertProfile)
 
-	s.engine.PUT("/admin/expert/:expertId/block", authentication, adminAuthorization, s.webAdminExpertBlock)
-	s.engine.PUT("/admin/expert/:expertId/activate", authentication, adminAuthorization, s.webAdminExpertActivate)
-	s.engine.PUT("/admin/expert/:expertId/password", authentication, adminAuthorization, s.webAdminUpdateExpertPassword)
-	s.engine.DELETE("/admin/expert/:expertId", authentication, adminAuthorization, s.webAdminExpertDelete)
+	s.engine.PUT("/admin/expert/:expertId/block", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertBlock)
+	s.engine.PUT("/admin/expert/:expertId/activate", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertActivate)
+	s.engine.PUT("/admin/expert/:expertId/password", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminUpdateExpertPassword)
+	s.engine.DELETE("/admin/expert/:expertId", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertDelete)
 
 	//
 	// Admin Requisition
 	//
-	s.engine.GET("/admin/requisition", authentication, allAuthorization, s.webAdminRequisitionList)
-	s.engine.POST("/admin/requisition", authentication, allAuthorization, s.webAdminRequisitionList)
-	s.engine.GET("/admin/requisition/:requisitionId", authentication, allAuthorization, s.webAdminRequisitionItem)
-	s.engine.PUT("/admin/requisition/:requisitionId/take", authentication, allAuthorization, s.webAdminRequisitionTake)
-	s.engine.PUT("/admin/requisition/:requisitionId/discard", authentication, allAuthorization, s.webAdminRequisitionDiscard)
-	s.engine.PUT("/admin/requisition/:requisitionId/complete", authentication, allAuthorization, s.webAdminRequisitionComplete)
+	s.engine.GET("/admin/requisition", authentication, allAuthorization, statusActiveAuthentication, s.webAdminRequisitionList)
+	s.engine.GET("/admin/requisition/:requisitionId", authentication, allAuthorization, statusActiveAuthentication, s.webAdminRequisitionItem)
+	s.engine.PUT("/admin/requisition/:requisitionId/take", authentication, allAuthorization, statusActiveAuthentication, s.webAdminRequisitionTake)
+	s.engine.PUT("/admin/requisition/:requisitionId/discard", authentication, allAuthorization, statusActiveAuthentication, s.webAdminRequisitionDiscard)
+	s.engine.PUT("/admin/requisition/:requisitionId/complete", authentication, allAuthorization, statusActiveAuthentication, s.webAdminRequisitionComplete)
 
 	//
 	// Admin Review
 	//
-	s.engine.GET("/admin/review", authentication, adminAuthorization, s.webAdminReviewList)
-	s.engine.POST("/admin/review", authentication, adminAuthorization, s.webAdminReviewList)
-	s.engine.GET("/admin/review/:reviewId", authentication, adminAuthorization, s.webAdminReviewItem)
+	s.engine.GET("/admin/review", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminReviewList)
+	s.engine.GET("/admin/review/:reviewId", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminReviewItem)
 
 	//
 	// Main API

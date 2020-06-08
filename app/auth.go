@@ -3,6 +3,7 @@ package app
 import (
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -22,11 +23,6 @@ var (
 func (s *apiserver) login(login, password string) (string, string, error) { // return access token and role
 	expert, err := s.repository.GetExpertByEmail(strings.ToLower(login))
 	if err == nil {
-
-		if expert.Status != model.ExpertStatusActive {
-			return "", "", ErrUserIsBlocked
-		}
-
 		if !checkPwds(password, expert.Password) {
 			return "", "", ErrInvalidPassword
 		}
@@ -116,18 +112,48 @@ func (s *apiserver) authenticationInterceptor() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token, err := c.Cookie(authCookieKey)
 		if err != nil {
-			c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+			c.Redirect(http.StatusFound, "/admin/login")
 			return
 		}
 
 		userID, role, err := s.checkAccessToken(token)
 		if err != nil {
-			c.Redirect(http.StatusTemporaryRedirect, "/admin/login")
+			c.Redirect(http.StatusFound, "/admin/login")
 			return
 		}
 
 		c.Set("userID", userID)
 		c.Set("role", role)
+
+		var status string
+
+		switch role {
+		case UserRoleAdmin:
+			admin, err := s.repository.GetAdmin(userID)
+			if err != nil {
+				c.Redirect(http.StatusFound, "/admin")
+				return
+			}
+
+			status = admin.Status
+		case UserRoleExpert:
+			expert, err := s.repository.GetExpert(userID)
+			if err != nil {
+				c.Redirect(http.StatusFound, "/admin")
+				return
+			}
+
+			status = expert.Status
+		default:
+			c.Redirect(http.StatusFound, "/admin")
+			return
+		}
+
+		if status == "" {
+			status = model.ExpertStatusBlocked
+		}
+
+		c.Set("status", status)
 	}
 }
 
@@ -135,13 +161,13 @@ func (s *apiserver) authorizationInterceptor(roles ...string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		role, ok := c.Get("role")
 		if !ok {
-			c.Redirect(http.StatusTemporaryRedirect, "/admin")
+			c.Redirect(http.StatusFound, "/admin")
 			return
 		}
 
 		rolestr, ok := role.(string)
 		if !ok {
-			c.Redirect(http.StatusTemporaryRedirect, "/admin")
+			c.Redirect(http.StatusFound, "/admin")
 			return
 		}
 
@@ -151,7 +177,33 @@ func (s *apiserver) authorizationInterceptor(roles ...string) gin.HandlerFunc {
 			}
 		}
 
-		c.Redirect(http.StatusTemporaryRedirect, "/admin")
+		c.Redirect(http.StatusFound, "/admin")
+		return
+	}
+}
+
+func (s *apiserver) checkStatusInterceptor(statuses ...string) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		iStatus, ok := c.Get("status")
+		if !ok {
+			c.Redirect(http.StatusFound, "/admin")
+			return
+		}
+
+		status, ok := iStatus.(string)
+		if !ok {
+			c.Redirect(http.StatusFound, "/admin")
+			return
+		}
+
+		for _, allowed := range statuses {
+			if status == allowed {
+				log.Printf(">>> going to return: allowed: %s, status: %s", allowed, status)
+				return
+			}
+		}
+
+		c.Redirect(http.StatusFound, "/admin")
 		return
 	}
 }
