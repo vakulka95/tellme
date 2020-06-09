@@ -69,7 +69,8 @@ func (r *Repository) GetExpertView(id string) (*model.Expert, error) {
 			created_at,
 			processing_count,
 			completed_count,
-			review_count
+			review_count,
+			session_count
 	  FROM v$experts
 	 WHERE id=$1
 `
@@ -96,6 +97,7 @@ func (r *Repository) GetExpertView(id string) (*model.Expert, error) {
 			&expert.ProcessingCount,
 			&expert.CompletedCount,
 			&expert.ReviewCount,
+			&expert.SessionCount,
 		)
 	if err != nil {
 		return nil, err
@@ -217,6 +219,7 @@ func (r *Repository) GetExpertList(q *model.QueryExpertList) (*model.ExpertList,
 			"processing_count",
 			"completed_count",
 			"review_count",
+			"session_count",
 		).
 		From("v$experts").
 		Where(
@@ -255,6 +258,7 @@ func (r *Repository) GetExpertList(q *model.QueryExpertList) (*model.ExpertList,
 			&item.ProcessingCount,
 			&item.CompletedCount,
 			&item.ReviewCount,
+			&item.SessionCount,
 		); err != nil {
 			log.Printf("failed to scan expert: %v", err)
 			continue

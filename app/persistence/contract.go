@@ -38,6 +38,10 @@ type Repository interface {
 	GetReviewList(q *model.QueryReviewList) (*model.ReviewList, error)
 	UpdateReviewBodyStatus(v *model.Review) (*model.Review, error)
 
+	// Sessions
+	GetSession(id string) (*model.Session, error)
+	CreateSession(session *model.Session) (*model.Session, error)
+
 	// Service
 	Name() string
 	Stat() map[string]string

@@ -27,6 +27,7 @@ type Expert struct {
 	ProcessingCount int       `db:"processing_count"`
 	CompletedCount  int       `db:"completed_count"`
 	ReviewCount     int       `db:"review_count"`
+	SessionCount    int       `db:"session_count"`
 	Status          string    `db:"status"`
 	UpdatedAt       time.Time `db:"updated_at"`
 	CreatedAt       time.Time `db:"created_at"`

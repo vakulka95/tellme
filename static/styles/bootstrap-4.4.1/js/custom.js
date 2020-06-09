@@ -111,6 +111,21 @@ function completeRequisitionAPI(requisition){
     })
 }
 
+function createSessionRequisitionAPI(requisition){
+    let requisitionId = $(requisition).data('requisition-id');
+
+    $.ajax({
+        url: '/admin/requisition/'+requisitionId+'/session',
+        type: 'POST',
+        success: function (result) {
+            document.location.reload();
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
 $(document).ready(function($) {
     $(".table-div").click(function() {
         window.document.location = $(this).data("href");

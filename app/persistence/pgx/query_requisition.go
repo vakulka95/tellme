@@ -23,10 +23,11 @@ func (r *Repository) GetRequisition(id string) (*model.Requisition, error) {
 			feedback_time,
 			feedback_week_day,
 			is_adult,
+		    session_count,
 			status,
 			created_at,
 			updated_at
-	  FROM requisitions
+	  FROM v$requisitions
 	 WHERE id=$1
 `
 
@@ -50,6 +51,7 @@ func (r *Repository) GetRequisition(id string) (*model.Requisition, error) {
 			&requisition.FeedbackTime,
 			&requisition.FeedbackWeekDay,
 			&requisition.IsAdult,
+			&requisition.SessionCount,
 			&requisition.Status,
 			&requisition.CreatedAt,
 			&requisition.UpdatedAt,
@@ -127,11 +129,12 @@ func (r *Repository) GetRequisitionList(q *model.QueryRequisitionList) (*model.R
 			"feedback_time",
 			"feedback_week_day",
 			"is_adult",
+			"session_count",
 			"status",
 			"created_at",
 			"updated_at",
 		).
-		From("requisitions").
+		From("v$requisitions").
 		Where(
 			postgres.NewExpression("status", postgres.NewString(q.Status), postgres.OperatorEqual),
 			postgres.NewExpression("expert_id", postgres.NewString(q.ExpertID), postgres.OperatorEqual),
@@ -171,6 +174,7 @@ func (r *Repository) GetRequisitionList(q *model.QueryRequisitionList) (*model.R
 			&item.FeedbackTime,
 			&item.FeedbackWeekDay,
 			&item.IsAdult,
+			&item.SessionCount,
 			&item.Status,
 			&item.CreatedAt,
 			&item.UpdatedAt,

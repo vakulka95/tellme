@@ -68,6 +68,11 @@ func (s *apiserver) registerHandlers() {
 	s.engine.GET("/admin/review/:reviewId", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminReviewItem)
 
 	//
+	// Admin Session
+	//
+	s.engine.POST("/admin/requisition/:requisitionId/session", authentication, expertAuthorization, statusActiveAuthentication, s.webAdminSessionCreate)
+
+	//
 	// Main API
 	//
 	s.engine.GET("/api/v1/diagnosis", s.cors, s.apiGetDiagnosisList)

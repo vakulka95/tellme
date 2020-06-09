@@ -3,7 +3,6 @@ package app
 import (
 	"errors"
 	"fmt"
-	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -198,7 +197,6 @@ func (s *apiserver) checkStatusInterceptor(statuses ...string) gin.HandlerFunc {
 
 		for _, allowed := range statuses {
 			if status == allowed {
-				log.Printf(">>> going to return: allowed: %s, status: %s", allowed, status)
 				return
 			}
 		}

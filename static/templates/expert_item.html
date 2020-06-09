@@ -99,6 +99,14 @@
                     </div>
                 </div>
             </div>
+            <div class="row my-2 mx-auto">
+                <div class="col-3 text-right border-right border-dark">Сесій проведено</div>
+                <div class="col-9 pl-4">
+                    <div class="d-inline-block">
+                        {{ .expert.session_count }}
+                    </div>
+                </div>
+            </div>
             {{ if eq .metadata.role "admin" }}
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Відгуків</div>

@@ -79,6 +79,10 @@
                 <div class="col-9 pl-4">{{ .requisition.diagnosis_description }}</div>
             </div>
             <div class="row my-2 mx-auto">
+                <div class="col-3 text-right border-right border-dark">Сесій проведено</div>
+                <div class="col-9 pl-4">{{ .requisition.session_count }}</div>
+            </div>
+            <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Статус</div>
                 <div class="col-9 pl-4">
                     {{ $status := .requisition.status }}
@@ -93,6 +97,9 @@
             </div>
 
             <div class="text-right">
+                {{ if eq .metadata.role "expert" }}
+                <a class="btn btn-info {{ if or (ne .requisition.status "processing") (ge .requisition.session_count 3) }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="createSessionRequisitionAPI(this)" role="button">Провести сесію</a>
+                {{ end }}
                 <a class="btn btn-secondary {{ if (eq .requisition.status "processing") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="takeRequisitionAPI(this)" role="button">Взяти</a>
                 <a class="btn btn-danger {{ if (eq .requisition.status "created") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="discardRequisitionAPI(this)" role="button">Відмовитись</a>
                 <a class="btn btn-success {{ if (eq .requisition.status "completed") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="completeRequisitionAPI(this)" role="button">Завершити</a>

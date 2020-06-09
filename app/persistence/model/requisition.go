@@ -29,6 +29,7 @@ type Requisition struct {
 	FeedbackTime         string    `db:"feedback_time"`
 	FeedbackWeekDay      string    `db:"feedback_week_day"`
 	IsAdult              bool      `db:"is_adult"`
+	SessionCount         int       `db:"session_count"`
 	Status               string    `db:"status"`
 	UpdatedAt            time.Time `db:"updated_at"`
 	CreatedAt            time.Time `db:"created_at"`

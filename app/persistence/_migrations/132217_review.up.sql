@@ -24,7 +24,7 @@ ALTER TABLE reviews
     ADD CONSTRAINT reviews_requisition_id_fk
         FOREIGN KEY(requisition_id) REFERENCES requisitions(id) ON DELETE RESTRICT;
 
-    CREATE UNIQUE INDEX reviews_token_unq ON reviews(token);
+CREATE UNIQUE INDEX reviews_token_unq ON reviews(token);
 
 ALTER TABLE reviews ADD CONSTRAINT reviews_status_chk
     CHECK(status IN ('requested', 'completed'));
