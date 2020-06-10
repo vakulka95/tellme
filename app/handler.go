@@ -70,7 +70,8 @@ func (s *apiserver) registerHandlers() {
 	//
 	// Admin Session
 	//
-	s.engine.POST("/admin/requisition/:requisitionId/session", authentication, expertAuthorization, statusActiveAuthentication, s.webAdminSessionCreate)
+	s.engine.POST("/admin/requisition/:requisitionId/session/apply", authentication, expertAuthorization, statusActiveAuthentication, s.webAdminSessionCreate)
+	s.engine.DELETE("/admin/requisition/:requisitionId/session/discard", authentication, expertAuthorization, statusActiveAuthentication, s.webAdminSessionDiscard)
 
 	//
 	// Main API

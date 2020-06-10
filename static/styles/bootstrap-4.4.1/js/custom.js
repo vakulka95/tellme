@@ -115,8 +115,23 @@ function createSessionRequisitionAPI(requisition){
     let requisitionId = $(requisition).data('requisition-id');
 
     $.ajax({
-        url: '/admin/requisition/'+requisitionId+'/session',
+        url: '/admin/requisition/'+requisitionId+'/session/apply',
         type: 'POST',
+        success: function (result) {
+            document.location.reload();
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
+function discardSessionRequisitionAPI(requisition){
+    let requisitionId = $(requisition).data('requisition-id');
+
+    $.ajax({
+        url: '/admin/requisition/'+requisitionId+'/session/discard',
+        type: 'DELETE',
         success: function (result) {
             document.location.reload();
         },

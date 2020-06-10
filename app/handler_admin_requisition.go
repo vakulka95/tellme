@@ -19,9 +19,16 @@ func (s *apiserver) webIndexPage(c *gin.Context) {
 	iRole, ok := c.Get("role")
 	if !ok {
 		c.Redirect(http.StatusFound, "admin/login")
+		return
 	}
 
-	if iRole.(string) == UserRoleAdmin {
+	iStatus, ok := c.Get("status")
+	if !ok {
+		c.Redirect(http.StatusFound, "admin/login")
+		return
+	}
+
+	if iRole.(string) == UserRoleAdmin || iStatus.(string) == model.ExpertStatusActive {
 		c.Redirect(http.StatusFound, "/admin/requisition?limit=10&offset=0")
 		return
 	}
@@ -194,11 +201,20 @@ func (s *apiserver) webAdminRequisitionTake(c *gin.Context) {
 }
 
 func (s *apiserver) webAdminRequisitionDiscard(c *gin.Context) {
-	requisitionID := c.Param("requisitionId")
+	const logPref = "webAdminRequisitionDiscard"
 
-	_, err := s.repository.UpdateRequisitionStatus(&model.Requisition{ID: requisitionID, Status: model.RequisitionStatusCreated})
+	var requisitionID = c.Param("requisitionId")
+
+	err := s.repository.DeleteRequisitionSessions(requisitionID)
 	if err != nil {
-		log.Printf("(ERR) Failed to update requisition: %v", err)
+		log.Printf("(ERR) %s: failed to delete requisition sessions: %v", logPref, err)
+		c.AbortWithStatus(http.StatusInternalServerError)
+		return
+	}
+
+	_, err = s.repository.UpdateRequisitionStatus(&model.Requisition{ID: requisitionID, Status: model.RequisitionStatusCreated})
+	if err != nil {
+		log.Printf("(ERR) %s: failed to update requisition: %v", logPref, err)
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	}
@@ -211,6 +227,13 @@ func (s *apiserver) webAdminRequisitionComplete(c *gin.Context) {
 
 	var requisitionID = c.Param("requisitionId")
 
+	requisitionSessions, err := s.repository.GetRequisitionSessionList(requisitionID)
+	if err != nil {
+		log.Printf("(ERR) %s: failed to get requisition sessions [%s]: %v", logPref, requisitionID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
+	}
+
 	requisitionRes, err := s.repository.GetRequisition(requisitionID)
 	if err != nil {
 		log.Printf("(ERR) %s: failed to get expert view [%s]: %v", logPref, requisitionID, err)
@@ -218,6 +241,19 @@ func (s *apiserver) webAdminRequisitionComplete(c *gin.Context) {
 		return
 	}
 	expertID := requisitionRes.ExpertID
+
+	if len(requisitionSessions) == 0 {
+		_, err = s.repository.CreateSession(&model.Session{
+			ID:            uuid.NewV4().String(),
+			ExpertID:      expertID,
+			RequisitionID: requisitionID,
+		})
+		if err != nil {
+			log.Printf("(ERR) %s: failed to create session on requisition [%s]: %v", logPref, requisitionID, err)
+			c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+			return
+		}
+	}
 
 	_, err = s.repository.UpdateRequisitionStatus(&model.Requisition{ID: requisitionID, ExpertID: expertID, Status: model.RequisitionStatusCompleted})
 	if err != nil {

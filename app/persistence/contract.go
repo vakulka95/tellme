@@ -41,6 +41,9 @@ type Repository interface {
 	// Sessions
 	GetSession(id string) (*model.Session, error)
 	CreateSession(session *model.Session) (*model.Session, error)
+	GetRequisitionSessionList(requisitionID string) ([]*model.Session, error)
+	DeleteRequisitionSessions(requisitionID string) error
+	DeleteLastRequisitionSession(requisitionID string) error
 
 	// Service
 	Name() string

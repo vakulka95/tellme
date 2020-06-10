@@ -11,28 +11,28 @@
                     <label for="search">ID, Ім'я або Телефон</label>
                     <input class="form-control clearable" id="search" name="search" type="text" placeholder="Пошук" value="{{ .queries.search }}">
                     <hr/>
-                    <label for="feedback_week_day">День</label>
-                    <select class="custom-select" id="feedback_week_day" name="feedback_week_day">
-                        <option {{ if (eq .queries.feedback_week_day "") }} selected {{ end }} value="">Всі</option>
-                        <option {{ if (eq .queries.feedback_week_day "mon") }} selected {{ end }} value="mon">Понеділок</option>
-                        <option {{ if (eq .queries.feedback_week_day "tue") }} selected {{ end }} value="tue">Вівторок</option>
-                        <option {{ if (eq .queries.feedback_week_day "wed") }} selected {{ end }} value="wed">Середа</option>
-                        <option {{ if (eq .queries.feedback_week_day "thu") }} selected {{ end }} value="thu">Четвер</option>
-                        <option {{ if (eq .queries.feedback_week_day "fri") }} selected {{ end }} value="fri">П'ятниця</option>
-                        <option {{ if (eq .queries.feedback_week_day "sat") }} selected {{ end }} value="sat">Субота</option>
-                        <option {{ if (eq .queries.feedback_week_day "sun") }} selected {{ end }} value="sun">Неділя</option>
-                    </select>
-                    <br/>
-                    <hr/>
-                    <label for="feedback_time">Час</label>
-                    <select class="custom-select" id="feedback_time" name="feedback_time">
-                        <option {{ if (eq .queries.feedback_time "") }} selected {{ end }} value="">Всі</option>
-                        <option {{ if (eq .queries.feedback_time "8:00") }} selected {{ end }} value="8:00">8:00-13:00</option>
-                        <option {{ if (eq .queries.feedback_time "13:00") }} selected {{ end }} value="13:00">13:00-18:00</option>
-                        <option {{ if (eq .queries.feedback_time "18:00") }} selected {{ end }} value="18:00">18:00-21:00</option>
-                    </select>
-                    <br/>
-                    <hr/>
+{{/*                    <label for="feedback_week_day">День</label>*/}}
+{{/*                    <select class="custom-select" id="feedback_week_day" name="feedback_week_day">*/}}
+{{/*                        <option {{ if (eq .queries.feedback_week_day "") }} selected {{ end }} value="">Всі</option>*/}}
+{{/*                        <option {{ if (eq .queries.feedback_week_day "mon") }} selected {{ end }} value="mon">Понеділок</option>*/}}
+{{/*                        <option {{ if (eq .queries.feedback_week_day "tue") }} selected {{ end }} value="tue">Вівторок</option>*/}}
+{{/*                        <option {{ if (eq .queries.feedback_week_day "wed") }} selected {{ end }} value="wed">Середа</option>*/}}
+{{/*                        <option {{ if (eq .queries.feedback_week_day "thu") }} selected {{ end }} value="thu">Четвер</option>*/}}
+{{/*                        <option {{ if (eq .queries.feedback_week_day "fri") }} selected {{ end }} value="fri">П'ятниця</option>*/}}
+{{/*                        <option {{ if (eq .queries.feedback_week_day "sat") }} selected {{ end }} value="sat">Субота</option>*/}}
+{{/*                        <option {{ if (eq .queries.feedback_week_day "sun") }} selected {{ end }} value="sun">Неділя</option>*/}}
+{{/*                    </select>*/}}
+{{/*                    <br/>*/}}
+{{/*                    <hr/>*/}}
+{{/*                    <label for="feedback_time">Час</label>*/}}
+{{/*                    <select class="custom-select" id="feedback_time" name="feedback_time">*/}}
+{{/*                        <option {{ if (eq .queries.feedback_time "") }} selected {{ end }} value="">Всі</option>*/}}
+{{/*                        <option {{ if (eq .queries.feedback_time "8:00") }} selected {{ end }} value="8:00">8:00-13:00</option>*/}}
+{{/*                        <option {{ if (eq .queries.feedback_time "13:00") }} selected {{ end }} value="13:00">13:00-18:00</option>*/}}
+{{/*                        <option {{ if (eq .queries.feedback_time "18:00") }} selected {{ end }} value="18:00">18:00-21:00</option>*/}}
+{{/*                    </select>*/}}
+{{/*                    <br/>*/}}
+{{/*                    <hr/>*/}}
                     <label for="status">Статус</label>
                     <select class="custom-select" id="status" name="status">
                         {{ if (eq .metadata.role "admin") }}

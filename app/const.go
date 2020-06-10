@@ -9,6 +9,7 @@ const (
 	maxExpertDocumentSize  = 8 << 20 // 8 MiB
 
 	maxRequisitionSessionCount = 3
+	minRequisitionSessionCount = 0
 )
 
 var allowedExtensions = map[string]string{

@@ -46,3 +46,32 @@ func (s *apiserver) webAdminSessionCreate(c *gin.Context) {
 
 	c.Status(http.StatusAccepted)
 }
+
+func (s *apiserver) webAdminSessionDiscard(c *gin.Context) {
+	const logPref = "webAdminSessionCreate"
+
+	var requisitionID = c.Param("requisitionId")
+
+	requisition, err := s.repository.GetRequisition(requisitionID)
+	if err != nil {
+		log.Printf("(ERR) %s: failed to get requisition [%s]: %v", logPref, requisitionID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
+	}
+
+	if requisition.Status == model.RequisitionStatusCompleted ||
+		requisition.SessionCount <= minRequisitionSessionCount {
+		log.Printf("(WARN) %s: requisition [%s] already processed: %v", logPref, requisitionID, err)
+		c.AbortWithStatusJSON(http.StatusConflict, representation.ErrConflict)
+		return
+	}
+
+	err = s.repository.DeleteLastRequisitionSession(requisitionID)
+	if err != nil {
+		log.Printf("(ERR) %s: failed to delete last session on requisition [%s]: %v", logPref, requisitionID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
+	}
+
+	c.Status(http.StatusAccepted)
+}
