@@ -98,8 +98,11 @@
 
             <div class="text-right">
                 {{ if eq .metadata.role "expert" }}
-                <a class="btn btn-info {{ if or (ne .requisition.status "processing") (ge .requisition.session_count 3) }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="createSessionRequisitionAPI(this)" role="button">Провести сесію</a>
-                <a class="btn btn-info {{ if or (ne .requisition.status "processing") (eq .requisition.session_count 0) }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="discardSessionRequisitionAPI(this)" role="button">Відмінити сесію</a>
+                <a class="btn btn-info {{ if or (ne .requisition.status "processing") (ge .requisition.session_count 3) }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="createSessionRequisitionAPI(this)" role="button">Провести консультацію</a>
+                <a class="btn btn-info {{ if or (ne .requisition.status "processing") (eq .requisition.session_count 0) }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="discardSessionRequisitionAPI(this)" role="button">Відмінити консультацію</a>
+                {{ end }}
+                {{ if and (eq .metadata.role "admin") (eq .requisition.status "created") }}
+                <a class="btn btn-danger" data-requisition-id="{{ .requisition.id }}" onclick="deleteRequisitionAPI(this)" role="button">Видалити</a>
                 {{ end }}
                 <a class="btn btn-secondary {{ if (eq .requisition.status "processing") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="takeRequisitionAPI(this)" role="button">Взяти</a>
                 <a class="btn btn-danger {{ if (eq .requisition.status "created") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="discardRequisitionAPI(this)" role="button">Відмовитись</a>

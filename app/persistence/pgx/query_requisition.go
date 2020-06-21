@@ -241,3 +241,12 @@ func (r *Repository) GetNotReviewedRequisition() ([]*model.Requisition, error) {
 
 	return list, nil
 }
+
+func (r *Repository) DeleteRequisition(v *model.Requisition) error {
+	const query = `DELETE FROM requisitions WHERE id=$1`
+
+	var ctx = context.TODO()
+
+	_, err := r.cli.Exec(ctx, query, v.ID)
+	return err
+}

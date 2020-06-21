@@ -14,7 +14,7 @@
                 <div class="card-header">
                     Вхід для психологів
                 </div>
-               <form class="card-body" action="/admin/login" method="POST">
+               <form class="card-body" id="reCaptchaForm" action="/admin/login" method="POST">
                     <div class="form-group">
                         <input type="text" class="form-control input-sm chat-input" id="login" name="login" placeholder="Логін">
                     </div>
@@ -22,11 +22,13 @@
                         <input type="password" class="form-control input-sm chat-input" id="password" name="password"  placeholder="Пароль" />
                     </div>
                     {{ if .error }}
-                        <div class="alert alert-danger" role="alert">
-                            {{ .error }}
+                        <div class="form-group">
+                            <div class="alert alert-danger" role="alert">
+                                {{ .error }}
+                            </div>
                         </div>
                     {{ end }}
-                    <button type="submit" class="btn btn-secondary">Вхід</button>
+                    <button type="submit" class="btn btn-secondary g-recaptcha" data-sitekey="6LeHwKYZAAAAABAzPuWRa4uvw9Fnkbt3D-R8yj9J" data-callback='onSubmitLogin'>Вхід</button>
                 </form>
             </div>
         </div>

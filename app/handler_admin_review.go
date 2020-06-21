@@ -21,16 +21,31 @@ func (s *apiserver) webAdminReviewList(c *gin.Context) {
 		return
 	}
 
+	iRole, ok := c.Get("role")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
+	}
+
+	role := iRole.(string)
+	if role == UserRoleExpert {
+
+		iUserID, ok := c.Get("userID")
+		if !ok {
+			c.Redirect(http.StatusFound, "/admin/login")
+			return
+		}
+
+		userID := iUserID.(string)
+		if userID != qlp.ExpertID {
+			qlp.ExpertID = userID
+		}
+	}
+
 	list, err := s.repository.GetReviewList(representation.QueryReviewAPItoPersistence(qlp))
 	if err != nil {
 		log.Printf("(ERR) %s: failed to fetch review list: %v", logPref, err)
 		c.AbortWithStatus(http.StatusInternalServerError)
-		return
-	}
-
-	iRole, ok := c.Get("role")
-	if !ok {
-		c.Redirect(http.StatusFound, "/admin/login")
 		return
 	}
 
@@ -44,7 +59,7 @@ func (s *apiserver) webAdminReviewList(c *gin.Context) {
 		gin.H{
 			"metadata": gin.H{
 				"logged_in": true,
-				"role":      iRole.(string),
+				"role":      role,
 				"status":    iStatus.(string),
 			},
 			"data":       representation.ReviewListPersistenceToAPI(list),
@@ -60,12 +75,6 @@ func (s *apiserver) webAdminReviewList(c *gin.Context) {
 func (s *apiserver) webAdminReviewItem(c *gin.Context) {
 	const logPref = "webAdminReviewItem"
 
-	iRole, ok := c.Get("role")
-	if !ok {
-		c.Redirect(http.StatusFound, "/admin/login")
-		return
-	}
-
 	reviewID := c.Param("reviewId")
 	reviewRes, err := s.repository.GetReview(reviewID)
 	if err != nil {
@@ -79,6 +88,27 @@ func (s *apiserver) webAdminReviewItem(c *gin.Context) {
 		return
 	}
 
+	iRole, ok := c.Get("role")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
+	}
+
+	role := iRole.(string)
+	if role == UserRoleExpert {
+
+		iUserID, ok := c.Get("userID")
+		if !ok {
+			c.Redirect(http.StatusFound, "/admin/login")
+			return
+		}
+
+		if iUserID.(string) != reviewRes.ExpertID {
+			c.Redirect(http.StatusFound, "/admin/profile")
+			return
+		}
+	}
+
 	iStatus, ok := c.Get("status")
 	if !ok {
 		c.Redirect(http.StatusFound, "/admin/login")
@@ -89,7 +119,7 @@ func (s *apiserver) webAdminReviewItem(c *gin.Context) {
 		gin.H{
 			"metadata": gin.H{
 				"logged_in": true,
-				"role":      iRole.(string),
+				"role":      role,
 				"status":    iStatus.(string),
 			},
 			"review": representation.ReviewItemPersistenceToAPI(reviewRes),

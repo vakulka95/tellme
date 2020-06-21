@@ -13,11 +13,12 @@
                 <button type="button" class="btn btn-secondary" onclick="javascript:history.back()">Назад</button>
             </div>
         </div>
+        {{ $expert_id := .expert.id }}
         <div class="card-body">
             <span class="bottom-line d-block mx-auto mt-3 mb-4"></span>
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">ID</div>
-                <div class="col-9 pl-4">{{ .expert.id }}</div>
+                <div class="col-9 pl-4">{{ $expert_id }}</div>
             </div>
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Ім'я</div>
@@ -42,11 +43,11 @@
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Пароль</div>
                 <div class="col-9 pl-4">
-                    <p class="alert" id="changePasswordBlock-{{ .expert.id }}" role="alert"><p>
+                    <p class="alert" id="changePasswordBlock-{{ $expert_id }}" role="alert"><p>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" id="pwd-{{ .expert.id }}">
+                        <input type="password" class="form-control" id="pwd-{{ $expert_id }}">
                         <div class="input-group-append">
-                            <a class="btn btn-secondary" data-expert-id="{{ .expert.id }}" onclick="changePasswordExpertAPI(this)" role="button">Змінити пароль</a>
+                            <a class="btn btn-secondary" data-expert-id="{{ $expert_id }}" onclick="changePasswordExpertAPI(this)" role="button">Змінити пароль</a>
                         </div>
                     </div>
                 </div>
@@ -84,7 +85,7 @@
                         {{ .expert.processing_count }}
                     </div>
                     <div class="d-inline-block">
-                        <a class="badge badge-pill badge-info" href="/admin/requisition?expert_id={{ .expert.id }}&status=processing" role="button">Детальніше</a>
+                        <a class="badge badge-pill badge-info" href="/admin/requisition?expert_id={{ $expert_id }}&status=processing" role="button">Детальніше</a>
                     </div>
                 </div>
             </div>
@@ -95,7 +96,7 @@
                         {{ .expert.completed_count }}
                     </div>
                     <div class="d-inline-block">
-                        <a class="badge badge-pill badge-info" href="/admin/requisition?expert_id={{ .expert.id }}&status=completed" role="button">Детальніше</a>
+                        <a class="badge badge-pill badge-info" href="/admin/requisition?expert_id={{ $expert_id }}&status=completed" role="button">Детальніше</a>
                     </div>
                 </div>
             </div>
@@ -107,7 +108,6 @@
                     </div>
                 </div>
             </div>
-            {{ if eq .metadata.role "admin" }}
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Відгуків</div>
                 <div class="col-9 pl-4">
@@ -115,11 +115,10 @@
                         {{ .expert.review_count }}
                     </div>
                     <div class="d-inline-block">
-                        <a class="badge badge-pill badge-info" href="/admin/review?expert_id={{ .expert.id }}" role="button">Детальніше</a>
+                        <a class="badge badge-pill badge-info" href="/admin/review?expert_id={{ $expert_id }}" role="button">Детальніше</a>
                     </div>
                 </div>
             </div>
-            {{ end }}
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Дата реєстрації</div>
                 <div class="col-9 pl-4">{{ .expert.created_at }}</div>
@@ -127,30 +126,37 @@
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Додати документ</div>
                 <div class="col-9 pl-4">
-                    <form class="form" action="/admin/expert/{{ .expert.id }}/document" enctype="multipart/form-data" method="POST">
+                    <form class="form" action="/admin/expert/{{ $expert_id }}/document" enctype="multipart/form-data" method="POST">
                         <input type="file" name="image" />
                         <input type="hidden" name="token" value="" />
                         <input type="submit" class="btn btn-secondary" value="Завантажити" />
                     </form>
                 </div>
             </div>
+            {{ if (eq .metadata.role "admin") }}
+                {{ template "expert_comment_list.html" . }}
+            {{ end }}
             <div class="row my-2 mx-auto">
                 <div class="col-3 text-right border-right border-dark">Документи</div>
                 <div class="col-9 pl-4">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div id="mdb-lightbox-ui"></div>
-                            <div class="mdb-lightbox">
-                                {{ range .expert.document_urls}}
-                                    <figure class="col-md-12">
-                                        <a href="{{ . }}">
-                                            <img alt="picture" src="{{ . }}" class="img-fluid">
-                                        </a>
-                                    </figure>
-                                {{ end }}
-                            </div>
-                        </div>
-                    </div>
+                 {{ range $i, $doc := .expert.documents }}
+                     <div class="row">
+                         <div class="col-10">
+                            {{ if (eq $doc.ext "pdf") }}
+                             <figure>
+                                <object data="{{ $doc.url }}" type="application/pdf" width="100%" height="800px"></object>
+                            </figure>
+                             {{ else }}
+                            <a href="{{ $doc.url }}">
+                                <img alt="picture" src="{{ $doc.url }}" class="img-fluid">
+                            </a>
+                             {{ end }}
+                         </div>
+                         <div class="col-2">
+                             <a class="btn btn-danger" data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}" onclick="deleteExpertDocumentAPI(this)" role="button">Видалити</a>
+                         </div>
+                     </div>
+                    {{ end }}
                 </div>
             </div>
 
@@ -166,7 +172,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form class="form" action="/admin/expert/{{ .expert.id }}" method="POST">
+                                <form class="form" action="/admin/expert/{{ $expert_id }}" method="POST">
                                 {{ if (eq .metadata.role "expert") }}
                                     <label for="name">Ім'я</label>
                                     <input class="form-control clearable" id="name" name="username" type="text" value="{{ .expert.username }}">
@@ -207,9 +213,11 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-danger" data-expert-id="{{ .expert.id }}" onclick="deleteExpertAPI(this)" role="button">Видалити</a>
-                <a class="btn btn-secondary {{ if (eq .expert.status "blocked")}} disabled{{ end }}" data-expert-id="{{ .expert.id }}" onclick="blockExpertAPI(this)" role="button">Блокувати</a>
-                <a class="btn btn-success {{ if (eq .expert.status "active")}} disabled{{ end }}" data-expert-id="{{ .expert.id }}" onclick="activateExpertAPI(this)" role="button">Активувати</a>
+                {{ if (eq .metadata.role "admin" )}}
+                <a class="btn btn-danger" data-expert-id="{{ $expert_id }}" onclick="deleteExpertAPI(this)" role="button">Видалити</a>
+                <a class="btn btn-secondary {{ if (eq .expert.status "blocked")}} disabled{{ end }}" data-expert-id="{{ $expert_id }}" onclick="blockExpertAPI(this)" role="button">Блокувати</a>
+                <a class="btn btn-success {{ if (eq .expert.status "active")}} disabled{{ end }}" data-expert-id="{{ $expert_id }}" onclick="activateExpertAPI(this)" role="button">Активувати</a>
+                {{ end }}
             </div>
         </div>
     </div>

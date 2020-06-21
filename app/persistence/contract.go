@@ -26,6 +26,7 @@ type Repository interface {
 	GetRequisitionList(q *model.QueryRequisitionList) (*model.RequisitionList, error)
 	UpdateRequisitionStatus(q *model.Requisition) (*model.Requisition, error)
 	GetNotReviewedRequisition() ([]*model.Requisition, error)
+	DeleteRequisition(v *model.Requisition) error
 
 	// Admins
 	GetAdmin(id string) (*model.Admin, error)
@@ -44,6 +45,13 @@ type Repository interface {
 	GetRequisitionSessionList(requisitionID string) ([]*model.Session, error)
 	DeleteRequisitionSessions(requisitionID string) error
 	DeleteLastRequisitionSession(requisitionID string) error
+
+	// Comments
+	GetComment(id string) (*model.Comment, error)
+	GetCommentList(q *model.QueryCommentList) (*model.CommentList, error)
+	GetExpertCommentList(expertID string) ([]*model.Comment, error)
+	CreateComment(c *model.Comment) (*model.Comment, error)
+	DeleteComment(c *model.Comment) error
 
 	// Service
 	Name() string

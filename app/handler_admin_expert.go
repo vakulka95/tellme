@@ -1,13 +1,16 @@
 package app
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"os"
+	"path/filepath"
 	"strings"
 
-	"github.com/gin-gonic/gin/binding"
-
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 
 	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
@@ -82,6 +85,18 @@ func (s *apiserver) webAdminExpertItem(c *gin.Context) {
 		return
 	}
 
+	expertComments, err := s.repository.GetExpertCommentList(expertID)
+	if err != nil {
+		if strings.Contains(err.Error(), "no rows") {
+			log.Printf("(ERR) %s: expert [%s] not found", logPref, expertID)
+			c.AbortWithStatusJSON(http.StatusNotFound, representation.ErrNotFound)
+			return
+		}
+		log.Printf("(ERR) %s: failed to get expert comments view [%s]: %v", logPref, expertID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
+	}
+
 	iStatus, ok := c.Get("status")
 	if !ok {
 		c.Redirect(http.StatusFound, "/admin/login")
@@ -95,7 +110,8 @@ func (s *apiserver) webAdminExpertItem(c *gin.Context) {
 				"role":      iRole.(string),
 				"status":    iStatus.(string),
 			},
-			"expert": representation.ExpertViewItemPersistenceToAPI(expertRes),
+			"expert":   representation.ExpertViewItemPersistenceToAPI(expertRes),
+			"comments": representation.CommentViewListPersistenceToAPI(expertComments),
 		},
 	)
 }
@@ -174,6 +190,49 @@ func (s *apiserver) webAdminUpdateExpertItem(c *gin.Context) {
 			"expert": representation.ExpertViewItemPersistenceToAPI(expertRes),
 		},
 	)
+}
+
+func (s *apiserver) webAdminExpertCommentCreate(c *gin.Context) {
+	const logPref = "webAdminExpertCommentCreate"
+
+	iUserID, ok := c.Get("userID")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
+	}
+
+	var (
+		expertID = c.Param("expertId")
+		req      = &representation.CreateExpertCommentRequest{}
+	)
+
+	err := c.MustBindWith(req, binding.FormPost)
+	if err != nil {
+		log.Printf("(ERR) %s: failed to bind request form: %v", logPref, err)
+		c.AbortWithStatusJSON(http.StatusBadRequest, representation.ErrInvalidRequest)
+		return
+	}
+	req.ExpertID = expertID
+	req.AdminID = iUserID.(string)
+
+	_, err = s.repository.CreateComment(&model.Comment{
+		ID:       uuid.NewV4().String(),
+		AdminID:  req.AdminID,
+		ExpertID: req.ExpertID,
+		Body:     req.Body,
+	})
+	if err != nil {
+		if strings.Contains(err.Error(), "no rows") {
+			log.Printf("(ERR) %s: expert [%s] not found", logPref, expertID)
+			c.AbortWithStatusJSON(http.StatusNotFound, representation.ErrNotFound)
+			return
+		}
+		log.Printf("(ERR) %s: failed to get expert view [%s]: %v", logPref, expertID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
+	}
+
+	c.Redirect(http.StatusFound, fmt.Sprintf("/admin/expert/%s", expertID))
 }
 
 func (s *apiserver) webAdminUploadExpertDocument(c *gin.Context) {
@@ -307,7 +366,7 @@ func (s *apiserver) webAdminExpertDelete(c *gin.Context) {
 
 	err := s.repository.DeleteExpert(&model.Expert{ID: expertID})
 	if err != nil {
-		log.Printf("(ERR) Failed to update expert: %v", err)
+		log.Printf("(ERR) Failed to delete expert: %v", err)
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	}
@@ -363,4 +422,63 @@ func (s *apiserver) webAdminExpertProfile(c *gin.Context) {
 			"expert": representation.ExpertViewItemPersistenceToAPI(expertRes),
 		},
 	)
+}
+
+func (s *apiserver) webAdminExpertDocumentDelete(c *gin.Context) {
+	const logPref = "webAdminExpertDocumentDelete"
+
+	expertID := c.Param("expertId")
+	documentID := c.Param("documentId")
+
+	expert, err := s.repository.GetExpert(expertID)
+	if err != nil {
+		if strings.Contains(err.Error(), "no rows") {
+			log.Printf("(ERR) %s: expert [%s] not found", logPref, expertID)
+			c.AbortWithStatusJSON(http.StatusNotFound, representation.ErrNotFound)
+			return
+		}
+		log.Printf("(ERR) %s: failed to get expert [%s]: %v", logPref, expertID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
+	}
+
+	for i, docURL := range expert.DocumentURLs {
+		if strings.HasPrefix(filepath.Base(docURL), documentID) {
+			expert.DocumentURLs[i] = expert.DocumentURLs[len(expert.DocumentURLs)-1]
+			expert.DocumentURLs[len(expert.DocumentURLs)-1] = ""
+			expert.DocumentURLs = expert.DocumentURLs[:len(expert.DocumentURLs)-1]
+			break
+		}
+	}
+
+	_, err = s.repository.UpdateExpertDocumentURLs(expert)
+	if err != nil {
+		if strings.Contains(err.Error(), "no rows") {
+			log.Printf("(ERR) %s: expert [%s] failed to upload doc urls: %v", logPref, expertID, err)
+			c.AbortWithStatusJSON(http.StatusNotFound, representation.ErrNotFound)
+			return
+		}
+		log.Printf("(ERR) %s: failed to update expert [%s] document urls: %v", logPref, expertID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
+	}
+
+	wildcard := filepath.Join(s.documentHostDir, expertID, fmt.Sprintf("%s.%s", documentID, "*"))
+
+	if err := removeFilesWildcard(wildcard); err != nil {
+		log.Printf("(ERR) %s: failed to remove expert document wildcard [%s]: %v", logPref, wildcard, err)
+	}
+
+	c.Status(http.StatusOK)
+}
+
+func removeFilesWildcard(wildcard string) error {
+	files, err := filepath.Glob(wildcard)
+	if err != nil {
+		return err
+	}
+	for _, f := range files {
+		_ = os.Remove(f)
+	}
+	return nil
 }

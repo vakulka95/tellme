@@ -1,6 +1,9 @@
 package representation
 
 import (
+	"path/filepath"
+	"strings"
+
 	"github.com/gin-gonic/gin"
 	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
 )
@@ -192,6 +195,14 @@ func RequisitionItemPersistenceToAPIForExpert(r *model.Requisition, userID strin
 }
 
 func ExpertViewItemPersistenceToAPI(v *model.Expert) gin.H {
+	documents := make([]gin.H, len(v.DocumentURLs))
+	for i, url := range v.DocumentURLs {
+		docID, ext := parseDocumentURL(url)
+		documents[i] = gin.H{
+			"url": url, "id": docID, "ext": ext,
+		}
+	}
+
 	return gin.H{
 		"id":               v.ID,
 		"username":         v.Username,
@@ -200,7 +211,7 @@ func ExpertViewItemPersistenceToAPI(v *model.Expert) gin.H {
 		"email":            v.Email,
 		"specializations":  GenerateDiagnosesOptions(v.Specializations),
 		"education":        v.Education,
-		"document_urls":    v.DocumentURLs,
+		"documents":        documents,
 		"processing_count": v.ProcessingCount,
 		"completed_count":  v.CompletedCount,
 		"review_count":     v.ReviewCount,
@@ -209,6 +220,22 @@ func ExpertViewItemPersistenceToAPI(v *model.Expert) gin.H {
 		"updated_at":       v.UpdatedAt.Format(timestampLayout),
 		"created_at":       v.CreatedAt.Format(timestampLayout),
 	}
+}
+
+func CommentViewListPersistenceToAPI(c []*model.Comment) []gin.H {
+	items := make([]gin.H, len(c))
+	for i, v := range c {
+		items[i] = gin.H{
+			"id":             v.ID,
+			"admin_id":       v.AdminID,
+			"expert_id":      v.ExpertID,
+			"admin_username": v.AdminUsername,
+			"body":           v.Body,
+			"updated_at":     v.UpdatedAt.Format(timestampLayout),
+			"created_at":     v.CreatedAt.Format(timestampLayout),
+		}
+	}
+	return items
 }
 
 func ReviewListPersistenceToAPI(r *model.ReviewList) gin.H {
@@ -259,4 +286,16 @@ type UpdateExpertRequest struct {
 	Gender          string   `form:"gender"`
 	Education       string   `form:"education"`
 	Specializations []string `form:"specializations"`
+}
+
+type CreateExpertCommentRequest struct {
+	ExpertID string `form:"-"`
+	AdminID  string `form:"-"`
+	Body     string `form:"body"`
+}
+
+// returns docID, ext
+func parseDocumentURL(doc string) (string, string) {
+	ss := strings.Split(filepath.Base(doc), ".")
+	return ss[0], ss[1]
 }

@@ -1,3 +1,7 @@
+function isDo(text){
+    return confirm(text);
+}
+
 function blockExpertAPI(expert){
     let expertId = $(expert).data('expert-id');
 
@@ -10,7 +14,7 @@ function blockExpertAPI(expert){
         error: function (error) {
             console.log(error);
         }
-    })
+    });
 }
 
 
@@ -32,16 +36,40 @@ function activateExpertAPI(expert){
 function deleteExpertAPI(expert){
     let expertId = $(expert).data('expert-id');
 
-    $.ajax({
-        url: '/admin/expert/'+expertId,
-        type: 'DELETE',
-        success: function (result) {
-            history.back();
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    })
+    const ok = isDo("Ви впевнені що хочете видалити психолога?");
+
+    if(ok) {
+        $.ajax({
+            url: '/admin/expert/' + expertId,
+            type: 'DELETE',
+            success: function (result) {
+                history.back();
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    }
+}
+
+function deleteExpertDocumentAPI(expert){
+    let expertId = $(expert).data('expert-id');
+    let documentId = $(expert).data('document-id');
+
+    const ok = isDo("Ви впевнені що хочете видалити документ?");
+
+    if(ok) {
+        $.ajax({
+            url: '/admin/expert/' + expertId + '/document/' + documentId,
+            type: 'DELETE',
+            success: function (result) {
+                history.back();
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    }
 }
 
 function changePasswordExpertAPI(expert){
@@ -63,6 +91,25 @@ function changePasswordExpertAPI(expert){
             res.innerText = 'Помилка при зміні пароля';
         }
     })
+}
+
+function deleteRequisitionAPI(requisition){
+    let requisitionId = $(requisition).data('requisition-id');
+
+    const ok = isDo("Ви впевнені що хочете видалити заявку?");
+
+    if(ok) {
+        $.ajax({
+            url: '/admin/requisition/' + requisitionId,
+            type: 'DELETE',
+            success: function (result) {
+                history.back();
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    }
 }
 
 function takeRequisitionAPI(requisition){
@@ -155,3 +202,7 @@ $(document).on('input', '.clearable', function(){
 }).on('click', '.onX', function(){
     $(this).removeClass('x onX').val('').change();
 });
+
+function onSubmitLogin(token) {
+    document.getElementById('reCaptchaForm').submit();
+}

@@ -50,7 +50,9 @@ func (s *apiserver) registerHandlers() {
 	s.engine.PUT("/admin/expert/:expertId/block", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertBlock)
 	s.engine.PUT("/admin/expert/:expertId/activate", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertActivate)
 	s.engine.PUT("/admin/expert/:expertId/password", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminUpdateExpertPassword)
+	s.engine.POST("/admin/expert/:expertId/comment", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertCommentCreate)
 	s.engine.DELETE("/admin/expert/:expertId", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertDelete)
+	s.engine.DELETE("/admin/expert/:expertId/document/:documentId", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertDocumentDelete)
 
 	//
 	// Admin Requisition
@@ -60,12 +62,13 @@ func (s *apiserver) registerHandlers() {
 	s.engine.PUT("/admin/requisition/:requisitionId/take", authentication, allAuthorization, statusActiveAuthentication, s.webAdminRequisitionTake)
 	s.engine.PUT("/admin/requisition/:requisitionId/discard", authentication, allAuthorization, statusActiveAuthentication, s.webAdminRequisitionDiscard)
 	s.engine.PUT("/admin/requisition/:requisitionId/complete", authentication, allAuthorization, statusActiveAuthentication, s.webAdminRequisitionComplete)
+	s.engine.DELETE("/admin/requisition/:requisitionId", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminRequisitionDelete)
 
 	//
 	// Admin Review
 	//
-	s.engine.GET("/admin/review", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminReviewList)
-	s.engine.GET("/admin/review/:reviewId", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminReviewItem)
+	s.engine.GET("/admin/review", authentication, allAuthorization, s.webAdminReviewList)
+	s.engine.GET("/admin/review/:reviewId", authentication, allAuthorization, s.webAdminReviewItem)
 
 	//
 	// Admin Session

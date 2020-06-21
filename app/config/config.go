@@ -39,6 +39,8 @@ type Environment struct {
 
 	TurboSMSUsername string `env:"TURBO_SMS_USERNAME,required"`
 	TurboSMSPassword string `env:"TURBO_SMS_PASSWORD,required"`
+
+	GoogleCaptchaSecret string `env:"GOOGLE_CAPTCHA_SECRET,required"`
 }
 
 //

@@ -13,7 +13,9 @@ const (
 )
 
 var allowedExtensions = map[string]string{
-	"image/jpg":  "jpg",
-	"image/jpeg": "jpeg",
-	"image/png":  "png",
+	"image/jpg":                "jpg",
+	"image/jpeg":               "jpeg",
+	"image/png":                "png",
+	"application/pdf":          "pdf",
+	"application/octet-stream": "pdf",
 }

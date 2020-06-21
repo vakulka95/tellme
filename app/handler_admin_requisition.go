@@ -296,3 +296,16 @@ func (s *apiserver) requestRequisitionReview(requisitionPhone, requisitionID, ex
 		fmt.Sprintf("https://%s/review?token=%s", s.config.DomainName, token),
 	)
 }
+
+func (s *apiserver) webAdminRequisitionDelete(c *gin.Context) {
+	requisitionID := c.Param("requisitionId")
+
+	err := s.repository.DeleteRequisition(&model.Requisition{ID: requisitionID})
+	if err != nil {
+		log.Printf("(ERR) Failed to delete requisitions: %v", err)
+		c.AbortWithStatus(http.StatusInternalServerError)
+		return
+	}
+
+	c.Status(http.StatusAccepted)
+}
