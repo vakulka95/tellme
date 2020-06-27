@@ -3,6 +3,7 @@ package pgx
 import (
 	"context"
 	"log"
+	"time"
 
 	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
 	"gitlab.com/tellmecomua/tellme.api/pkg/postgres"
@@ -206,6 +207,19 @@ func (r *Repository) UpdateRequisitionStatus(q *model.Requisition) (*model.Requi
 	return &model.Requisition{ID: q.ID}, nil
 }
 
+func (r *Repository) UpdateRequisitionSMSReplyCount(q *model.Requisition) (*model.Requisition, error) {
+	const query = `UPDATE requisitions SET sms_reply_count=$2, updated_at=now() WHERE id=$1`
+
+	var ctx = context.TODO()
+
+	_, err := r.cli.Exec(ctx, query, q.ID, q.SMSReplyCount)
+	if err != nil {
+		return nil, err
+	}
+
+	return &model.Requisition{ID: q.ID}, nil
+}
+
 func (r *Repository) GetNotReviewedRequisition() ([]*model.Requisition, error) {
 	var (
 		ctx  = context.TODO()
@@ -234,6 +248,59 @@ func (r *Repository) GetNotReviewedRequisition() ([]*model.Requisition, error) {
 			&item.Phone,
 		); err != nil {
 			log.Printf("failed to scan requisition for not reviewed status: %v", err)
+			continue
+		}
+		list = append(list, item)
+	}
+
+	return list, nil
+}
+
+func (r *Repository) GetNotProcessedRequisition(lifetimeTo *time.Time) ([]*model.Requisition, error) {
+	var (
+		ctx  = context.TODO()
+		list = make([]*model.Requisition, 0, 20) // pseudo default capacity
+	)
+
+	query := postgres.NewQueryBuilder().
+		Select(
+			"id",
+			"username",
+			"phone",
+			"gender",
+			"status",
+			"sms_reply_count",
+			"created_at",
+			"updated_at",
+		).
+		From("v$requisitions").
+		Where(
+			postgres.NewExpression("status", postgres.NewString(model.RequisitionStatusCreated), postgres.OperatorEqual),
+			postgres.NewExpression("sms_reply_count", postgres.NewInt(2), postgres.OperatorLessThen),
+			postgres.NewExpression("created_at", postgres.NewTimestamp(lifetimeTo), postgres.OperatorLessThenOrEqual)).
+		OrderBy("created_at").
+		OrderDir(postgres.OrderDirDESC)
+
+	listQuery, listArgs := query.Build()
+
+	rows, err := r.cli.Query(ctx, listQuery, listArgs...)
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next() {
+		item := &model.Requisition{}
+		if err = rows.Scan(
+			&item.ID,
+			&item.Username,
+			&item.Phone,
+			&item.Gender,
+			&item.Status,
+			&item.SMSReplyCount,
+			&item.CreatedAt,
+			&item.UpdatedAt,
+		); err != nil {
+			log.Printf("failed to scan requisition: %v", err)
 			continue
 		}
 		list = append(list, item)

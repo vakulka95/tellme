@@ -41,6 +41,8 @@ type Environment struct {
 	TurboSMSPassword string `env:"TURBO_SMS_PASSWORD,required"`
 
 	GoogleCaptchaSecret string `env:"GOOGLE_CAPTCHA_SECRET,required"`
+
+	NotProcessedRequisitionJobPeriod time.Duration `env:"NOT_PROCESSED_REQUISITION_JOB_PERIOD" envDefault:"1h"`
 }
 
 //

@@ -5,6 +5,8 @@ import (
 	"log"
 	"time"
 
+	"gitlab.com/tellmecomua/tellme.api/app/representation"
+
 	turbosms "github.com/wildsurfer/turbosms-go"
 )
 
@@ -14,7 +16,15 @@ const (
 Зараз сайт працює в тестовому режимі, тому час консультації може змінитися.  Про всі зміни часу консультації ви можете домовитися з психологом.`
 
 	RequisitionReviewTemplate = `Оцініть, будь ласка, Ваш досвід користування платформою «Розкажи мені»: %s`
+
+	RequisitionReplyMaleTemplate   = `Шановний %s, ми поставили Вашу заявку у список очікування. Але не турбуйтесь, уже найближчим часом ми візьмемо її в роботу і з Вами обов’язково зв'яжеться психолог.`
+	RequisitionReplyFemaleTemplate = `Шановна %s, ми поставили Вашу заявку у список очікування. Але не турбуйтесь, уже найближчим часом ми візьмемо її в роботу і з Вами обов’язково зв'яжеться психолог.`
 )
+
+var genderToRequisitionReplyTemplate = map[string]string{
+	representation.GenderMale:   RequisitionReplyMaleTemplate,
+	representation.GenderFemale: RequisitionReplyFemaleTemplate,
+}
 
 type TurboSMS struct {
 	cli *turbosms.Client
@@ -56,5 +66,15 @@ func (s *TurboSMS) SendRequisitionReview(phone, link string) error {
 	}
 
 	log.Printf("(INFO) Send requisition review to [%s] done: %+v", phone, resp.SendSMSResult)
+	return nil
+}
+
+func (s *TurboSMS) SendRequisitionReply(phone, username, gender string) error {
+	resp, err := s.cli.SendSMS("Tell me", "+38"+phone, fmt.Sprintf(genderToRequisitionReplyTemplate[gender], username), "")
+	if err != nil {
+		return err
+	}
+
+	log.Printf("(INFO) Send requisition reply to [%s] done: %+v", phone, resp.SendSMSResult)
 	return nil
 }

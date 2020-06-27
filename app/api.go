@@ -16,6 +16,7 @@ import (
 	"gitlab.com/tellmecomua/tellme.api/app/persistence"
 	"gitlab.com/tellmecomua/tellme.api/app/persistence/pgx"
 	"gitlab.com/tellmecomua/tellme.api/pkg/sms"
+	"gitlab.com/tellmecomua/tellme.api/pkg/util/job"
 )
 
 type apiserver struct {
@@ -70,6 +71,9 @@ func (s *apiserver) Run() error {
 			log.Fatalf("http listen and serve: %v", err)
 		}
 	}()
+
+	notProcessedRequisitionReplyJob := job.Run(s.config.NotProcessedRequisitionJobPeriod, "NotProcessedRequisitionReply", s.jobNotProcessedRequisitionReply)
+	defer notProcessedRequisitionReplyJob.Stop()
 
 	quit := make(chan os.Signal)
 	signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT, syscall.SIGHUP, syscall.SIGQUIT)

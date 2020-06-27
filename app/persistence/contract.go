@@ -1,6 +1,10 @@
 package persistence
 
-import "gitlab.com/tellmecomua/tellme.api/app/persistence/model"
+import (
+	"time"
+
+	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
+)
 
 type Repository interface {
 	Connect() error
@@ -25,8 +29,10 @@ type Repository interface {
 	CreateRequisition(req *model.Requisition) (*model.Requisition, error)
 	GetRequisitionList(q *model.QueryRequisitionList) (*model.RequisitionList, error)
 	UpdateRequisitionStatus(q *model.Requisition) (*model.Requisition, error)
+	UpdateRequisitionSMSReplyCount(q *model.Requisition) (*model.Requisition, error)
+	DeleteRequisition(q *model.Requisition) error
 	GetNotReviewedRequisition() ([]*model.Requisition, error)
-	DeleteRequisition(v *model.Requisition) error
+	GetNotProcessedRequisition(lifetimeTo *time.Time) ([]*model.Requisition, error)
 
 	// Admins
 	GetAdmin(id string) (*model.Admin, error)
