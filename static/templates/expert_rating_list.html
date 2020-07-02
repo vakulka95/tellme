@@ -1,0 +1,59 @@
+<!--expert_rating_list.html-->
+
+{{ template "header.html" . }}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            {{ template "expert_rating_filters.html" . }}
+        </div>
+
+        <div class="col-sm-9">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h3 class="panel-title">Рейтинг психологів</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-secondary" role="alert">
+                        Всього вибрано: {{ .data.total }} психологів. {{ .pagination.page.TotalPages }} сторінок.
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Ім'я</th>
+                                <th>Кількість відгуків</th>
+                                <th>Середня оцінка</th>
+                                <th>Сесій проведено</th>
+                                <th>Заявок завершено</th>
+                                <th>Заявок в роботі</th>
+                                <th>Статус</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{ range $i, $item := .data.items }}
+                                <tr class="table-row">
+                                    <td class="table-div" data-href="/admin/expert/{{ $item.id }}">{{ $item.username }}</td>
+                                    <td class="table-div" data-href="/admin/expert/{{ $item.id }}">{{ $item.review_count }}</td>
+                                    <td class="table-div" data-href="/admin/expert/{{ $item.id }}">{{ $item.average_rating }}</td>
+                                    <td class="table-div" data-href="/admin/expert/{{ $item.id }}">{{ $item.session_count }}</td>
+                                    <td class="table-div" data-href="/admin/expert/{{ $item.id }}">{{ $item.completed_count }}</td>
+                                    <td class="table-div" data-href="/admin/expert/{{ $item.id }}">{{ $item.processing_count }}</td>
+                                    {{ $status := $item.status }}
+                                    {{ with (eq $status "on_review") }}<td class="text-center table-div" data-href="/admin/expert/{{ $item.id }}"><span class="badge badge-pill badge-warning">На модерації</span></td>{{ end }}
+                                    {{ with (eq $status "blocked") }}<td class="text-center table-div" data-href="/admin/expert/{{ $item.id }}"><span class="badge badge-pill badge-danger">Заблокований</span></td>{{ end }}
+                                    {{ with (eq $status "active") }}<td class="text-center table-div" data-href="/admin/expert/{{ $item.id }}"><span class="badge badge-pill badge-success">Активний</span></td>{{ end }}
+                                </tr>
+                            {{ end }}
+                            </tbody>
+                        </table>
+                        {{ template "expert_rating_pagging.html" .pagination }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ template "footer.html" . }}

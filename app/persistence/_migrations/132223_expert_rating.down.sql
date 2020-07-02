@@ -1,0 +1,1 @@
+DROP VIEW v$v$experts_rating;

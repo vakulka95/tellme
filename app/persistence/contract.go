@@ -23,6 +23,8 @@ type Repository interface {
 	UpdateExpertPassword(e *model.Expert) (*model.Expert, error)
 	UpdateExpertDocumentURLs(e *model.Expert) (*model.Expert, error)
 	UpdateExpertSpecializations(e *model.Expert) (*model.Expert, error)
+	GetExpertRating(q *model.QueryExpertRatingList) (*model.ExpertList, error)
+	GetExpertRatingTable(q *model.QueryExpertRatingList) ([]*model.Expert, error)
 
 	// Requisitions
 	GetRequisition(id string) (*model.Requisition, error)

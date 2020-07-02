@@ -1,6 +1,7 @@
 package representation
 
 import (
+	"fmt"
 	"path/filepath"
 	"strings"
 
@@ -70,6 +71,7 @@ func ExpertListPersistenceToAPI(r *model.ExpertList) gin.H {
 			"completed_count":  v.CompletedCount,
 			"review_count":     v.ReviewCount,
 			"session_count":    v.SessionCount,
+			"average_rating":   fmt.Sprintf("%.2f", v.AverageRating),
 			"status":           v.Status,
 			"updated_at":       v.UpdatedAt.Format(timestampLayout),
 			"created_at":       v.CreatedAt.Format(timestampLayout),

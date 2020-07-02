@@ -399,3 +399,134 @@ func (r *Repository) UpdateExpertSpecializations(e *model.Expert) (*model.Expert
 
 	return &model.Expert{ID: e.ID}, nil
 }
+
+func (r *Repository) GetExpertRating(q *model.QueryExpertRatingList) (*model.ExpertList, error) {
+	var (
+		ctx  = context.TODO()
+		list = &model.ExpertList{Items: make([]*model.Expert, 0, q.Limit)} // pseudo default capacity
+	)
+
+	query := postgres.NewQueryBuilder().
+		Select(
+			"id",
+			"username",
+			"gender",
+			"phone",
+			"email",
+			"status",
+			"updated_at",
+			"created_at",
+			"processing_count",
+			"completed_count",
+			"review_count",
+			"session_count",
+			"average_rating",
+		).
+		From("v$experts_rating").
+		Where(
+			postgres.NewExpression("status", postgres.NewString(q.Status), postgres.OperatorEqual),
+		).
+		OrderBy(q.OrderBy).
+		OrderDir(postgres.OrderDirFromString(q.OrderDir)).
+		Limit(q.Limit).
+		Offset(q.Offset)
+
+	listQuery, listArgs := query.Build()
+	countQuery, countArgs := query.BuildCount()
+
+	rows, err := r.cli.Query(ctx, listQuery, listArgs...)
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next() {
+		item := &model.Expert{}
+		if err = rows.Scan(
+			&item.ID,
+			&item.Username,
+			&item.Gender,
+			&item.Phone,
+			&item.Email,
+			&item.Status,
+			&item.UpdatedAt,
+			&item.CreatedAt,
+			&item.ProcessingCount,
+			&item.CompletedCount,
+			&item.ReviewCount,
+			&item.SessionCount,
+			&item.AverageRating,
+		); err != nil {
+			log.Printf("failed to scan expert rating: %v", err)
+			continue
+		}
+		list.Items = append(list.Items, item)
+	}
+
+	err = r.cli.QueryRow(ctx, countQuery, countArgs...).Scan(&list.Total)
+	if err != nil {
+		return nil, err
+	}
+
+	return list, nil
+}
+func (r *Repository) GetExpertRatingTable(q *model.QueryExpertRatingList) ([]*model.Expert, error) {
+	var (
+		ctx  = context.TODO()
+		list = make([]*model.Expert, 0, 50) // pseudo default capacity
+	)
+
+	query := postgres.NewQueryBuilder().
+		Select(
+			"id",
+			"username",
+			"gender",
+			"phone",
+			"email",
+			"status",
+			"updated_at",
+			"created_at",
+			"processing_count",
+			"completed_count",
+			"review_count",
+			"session_count",
+			"average_rating",
+		).
+		From("v$experts_rating").
+		Where(
+			postgres.NewExpression("status", postgres.NewString(q.Status), postgres.OperatorEqual),
+		).
+		OrderBy(q.OrderBy).
+		OrderDir(postgres.OrderDirFromString(q.OrderDir))
+
+	listQuery, listArgs := query.Build()
+
+	rows, err := r.cli.Query(ctx, listQuery, listArgs...)
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next() {
+		item := &model.Expert{}
+		if err = rows.Scan(
+			&item.ID,
+			&item.Username,
+			&item.Gender,
+			&item.Phone,
+			&item.Email,
+			&item.Status,
+			&item.UpdatedAt,
+			&item.CreatedAt,
+			&item.ProcessingCount,
+			&item.CompletedCount,
+			&item.ReviewCount,
+			&item.SessionCount,
+			&item.AverageRating,
+		); err != nil {
+			log.Printf("failed to scan expert rating: %v", err)
+			continue
+		}
+		list = append(list, item)
+	}
+
+	return list, nil
+}

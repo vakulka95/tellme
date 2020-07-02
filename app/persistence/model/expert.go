@@ -28,6 +28,7 @@ type Expert struct {
 	CompletedCount  int       `db:"completed_count"`
 	ReviewCount     int       `db:"review_count"`
 	SessionCount    int       `db:"session_count"`
+	AverageRating   float64   `db:"average_rating"`
 	Status          string    `db:"status"`
 	UpdatedAt       time.Time `db:"updated_at"`
 	CreatedAt       time.Time `db:"created_at"`
@@ -39,6 +40,14 @@ type QueryExpertList struct {
 	Status          string
 	Specializations []string
 	Search          string
+}
+
+type QueryExpertRatingList struct {
+	Limit    int
+	Offset   int
+	OrderBy  string
+	OrderDir string
+	Status   string
 }
 
 func DiscoverExpertExpression(search string) postgres.Expression {

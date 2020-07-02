@@ -54,6 +54,12 @@ func (s *apiserver) registerHandlers() {
 	s.engine.DELETE("/admin/expert/:expertId", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertDelete)
 	s.engine.DELETE("/admin/expert/:expertId/document/:documentId", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertDocumentDelete)
 
+	s.engine.GET("/admin/expert_rating", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertRatingList)
+	s.engine.POST("/admin/expert_rating", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertRatingList)
+
+	s.engine.GET("/admin/expert_rating/pdf", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertRatingPDF)
+	s.engine.GET("/admin/expert_rating/excel", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminExpertRatingExcel)
+
 	//
 	// Admin Requisition
 	//

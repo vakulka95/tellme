@@ -63,6 +63,52 @@ func (s *apiserver) webAdminExpertList(c *gin.Context) {
 	)
 }
 
+func (s *apiserver) webAdminExpertRatingList(c *gin.Context) {
+	qlp := &representation.QueryListParams{}
+
+	if err := c.BindQuery(qlp); err != nil {
+		log.Printf("(ERR) Bind query error: %v", err)
+		c.AbortWithStatus(http.StatusInternalServerError)
+		return
+	}
+
+	list, err := s.repository.GetExpertRating(representation.QueryExpertRatingAPItoPersistence(qlp))
+	if err != nil {
+		log.Printf("(ERR) Failed to fetch expert rating list: %v", err)
+		c.AbortWithStatus(http.StatusInternalServerError)
+		return
+	}
+
+	iRole, ok := c.Get("role")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
+	}
+
+	iStatus, ok := c.Get("status")
+	if !ok {
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
+	}
+
+	c.HTML(http.StatusOK, "expert_rating_list.html",
+		gin.H{
+			"metadata": gin.H{
+				"logged_in": true,
+				"role":      iRole.(string),
+				"status":    iStatus.(string),
+			},
+			"data":       representation.ExpertListPersistenceToAPI(list),
+			"pagination": qlp.GeneratePagination(list.Total),
+			"queries": gin.H{
+				"status":    qlp.Status,
+				"order_by":  qlp.OrderBy,
+				"order_dir": strings.ToLower(qlp.OrderDir),
+			},
+		},
+	)
+}
+
 func (s *apiserver) webAdminExpertItem(c *gin.Context) {
 	const logPref = "webAdminExpertItem"
 

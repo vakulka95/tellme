@@ -1,6 +1,9 @@
 package postgres
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type OrderDir string
 
@@ -8,6 +11,17 @@ const (
 	OrderDirASC  OrderDir = "ASC"
 	OrderDirDESC OrderDir = "DESC"
 )
+
+func OrderDirFromString(d string) OrderDir {
+	switch strings.ToUpper(d) {
+	case "ASC":
+		return OrderDirASC
+	case "DESC":
+		return OrderDirDESC
+	default:
+		return OrderDirDESC
+	}
+}
 
 /*
 	=	equal	ARRAY[1.1,2.1,3.1]::int[] = ARRAY[1,2,3]	t

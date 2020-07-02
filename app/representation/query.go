@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"math"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -20,6 +21,8 @@ const (
 type QueryListParams struct {
 	Limit           int        `form:"limit"`
 	Offset          int        `form:"offset"`
+	OrderBy         string     `form:"order_by"`
+	OrderDir        string     `form:"order_dir"`
 	Status          string     `form:"status"`
 	FeedbackTime    string     `form:"feedback_time"`
 	FeedbackWeekDay string     `form:"feedback_week_day"`
@@ -86,6 +89,20 @@ func QueryReviewAPItoPersistence(q *QueryListParams) *model.QueryReviewList {
 	}
 }
 
+func QueryExpertRatingAPItoPersistence(q *QueryListParams) *model.QueryExpertRatingList {
+	if q.Limit == 0 || q.Limit > 50 {
+		q.Limit = defaultQueryLimit
+	}
+
+	return &model.QueryExpertRatingList{
+		Limit:    q.Limit,
+		Offset:   q.Offset,
+		OrderBy:  q.OrderBy,
+		OrderDir: q.OrderDir,
+		Status:   q.Status,
+	}
+}
+
 func (q *QueryListParams) generateQuery() string {
 	buf := &bytes.Buffer{}
 	buf.WriteString(fmt.Sprintf("?status=%s", q.Status))
@@ -100,6 +117,8 @@ func (q *QueryListParams) generateQuery() string {
 	buf.WriteString(fmt.Sprintf("&feedback_time=%s", q.FeedbackTime))
 	buf.WriteString(fmt.Sprintf("&expert_id=%s", q.ExpertID))
 	buf.WriteString(fmt.Sprintf("&search=%s", q.Search))
+	buf.WriteString(fmt.Sprintf("&order_by=%s", q.OrderBy))
+	buf.WriteString(fmt.Sprintf("&order_dir=%s", strings.ToLower(q.OrderDir)))
 
 	return buf.String()
 }
