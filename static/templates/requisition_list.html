@@ -45,6 +45,7 @@
                                     {{ with (eq $status "created") }}<td class="text-center table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-warning">Не в роботі</span></td>{{ end }}
                                     {{ with (eq $status "processing") }}<td class="text-center table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-info">В роботі</span></td>{{ end }}
                                     {{ with (eq $status "completed") }}<td class="text-center table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-success">Виконаний</span></td>{{ end }}
+                                    {{ with (eq $status "no_answer") }}<td class="text-center table-div" data-href="/admin/requisition/{{ $item.id }}"><span class="badge badge-pill badge-danger">Не актуально</span></td>{{ end }}
 
                                     <td class="text-center">
                                         <a class="btn btn-secondary {{ if (eq $item.status "processing") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="takeRequisitionAPI(this)" role="button">Взяти</a>

@@ -158,6 +158,21 @@ function completeRequisitionAPI(requisition){
     })
 }
 
+function noAnswerRequisitionAPI(requisition){
+    let requisitionId = $(requisition).data('requisition-id');
+
+    $.ajax({
+        url: '/admin/requisition/'+requisitionId+'/no_answer',
+        type: 'PUT',
+        success: function (result) {
+            document.location.reload();
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
 function createSessionRequisitionAPI(requisition){
     let requisitionId = $(requisition).data('requisition-id');
 

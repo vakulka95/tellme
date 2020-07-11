@@ -89,6 +89,7 @@
                     {{ with (eq $status "created") }}<td class="text-center"><span class="badge badge-pill badge-warning">Не в роботі</span></td>{{ end }}
                     {{ with (eq $status "processing") }}<td class="text-center"><span class="badge badge-pill badge-info">В роботі</span></td>{{ end }}
                     {{ with (eq $status "completed") }}<td class="text-center"><span class="badge badge-pill badge-success">Виконаний</span></td>{{ end }}
+                    {{ with (eq $status "no_answer") }}<td class="text-center"><span class="badge badge-pill badge-danger">Не актуально</span></td>{{ end }}
                 </div>
             </div>
             <div class="row my-2 mx-auto">
@@ -101,12 +102,10 @@
                 <a class="btn btn-info {{ if or (ne .requisition.status "processing") (ge .requisition.session_count 3) }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="createSessionRequisitionAPI(this)" role="button">Провести консультацію</a>
                 <a class="btn btn-info {{ if or (ne .requisition.status "processing") (eq .requisition.session_count 0) }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="discardSessionRequisitionAPI(this)" role="button">Відмінити консультацію</a>
                 {{ end }}
-                {{ if and (eq .metadata.role "admin") (eq .requisition.status "created") }}
-                <a class="btn btn-danger" data-requisition-id="{{ .requisition.id }}" onclick="deleteRequisitionAPI(this)" role="button">Видалити</a>
-                {{ end }}
                 <a class="btn btn-secondary {{ if (eq .requisition.status "processing") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="takeRequisitionAPI(this)" role="button">Взяти</a>
                 <a class="btn btn-danger {{ if (eq .requisition.status "created") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="discardRequisitionAPI(this)" role="button">Відмовитись</a>
-                <a class="btn btn-success {{ if (eq .requisition.status "completed") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="completeRequisitionAPI(this)" role="button">Завершити</a>
+                <a class="btn btn-warning {{ if (ne .requisition.status "processing") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="noAnswerRequisitionAPI(this)" role="button">Не актуально</a>
+                <a class="btn btn-success {{ if or (eq .requisition.status "completed") (eq .requisition.status "no_answer") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="completeRequisitionAPI(this)" role="button">Завершити</a>
             </div>
         </div>
     </div>

@@ -222,6 +222,37 @@ func (s *apiserver) webAdminRequisitionDiscard(c *gin.Context) {
 	c.Status(http.StatusAccepted)
 }
 
+func (s *apiserver) webAdminRequisitionNoAnswer(c *gin.Context) {
+	const logPref = "webAdminRequisitionNoAnswer"
+
+	var requisitionID = c.Param("requisitionId")
+
+	err := s.repository.DeleteRequisitionSessions(requisitionID)
+	if err != nil {
+		log.Printf("(ERR) %s: failed to delete requisition sessions: %v", logPref, err)
+		c.AbortWithStatus(http.StatusInternalServerError)
+		return
+	}
+
+	requisitionRes, err := s.repository.GetRequisition(requisitionID)
+	if err != nil {
+		log.Printf("(ERR) %s: failed to get requisition [%s]: %v", logPref, requisitionID, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, representation.ErrInternal)
+		return
+	}
+
+	_, err = s.repository.UpdateRequisitionStatus(&model.Requisition{
+		ID: requisitionID, ExpertID: requisitionRes.ExpertID, Status: model.RequisitionStatusNoAnswer,
+	})
+	if err != nil {
+		log.Printf("(ERR) %s: failed to update requisition: %v", logPref, err)
+		c.AbortWithStatus(http.StatusInternalServerError)
+		return
+	}
+
+	c.Status(http.StatusAccepted)
+}
+
 func (s *apiserver) webAdminRequisitionComplete(c *gin.Context) {
 	const logPref = "webAdminRequisitionComplete"
 

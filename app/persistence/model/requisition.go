@@ -13,6 +13,7 @@ const (
 	RequisitionStatusCreated    = "created"
 	RequisitionStatusProcessing = "processing"
 	RequisitionStatusCompleted  = "completed"
+	RequisitionStatusNoAnswer   = "no_answer"
 )
 
 type Requisition struct {

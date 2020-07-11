@@ -41,6 +41,7 @@
                         <option {{ if (eq .queries.status "created") }} selected {{ end }} value="created">Не в роботі</option>
                         <option {{ if (eq .queries.status "processing") }} selected {{ end }} value="processing">В роботі</option>
                         <option {{ if (eq .queries.status "completed") }} selected {{ end }} value="completed">Виконаний</option>
+                        <option {{ if (eq .queries.status "no_answer") }} selected {{ end }} value="no_answer">Не актуально</option>
                     </select>
                     <br/>
                     <hr/>

@@ -68,6 +68,7 @@ func (s *apiserver) registerHandlers() {
 	s.engine.PUT("/admin/requisition/:requisitionId/take", authentication, allAuthorization, statusActiveAuthentication, s.webAdminRequisitionTake)
 	s.engine.PUT("/admin/requisition/:requisitionId/discard", authentication, allAuthorization, statusActiveAuthentication, s.webAdminRequisitionDiscard)
 	s.engine.PUT("/admin/requisition/:requisitionId/complete", authentication, allAuthorization, statusActiveAuthentication, s.webAdminRequisitionComplete)
+	s.engine.PUT("/admin/requisition/:requisitionId/no_answer", authentication, allAuthorization, statusActiveAuthentication, s.webAdminRequisitionNoAnswer)
 	s.engine.DELETE("/admin/requisition/:requisitionId", authentication, adminAuthorization, statusActiveAuthentication, s.webAdminRequisitionDelete)
 
 	//
