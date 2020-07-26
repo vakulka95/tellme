@@ -1,3 +1,5 @@
+ALTER TABLE requisitions DROP COLUMN sms_reply_count;
+
 CREATE OR REPLACE VIEW v$requisitions       AS
 SELECT  r.id                                AS id,
         r.expert_id                         AS expert_id,

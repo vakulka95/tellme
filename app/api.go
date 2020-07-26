@@ -40,6 +40,9 @@ func (s *apiserver) init() error {
 	s.documentServePath = "document/expert"
 
 	s.registerHandlers()
+	if err := s.registerSwaggerApidocs(); err != nil {
+		return err
+	}
 	s.smscli = sms.NewManager(s.config.TurboSMSUsername, s.config.TurboSMSPassword)
 	return s.connectRepository()
 }
