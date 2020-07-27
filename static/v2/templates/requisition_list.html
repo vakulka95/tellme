@@ -53,9 +53,9 @@
                                 <td class="text-center border-0 pt-4 pb-4 text-white" data-href="/admin/requisition/{{ $item.id }}">
                                     <p class='cell specialization table-require-cell mb-0'>{{ $item.diagnosis }}</p>
                                 </td>
-                                <td class='text-center border-0 pt-4 pb-4'data-href="/admin/requisition/{{ $item.id }}">
+                                <td class='text-center border-0 pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
                                     <p class="cell mb-0 pt-2" >
-                                        <a href="#" class='name cell'>{{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}</td></a>
+                                        <a href="#" class='name cell'>{{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}</a>
                                     </p>
                                 </td>
                                 {{ $gender := $item.gender }}
@@ -113,13 +113,13 @@
                                     </a>
                                 </p>
                                 <div class="gender">
-                                    {{ $gender := $item.gender }}
+                                {{ $gender := $item.gender }}
                                 {{ with (eq $gender "female") }}
                                     <span class='gender mb-0' data-href="/admin/requisition/{{ $item.id }}">жін.</span>
-                                </td>{{ end }}
+                                {{ end }}
                                 {{ with (eq $gender "male") }}
                                     <span class='gender mb-0' data-href="/admin/requisition/{{ $item.id }}">Чол.</span>
-                                </td>{{ end }}
+                                {{ end }}
                                 </div>
                             </li>
                             <li class="about__item d-flex mb-2" data-href="/admin/requisition/{{ $item.id }}">
@@ -150,7 +150,10 @@
                         </div>
                     </div>
                 </div>
-                {{ end }}
+            </div>
+        </div>
+    </section>
+            {{ end }}
     <section class="pagination-section">
         <div class="container">
             <div class="row d-flex justify-content-between">
@@ -163,9 +166,5 @@
             </div>
         </div>
     </section>
-
-
-
-
 
     {{ template "footer.html" . }}

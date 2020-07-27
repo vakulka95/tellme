@@ -1,7 +1,5 @@
 {{ template "header.html" .}}
 
-
-
     <!-- TITLE -->
     <section class='app__title pt-5 bg-white'>
         <div class="container">
@@ -82,19 +80,19 @@
                 <div class="psy mt-3 mb-3 pt-4">
                     <div class="feedback__status ml-3 mr-5 mb-3">
                         {{ $status := $item.status }}
-                        {{ with (eq $status "requested") }}<p data-href="/admin/review/{{ $item.id }}">Відгук очікується</p>{{ end }}   
+                        {{ with (eq $status "requested") }}<p data-href="/admin/review/{{ $item.id }}">Відгук очікується</p>{{ end }}
                         {{ with (eq $status "completed") }}<p data-href="/admin/review/{{ $item.id }}">Відповів</p>{{ end }}
-                       
+
                     </div>
                     <div class="about">
                         <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
                             <li class="about__item d-flex mb-3 flex-column">
                                 <p class="item-title mb-0">Психолог</p>
-                                <p data-href="/admin/review/{{ $item.id }}" class="about__link mr-2">{{ $item.expert_username }}</p>  
+                                <p data-href="/admin/review/{{ $item.id }}" class="about__link mr-2">{{ $item.expert_username }}</p>
                             </li>
                             <li class="about__item d-flex flex-column mb-3">
                                 <p class="item-title mb-0">Задоволення від консультації</p>
-                                <p data-href="/admin/review/{{ $item.id }}" class="about__link mr-2">{{ $item.consultation_review }}</p>  
+                                <p data-href="/admin/review/{{ $item.id }}" class="about__link mr-2">{{ $item.consultation_review }}</p>
                             </li>
                             <li class="about__item d-flex flex-column mb-3">
                                 <p class="item-title mb-0">Oцінка психолога</p>
@@ -107,7 +105,11 @@
                         </ul>
                     </div>
                 </div>
-    
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
     <section class="pagination-section">
         <div class="container">
             <div class="row d-flex justify-content-between">
