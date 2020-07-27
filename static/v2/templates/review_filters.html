@@ -4,12 +4,13 @@
         <div class="container">
             <div class="filter__wrap">
                 <div class="filter__search mt-2">
-                    <form action="/admin/review" method="GET"></form>
-                    <select id="status" name="status" class='feedback-status form-control'>
-                        <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
-                        <option {{ if (eq .queries.status "requested") }} selected {{ end}} value="requested">Відгук очікується</option>
-                        <option {{ if (eq .queries.status "completed") }} selected {{ end}} value="completed">Відповів</option>
-                    </select>
+                    <form action="/admin/review" method="GET">
+                        <select id="status" name="status" class='feedback-status form-control'>
+                            <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                            <option {{ if (eq .queries.status "requested") }} selected {{ end}} value="requested">Відгук очікується</option>
+                            <option {{ if (eq .queries.status "completed") }} selected {{ end}} value="completed">Відповів</option>
+                        </select>
+                    </form>
                 </div>
             </div>
         </div>
@@ -27,6 +28,9 @@
                                 <option {{ if (eq .queries.status "requested") }} selected {{ end}} value="requested">Відгук очікується</option>
                                 <option {{ if (eq .queries.status "completed") }} selected {{ end}} value="completed">Відповів</option>        
                             </select>
+                        </div>
+                        <div class='filter-submit d-flex align-items-center justify-content-center mt-2 '>
+                            <button type="submit" class='btn btn-submit text-white'>Вибрати</button>
                         </div>
                     </form>
                 </div>
