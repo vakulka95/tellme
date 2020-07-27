@@ -15,9 +15,9 @@ import (
 type Environment struct {
 	DomainName              string `env:"DOMAIN_NAME" envDefault:"127.0.0.1:8080"`
 	ExpertDocumentsStoreDir string `env:"EXPERT_DOCUMENTS_STORE_DIR" envDefault:""`
-	TemplatesStaticFilesDir string `env:"TEMPLATES_STATIC_FILES_DIR" envDefault:""`
+	StaticFilesDir          string `env:"STATIC_FILES_DIR" envDefault:""`
 	MigrationFilesDir       string `env:"MIGRATION_FILES_DIR" envDefault:""`
-	MigrateDatabaseVersion  uint   `env:"MIGRATE_DATABASE_VERSION" envDefault:"20190610132215"`
+	MigrateDatabaseVersion  uint   `env:"MIGRATE_DATABASE_VERSION" envDefault:"132215"`
 
 	ServePort string `env:"SERVE_PORT" envDefault:"8080"`
 

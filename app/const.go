@@ -5,7 +5,7 @@ const (
 	UserRoleExpert = "expert"
 
 	authCookieKey          = "fight_covid_auth"
-	maxExpertDocumentCount = 5
+	maxExpertDocumentCount = 10
 	maxExpertDocumentSize  = 8 << 20 // 8 MiB
 
 	maxRequisitionSessionCount = 3

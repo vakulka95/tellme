@@ -1,7 +1,6 @@
 package config
 
 import (
-	"flag"
 	"log"
 
 	"github.com/joho/godotenv"
@@ -15,20 +14,14 @@ func ApplyOptions(opts ...Option) {
 	}
 }
 
-func WithLocalEnvFile() Option {
-	return loadEnvFile
-}
+func WithLocalEnvFile(envFile string) Option {
+	return func() {
+		if envFile != "" {
+			err := godotenv.Load(envFile)
 
-var envFile = flag.String("env", "", "Env config file")
-
-func loadEnvFile() {
-	flag.Parse()
-
-	if *envFile != "" {
-		err := godotenv.Load(*envFile)
-
-		if err != nil {
-			log.Fatalf("failed to load env file [%s]: %v", *envFile, err)
+			if err != nil {
+				log.Fatalf("failed to load env file [%s]: %v", envFile, err)
+			}
 		}
 	}
 }

@@ -1,0 +1,59 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:12
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: tellme_local
+    ports:
+      - 5432:5432
+    volumes:
+      - tellme_pg_data:/var/lib/postgresql/data
+
+  api:
+    image: serhiimakogon/tellme.api:v1.0.2
+    restart: always
+    command: "/usr/local/bin/tellme.api -migrate"
+    environment:
+      SERVE_PORT: 8080
+      DOMAIN_NAME: 127.0.0.1
+      EXPERT_DOCUMENTS_STORE_DIR: /usr/share/tellme/document/expert
+      TEMPLATES_STATIC_FILES_DIR: /usr/share/tellme/static
+      MIGRATE_DATABASE_VERSION: 132223
+
+      ACCESS_TOKEN_DURATION: 2400h
+      REFRESH_TOKEN_DURATION: 16000h
+      JWT_TOKEN_SIGN_KEY: TFwdGVISmhiVVp2asdflUn
+
+      POSTGRES_DRIVER: pgx
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_DBNAME: tellme_local
+      POSTGRES_SSLMODE: disable
+      POSTGRES_CONN_TIMEOUT: 5
+      POSTGRES_MAX_OPEN_CONNS: 250
+      POSTGRES_MAX_IDLE_CONNS: 10
+      POSTGRES_MAX_CONN_LIFETIME: 5s
+      POSTGRES_HEALTH_CHECK_PERIOD: 5s
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+
+      TURBO_SMS_USERNAME: ""
+      TURBO_SMS_PASSWORD: ""
+
+      GOOGLE_CAPTCHA_SECRET: 6LeHwKYZAAAAALLWyOB4GJX_uKIJ1h9zlDyjG6fd
+      NOT_PROCESSED_REQUISITION_JOB_PERIOD: 5m
+    ports:
+      - 8080:8080
+
+  adminer:
+    image: adminer:4.7
+    restart: always
+    ports:
+      - 8084:8080
+
+volumes:
+  tellme_pg_data:
+    external: true

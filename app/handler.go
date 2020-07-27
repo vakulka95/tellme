@@ -1,12 +1,17 @@
 package app
 
 import (
+	"fmt"
+	"io/ioutil"
+	"os"
 	"path"
 	"strings"
 
-	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
-
 	"github.com/gin-gonic/gin"
+	"github.com/tidwall/pretty"
+
+	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
+	"gitlab.com/tellmecomua/tellme.api/pkg/swagger"
 )
 
 func (s *apiserver) registerHandlers() {
@@ -19,7 +24,9 @@ func (s *apiserver) registerHandlers() {
 	//
 	// Web admin config
 	//
-	s.engine.LoadHTMLGlob(path.Join(s.config.TemplatesStaticFilesDir, "/*"))
+	s.engine.LoadHTMLGlob(path.Join(s.config.StaticFilesDir, "/templates/*"))
+	s.engine.Static("/static/styles", path.Join(s.config.StaticFilesDir, "/styles"))
+	s.engine.Static("/document/expert", s.config.ExpertDocumentsStoreDir)
 
 	authentication := s.authenticationInterceptor()
 	allAuthorization := s.authorizationInterceptor(UserRoleExpert, UserRoleAdmin)
@@ -32,7 +39,7 @@ func (s *apiserver) registerHandlers() {
 	//
 	// Admin Auth
 	//
-	s.engine.GET("/admin", authentication, s.webIndexPage)
+	s.engine.GET("/admin/", authentication, s.webIndexPage)
 	s.engine.POST("/admin/login", s.webAdminLogin)
 	s.engine.GET("/admin/login", s.webAdminGetLoginPage)
 	s.engine.GET("/admin/logout", s.webAdminLogout)
@@ -122,4 +129,24 @@ func (s *apiserver) cors(c *gin.Context) {
 	c.Header("Access-Control-Allow-Origin", "*")
 	c.Header("Access-Control-Allow-Headers", headers)
 	c.Header("Access-Control-Allow-Methods", methods)
+}
+
+func (s *apiserver) registerSwaggerApidocs() error {
+	const swaggerDir = "/etc/tellme.api/swagger"
+
+	bb, err := swagger.GetApidocsJSON()
+	if err != nil {
+		return err
+	}
+
+	_ = os.MkdirAll(swaggerDir, os.ModePerm)
+	filepath := path.Join(swaggerDir, "/apidocs.json")
+
+	err = ioutil.WriteFile(filepath, pretty.Pretty(bb), os.ModePerm)
+	if err != nil {
+		return fmt.Errorf("failed to write file: %v", err)
+	}
+
+	s.engine.StaticFile("/api/v1/apidocs.json", filepath)
+	return nil
 }

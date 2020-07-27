@@ -1,3 +1,5 @@
+ALTER TABLE requisitions ADD COLUMN sms_reply_count INTEGER NOT NULL DEFAULT 0;
+
 CREATE OR REPLACE VIEW v$requisitions       AS
 SELECT  r.id                                AS id,
         r.expert_id                         AS expert_id,
