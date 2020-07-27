@@ -13,13 +13,13 @@
                                 <a href="#" class="nav-link menu--link menu--link--active pb-2">Заявки</a>
                             </li>
                             <li class="nav-item menu__item">
-                                <a href="static/styles/Psychologists/psy.html" class="nav-link menu--link pb-2">Психологи</a>
+                                <a href="/static/styles/Psychologists/psy.html" class="nav-link menu--link pb-2">Психологи</a>
                             </li>
                             <li class="nav-item menu__item">
-                                <a href="static/styles/Feedbacks/feedbacks.html" class="nav-link menu--link pb-2">Відгуки</a>
+                                <a href="/static/styles/Feedbacks/feedbacks.html" class="nav-link menu--link pb-2">Відгуки</a>
                             </li>
                             <li class="nav-item menu__item">
-                                <a href="static/styles/Rate/rate.html" class="nav-link menu--link pb-2">Рейтинг</a>
+                                <a href="/static/styles/Rate/rate.html" class="nav-link menu--link pb-2">Рейтинг</a>
                             </li>
                         </ul>
                     </nav>
@@ -105,7 +105,7 @@
                     <div class="about">
                         <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
                             <li class="about__item d-flex mb-1 align-items-center" data-href="/admin/requisition/{{ $item.id }}">
-                                <img src="static/styles/images/about/about-man.svg" class='menu--icon mr-3'
+                                <img src="/static/styles/images/about/about-man.svg" class='menu--icon mr-3'
                                     alt="about-icon-person">
                                 <p class="cell mb-0 pt-2">
                                     <a href="#" class="about__link name-mob  mr-2">
@@ -123,12 +123,12 @@
                                 </div>
                             </li>
                             <li class="about__item d-flex mb-2" data-href="/admin/requisition/{{ $item.id }}">
-                                <img src="static/styles/images/about/about-phone.svg" class='menu--icon mr-2'
+                                <img src="/static/styles/images/about/about-phone.svg" class='menu--icon mr-2'
                                     alt="about-icon-phone">
                                 <a href="#" class="about__link">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</a>
                             </li>
                             <li class="about__item d-flex mb-2" >
-                                <img src="static/styles/images/about/about-cal.svg" class='menu--icon mr-3'
+                                <img src="/static/styles/images/about/about-cal.svg" class='menu--icon mr-3'
                                     alt="about-icon-calendar">
                                 <a href="#" class="about__link">{{ $item.created_at }}</a>
                             </li>

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/styles/css/noah/style.css">
-    <link rel="stylesheet" href="static/styles/css/style.css">
+    <link rel="stylesheet" href="/static/styles/css/noah/style.css">
+    <link rel="stylesheet" href="/static/styles/css/style.css">
     <title>Tell Me</title>
 </head>
 
@@ -18,11 +18,11 @@
             <div class="row d-flex justify-content-between">
                 <div class="col-6">
                     <div class="header__logo">
-                        <a href="#"><img class='logo' src="static/styles/images/logo.svg" alt="header-logo"></a>  
+                        <a href="#"><img class='logo' src="/static/styles/images/logo.svg" alt="header-logo"></a>
                     </div>
                     {{ if eq .metadata.role "expert" }}
                     <div class="user d-flex justify-content-center">
-                        <img src="static/styles/images/user.svg" alt="user">
+                        <img src="/static/styles/images/user.svg" alt="user">
                     </div>
                 </div>
             </div>
@@ -36,13 +36,13 @@
         <nav class="nav">
             <ul class="nav-list w-100 ">
                 <li class="nav-item border-bottom border-dark">
-                    <a href="static/styles//Psy_admin/Applications/index.html" class="nav-link">Заявки</a>
+                    <a href="/static/styles//Psy_admin/Applications/index.html" class="nav-link">Заявки</a>
                 </li>
                 <li class="nav-item border-bottom border-dark">
-                    <a href="static/styles/myProfile/myProfile.html" class="nav-link">Мій профіль</a>
+                    <a href="/static/styles/myProfile/myProfile.html" class="nav-link">Мій профіль</a>
                 </li>
                 <li class="nav-item border-bottom border-dark ">
-                    <a href="static/styles/myFeedback/myFeedback.html" class="nav-link ">Мої відгуки</a>
+                    <a href="/static/styles/myFeedback/myFeedback.html" class="nav-link ">Мої відгуки</a>
                 </li>
                 {{ end }}
                 <li class="nav-item border-bottom border-dark">
