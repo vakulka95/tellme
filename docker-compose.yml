@@ -20,7 +20,7 @@ services:
       SERVE_PORT: 8080
       DOMAIN_NAME: 127.0.0.1
       EXPERT_DOCUMENTS_STORE_DIR: /usr/share/tellme/document/expert
-      TEMPLATES_STATIC_FILES_DIR: /usr/share/tellme/static
+      STATIC_FILES_DIR: /usr/share/tellme.api/static/v1
       MIGRATE_DATABASE_VERSION: 132223
 
       ACCESS_TOKEN_DURATION: 2400h

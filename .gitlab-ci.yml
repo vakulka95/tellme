@@ -4,20 +4,7 @@ variables:
 stages:
   - build_app
 
-build_prod_image:
-  stage: build_app
-  image: docker:latest
-  services:
-    - docker:dind
-  script:
-    - echo "$CI_REGISTRY_PASSWORD" | docker login --username "$CI_REGISTRY_USER" $CI_REGISTRY --password-stdin
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:latest" -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA" .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA"
-    - docker push "$CI_REGISTRY_IMAGE:latest"
-  only:
-    - master
-
-build_staging_image:
+build_image:
   stage: build_app
   image: docker:latest
   services:
@@ -28,4 +15,6 @@ build_staging_image:
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA"
     - docker push "$CI_REGISTRY_IMAGE:latest"
   only:
+    - master
     - /^RELEASE-.*$/%
+    - coding-by-vakulenko

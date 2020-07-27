@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path"
 	"time"
 
 	"gitlab.com/tellmecomua/tellme.api/app/persistence/model"
@@ -126,7 +127,7 @@ func (s *apiserver) webAdminExpertRatingPDF(c *gin.Context) {
 }
 
 func (s *apiserver) generateExpertRatingPDF(list []*model.Expert) *gofpdf.Fpdf {
-	pdf := gofpdf.New("L", "mm", "A4", "/usr/share/tellme/static/pdf_fonts")
+	pdf := gofpdf.New("L", "mm", "A4", path.Join(s.config.StaticFilesDir, "pdf_fonts"))
 	pdf.AddFont("Helvetica", "", "helvetica_1251.json")
 	pdf.AddPage()
 	pdf.SetFont("Helvetica", "", 9)
