@@ -198,6 +198,7 @@
                                             X
                                         </a>
                                             {{ end }}
+                                        {{ end }}
                                     </div>
                                     <div class='input__block d-flex flex-column col-12 col-lg-6'>
                                         <p class="title-input">Документи</p>
@@ -222,7 +223,6 @@
         </div>
     </section>
 
-    {{ end }}
     {{ if (eq .metadata.role "expert") }}
     <section class='app__title pt-3 pb-2'>
         <div class="container">
@@ -237,6 +237,7 @@
             </div>
         </div>
     </section>
+    {{ end }}
     <section class='form col-12 col-lg-9 ml-auto mr-auto'>
         <div class="container">
             <div class="row">
@@ -268,8 +269,6 @@
                                     </div>
                                 </div>
 
-                                
-
                                 <div class='input__block'>
                                     <p class="title-input">Заявок завершено</p>
                                     <input type="number" name="psy-over-request" class='input-over-request form-control'
@@ -284,7 +283,6 @@
 
                                     </select>
                                 </div>
-                                
                             </div>
 
                             <div class="col-lg-6">
@@ -300,7 +298,7 @@
 
                                 </div>
                                 <div class='input__block'>
-                                 <label for="gender"><p class="title-input">Стать</p></label>  
+                                 <label for="gender"><p class="title-input">Стать</p></label>
                                     <input type="text" id='gender' name="psy-gender" class="input-gender form-control" disabled='disabled'>
                                     <button class='btn-in-input edit edit-gender' data-toggle="modal" data-target="#expertEdit">Редагувати</button>
                                     <div class="apply-block-gender hide">
@@ -309,7 +307,7 @@
                                     </div>
                                 </div>
                                 <div class='input__block '>
-                                  <label for="education"> <p class="title-input">Освіта</p></label> 
+                                  <label for="education"> <p class="title-input">Освіта</p></label>
                                     <input type="text" id='education' name="psy-education" class="input-education form-control" disabled='disabled'>
                                     <button class='btn-in-input edit edit-education'>Редагувати</button>
                                     <div class="apply-block-education hide">
@@ -331,8 +329,8 @@
                                         <p class='date-time'>14:53</p>
                                     </div>
                                 </div>
-                            </div>   
-                                
+                            </div>
+
 
                                 <hr>
                                 <div class="document d-flex flex-column  w-100 flex-lg-row mt-5">
@@ -368,12 +366,5 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-
-
 
     {{ template "footer.html" . }}
