@@ -20,7 +20,6 @@
                     <div class="header__logo">
                         <a href="#"><img class='logo' src="/static/styles/images/logo.svg" alt="header-logo"></a>
                     </div>
-                    {{ if eq .metadata.role "expert" }}
                     <div class="user d-flex justify-content-center">
                         <img src="/static/styles/images/user.svg" alt="user">
                     </div>
@@ -29,7 +28,6 @@
         </div>
     </header>
     <!-- MENU MODAL -->
-    {{ if .metadata.logged_in }}
     <!-- Это навигация для админа, она должна находиться в таком себе блоке "Заголовок" -->
     <!-- <nav class="menu mt-4">
         <ul class="nav menu__list d-flex justify-content-between">
@@ -62,11 +60,9 @@
                 <li class="nav-item border-bottom border-dark ">
                     <a href="/static/styles/myFeedback/myFeedback.html" class="nav-link ">Мої відгуки</a>
                 </li>
-                {{ end }}
                 <li class="nav-item border-bottom border-dark">
                     <a href="/admin/logout" class="nav-link">Вихід</a>
                 </li>
             </ul>
         </nav>
     </section>
-    {{ end }}
