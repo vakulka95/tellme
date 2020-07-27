@@ -1,0 +1,138 @@
+{{ template "header.html" . }}
+
+
+    <!-- TITLE -->
+    <section class='title__section pt-5'>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-5">
+                    <div class="title__item">
+                        <h1 class="title">Рейтинг</h1>
+                    </div>
+                    <nav class="menu mt-4">
+                        <ul class="nav menu__list d-flex justify-content-between">
+                            <li class="nav-item menu__item ">
+                                <a href="../Applications/index.html" class="nav-link menu--link pb-2">Заявки</a>
+                            </li>
+                            <li class="nav-item menu__item">
+                                <a href="../Psychologists/psy.html" class="nav-link menu--link pb-2">Психологи</a>
+                            </li>
+                            <li class="nav-item menu__item">
+                                <a href="../Feedbacks/feedbacks.html" class="nav-link menu--link pb-2">Відгуки</a>
+                            </li>
+                            <li class="nav-item menu__item">
+                                <a href="../Rate/rate.html" class="nav-link menu--link menu--link--active pb-2">Рейтинг</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{ template "expert_rating_filters.html" . }}
+
+    <!-- MAIN TABLE -->
+    <section class="main mt-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-require">
+                        <thead>
+                            <tr>
+                                <th class='pl-3'>Статус</th>
+                                <th class='pl-3'>Психолог</th>
+                                <th class='pl-5'>Задоволення від консультації</th>
+                                <th class='pl-2'>Оцінка психолога</th>
+                                <th class='pl-2'>Кількість консультацій</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{ range $i, $item := .data.items }}
+                            <tr>
+                                {{ $status := $item.status }}
+                                    {{ with (eq $status "on_review") }}<td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}"><p class="cell mb-0 table-require-cell table-cell-status" data-href="/admin/expert/{{ $item.id }}">На модерації</p></td>{{ end }}
+                                    {{ with (eq $status "blocked") }}<td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}"><p class="cell mb-0 table-require-cell table-cell-status" data-href="/admin/expert/{{ $item.id }}">Заблокований</p></td>{{ end }}
+                                    {{ with (eq $status "active") }}<td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}"><p class="cell mb-0 table-require-cell table-cell-status" data-href="/admin/expert/{{ $item.id }}">Активний</p></td>{{ end }}
+                                
+                                    <td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                                    <p class="cell mb-0 pt-2">{{ $item.username }}</p>
+                                </td>
+                                <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start ' data-href="/admin/expert/{{ $item.id }}">
+                                    Так
+                                </td>
+                                <td class='text-left pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                                    <p class="cell mb-0 pt-2">{{ $item.average_rating }}</p>
+                                </td>
+                                <td class='text-left pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                                    <p class="cell mb-0 pt-2">{{ $item.processing_count }}</p>
+                                </td>
+                            </tr>
+                            {{ end }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{ template "expert_rating_pagging.html" .pagination }}
+    <!-- CLIENTS -->
+    <section class="rate">
+        <div class="container">
+            <div class="rate__wrap">
+                <div class="rate__block mt-3 mb-3 pt-4">
+                    {{ $status := $item.status }}
+                    {{ with (eq $status "on_review") }}<p class="cell mb-0 table-require-cell table-cell-status" data-href="/admin/expert/{{ $item.id }}">На модерації</p>{{ end }}
+                    {{ with (eq $status "blocked") }}<p class="cell mb-0 table-require-cell table-cell-status" data-href="/admin/expert/{{ $item.id }}">Заблокований</p>{{ end }}
+                    {{ with (eq $status "active") }}<p class="cell mb-0 table-require-cell table-cell-status" data-href="/admin/expert/{{ $item.id }}">Активний</p>{{ end }}
+                    
+                    
+                    {{ range $i, $item := .data.items }}   
+                    <div class="about">
+                        <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                            <li class="about__item d-flex mb-3 flex-column">
+                                <p class="item-title mb-0">Психолог</p>
+                                <a href="#" class="about__link mr-2">{{ $item.username }}</a>
+                            </li>
+                            <li class="about__item d-flex flex-column mb-3">
+                                <p class="item-title mb-0">Здоволення від консультації</p>
+                                <div class="count"></div>
+                            </li>
+                            <li class="about__item d-flex flex-column mb-3">
+                                <p class="item-title mb-0">Оцінка психолога</p>
+                                <div class="count">{{ $item.average_rating }}</div>
+                            </li>
+                            <li class="about__item d-flex flex-column mb-3">
+                                <p class="item-title mb-0">Кількість консультацій</p>
+                                <div class="count">
+                                    <p class="cell mb-0 pt-2">{{ $item.processing_count }}</p>
+                                </div>
+                            </li>
+                            <li class="about__item d-flex flex-column mb-3">
+                                <p class="item-title mb-0">Заявок завершено</p>
+                                <div class="count"></div>
+                            </li>
+                            <li class="about__item d-flex flex-column mb-3">
+                                <p class="item-title mb-0">Заявок в роботі</p>
+                                <div class="count">0</div>
+                            </li>
+                        </ul>
+                    </div>
+                    {{ end }}
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="row d-flex justify-content-between">
+                {{ template "expert_rating_pagging.html" .pagination }}
+                <div class="col-12 col-lg-4">
+                    <div class="all text-right">
+                        <p>Всього вибрано: {{ .data.total }} заявок. <br>{{ .pagination.page.TotalPages }} сторінок</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    {{ template "footer.html" . }}

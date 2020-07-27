@@ -1,0 +1,379 @@
+{{ template "header.html" . }}
+
+    <!-- TITLE -->
+    <section class='app__title pt-5 bg-white mb-5'>
+        <div class="container">
+            <div class="row">
+                {{ if (eq .metadata.role "admin" )}}
+                <div class="col-sm-12 d-flex">
+                    <div class="title__arrow mb-4 mr-5">
+                        <img class='arrow border' onclick="javascript:history.back()" src="static/style/images/arrow_back-desk.svg" alt="arrow_back">
+                    </div>
+                    <div class="title__item">
+                        <h1 class="title">Психолог {{ .expert.username }}</h1>
+                    </div>
+                </div>
+                {{ else }}
+                <div class="d-flex-lg flex-lg-row-reverse">
+                    <div class="me mt-2 col-12 col-lg-6 d-flex flex-column justify-content-end align-items-lg-end">
+                        <p class='me-prof mb-2'><span>Психолог</span></p>
+                        <p class="me-name">{{ .expert.username }}</p>
+                    </div>
+                    <div class="title__item col-12 col-lg-6">
+                        <h1 class="title">Мій профіль</h1>
+                    </div> 
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    {{ $expert_id := .expert.id }}
+
+    <section class='form w-75 ml-auto mr-auto'>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex flex-column">
+                    <form action="#" class='app_form pb-4 w-100 ml-auto mr-auto' role="form">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class='input__block'>
+                                    <p class="title-input">ID</p>
+                                    <input type="text" name="ID" class="input-id form-control" value='{{ $expert_id }}'>
+                                </div>
+                                <div class='input__block'>
+                                    <p class="title-input">Телефон</p>
+                                    <input type="number" name="psy-phone" class="input-phone input-for-btn form-control"
+                                        placeholder="050l 000 00 00" value='{{ .expert.phone }' disabled='disabled'>
+                                    <button class='btn-in-input edit edit-phone'>Редагувати</button>
+                                    <div class="apply-block-phone hide">
+                                        <button class="btn-in-input bg-danger text-white denied">X</button>
+                                        <button class="btn-in-input bg-success apply"></button>
+                                    </div>
+                                </div>
+                                <div class='input__block'>
+                                    <p class="title-input">Email</p>
+                                    <input type="email" name="psy-last-mail" class="input-mail form-control" value='{{ .expert.email }}' disabled='disabled'>
+                                    <button class='btn-in-input edit edit-mail'>Редагувати</button>
+                                    <div class="apply-block-mail hide">
+                                        <button class="btn-in-input bg-danger text-white denied">X</button>
+                                        <button class="btn-in-input bg-success apply"></button>
+                                    </div>
+                                </div>
+
+                                <div class='input__block'>
+                                    <p class="title-input">Спеціалізації</p>
+                                    <input type="text" name="psy-specialization" class="input-spec form-control"
+                                        placeholder="Фобії">
+                                </div>
+
+                                <div class='input__block'>
+                                    <p class="title-input">Заявок завершено</p>
+                                    <input type="number" name="psy-over-request" class='input-over-request form-control'
+                                        placeholder="Вибрати зі списку" value='{{ .expert.completed_count }}'>
+                                </div>
+                                <div class="spec mb-4 w-100">
+                                    <p class="title-input mb-0">Спеціалізації</p>
+                                    <select name="spec-app" class='select spec-select form-control '>
+                                        <option value="Вибрати зі списку">Вибрати зі списку</option>
+                                        <option value="Депресія">Депресія</option>
+                                        <option value="Не в роботі">Розлади харчової поведінки</option>
+                                        <option value="сімейні стосунки">Проблеми в сімейних стосунках</option>
+                                        <option value="Тривога та здоров'я">Тривога та здоров'я</option>
+                                        <option value="Обсесивно-компульсивний розлад">Обсесивно-компульсивний розлад
+                                        </option>
+                                        <option value="Панічний розлад">Панічний розлад</option>
+                                        <option value="Проблеми у стосунках батьків і дітей">Проблеми у стосунках
+                                            батьків і дітей</option>
+                                        <option value="ВсФобіїі">Фобії</option>
+                                        <option value="ПТСР">ПТСР</option>
+                                        <option value="Генералізований тривожний розлад">Генералізований тривожний
+                                            розлад</option>
+                                    </select>
+                                </div>
+                                <div class='input__block'>
+                                    <p class="title-input">Спеціалізації</p>
+                                    <input type="text" name="psy-password" class="input-password form-control"
+                                        placeholder="Вибрати зі списку">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class='input__block'>
+                                    <p class="title-input">Ім'я</p>
+                                    <input type="text" name="name" class="input-name form-control"
+                                        placeholder="Тетяна Шаригіна" disabled='disabled' value='{{ .expert.username }}'>
+                                    <button class='btn-in-input edit edit-name'>Редагувати</button>
+                                    <div class="apply-block-name hide">
+                                        <button class="btn-in-input bg-danger text-white denied">X</button>
+                                        <button class="btn-in-input bg-success apply"></button>
+                                    </div>
+
+                                </div>
+                                <div class='input__block'>
+                                    <p class="title-input">Стать</p>
+                                    {{ with (eq .expert.gender "male") }}<input type="text" name="psy-gender" class="input-gender form-control" value='Чол.' disabled='disabled'>{{ end }}
+                                    {{ with (eq .expert.gender "female") }}<input type="text" name="psy-gender" class="input-gender form-control" value='Жін.' disabled='disabled'>{{ end }}
+
+                                    <button class='btn-in-input edit edit-gender'>Редагувати</button>
+                                    <div class="apply-block-gender hide">
+                                        <button class="btn-in-input bg-danger text-white denied">X</button>
+                                        <button class="btn-in-input bg-success apply"></button>
+                                    </div>
+                                </div>
+                                <div class='input__block '>
+                                    <p class="title-input">Освіта</p>
+                                    <input type="text" name="psy-education" class="input-education form-control" value='{{ .expert.education }}' disabled='disabled'>
+                                    <button class='btn-in-input edit edit-education'>Редагувати</button>
+                                    <div class="apply-block-education hide">
+                                        <button class="btn-in-input bg-danger text-white denied">X</button>
+                                        <button class="btn-in-input bg-success apply"></button>
+                                    </div>
+                                </div>
+                                <div class='input__block'>
+                                    <p class="title-input">Заявок в роботі</p>
+                                    <div class="d-flex">
+                                        <input type="number" name="psy-active-request"
+                                            class='input-active-request form-control' placeholder="Вибрати зі списку" disabled>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="date-of-reg">
+                                    <p class="title-input  mt-0">Дата реєстрації</p>
+                                    <div class="block-date-time d-flex">
+                                        <p class='date-time mr-1'>{{ .expert.created_at }}</p>
+                                        <p class='date-time'>{{ .expert.created_at }}</p>
+                                    </div>
+                                </div>
+                                {{ if eq .metadata.role "admin" }}
+                                <div class='input__block'>
+                                    <p class="title-input">Пароль</p>
+                                    <input type="password" name="psy-password" class="input-password form-control" disabled>
+                                </div>
+                                {{ end }}
+                                <div class='input__block'>
+                                    <p class="title-input">Заявок в роботі</p>
+                                    <div class="d-flex">
+                                        <input type="number" name="psy-active-request"
+                                            class='input-active-request form-control' placeholder="Вибрати зі списку" value='{{ .expert.processing_count }}' disabled>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                {{ range $spec, $specOpt := .expert.specializations }}
+                                    {{ if $specOpt.Selected }}
+
+                                <div class="list__spec d-flex flex-wrap">
+                                    <p class='cell table-require-cell'>{{ $specOpt.Translated }}<p>
+                                </div>
+                                    {{ end }}
+                                {{ end }}
+
+                                
+
+                                <hr>
+                                {{ if (eq .metadata.role "admin") }}
+                                    {{ template "expert_comment_list.html" . }}
+                                {{ end }}
+
+                                <div class="document d-flex flex-column flex-lg-row mt-5">
+                                    <div class='input__block col-12 col-lg-6'>
+                                        <p class="title-input">Документи</p>
+                                        {{ range $i, $doc := .expert.documents }}
+                                            {{ if (eq $doc.ext "pdf") }}
+ 
+                                        <figure>
+                                            <object data="{{ $doc.url }}" type="application/pdf" width="100%" height="800px"></object>
+                                        </figure>
+                                            {{ else }}
+                                        <div class="show-document d-flex justify-content-center align-items-center">
+                                            <img src="static/style/images/form/image-form.svg" alt="image-form">
+                                        </div>
+                                        <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}" class='delete' role='btn'>
+                                            X
+                                        </a>
+                                            {{ end }}
+                                    </div>
+                                    <div class='input__block d-flex flex-column col-12 col-lg-6'>
+                                        <p class="title-input">Документи</p>
+                                        <div class="download-document d-flex flex-column justify-content-center">
+                                            <img class='pb-3' src="static/style/images/form/download-image.svg"
+                                                alt="download-image">
+                                            <p>Перетягніть в рамку зображення</p>
+                                        </div>
+                                        <button class='download-btn align-self-center text-center w-75 mt-3 form-btn'>Завантажити з
+                                            ком'ютера</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="main-form-btns w-50 mb-5 d-flex justify-content-center align-self-center align-self-lg-end flex-lg-row">
+                        <button class='btn form-btn w-100 mr-3 main-form-btn bg-success'>Завершити</button>
+                        <button class='btn form-btn w-100 main-form-btn bg-danger'>Відмовитися</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{ end }}
+    {{ if (eq .metadata.role "expert") }}
+    <section class='app__title pt-3 pb-2'>
+        <div class="container">
+            <div class="row d-flex-lg flex-lg-row-reverse">
+                <div class="me mt-2 col-12 col-lg-6 d-flex flex-column justify-content-end align-items-lg-end">
+                    <p class='me-prof mb-2'><span>Психолог</span></p>
+                    <p class="me-name">{{ .expert.username }}</p>
+                </div>
+                <div class="title__item col-12 col-lg-6">
+                    <h1 class="title">Мій профіль</h1>
+                </div> 
+            </div>
+        </div>
+    </section>
+    <section class='form col-12 col-lg-9 ml-auto mr-auto'>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex flex-column">
+                    <form action="/admin/expert/{{ $expert_id }}" method="POST" class='app_form pb-4 w-100 ml-auto mr-auto' role="form">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class='input__block'>
+                                    <p class="title-input">ID</p>
+                                    <input type="text" name="ID" class="input-id form-control" disabled='disabled'>
+                                </div>
+                                <div class='input__block'>
+                                   <label for="phone"> <p class="title-input">Телефон</p></label>
+                                    <input type="number" id='phone' name="psy-phone" class="input-phone input-for-btn form-control"
+                                        placeholder="050l 000 00 00" disabled='disabled' value="{{ .expert.phone }}">
+                                    <button class='btn-in-input edit edit-phone'>Редагувати</button>
+                                    <div class="apply-block-phone hide">
+                                        <button class="btn-in-input bg-danger text-white denied">X</button>
+                                        <button class="btn-in-input bg-success apply"></button>
+                                    </div>
+                                </div>
+                                <div class='input__block'>
+                                    <label for="email"><p class="title-input">Email</p></label>
+                                    <input type="email" name="psy-last-mail" class="input-mail form-control" disabled='disabled'>
+                                    <button class='btn-in-input edit edit-mail'>Редагувати</button>
+                                    <div class="apply-block-mail hide">
+                                        <button class="btn-in-input bg-danger text-white denied">X</button>
+                                        <button class="btn-in-input bg-success apply"></button>
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class='input__block'>
+                                    <p class="title-input">Заявок завершено</p>
+                                    <input type="number" name="psy-over-request" class='input-over-request form-control'
+                                        placeholder="Вибрати зі списку">
+                                </div>
+                                <div class="spec mb-4 w-100">
+                                    <p class="title-input mb-0">Спеціалізації</p>
+                                    <select multiple id="specializations" name="specializations" class='custom-select select spec-select form-control '>
+                                        {{ range $spec, $specOpt := .expert.specializations }}
+                                        <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
+                                    {{ end }}
+
+                                    </select>
+                                </div>
+                                
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class='input__block'>
+                                    <label for="name"><p class="title-input">Ім'я</p></label>
+                                    <input type="text" id='name' name="name" class="input-name form-control"
+                                        placeholder="Тетяна Шаригіна" disabled='disabled' value="{{ .expert.username }}">
+                                    <button class='btn-in-input edit edit-name' data-toggle="modal" data-target="#expertEdit">Редагувати</button>
+                                    <div class="apply-block-name hide">
+                                        <button class="btn-in-input bg-danger text-white denied">X</button>
+                                        <button class="btn-in-input bg-success apply"></button>
+                                    </div>
+
+                                </div>
+                                <div class='input__block'>
+                                 <label for="gender"><p class="title-input">Стать</p></label>  
+                                    <input type="text" id='gender' name="psy-gender" class="input-gender form-control" disabled='disabled'>
+                                    <button class='btn-in-input edit edit-gender' data-toggle="modal" data-target="#expertEdit">Редагувати</button>
+                                    <div class="apply-block-gender hide">
+                                        <button class="btn-in-input bg-danger text-white denied">X</button>
+                                        <button class="btn-in-input bg-success apply"></button>
+                                    </div>
+                                </div>
+                                <div class='input__block '>
+                                  <label for="education"> <p class="title-input">Освіта</p></label> 
+                                    <input type="text" id='education' name="psy-education" class="input-education form-control" disabled='disabled'>
+                                    <button class='btn-in-input edit edit-education'>Редагувати</button>
+                                    <div class="apply-block-education hide">
+                                        <button class="btn-in-input bg-danger text-white denied">X</button>
+                                        <button class="btn-in-input bg-success apply"></button>
+                                    </div>
+                                </div>
+                                <div class='input__block'>
+                                    <p class="title-input">Заявок в роботі</p>
+                                    <div class="d-flex">
+                                        <input type="number" name="psy-active-request"
+                                            class='input-active-request form-control' placeholder="Вибрати зі списку">
+                                    </div>
+                                </div>
+                                <div class="date-of-reg">
+                                    <p class="title-input  mt-0">Дата створення заявки</p>
+                                    <div class="block-date-time d-flex">
+                                        <p class='date-time mr-1'>2020-07-18</p>
+                                        <p class='date-time'>14:53</p>
+                                    </div>
+                                </div>
+                            </div>   
+                                
+
+                                <hr>
+                                <div class="document d-flex flex-column  w-100 flex-lg-row mt-5">
+                                    <div class='input__block col-12 col-lg-6'>
+                                        <p class="title-input">Документи</p>
+                                        <div class="show-document d-flex justify-content-center align-items-center">
+                                            <img src="../../../images/form/image-form.svg" alt="image-form">
+                                        </div>
+                                        <a href='' class='delete text-white'>
+                                            X
+                                        </a>
+                                    </div>
+                                    <div class='input__block d-flex flex-column col-12 col-lg-6'>
+                                        <p class="title-input drag-title">Документи</p>
+                                        <div class="download-document  drag d-flex flex-column justify-content-center">
+                                            <img class='pb-3' src="../../../images/form/download-image.svg"
+                                                alt="download-image">
+                                            <p>Перетягніть в рамку зображення</p>
+                                        </div>
+                                        <button class='download-btn align-self-center text-center w-100 mt-5 form-btn'>
+                                            Завантажити з ком'ютера
+                                        </button>
+                                    </div>
+                                </div>
+                        </div>
+                    </form>
+                    <div class="main-form-btns w-50 mb-5 d-flex justify-content-center align-self-center align-self-lg-end flex-lg-row">
+                        <button class='btn form-btn w-100 mr-3 main-form-btn bg-success'>Завершити</button>
+                        <button class='btn form-btn w-100 main-form-btn bg-danger'>Відмовитися</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    {{ template "footer.html" . }}

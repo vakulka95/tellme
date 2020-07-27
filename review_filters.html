@@ -1,0 +1,36 @@
+
+    <!-- FILTER SEARCH -->
+    <section class='filter mt-3'>
+        <div class="container">
+            <div class="filter__wrap">
+                <div class="filter__search mt-2">
+                    <form action="/admin/review" method="GET"></form>
+                    <select id="status" name="status" class='feedback-status form-control'>
+                        <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                        <option {{ if (eq .queries.status "requested") }} selected {{ end}} value="requested">Відгук очікується</option>
+                        <option {{ if (eq .queries.status "completed") }} selected {{ end}} value="completed">Відповів</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Filter DESKTOP -->
+    <section class='filter-desktop '>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <form action="/admin/review" method="GET" class='d-flex justify-content-between'>
+                        <div class="status mr-3 mt-3 mb-2 mr-0 w-100">
+                            <p class="status-title mb-2 filter-desktop-inp-title">Статус</p>
+                            <select id="status" name="status" class='select status-select form-control'>
+                                <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                                <option {{ if (eq .queries.status "requested") }} selected {{ end}} value="requested">Відгук очікується</option>
+                                <option {{ if (eq .queries.status "completed") }} selected {{ end}} value="completed">Відповів</option>        
+                            </select>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>

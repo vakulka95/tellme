@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Noah';
+    src: local('Noah Regular Italic'), local('Noah-RegularItalic'), url('Noahregularitalic.woff2') format('woff2'), url('Noahregularitalic.woff') format('woff'), url('Noahregularitalic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Noah';
+    src: local('Noah Regular'), local('Noah-Regular'), url('Noahregular.woff2') format('woff2'), url('Noahregular.woff') format('woff'), url('Noahregular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noah';
+    src: local('Noah Bold Italic'), local('Noah-BoldItalic'), url('Noahbolditalic.woff2') format('woff2'), url('Noahbolditalic.woff') format('woff'), url('Noahbolditalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Noah';
+    src: local('Noah Bold'), local('Noah-Bold'), url('Noahbold.woff2') format('woff2'), url('Noahbold.woff') format('woff'), url('Noahbold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}

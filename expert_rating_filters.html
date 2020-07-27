@@ -1,0 +1,98 @@
+<section class="modal">
+    <div class="container">
+        <div class="modal__wrap">
+                <div class="modal__close">
+                    <img src="static/style/images/search/close.svg" class='close' alt="modal-close">
+                </div>
+                <div class="title__item mb-4">
+                    <h1 class="title">Фільтр</h1>
+                </div>
+                <div class="filter__form">
+                <form action="/admin/expert_rating" method="GET"></form>
+                    <div class="status mb-3">
+                        <p class="status-title mb-0">Статус</p>
+                        <select id="status" name="status" class='select status-select form-control'>
+                            <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                            <option {{ if (eq .queries.status "on_review") }} selected {{ end}} value="on_review">На модерації</option>
+                            <option {{ if (eq .queries.status "blocked") }} selected {{ end}} value="blocked">Заблокований</option>
+                            <option {{ if (eq .queries.status "active") }} selected {{ end}} value="active">Активний</option>
+
+                        </select>
+                    </div>
+                    <div class="sort mb-3">
+                        <p class="spec-title mb-0">Сортувати по</p>
+                        <select id="order_by" name="order_by" class='select spec-select form-control'>
+                            <option {{ if (eq .queries.order_by "") }} selected {{ end}} value="created_at">Дата реєстраціі(за замовчуванням)</option>
+                            <option {{ if (eq .queries.order_by "review_count") }} selected {{ end}} value="review_count">Кількість відгуків</option>
+                            <option {{ if (eq .queries.order_by "average_rating") }} selected {{ end}} value="average_rating">Середня оцінка</option>
+                            <option {{ if (eq .queries.order_by "session_count") }} selected {{ end}} value="session_count">Сесій проведено</option>
+                            <option {{ if (eq .queries.order_by "completed_count") }} selected {{ end}} value="completed_count">Заявок виконано</option>
+                            <option {{ if (eq .queries.order_by "processing_count") }} selected {{ end}} value="processing_count">Заявок в роботі</option>
+
+                        </select>
+                    </div>
+                    <div class="sort-line">
+                        <p class="spec-title mb-0">Напрям сортування</p>
+                        <select id="order_dir" name="order_dir" class='select spec-select form-control'>
+                            <option {{ if (eq .queries.order_dir "asc") }} selected {{ end}} value="asc">За зростанням</option>
+                            <option {{ if or (eq .queries.order_dir "desc") (eq .queries.order_dir "") }} selected {{ end}} value="desc">За спаданням</option>
+                
+
+                        </select>
+                    </div>
+                    <div class="filter__btn d-flex flex-column justify-content-center mt-5 mb-4">
+                        <button type='button' class='filter-btn filter-search'>Пошук</button>
+                    </div>
+                    <div class="download-files d-flex">
+                        <a href="/admin/expert_rating/excel?status={{ .queries.status }}&order_by={{ .queries.order_by }}&order_dir={{ .queries.order_dir }}" role="button" class="download-doc w-100 pt-3 pb-3 mr-1">Загрузити Excel</a>
+                        <a href="/admin/expert_rating/pdf?status={{ .queries.status }}&order_by={{ .queries.order_by }}&order_dir={{ .queries.order_dir }}" role="button"   class="download-doc w-100 pt-3 pb-3">Загрузити PDF</a>
+                    </div>
+                </form>    
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Filter DESKTOP -->
+<section class='filter-desktop filter-desktop-rate'>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <form action="#" class='d-flex justify-content-between'>
+                    <div class="status mr-3 mt-3 mb-2 ">
+                        <p class="status-title mb-2 filter-desktop-inp-title">Статус</p>
+                        <select class="custom-select select status-select" id="status" name="status" >
+                            <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                            <option {{ if (eq .queries.status "on_review") }} selected {{ end}} value="on_review">На модерації</option>
+                            <option {{ if (eq .queries.status "blocked") }} selected {{ end}} value="blocked">Заблокований</option>
+                            <option {{ if (eq .queries.status "active") }} selected {{ end}} value="active">Активний</option>
+    
+                        </select>
+                    </div>
+                    <div class="sort mb-3">
+                        <p class="spec-title mb-0">Сортувати по</p>
+                        <select id="order_by" name="order_by" class='select spec-select form-control'>
+                            <option {{ if (eq .queries.order_by "") }} selected {{ end}} value="created_at">Дата реєстраціі(за замовчуванням)</option>
+                            <option {{ if (eq .queries.order_by "review_count") }} selected {{ end}} value="review_count">Кількість відгуків</option>
+                            <option {{ if (eq .queries.order_by "average_rating") }} selected {{ end}} value="average_rating">Середня оцінка</option>
+                            <option {{ if (eq .queries.order_by "session_count") }} selected {{ end}} value="session_count">Сесій проведено</option>
+                            <option {{ if (eq .queries.order_by "completed_count") }} selected {{ end}} value="completed_count">Заявок виконано</option>
+                            <option {{ if (eq .queries.order_by "processing_count") }} selected {{ end}} value="processing_count">Заявок в роботі</option>
+
+                        </select>
+                    </div>
+                    <div class="status mr-3 mt-3 mb-2 ">
+                        <p class="status-title mb-2 filter-desktop-inp-title">Напрям сортування</p>
+                        <select class="custom-select select status-select" id="order_dir" name="order_dir"  >
+                            <option {{ if (eq .queries.order_dir "asc") }} selected {{ end}} value="asc">За зростанням</option>
+                        <option {{ if or (eq .queries.order_dir "desc") (eq .queries.order_dir "") }} selected {{ end}} value="desc">За спаданням</option>
+                        </select>
+                    </div>
+                    <div class="download-block d-flex justify-content-center align-items-center">
+                        <a class="download-btn mr-3" href="/admin/expert_rating/excel?status={{ .queries.status }}&order_by={{ .queries.order_by }}&order_dir={{ .queries.order_dir }}" role="button" >Загрузити Excel</a>
+                        <a class="download-btn" href="/admin/expert_rating/pdf?status={{ .queries.status }}&order_by={{ .queries.order_by }}&order_dir={{ .queries.order_dir }}" role="button">Загрузить PDF</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,126 @@
+{{ template "header.html" .}}
+
+
+
+    <!-- TITLE -->
+    <section class='app__title pt-5 bg-white'>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-5">
+                    <div class="title__item">
+                        <h1 class="title">Відгуки</h1>
+                    </div>
+                    <nav class="menu mt-4">
+                        <ul class="nav menu__list d-flex justify-content-between">
+                            <li class="nav-item menu__item ">
+                                <a href="static/styles/Applications/index.html" class="nav-link menu--link pb-2">Заявки</a>
+                            </li>
+                            <li class="nav-item menu__item">
+                                <a href="static/styles/Psychologists/psy.html" class="nav-link menu--link pb-2">Психологи</a>
+                            </li>
+                            <li class="nav-item menu__item">
+                                <a href="static/styles/Feedbacks/feedbacks.html" class="nav-link menu--link menu--link--active pb-2">Відгуки</a>
+                            </li>
+                            <li class="nav-item menu__item">
+                                <a href="static/styles/Rate/rate.html" class="nav-link menu--link pb-2">Рейтинг</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{ template "review_filters.html" . }}
+
+     <!-- MAIN TABLE -->
+     <section class="main mt-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-require">
+                        <thead>
+                            <tr>
+                                <th class='pl-3'>Статус</th>
+                                <th class='pl-3'>Психолог</th>
+                                <th class='pl-5'>Задоволення від консультації</th>
+                                <th class='pl-2'>Оцінка психолога</th>
+                                <th class='pl-2'>Кількість консультацій</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{ range $i, $item := .data.items }}
+                            <tr>
+                                {{ $status := $item.status }}
+                                {{ with (eq $status "requested") }}<td class="text-center table-div" data-href="/admin/review/{{ $item.id }}"><p class="cell mb-0 table-require-cell table-cell-status">Відгук очікується</p></td>{{ end }}   
+                                {{ with (eq $status "completed") }}<td class="text-center table-div" data-href="/admin/review/{{ $item.id }}"><p class="cell mb-0 table-require-cell table-cell-status">Відповів</p></td>{{ end }}
+                                
+                                <td class="table-div text-center pt-4 pb-4" data-href="/admin/review/{{ $item.id }}">
+                                    <p class="cell mb-0 pt-2">{{ $item.expert_username }}</p>
+                                </td>
+                                <td class="table-div text-center pt-4 pb-4" data-href="/admin/review/{{ $item.id }}">
+                                    <p class="cell mb-0 table-require-cell table-cell-status">{{ $item.consultation_review }}</p>
+                                </td>
+                                <td class="table-div text-left pt-4 pb-4" data-href="/admin/review/{{ $item.id }}">
+                                    <p class="cell mb-0 pt-2">{{ $item.expert_point }}</p>
+                                </td>
+                                <td class="table-div text-left pt-4 pb-4" data-href="/admin/review/{{ $item.id }}">
+                                    <p class="cell mb-0 pt-2">{{ $item.consultation_count }}</p>
+                                </td>
+                            </tr>
+                            {{ end }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CLIENTS -->
+    <section class="feedbacks">
+        <div class="container">
+            <div class="feedbacks__wrap">
+                {{ range $i, $item := .data.items }}
+                <div class="psy mt-3 mb-3 pt-4">
+                    <div class="feedback__status ml-3 mr-5 mb-3">
+                        {{ $status := $item.status }}
+                        {{ with (eq $status "requested") }}<p data-href="/admin/review/{{ $item.id }}">Відгук очікується</p>{{ end }}   
+                        {{ with (eq $status "completed") }}<p data-href="/admin/review/{{ $item.id }}">Відповів</p>{{ end }}
+                       
+                    </div>
+                    <div class="about">
+                        <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                            <li class="about__item d-flex mb-3 flex-column">
+                                <p class="item-title mb-0">Психолог</p>
+                                <p data-href="/admin/review/{{ $item.id }}" class="about__link mr-2">{{ $item.expert_username }}</p>  
+                            </li>
+                            <li class="about__item d-flex flex-column mb-3">
+                                <p class="item-title mb-0">Задоволення від консультації</p>
+                                <p data-href="/admin/review/{{ $item.id }}" class="about__link mr-2">{{ $item.consultation_review }}</p>  
+                            </li>
+                            <li class="about__item d-flex flex-column mb-3">
+                                <p class="item-title mb-0">Oцінка психолога</p>
+                                <div class="count" data-href="/admin/review/{{ $item.id }}">{{ $item.consultation_count }}</div>
+                            </li>
+                            <li class="about__item d-flex flex-column mb-3">
+                                <p class="item-title mb-0">кількість консультацій</p>
+                                <div class="count" data-href="/admin/review/{{ $item.id }}">{{ $item.expert_point }}</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+    
+    <section class="pagination-section">
+        <div class="container">
+            <div class="row d-flex justify-content-between">
+
+                {{ template "review_pagging.html" .pagination }}
+
+                <div class="col-12 col-lg-4">
+                    <div class="all text-right">
+                        <p>Всього вибрано: {{ .data.total }} заявок. <br>{{ .pagination.page.TotalPages }} сторінок</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{ template "footer.html" . }}

@@ -1,0 +1,25 @@
+<form class="form" action="/admin/expert/{{ .expert.id }}/comment" method="POST"></form>
+    <div class='input__block'>
+        <p class="title-input">Коментарі</p>
+        <textarea name="psy-feedback" cols="30" rows="5"
+            class='textarea-feedback form-control' placeholder="Коментар..."></textarea>
+            <button type="submit" class="btn btn-info pull-right">Коментувати</button>
+    </div>
+</form>
+    <div class="show-comments mb-5">
+        {{ range $i, $comment := .comments }}
+        <div class="user-feedback mb-3">
+
+            <div class="info d-flex justify-content-between align-items-center">
+                <p class="title-input mb-0 mb-1">
+                    {{ $comment.admin_username }}
+                </p>
+                <p class="time-feedback h-50 mb-0">
+                    {{ $comment.created_at }}
+                </p>
+            </div>
+            <input type="text" class="input-user-feedback form-control pt-4 pb-4 border-0"
+                value='{{ $comment.body }}'>
+        </div>
+        {{ end }}
+    </div>

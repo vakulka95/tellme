@@ -1,0 +1,102 @@
+{{ template "header.html" .}}
+
+
+    <!-- TITLE -->
+    <section class='title__section pt-3 pb-2 mb-5'>
+        <div class="container">
+            <div class="row">
+                <div class="title__arrow mb-4">
+                    <a href="static/Applications/index.html">
+                        <img class='arrow' onclick="javascript:history.back()" src="static/images/arrow_back.svg" alt="arrow_back">
+                    </a>  
+                </div>
+                <div class="title__item">
+                    <h1 class="title ml-5">Відгук {{ .review.id }}</h1>
+                </div>          
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#" class='form w-100 ml-auto mr-auto'>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input__block-id">
+                                        <p class="title-input">ID</p>
+                                        <input type="text" name="feedback-ID" class="input-phone form-control" value="{{ .review.id }}">
+                                    </div>
+                                    <div class="input__block">
+                                        <p class="title-input">Телефон</p>
+                                        <input type="number" name="feedback-phone" class="input-phone form-control">
+                                    </div>
+                                    <div class="input__block">
+                                        <p class="title-input">Телефон</p>
+                                        <input type="number" name="feedback-phone" class="input-phone form-control">
+                                    </div>
+                                    <div>
+                                        <p class="title-input mb-3">Статус</p>
+                                        {{ $status := .review.status }}
+                                        {{ with (eq $status "requested") }}<p class="cell mb-0 table-require-cell table-cell-status d-inline text-uppercase">Відгук очікується</p>{{ end }}
+                                        {{ with (eq $status "completed") }}<p class="cell mb-0 table-require-cell table-cell-status d-inline text-uppercase">Відповів</p>{{ end }}
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-lg-6 ">
+                                    <div class="container">
+                                        <div class="row d-flex flex-column">
+                                            <div class="col order-last order-lg-first feedback__detail-btn d-flex w-100 flex-column flex-lg-row justify-content-lg-left pl-0 align-items-center mt-0 ">
+                                                <div class='col-12 col-lg-5 d-flex flex-column pl-0'>
+                                                    <p class="title-input">Заявка</p>
+                                                    <a href="/admin/requisition/{{ .review.requisition_id }}" role="button"class='detail-btn align-self-center text-center w-100 p-2 pr-4 pl-4'>
+                                                        Детальніше
+                                                    </a>
+                                                </div>
+                                                
+                                                <div class='col-12 col-lg-5 d-flex flex-column pl-0'>
+                                                    <p class="title-input">Психолог</p>
+                                                    <a href="/admin/expert/{{ .review.expert_id }}" role="button" class='detail-btn align-self-center text-center w-100 p-2 pr-4 pl-4'>
+                                                        Детальніше
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="input__block d-flex flex-column mt-3">
+                                                <p class="title-input">Стать</p>
+                                                <input type="text" name="feedback-gender" class="input-phone form-control">
+                                            </div>
+                                            <div class="input__block d-flex flex-column mt-0">
+                                                <p class="title-input mt-0">Освіта</p>
+                                                <input type="text" name="feedback-education" class="input-enjoy form-control">
+                                            </div>
+                                            <div class="date-of-create">
+                                                <p class="title-input mt-0">Дата запиту</p>
+                                                <div class="block-date-time d-flex">
+                                                   <p class='date-time p-3 mr-1'>{{ .review.created_at }}</p> 
+                                                   <p class='date-time p-3'>{{ .review.created_at }}</p> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    <section class="pagination-section">
+        <div class="container">
+            <div class="row d-flex justify-content-between">
+                {{ template "footer.html" . }}
+                <div class="col-12 col-lg-4">
+                    <div class="all text-right">
+                        <p>Всього вибрано: {{ .data.total }} заявок. <br>{{ .pagination.page.TotalPages }} сторінок</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
