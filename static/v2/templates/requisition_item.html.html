@@ -1,0 +1,113 @@
+{{ template "header.html" . }}
+
+
+    <!-- TITLE -->
+    <section class='app__title pt-3 pb-2'>
+        <div class="container">
+            <div class="row d-flex-lg flex-lg-row-reverse">
+                {{ if eq .metadata.role "expert" }}
+                <div class="me mt-2 col-12 col-lg-6 d-flex flex-column justify-content-end">
+                    <p class='me-prof mb-2'><span>Психолог</span></p>
+                    <p class="me-name">{{ .requisition.username }}</p>
+                </div>
+                {{ end }}
+                <div class="title__item col-12 col-lg-6">
+                    <h1 class="title">Заявка {{ .requisition.username }}</h1>
+                </div> 
+            </div>
+        </div>
+    </section>
+    
+    <section class='ml-auto mr-auto w-75'>
+        <div class="container">
+            <div class="row">
+                <form action="#" class='app_form w-100  bg-white ml-auto mr-auto pb-5 pt-5 border' role="form">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-lg-6 mr-0">
+                            <div class="form__id form-group">
+                                <p class="title-input">ID</p>
+                                <input type="text" name="ID" class="input-id form-control" value='{{ .requisition.id }}'>
+                            </div>
+                            <div class="form__name form-group">
+                                <p class="title-input">Ім'я</p>
+                                <input type="text" name="name" class="input-name form-control"
+                                     value='{{ .requisition.username }}'>
+                                <div class="app-gender-form">
+                                    {{ $gender := .requisition.gender }}
+                                    {{ with (eq $gender "male") }}<span class="badge badge-pill badge-info">Чол.</span>{{ end }}
+                                    {{ with (eq $gender "female") }}<span class="badge badge-pill badge-primary">Жін.</span>{{ end }}
+                                </div>
+                            </div>
+                            <div class="form__day form-group">
+                                <p class="title-input">День зворотнього зв'язку</p>
+                                <input type="text" name="app-day" class="input-day form-control" value='{{ .requisition.feedback_type }}' >
+                            </div>
+                            <div class="form__hour form-group">
+                                <p class="title-input">Час зворотнього зв'язку</p>
+                                <input type="text" name="app-hour" class="input-hour form-control" value='{{ .requisition.feedback_type }}'>
+                            </div>
+
+                            <div class="form__describe form-group">
+                                <p class="title-input">Опис звернення</p>
+                                <textarea name="app-describe" cols="30" rows="5" class='textarea-describe form-control'
+                                    placeholder="Агарофобия, панический страх при переходе проезжей части, на широкой площади"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mr-0">
+                            <div class="form__phone form-group">
+                                <p class="title-input">Телефон</p>
+                                <input type="text" name="app-phone" class="input-phone form-control"
+                                    placeholder="050 000 00 00" value='{{ if (ne .requisition.phone "") }}{{ .requisition.phone }}{{ else }}Недоступно{{ end }}'>
+                            </div>
+                            <div class="form__spec form-group">
+                                <p class="title-input">Спеціалізація</p>
+                                <input type="text" name="app-specialization" class="input-spec form-control"
+                                    placeholder="Фобії" value='{{ .requisition.diagnosis }}'>
+                            </div>
+                            <div class="form__session form-group">
+                                <p class="title-input">Сесій проведено</p>
+                                <input type="text" name="app-session" class="input-session form-control"
+                                    placeholder="0" value='{{ .requisition.session_count }}'>
+                            </div>
+                            <div class="form__gender form-group">
+                                <p class="title-input">Стать психолога</p>
+                                {{ $expert_gender := .requisition.expert_gender }}
+                                {{ with (eq $expert_gender "male") }}<span class="badge badge-pill badge-info">Чол.</span>{{ end }}
+                                {{ with (eq $expert_gender "female") }}<span class="badge badge-pill badge-primary">Жін.</span>{{ end }}
+                                {{ with (eq $expert_gender "no_matter") }}<span class="badge badge-pill badge-secondary">Байдуже</span>{{ end }}
+
+                            </div>
+                            <div class="form__last-call form-group">
+                                <p class="title-input">Зворотній зв'язок</p>
+                                <input type="text" name="app-last-call" class="input-last-call form-control" value='{{ if (ne .requisition.feedback_contact "") }}{{ .requisition.feedback_contact }}{{ else }}Недоступно{{ end }}'>
+                            </div>
+                            <div class="date-of-create">
+                                <p class="title-input">Дата створення заявки</p>
+                                <div class="block-date-time d-flex">
+                                    <p class='date-time p-3 mr-1'>{{ .requisition.created_at }}</p>
+                                    <p class='date-time p-3'>{{ .requisition.created_at }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form action="#" class='w-75 ml-auto mr-auto mb-5 mt-5 bg-white w-100 h-100 p-3 ' role="form">
+                    <div class="row d-flex justify-content-between bg-white">
+                        <div class="col-lg-5">
+                            <div"
+                                class="consultation d-flex flex-column justify-content-center align-items-center pt-5 pb-5">
+                                <p class='font-weight-bold'>1 Консультація</p>
+                                <p>2020-07-18 14:53 </p>
+                            </div>
+                        </div>
+                        <div class="buttons col-lg-7 d-flex flex-wrap">
+                            <button class="btn main-btn btn-primary mt-3 mr-3">Провести консультацію 1</button>
+                            <button class="btn main-btn btn-danger mt-3 ">Провести консультацію 2</button>
+                            <button class="btn main-btn btn-success mt-3 mr-3">Завершити</button>
+                            <button class="btn main-btn btn-danger mt-3 ">Відмовитися</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {{ template "footer.html" . }}

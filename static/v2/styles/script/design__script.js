@@ -7,6 +7,31 @@ const modal = document.querySelector('.modal');
 const body = document.querySelector('body');
 const user = document.querySelector('.user');
 const userImg = document.querySelector('.user img');
+const menuModal = document.querySelector('.menu-modal');
+const drag = document.querySelector('.drag');
+const dragTitle = document.querySelector('.drag-title');
+const filter = document.querySelector('.filter');
+const filterDesk = document.querySelector('.filter-desktop');
+const appClients = document.querySelector('.app__clients');
+const psychologists = document.querySelector('.psychologists');
+const header = document.querySelector('.header');
+const main = document.querySelector('.main');
+const rate = document.querySelector('.rate');
+const feedbacks = document.querySelector('.feedbacks');
+const menuLink= document.querySelectorAll('.menu--link');
+const tablesTr = document.querySelectorAll('table tr');
+const titleArrow = document.querySelector('.title__arrow');
+const button = document.querySelector('.button');
+const desktopNav = document.querySelector('.desktop-nav')
+const gender = document.querySelector('.app-gender-form');
+const form = document.querySelector('.form');
+const arrow = document.querySelector('.arrow');
+const filterSearch = document.querySelector('.filter-desktop-search');
+const nameInput = document.querySelectorAll('.name');
+const phoneInput = document.querySelectorAll('.phone');
+const filterMobSearch = document.querySelector('.filter-mob-input');
+const nameMob = document.querySelectorAll('.name-mob');
+
 
 
 filter_btn.onclick = showModal;
@@ -24,7 +49,6 @@ function closeModal(){
 }
 
 // Active nav link
-const menuLink= document.querySelectorAll('.menu--link');
 
 menuLink.forEach(el => {
     el.onclick = () => {
@@ -36,16 +60,6 @@ menuLink.forEach(el => {
 })
 
 // Hide elements
-
-const filter = document.querySelector('.filter');
-const filterDesk = document.querySelector('.filter-desktop');
-const appClients = document.querySelector('.app__clients');
-const desktopNav = document.querySelector('.desktop-nav');
-const psychologists = document.querySelector('.psychologists');
-const header = document.querySelector('.header');
-const main = document.querySelector('.main');
-const rate = document.querySelector('.rate');
-const feedbacks = document.querySelector('.feedbacks');
 
 
 
@@ -82,7 +96,6 @@ window.addEventListener('resize', hideFilterBlock);
 
 // Background table
 
-const tablesTr = document.querySelectorAll('table tr');
 
 function spillTr(){
     for(let i = 1; i < tablesTr.length; i++){
@@ -95,9 +108,6 @@ function spillTr(){
 spillTr();
 
 // SEARCH NAME 
-const filterSearch = document.querySelector('.filter-desktop-search');
-const nameInput = document.querySelectorAll('.name');
-const phoneInput = document.querySelectorAll('.phone');
 
 filterSearch.oninput = function(){
     let val = this.value.trim();
@@ -134,17 +144,6 @@ filterSearch.oninput = function(){
 
 
 // change Arrow
-const titleArrow = document.querySelector('.title__arrow');
-const form = document.querySelector('.form');
-const button = document.querySelector('.button');
-const arrow = document.querySelector('.arrow');
-const userImg = document.querySelector('.user img');
-const user = document.querySelector('.user');
-const desktopNav = document.querySelector('.desktop-nav')
-const menuModal = document.querySelector('.menu-modal');
-const gender = document.querySelector('.app-gender-form');
-const form = document.querySelector('.form');
-const arrow = document.querySelector('.arrow');
 
 function changeArrow(){
     if(document.body.clientWidth >= 1024){
@@ -170,20 +169,6 @@ changeArrow();
 window.addEventListener('resize', changeArrow); 
 
 
-user.onclick = () => {
-
-    menuModal.classList.toggle('show');
-    menuModal.onclick = () => { 
-    menuModal.classList.remove('show');
-    }
-}
-
-// Active nav link
-const user = document.querySelector('.user');
-const userImg = document.querySelector('.user img');
-const menuModal = document.querySelector('.menu-modal');
-const drag = document.querySelector('.drag');
-const dragTitle = document.querySelector('.drag-title');
 
 
 // show modal menu
@@ -195,7 +180,6 @@ user.onclick = () => {
     }
 }
 
-const desktopNav = document.querySelector('.desktop-nav');
 
 
 function hideBlock(){
@@ -229,10 +213,6 @@ window.addEventListener('resize', hideBlock);
 // Search application in search input
 
 
-const filterSearch = document.querySelector('.filter-desktop-search');
-const nameInput = document.querySelectorAll('.name');
-const phoneInput = document.querySelectorAll('.phone');
-
     filterSearch.oninput = function(){
         let val = this.value.trim();
         console.log(val)
@@ -256,8 +236,7 @@ const phoneInput = document.querySelectorAll('.phone');
         }
     }
 
-const filterMobSearch = document.querySelector('.filter-mob-input');
-const nameMob = document.querySelectorAll('.name-mob');
+
 
 filterMobSearch.oninput = function(){
     let val = this.value.trim();

@@ -30,23 +30,41 @@
     </header>
     <!-- MENU MODAL -->
     {{ if .metadata.logged_in }}
-    
+    <!-- Это навигация для админа, она должна находиться в таком себе блоке "Заголовок" -->
+    <!-- <nav class="menu mt-4">
+        <ul class="nav menu__list d-flex justify-content-between">
+            <li class="nav-item menu__item ">
+                <a href="#" class="nav-link menu--link menu--link--active pb-2">Заявки</a>
+            </li>
+            <li class="nav-item menu__item">
+                <a href="../Psychologists/psy.html" class="nav-link menu--link pb-2">Психологи</a>
+            </li>
+            <li class="nav-item menu__item">
+                <a href="../Feedbacks/feedbacks.html" class="nav-link menu--link pb-2">Відгуки</a>
+            </li>
+            <li class="nav-item menu__item">
+                <a href="../Rate/rate.html" class="nav-link menu--link pb-2">Рейтинг</a>
+            </li>
+        </ul>
+    </nav> -->
+
+
 
     <section class="menu-modal">
         <nav class="nav">
             <ul class="nav-list w-100 ">
                 <li class="nav-item border-bottom border-dark">
-                    <a href="/static/styles//Psy_admin/Applications/index.html" class="nav-link">Заявки</a>
+                    <a href="/admin/profile" class="nav-link">Заявки</a>
                 </li>
                 <li class="nav-item border-bottom border-dark">
-                    <a href="/static/styles/myProfile/myProfile.html" class="nav-link">Мій профіль</a>
+                    <a href="/admin/review?limit=10&offset=0" class="nav-link">Мій профіль</a>
                 </li>
                 <li class="nav-item border-bottom border-dark ">
                     <a href="/static/styles/myFeedback/myFeedback.html" class="nav-link ">Мої відгуки</a>
                 </li>
                 {{ end }}
                 <li class="nav-item border-bottom border-dark">
-                    <a href="#" class="nav-link">Вихід</a>
+                    <a href="/admin/logout" class="nav-link">Вихід</a>
                 </li>
             </ul>
         </nav>

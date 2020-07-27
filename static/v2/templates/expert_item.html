@@ -7,7 +7,7 @@
                 {{ if (eq .metadata.role "admin" )}}
                 <div class="col-sm-12 d-flex">
                     <div class="title__arrow mb-4 mr-5">
-                        <img class='arrow border' onclick="javascript:history.back()" src="static/style/images/arrow_back-desk.svg" alt="arrow_back">
+                        <img class='arrow border' onclick="javascript:history.back()" src="/static/styles/images/arrow_back-desk.svg" alt="arrow_back">
                     </div>
                     <div class="title__item">
                         <h1 class="title">Психолог {{ .expert.username }}</h1>
@@ -61,11 +61,11 @@
                                     </div>
                                 </div>
 
-                                <div class='input__block'>
+                                <!-- <div class='input__block'>
                                     <p class="title-input">Спеціалізації</p>
                                     <input type="text" name="psy-specialization" class="input-spec form-control"
                                         placeholder="Фобії">
-                                </div>
+                                </div> -->
 
                                 <div class='input__block'>
                                     <p class="title-input">Заявок завершено</p>
@@ -74,26 +74,15 @@
                                 </div>
                                 <div class="spec mb-4 w-100">
                                     <p class="title-input mb-0">Спеціалізації</p>
-                                    <select name="spec-app" class='select spec-select form-control '>
-                                        <option value="Вибрати зі списку">Вибрати зі списку</option>
-                                        <option value="Депресія">Депресія</option>
-                                        <option value="Не в роботі">Розлади харчової поведінки</option>
-                                        <option value="сімейні стосунки">Проблеми в сімейних стосунках</option>
-                                        <option value="Тривога та здоров'я">Тривога та здоров'я</option>
-                                        <option value="Обсесивно-компульсивний розлад">Обсесивно-компульсивний розлад
-                                        </option>
-                                        <option value="Панічний розлад">Панічний розлад</option>
-                                        <option value="Проблеми у стосунках батьків і дітей">Проблеми у стосунках
-                                            батьків і дітей</option>
-                                        <option value="ВсФобіїі">Фобії</option>
-                                        <option value="ПТСР">ПТСР</option>
-                                        <option value="Генералізований тривожний розлад">Генералізований тривожний
-                                            розлад</option>
+                                    <select multiple class="custom-select select spec-select form-control" id="specializations" name="specializations">
+                                        {{ range $spec, $specOpt := .queries.specializations }}
+                                            <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
+                                        {{ end }}
                                     </select>
                                 </div>
                                 <div class='input__block'>
                                     <p class="title-input">Спеціалізації</p>
-                                    <input type="text" name="psy-password" class="input-password form-control"
+                                    <input type="text" name="psy-password" class="input-spec form-control"
                                         placeholder="Вибрати зі списку">
                                 </div>
                             </div>
@@ -114,7 +103,6 @@
                                     <p class="title-input">Стать</p>
                                     {{ with (eq .expert.gender "male") }}<input type="text" name="psy-gender" class="input-gender form-control" value='Чол.' disabled='disabled'>{{ end }}
                                     {{ with (eq .expert.gender "female") }}<input type="text" name="psy-gender" class="input-gender form-control" value='Жін.' disabled='disabled'>{{ end }}
-
                                     <button class='btn-in-input edit edit-gender'>Редагувати</button>
                                     <div class="apply-block-gender hide">
                                         <button class="btn-in-input bg-danger text-white denied">X</button>
@@ -130,13 +118,13 @@
                                         <button class="btn-in-input bg-success apply"></button>
                                     </div>
                                 </div>
-                                <div class='input__block'>
+                                <!-- <div class='input__block'>
                                     <p class="title-input">Заявок в роботі</p>
                                     <div class="d-flex">
                                         <input type="number" name="psy-active-request"
                                             class='input-active-request form-control' placeholder="Вибрати зі списку" disabled>
                                     </div>
-                                </div>
+                                </div> -->
 
 
 
@@ -200,16 +188,17 @@
                                             {{ end }}
                                         {{ end }}
                                     </div>
-                                    <div class='input__block d-flex flex-column col-12 col-lg-6'>
+                                    <form class='input__block d-flex flex-column col-12 col-lg-6' action="/admin/expert/{{ $expert_id }}/document" enctype="multipart/form-data" method="POST">
                                         <p class="title-input">Документи</p>
                                         <div class="download-document d-flex flex-column justify-content-center">
                                             <img class='pb-3' src="static/style/images/form/download-image.svg"
                                                 alt="download-image">
                                             <p>Перетягніть в рамку зображення</p>
                                         </div>
-                                        <button class='download-btn align-self-center text-center w-75 mt-3 form-btn'>Завантажити з
-                                            ком'ютера</button>
-                                    </div>
+                                        <button type="submit" class='download-btn align-self-center text-center w-75 mt-3 form-btn'>
+                                            Завантажити з ком'ютера
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
