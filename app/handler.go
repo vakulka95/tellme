@@ -26,6 +26,7 @@ func (s *apiserver) registerHandlers() {
 	//
 	s.engine.LoadHTMLGlob(path.Join(s.config.StaticFilesDir, "/templates/*"))
 	s.engine.Static("/static/styles", path.Join(s.config.StaticFilesDir, "/styles"))
+	s.engine.Static("/document/expert", s.config.ExpertDocumentsStoreDir)
 
 	authentication := s.authenticationInterceptor()
 	allAuthorization := s.authorizationInterceptor(UserRoleExpert, UserRoleAdmin)
@@ -38,7 +39,7 @@ func (s *apiserver) registerHandlers() {
 	//
 	// Admin Auth
 	//
-	s.engine.GET("/admin", authentication, s.webIndexPage)
+	s.engine.GET("/admin/", authentication, s.webIndexPage)
 	s.engine.POST("/admin/login", s.webAdminLogin)
 	s.engine.GET("/admin/login", s.webAdminGetLoginPage)
 	s.engine.GET("/admin/logout", s.webAdminLogout)
