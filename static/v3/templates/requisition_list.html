@@ -20,173 +20,36 @@
                         </tr>
                     </thead>
                     <tbody class='col-lg-12'>
+                        {{ range $i, $item := .data.items }}
                         <tr>
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2 phone">099 00 00 00</p>
+                            <td class='text-center border-0 pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
+                                <p class="cell mb-0 pt-2">{{ $item.created_at }}</p>
                             </td>
-                            <td class="text-center border-0 pt-4 pb-4 text-white">
-                                <p class='cell specialization table-require-cell mb-0'>Важке переживання втрати</p>
+                            <td class="text-center border-0 pt-4 pb-4 text-white" data-href="/admin/requisition/{{ $item.id }}">
+                                <p class='cell specialization table-require-cell mb-0'>{{ $item.diagnosis }}</p>
                             </td>
-                            <td class='text-center border-0 pt-4 pb-4'>
+                            <td class='text-center border-0 pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
                                 <p class="cell mb-0 pt-2">
-                                    <a href="#" class='name cell'>Танюша Некрасова</a>
+                                    <a class='name cell'>{{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}</a>
                                 </p>
                             </td>
-                            <td class='text-center border-0 pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
+                            <td class='text-center border-0 pt-4 pb-4 d-flex align-items-center justify-content-center' data-href="/admin/requisition/{{ $item.id }}">
+                            {{ $gender := $item.gender }}
+                            {{ with (eq $gender "male") }}<span class='gender mb-0'>Чол.</span>{{ end -}}
+                            {{ with (eq $gender "female") }}<span class='gender mb-0'>Жін.</span>{{ end -}}
                             </td>
-
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">2020.20.20</p>
+                            <td class='text-center border-0 pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
+                                <p class="cell mb-0 pt-2 phone">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</p>
                             </td>
-                            <td class='text-center border-0 d-flex align-items-center justify-content-center  ml-3'>
-                                <p class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не в роботі</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2 phone">099 00 00 00</p>
-                            </td>
-                            <td class="text-center border-0 pt-4 pb-4 text-white">
-                                <p class='cell specialization table-require-cell mb-0'>Важке переживання втрати</p>
-                            </td>
-                            <td class='text-center border-0 pt-4 pb-4'>
-
-                                <p class="cell mb-0 pt-2">
-                                    <a href="#" class='name cell'>Танюша Некрасова</a>
-                                </p>
-                            </td>
-                            <td class='text-center border-0 pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
-                            </td>
-
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">2020.20.20</p>
-                            </td>
-                            <td class='text-center border-0 d-flex align-items-center justify-content-center  ml-3'>
-                                <p class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не в роботі</p>
+                            <td class='text-center border-0 d-flex align-items-center justify-content-center  ml-3' data-href="/admin/requisition/{{ $item.id }}">
+                            {{ $status := $item.status }}
+                            {{ with (eq $status "created") }}<span class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не в роботі</span>{{ end }}
+                            {{ with (eq $status "processing") }}<span class="cell mb-0 table-require-cell table-cell-status search-status-sel">В роботі</span>{{ end }}
+                            {{ with (eq $status "completed") }}<span class="cell mb-0 table-require-cell table-cell-status search-status-sel">Виконаний</span>{{ end }}
+                            {{ with (eq $status "no_answer") }}<span class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не актуально</span>{{ end }}
                             </td>
                         </tr>
-                        <tr>
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2 phone">099 00 00 00</p>
-                            </td>
-                            <td class="text-center border-0 pt-4 pb-4 text-white">
-                                <p class='cell specialization table-require-cell mb-0'>Важке переживання втрати</p>
-                            </td>
-                            <td class='text-center border-0 pt-4 pb-4'>
-
-                                <p class="cell mb-0 pt-2">
-                                    <a href="#" class='name cell'>Танюша Некрасова</a>
-                                </p>
-                            </td>
-                            <td class='text-center border-0 pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
-                            </td>
-
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">2020.20.20</p>
-                            </td>
-                            <td class='text-center border-0 d-flex align-items-center justify-content-center  ml-3'>
-                                <p class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не в роботі</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2 phone">099 00 00 00</p>
-                            </td>
-                            <td class="text-center border-0 pt-4 pb-4 text-white">
-                                <p class='cell specialization table-require-cell mb-0'>Важке переживання втрати</p>
-                            </td>
-                            <td class='text-center border-0 pt-4 pb-4'>
-
-                                <p class="cell mb-0 pt-2">
-                                    <a href="#" class='name cell'>Танюша Некрасова</a>
-                                </p>
-                            </td>
-                            <td class='text-center border-0 pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
-                            </td>
-
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">2020.20.20</p>
-                            </td>
-                            <td class='text-center border-0 d-flex align-items-center justify-content-center  ml-3'>
-                                <p class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не в роботі</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2 phone">099 00 00 00</p>
-                            </td>
-                            <td class="text-center border-0 pt-4 pb-4 text-white">
-                                <p class='cell specialization table-require-cell mb-0'>Важке переживання втрати</p>
-                            </td>
-                            <td class='text-center border-0 pt-4 pb-4'>
-
-                                <p class="cell mb-0 pt-2">
-                                    <a href="#" class='name cell'>Танюша Некрасова</a>
-                                </p>
-                            </td>
-                            <td class='text-center border-0 pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
-                            </td>
-
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">2020.20.20</p>
-                            </td>
-                            <td class='text-center border-0 d-flex align-items-center justify-content-center  ml-3'>
-                                <p class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не в роботі</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2 phone">099 00 00 00</p>
-                            </td>
-                            <td class="text-center border-0 pt-4 pb-4 text-white">
-                                <p class='cell specialization table-require-cell mb-0'>Важке переживання втрати</p>
-                            </td>
-                            <td class='text-center border-0 pt-4 pb-4'>
-
-                                <p class="cell mb-0 pt-2">
-                                    <a href="#" class='name cell'>Танюша Некрасова</a>
-                                </p>
-                            </td>
-                            <td class='text-center border-0 pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
-                            </td>
-
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">2020.20.20</p>
-                            </td>
-                            <td class='text-center border-0 d-flex align-items-center justify-content-center  ml-3'>
-                                <p class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не в роботі</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2 phone">099 00 00 00</p>
-                            </td>
-                            <td class="text-center border-0 pt-4 pb-4 text-white">
-                                <p class='cell specialization table-require-cell mb-0'>Важке переживання втрати</p>
-                            </td>
-                            <td class='text-center border-0 pt-4 pb-4'>
-
-                                <p class="cell mb-0 pt-2">
-                                    <a href="#" class='name cell'>Танюша Некрасова</a>
-                                </p>
-                            </td>
-                            <td class='text-center border-0 pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
-                            </td>
-
-                            <td class='text-center border-0 pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">2020.20.20</p>
-                            </td>
-                            <td class='text-center border-0 d-flex align-items-center justify-content-center  ml-3'>
-                                <p class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не в роботі</p>
-                            </td>
-                        </tr>
+                        {{ end }}
                     </tbody>
                 </table>
             </div>
