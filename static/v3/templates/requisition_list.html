@@ -43,10 +43,10 @@
                             </td>
                             <td class='text-center border-0 d-flex align-items-center justify-content-center  ml-3' data-href="/admin/requisition/{{ $item.id }}">
                             {{ $status := $item.status }}
-                            {{ with (eq $status "created") }}<span class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не в роботі</span>{{ end }}
-                            {{ with (eq $status "processing") }}<span class="cell mb-0 table-require-cell table-cell-status search-status-sel">В роботі</span>{{ end }}
-                            {{ with (eq $status "completed") }}<span class="cell mb-0 table-require-cell table-cell-status search-status-sel">Виконаний</span>{{ end }}
-                            {{ with (eq $status "no_answer") }}<span class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не актуально</span>{{ end }}
+                            {{ with (eq $status "created") }}<p class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не в роботі</p>{{ end }}
+                            {{ with (eq $status "processing") }}<p class="cell mb-0 table-require-cell table-cell-status search-status-sel">В роботі</p>{{ end }}
+                            {{ with (eq $status "completed") }}<p class="cell mb-0 table-require-cell table-cell-status search-status-sel">Виконаний</p>{{ end }}
+                            {{ with (eq $status "no_answer") }}<p class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не актуально</p>{{ end }}
                             </td>
                         </tr>
                         {{ end }}
