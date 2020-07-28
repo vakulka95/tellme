@@ -14,7 +14,7 @@ build_image:
     - cat $STAGING_CA_FILE > ~/.crts/ca.pem
     - cat $STAGING_CERT_FILE > ~/.crts/cert.pem
     - cat $STAGING_KEY_FILE > ~/.crts/key.pem
-    - export DOCKER_HOST=STAGING_MACHINE_ADDR DOCKER_TLS_VERIFY=1 DOCKER_CERT_PATH=~/.crts/
+    - export DOCKER_HOST=$STAGING_MACHINE_ADDR DOCKER_TLS_VERIFY=1 DOCKER_CERT_PATH=~/.crts/
     - docker --tlsverify ps
   script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin

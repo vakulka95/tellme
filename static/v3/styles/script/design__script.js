@@ -258,4 +258,6 @@ filterMobSearch.oninput = function(){
     }
 }
 
-
+function onSubmitLogin(token) {
+    document.getElementById('reCaptchaForm').submit();
+}
