@@ -9,11 +9,23 @@ build_image:
   image: docker:latest
   services:
     - docker:dind
+  before_script:
+    - mkdir -pv ~/.crts
+    - cat $STAGING_CA_FILE > ~/.crts/ca.pem
+    - cat $STAGING_CERT_FILE > ~/.crts/cert.pem
+    - cat $STAGING_KEY_FILE > ~/.crts/key.pem
+    - export DOCKER_HOST=STAGING_MACHINE_ADDR DOCKER_TLS_VERIFY=1 DOCKER_CERT_PATH=~/.crts/
+    - docker --tlsverify ps
   script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin
     - docker build --pull -t "$CI_REGISTRY_IMAGE:latest" -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA" .
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA"
     - docker push "$CI_REGISTRY_IMAGE:latest"
+
+    - docker --tlsverify ps
+
+  after_script:
+    - rm -rf ~/.crts
   only:
     - master
     - /^RELEASE-.*$/%
