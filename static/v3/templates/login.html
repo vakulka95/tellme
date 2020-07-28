@@ -1,24 +1,23 @@
 
 {{ template "header.html" . }}
 
-<bR>
-<bR>
-<bR>
-<bR>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 offset-md-4">
-            <div class="card text-center card  bg-default mb-3">
-                <div class="card-header">
-                    Вхід для психологів
+<section >
+    <div class="container">
+        <div class="row">
+            <div class="login-block col-lg-5 col-12 d-flex flex-column justify-content-center ml-auto mr-auto mt-5">
+                <div class="title ml-auto mr-auto mb-5">
+                    <h1>Вхід</h1>
                 </div>
-                <form class="card-body" id="reCaptchaForm" action="/admin/login" method="POST">
-                    <div class="form-group">
-                        <input type="text" class="form-control input-sm chat-input" id="login" name="login" placeholder="Логін">
+                <form action="/admin/login" method="POST" id="reCaptchaForm" class="bg-white pt-5 pb-5">
+                    <div class="form-group w-75 ml-auto mr-auto">
+                        <label for="login">Логін</label>
+                        <input type="text" id="login" name="login" class='form-control' placeholder="Логін">
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control input-sm chat-input" id="password" name="password"  placeholder="Пароль" />
+                    <div class="form-group w-75 ml-auto mr-auto">
+                        <label for="pass">Пароль</label>
+                        <input type="password" id="password" name="password" class='form-control' placeholder="Пароль">
+                        <img src="/static/styles/images/form/eye.svg" alt="eye" class='eye-close'>
+                        <img src="/static/styles/images/form/open-eye.svg" alt="eye" class='eye-open hide'>
                     </div>
                     {{ if .error }}
                         <div class="form-group">
@@ -27,11 +26,14 @@
                             </div>
                         </div>
                     {{ end }}
-                    <button type="submit" class="btn btn-secondary g-recaptcha" data-sitekey="6LeHwKYZAAAAABAzPuWRa4uvw9Fnkbt3D-R8yj9J" data-callback='onSubmitLogin'>Вхід</button>
+                    <button type="submit" class='download-btn d-block text-center w-75 mt-5 ml-auto mr-auto form-btn g-recaptcha' data-sitekey="6LeHwKYZAAAAABAzPuWRa4uvw9Fnkbt3D-R8yj9J" data-callback='onSubmitLogin'>
+                        Вхід
+                    </button>
                 </form>
             </div>
+
         </div>
     </div>
-</div>
+</section>
 
-{{ template "footer.html" .}}
+{{ template "footer.html" . }}

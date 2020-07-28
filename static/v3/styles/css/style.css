@@ -32,6 +32,13 @@ img{
 .hide{
     display: none;
 }
+.filter-submit{
+    margin-left: 10px;
+}
+.btn-submit{
+    background-color:  #37A8FA;
+
+}
 
 /********* HEADER *********/
 
@@ -65,7 +72,7 @@ img{
     font-weight: bold;
     font-size: 49px;
     line-height: 61px;
-    
+
     color: #131E52;
 
 }
@@ -139,7 +146,7 @@ img{
     background-color: #f1f1f1;
 }
 
- .psy__status, .feedback__status, .add-doc-btn{
+.psy__status, .feedback__status, .add-doc-btn{
     color: #fff;
     background-color: #272E50;
     border-radius: 5px;
@@ -246,7 +253,7 @@ img{
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
- 
+
     color: #454545;
 }
 
@@ -292,9 +299,9 @@ img{
 
     background: #44B1BD;
     border-radius: 5px;
-    
+
     letter-spacing: 0.01em;
-    
+
     color: #FFFFFF;
 }
 /********* DESKTOP FORM *********/
@@ -355,7 +362,7 @@ img{
 }
 
 
- input, textarea,  select{
+input, textarea,  select{
 
     border: 1px solid #E3E8F5;
     box-sizing: border-box;
@@ -369,6 +376,20 @@ img{
 .input__block{
     position: relative;
 }
+.delete{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: red;
+    padding: 5px 10px;
+    border-radius: 100%;
+    cursor: pointer;
+    color: #fff;
+}
+
+
+
+
 
 .app-gender-form{
     position: absolute;
@@ -485,7 +506,7 @@ img{
     background: url(../images/form/apply-btn.svg) no-repeat;
     background-position: center;
     padding: 13px 15px;
-    
+
 }
 
 .edit{
@@ -547,13 +568,12 @@ img{
     color: #fff;
 }
 
-
 /********* FEEDBACK   ********/
 
 .item-title{
     font-size: 14px;
     line-height: 16px;
-    
+
     color: rgba(0, 0, 0, 0.5);
 }
 
@@ -592,7 +612,7 @@ thead th{
 
 .cell{
     border-radius: 100px;
-    
+
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
@@ -622,8 +642,22 @@ thead th{
 .buttons .btn{
     width: 45%;
 }
-.title__arrow{
+
+/* Login */
+.form-group{
+    position: relative;
+}
+.eye-close, .eye-open{
+    position: absolute;
+    top: 40px;
+    right: 20px;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 1024px){
+    .sign-in{
+        background: #fff;
+    }
 }
 
 @media only screen and (min-width: 320px){
@@ -636,7 +670,6 @@ thead th{
         padding-top: 6px;
         padding-bottom: 6px;
     }
-    
 }
 
 
@@ -644,7 +677,6 @@ thead th{
     .filter-btn::after{
         left: 60%;
     }
-    
     .page-link{
         padding: 9px;
     }

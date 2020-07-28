@@ -261,3 +261,23 @@ filterMobSearch.oninput = function(){
 function onSubmitLogin(token) {
     document.getElementById('reCaptchaForm').submit();
 }
+
+const eyeClose = document.querySelector('.eye-close');
+const eyeOpen = document.querySelector('.eye-open');
+const signInPass = document.getElementById('pass');
+
+function showMePassword() {
+    eyeClose.onclick = function(){
+        eyeClose.style.display = 'none';
+        eyeOpen.style.display = 'block';
+        signInPass.setAttribute('type', 'text');
+
+        eyeOpen.onclick = function(){
+            eyeClose.style.display = 'block';
+            eyeOpen.style.display = 'none';
+            signInPass.setAttribute('type', 'password');
+
+        }
+    }
+
+}
