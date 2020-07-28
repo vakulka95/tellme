@@ -282,10 +282,8 @@ function showMePassword() {
 
 }
 
-showMePassword();
-
-jQuery(document).ready(function($) {
+$(document).ready(function($) {
     $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
+        window.document.location = $(this).data("href");
     });
 });
