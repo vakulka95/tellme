@@ -36,8 +36,8 @@ img{
     margin-left: 10px;
 }
 .btn-submit{
-    background-color:  #37A8FA;
-
+   background-color:  #37A8FA;
+   
 }
 
 /********* HEADER *********/
@@ -72,7 +72,7 @@ img{
     font-weight: bold;
     font-size: 49px;
     line-height: 61px;
-
+    
     color: #131E52;
 
 }
@@ -125,13 +125,13 @@ img{
     bottom: 0;
     content: '';
     z-index: 0;
-    background: url(../images/search/filter.svg) no-repeat;
+    background: url(/static/styles/images/search/filter.svg) no-repeat;
 }
 
 .app-search{
     border-radius: 5px;
     outline: none;
-    background: url(../images/search/search.svg) no-repeat;
+    background: url(/static/styles/images/search/search.svg) no-repeat;
     background-position-y: center;
     background-position-x: 10px;
     padding: 18px 14px;
@@ -146,7 +146,7 @@ img{
     background-color: #f1f1f1;
 }
 
-.psy__status, .feedback__status, .add-doc-btn{
+ .psy__status, .feedback__status, .add-doc-btn{
     color: #fff;
     background-color: #272E50;
     border-radius: 5px;
@@ -253,7 +253,7 @@ img{
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
-
+ 
     color: #454545;
 }
 
@@ -299,9 +299,9 @@ img{
 
     background: #44B1BD;
     border-radius: 5px;
-
+    
     letter-spacing: 0.01em;
-
+    
     color: #FFFFFF;
 }
 /********* DESKTOP FORM *********/
@@ -362,7 +362,7 @@ img{
 }
 
 
-input, textarea,  select{
+ input, textarea,  select{
 
     border: 1px solid #E3E8F5;
     box-sizing: border-box;
@@ -503,10 +503,10 @@ input, textarea,  select{
     right: 40px;
 }
 .apply{
-    background: url(../images/form/apply-btn.svg) no-repeat;
+    background: url(/static/styles/images/form/apply-btn.svg) no-repeat;
     background-position: center;
     padding: 13px 15px;
-
+    
 }
 
 .edit{
@@ -536,6 +536,13 @@ input, textarea,  select{
     padding: 10px 13px;
     background-color: #ccc;
     border-radius: 70%;
+}
+
+.drag{
+    display: flex;
+}
+.drag-title{
+    display: block;
 }
 
 /********* EDIT *********/
@@ -568,12 +575,13 @@ input, textarea,  select{
     color: #fff;
 }
 
+
 /********* FEEDBACK   ********/
 
 .item-title{
     font-size: 14px;
     line-height: 16px;
-
+    
     color: rgba(0, 0, 0, 0.5);
 }
 
@@ -612,7 +620,7 @@ thead th{
 
 .cell{
     border-radius: 100px;
-
+    
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
@@ -654,9 +662,61 @@ thead th{
     cursor: pointer;
 }
 
+.log-in button{
+    font-size: 20px;
+}
+
+
+
 @media only screen and (max-width: 1024px){
     .sign-in{
         background: #fff;
+    }
+    .form{
+        width: 100%;
+    }
+    .filter{
+        display: none;
+    } 
+    .filter-desktop {
+        display: block;
+    }
+    .app__clients{
+        display: none;
+    }
+    .header{
+        position: relative;
+    }
+    .main{
+        display: block;
+    }
+    .user img{
+        display: none;
+    }
+    .user{
+        display: none;
+
+    }
+    .desktop-nav{
+        display: block;
+
+    }
+    .psychologists{
+        display: none;
+
+    }
+    .feedbacks{
+        display: none;
+
+    }
+    .gender{
+        display: none;
+    }
+    .drag{
+        display: none;
+    }
+    .drag-title{
+        display: none;
     }
 }
 
@@ -670,6 +730,7 @@ thead th{
         padding-top: 6px;
         padding-bottom: 6px;
     }
+    
 }
 
 
@@ -677,6 +738,7 @@ thead th{
     .filter-btn::after{
         left: 60%;
     }
+    
     .page-link{
         padding: 9px;
     }
@@ -687,3 +749,4 @@ thead th{
         padding-bottom: 6px;
     }
 }
+

@@ -1,0 +1,40 @@
+ <!-- FILTER SEARCH -->
+ <section class='filter mt-3'>
+    <div class="container">
+        <p class="status-title mb-2 filter-desktop-inp-title">Статус</p>
+        <div class="filter__wrap">
+            <form class="filter__search mt-2">
+                <select name="feedback-status" class='feedback-status form-control'>
+                    <option value="">Всі</option>
+                    <option value="requested">Відгук очікується</option>
+                    <option value="completed">Відповів</option>
+                </select>
+                <div class="filter__btn d-flex flex-column justify-content-center mt-5">
+                    <button type="button" class="filter-btn filter-search">Пошук</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- Filter DESKTOP -->
+<section class='filter-desktop '>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 mt-3 ">
+                <p class=" mb-1">Статус</p>
+                <form action="#" class='d-flex status mr-3 mr-0 w-100'>
+                        <select name="status " class='select status-select mb-0 form-control'>
+                            <option value="">Всі</option>
+                            <option value="created">Не в роботі</option>
+                            <option value="processing">В роботі</option>
+                            <option value="completed">Виконаний</option>
+                            <option value="no_answer">Не актуально</option>
+                        </select>
+                        <div class='filter-submit d-flex align-items-center justify-content-center '>
+                            <button type="submit" class='btn btn-submit text-white'>Вибрати</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,102 @@
+    <!-- FILTER SEARCH -->
+    <section class='filter mt-3'>
+        <div class="container">
+            <div class=" row filter__wrap">
+                <div class="col-12">
+                    <div class="filter__btn d-flex flex-column justify-content-center">
+                        <button type='button' class='filter-btn'>Фільтр</button>
+                    </div>
+                    <div class="filter__search mt-2">
+                        <input class='form-control app-search' type="text" id="search" name="search"
+                            placeholder="ID, Ім'я або Телефон">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FILTER MODAL -->
+    <section class="modal">
+        <div class="container">
+            <div class="modal__wrap">
+                <div class="modal__close">
+                    <img src="../../images/search/close.svg" class='close' alt="modal-close">
+                </div>
+                <div class="title__item mb-4">
+                    <h1 class="title">Фільтр</h1>
+                </div>
+                <div class="filter__form">
+                    <div class="psy__status-filter mb-3">
+                        <p class="psy__status-filter-title mb-0">Статус</p>
+                        <select id="status" name="status" class='select psy__status-select'>
+                            <option value="">Всі</option>
+                            <option value="on_review">На модерації</option>
+                            <option value="blocked">Заблокований</option>
+                            <option value="active">Активний</option>
+                        </select>
+                    </div>
+                    <div class="spec">
+                        <p class="spec-title mb-0">Спеціалізації</p>
+                        <select multiple class="custom-select" id="specializations" name="specializations">
+                            <option value="">Всі</option>
+                            <option value="Depression">Депресія</option>
+                            <option value="Eating-disorders">Розлади харчової поведінки</option>
+                            <option value="Problems-in-family ">Проблеми в сімейних стосунках</option>
+                            <option value="Anxiety-and-health">Тривога та здоров'я</option>
+                            <option value="Obsessive-compulsive disorder">Обсесивно-компульсивний розлад</option>
+                            <option value="Panic-disorder">Панічний розлад</option>
+                            <option value="Parents-and-kids">Проблеми у стосунках батьків і дітей</option>
+                            <option value="Phobias">Фобії</option>
+                            <option value="PTSD">ПТСР</option>
+                            <option value="Generalized-Anxiety-Disorder">Генералізований тривожний розлад</option>
+                        </select>
+    
+                    </div>
+                    <div class="filter__btn d-flex flex-column justify-content-center mt-5">
+                        <button type='button' class='filter-btn filter-search'>Пошук</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Filter DESKTOP -->
+    <section class='filter-desktop '>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <form action="#" class='d-flex justify-content-between'>
+                        <div class="filter__search mt-3 mr-3 w-100">
+                            <p class="search-title filter-desktop-inp-title mb-2">Пошук</p>
+                            <input class='form-control app-search' type="text" id="search" name="search">
+                        </div>
+                        <div class="status mr-3 mt-3 mb-2 mr-0 w-100">
+                            <p class="status-title mb-2 filter-desktop-inp-title">Статус</p>
+                            <select id="status" name="status" class='select status-select form-control'>
+                                <option value="">Всі</option>
+                                <option value="Depression">Депресія</option>
+                                <option value="Eating-disorders">Розлади харчової поведінки</option>
+                                <option value="Problems-in-family ">Проблеми в сімейних стосунках</option>
+                                <option value="Anxiety-and-health">Тривога та здоров'я</option>
+                                <option value="Obsessive-compulsive disorder">Обсесивно-компульсивний розлад</option>
+                                <option value="Panic-disorder">Панічний розлад</option>
+                                <option value="Parents-and-kids">Проблеми у стосунках батьків і дітей</option>
+                                <option value="Phobias">Фобії</option>
+                                <option value="PTSD">ПТСР</option>
+                                <option value="Generalized-Anxiety-Disorder">Генералізований тривожний розлад</option>
+                            </select>
+                        </div>
+                        <div class="spec mt-3 mb-0 mr-3 w-100">
+                            <p class="spec-title mb-2 filter-desktop-inp-title">Спеціалізація</p>
+                            <select multiple id="specializations" name="specializations" class='select spec-select form-control'>
+                            {{ range $spec, $specOpt := .queries.specializations }}
+                                <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
+                            {{ end }}
+                            </select>
+                        </div>
+                        <div class='filter-submit d-flex align-items-center justify-content-center mt-2 '>
+                            <button type="submit" class='btn btn-submit text-white'>Вибрати</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
