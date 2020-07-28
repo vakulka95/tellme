@@ -1,3 +1,6 @@
+const eyeClose = document.querySelector('.eye-close');
+const eyeOpen = document.querySelector('.eye-open');
+const signInPass = document.getElementById('pass');
 
 
 // Show and hide modal
@@ -287,3 +290,22 @@ $(document).ready(function($) {
         window.document.location = $(this).data("href");
     });
 });
+
+function showMePassword() {
+    eyeClose.onclick = function(){
+        eyeClose.style.display = 'none';
+        eyeOpen.style.display = 'block';
+        signInPass.setAttribute('type', 'text');
+
+        eyeOpen.onclick = function(){
+            eyeClose.style.display = 'block';
+            eyeOpen.style.display = 'none';
+            signInPass.setAttribute('type', 'password');
+
+        }
+    }
+
+}
+
+showMePassword();
+
