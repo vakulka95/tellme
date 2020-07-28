@@ -2,12 +2,12 @@
  <section class='filter mt-3'>
     <div class="container">
         <div class=" row filter__wrap">
-            <form>
+            <form action="/admin/requisition" method="GET">
                 <div class="filter__btn d-flex flex-column justify-content-center">
                     <button type='button' class='filter-btn'>Фільтр</button>
                 </div>
                 <div class="filter__search mt-2">
-                    <input class='form-control filter-mob-input app-search' type="text" name="app-Search"
+                    <input class='form-control filter-mob-input app-search' type="text" name="app-Search" value="{{ .queries.search }}"
                         placeholder="Пошук">
                 </div>
             </form>
@@ -27,12 +27,14 @@
             <div class="filter__form">
                 <div class="status mb-3">
                     <p class="status-title mb-0">Статус</p>
-                    <select name="status-app " class='select status-select mb-1 form-control'>
-                        <option value="">Всі</option>
-                        <option value="created">Не в роботі</option>
-                        <option value="processing">В роботі</option>
-                        <option value="completed">Виконаний</option>
-                        <option value="no_answer">Не актуально</option>
+                    <select id="status" name="status" class='select status-select mb-1 form-control'>
+                        {{ if (eq .metadata.role "admin") }}
+                            <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                        {{ end }}
+                        <option {{ if (eq .queries.status "created") }} selected {{ end }} value="created">Не в роботі</option>
+                        <option {{ if (eq .queries.status "processing") }} selected {{ end }} value="processing">В роботі</option>
+                        <option {{ if (eq .queries.status "completed") }} selected {{ end }} value="completed">Виконаний</option>
+                        <option {{ if (eq .queries.status "no_answer") }} selected {{ end }} value="no_answer">Не актуально</option>
                     </select>
                 </div>
                 <div class="spec">
@@ -44,14 +46,14 @@
                 </div>
                 <div class="from">
                     <p class="from-title">Дата/час від</p>
-                    <input type="date" name="from-app" class='from-input mb-1 form-control'>
+                    <input type="date" name="datetime_from" id="datetime_from" class='from-input mb-1 form-control' value="{{ .queries.datetime_from }}">
                 </div>
                 <div class="until">
                     <p class="until-title">Дата/час до</p>
-                    <input type="date" name="until-app" class='until-input mb-1 form-control'>
+                    <input type="date" name="datetime_to" id="datetime_to" class='until-input mb-1 form-control' value="{{ .queries.datetime_to }}">
                 </div>
                 <div class="filter__btn d-flex flex-column justify-content-center mt-5">
-                    <button type='button' class='filter-btn filter-search'>Пошук</button>
+                    <button type='submit' class='filter-btn filter-search'>Пошук</button>
                 </div>
             </div>
         </div>
@@ -70,12 +72,14 @@
                     </div>
                     <div class="status mr-3 mt-3 mb-2 mr-0 ">
                         <p class="status-title mb-2 filter-desktop-inp-title ">Статус</p>
-                        <select name="status-app " class='select bg-white status-select-desk status-select form-control'>
-                            <option value="">Всі</option>
-                            <option value="created">Не в роботі</option>
-                            <option value="processing">В роботі</option>
-                            <option value="completed">Виконаний</option>
-                            <option value="no_answer">Не актуально</option>
+                        <select id="status" name="status" class='select bg-white status-select-desk status-select form-control'>
+                            {{ if (eq .metadata.role "admin") }}
+                                <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                            {{ end }}
+                            <option {{ if (eq .queries.status "created") }} selected {{ end }} value="created">Не в роботі</option>
+                            <option {{ if (eq .queries.status "processing") }} selected {{ end }} value="processing">В роботі</option>
+                            <option {{ if (eq .queries.status "completed") }} selected {{ end }} value="completed">Виконаний</option>
+                            <option {{ if (eq .queries.status "no_answer") }} selected {{ end }} value="no_answer">Не актуально</option>
                         </select>
                     </div>
                     <div class="spec mt-3 mb-0 mr-3">
@@ -88,14 +92,14 @@
                     <div class="from d-flex flex-column mr-3 mt-3">
                         <p class="from-title mb-0 w-75 align-self-start mb-2 filter-desktop-inp-title">Дата/час від
                         </p>
-                        <input type="date" name="from-app"
-                            class='from-input bg-white form-control align-self-start w-100' placeholder="00.00.00">
+                        <input type="date" id="datetime_from" name="datetime_from"
+                            class='from-input bg-white form-control align-self-start w-100' placeholder="00.00.00" value="{{ .queries.datetime_from }}">
                     </div>
                     <div class="until d-flex flex-column mt-3">
                         <p class="until-title mb-0 w-75 align-self-start mb-2 filter-desktop-inp-title">Дата/час до
                         </p>
-                        <input type="date" name="until-app"
-                            class='until-input bg-white align-self-start form-control w-100'>
+                        <input type="date" id="datetime_to" name="datetime_to"
+                            class='until-input bg-white align-self-start form-control w-100' value="{{ .queries.datetime_to }}">
                     </div>
                     <div class='filter-submit d-flex align-items-center justify-content-center mt-2 '>
                         <button type="submit" class='btn btn-submit text-white'>Вибрати</button>
