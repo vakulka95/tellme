@@ -22,26 +22,26 @@
                     <tbody class='col-lg-12'>
                         {{ range $i, $item := .data.items }}
                         <tr>
-                            <td class='text-center border-0 pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
+                            <td class="text-center border-0 pt-4 pb-4 clickable-row" data-href="/admin/requisition/{{ $item.id }}">
                                 <p class="cell mb-0 pt-2">{{ $item.created_at }}</p>
                             </td>
-                            <td class="text-center border-0 pt-4 pb-4 text-white" data-href="/admin/requisition/{{ $item.id }}">
+                            <td class="text-center border-0 pt-4 pb-4 text-white clickable-row" data-href="/admin/requisition/{{ $item.id }}">
                                 <p class='cell specialization table-require-cell mb-0'>{{ $item.diagnosis }}</p>
                             </td>
-                            <td class='text-center border-0 pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
-                                <p class="cell mb-0 pt-2">
+                            <td class="text-center border-0 pt-4 pb-4 clickable-row" data-href="/admin/requisition/{{ $item.id }}">
+                                <p class="cell mb-0 pt-2" >
                                     <a class='name cell'>{{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}</a>
                                 </p>
                             </td>
-                            <td class='text-center border-0 pt-4 pb-4 d-flex align-items-center justify-content-center' data-href="/admin/requisition/{{ $item.id }}">
+                            <td class="text-center border-0 pt-4 pb-4 d-flex align-items-center justify-content-center clickable-row" data-href="/admin/requisition/{{ $item.id }}">
                             {{ $gender := $item.gender }}
                             {{ with (eq $gender "male") }}<span class='gender mb-0'>Чол.</span>{{ end -}}
                             {{ with (eq $gender "female") }}<span class='gender mb-0'>Жін.</span>{{ end -}}
                             </td>
-                            <td class='text-center border-0 pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
+                            <td class="text-center border-0 pt-4 pb-4 clickable-row" data-href="/admin/requisition/{{ $item.id }}">
                                 <p class="cell mb-0 pt-2 phone">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</p>
                             </td>
-                            <td class='text-center border-0 d-flex align-items-center justify-content-center  ml-3' data-href="/admin/requisition/{{ $item.id }}">
+                            <td class="text-center border-0 d-flex align-items-center justify-content-center  ml-3 clickable-row" data-href="/admin/requisition/{{ $item.id }}">
                             {{ $status := $item.status }}
                             {{ with (eq $status "created") }}<p class="cell mb-0 table-require-cell table-cell-status search-status-sel">Не в роботі</p>{{ end }}
                             {{ with (eq $status "processing") }}<p class="cell mb-0 table-require-cell table-cell-status search-status-sel">В роботі</p>{{ end }}
