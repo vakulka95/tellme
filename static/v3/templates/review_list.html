@@ -8,200 +8,63 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
+                {{ template "review_filters.html" . }}
+            </div>
+            <div class="col-lg-12">
                 <table class="table table-require">
                     <thead>
-                        <tr>
-                            <th class='pl-3'>Статус</th>
-                            <th class='pl-3'>Психолог</th>
-                            <th class='pl-5'>Задоволення від консультації</th>
-                            <th class='pl-2'>Оцінка психолога</th>
-                            <th class='pl-2'>Кількість консультацій</th>
-                        </tr>
+                    <tr>
+                        <th class='pl-3'>Статус</th>
+                        <th class='pl-3'>Психолог</th>
+                        <th class='pl-5'>Задоволення від консультації</th>
+                        <th class='pl-2'>Оцінка психолога</th>
+                        <th class='pl-2'>Кількість консультацій</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                           <!-- ИЛИ -->
-                           <td class='text-center pt-4 pb-4'>
-                            <p class="cell mb-0 table-require-cell table-cell-status completed">Відповів</p>
-                        </td>
-                        <!-- ИЛИ -->
-                        <td class='text-center pt-4 pb-4'>
+                    {{ range $i, $item := .data.items }}
+                    <tr>
+                        <td class='text-center pt-4 pb-4' data-href="/admin/review/{{ $item.id }}">
+                            {{ $status := $item.status }}
+                            {{ with (eq $status "requested") }}
                             <p class="cell mb-0 table-require-cell table-cell-status created">Відгук очікується</p>
-                        </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start '>
-                                Так
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <!-- ИЛИ -->
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">Відповів</p>
-                            </td>
-                            <!-- ИЛИ -->
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">Відгук очікується</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start'>
-                                Так
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <!-- ИЛИ -->
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">Відповів</p>
-                            </td>
-                            <!-- ИЛИ -->
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">Відгук очікується</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start'>
-                                Так
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                        </tr>
-                        <tr>
-                           <!-- ИЛИ -->
-                           <td class='text-center pt-4 pb-4'>
+                            {{ end }}
+                            {{ with (eq $status "completed") }}
                             <p class="cell mb-0 table-require-cell table-cell-status completed">Відповів</p>
+                            {{ end }}
                         </td>
-                        <!-- ИЛИ -->
-                        <td class='text-center pt-4 pb-4'>
-                            <p class="cell mb-0 table-require-cell table-cell-status created">Відгук очікується</p>
+                        <td class='text-center pt-4 pb-4' data-href="/admin/review/{{ $item.id }}">
+                            <p class="cell mb-0 pt-2">{{ $item.expert_username }}</p>
                         </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start'>
-                                Так
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <!-- ИЛИ -->
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">Відповів</p>
-                            </td>
-                            <!-- ИЛИ -->
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">Відгук очікується</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start'>
-                                Так
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <!-- ИЛИ -->
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">Відповів</p>
-                            </td>
-                            <!-- ИЛИ -->
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">Відгук очікується</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start'>
-                                Так
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <!-- ИЛИ -->
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">Відповів</p>
-                            </td>
-                            <!-- ИЛИ -->
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">Відгук очікується</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start'>
-                                Так
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <!-- ИЛИ -->
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">Відповів</p>
-                            </td>
-                            <!-- ИЛИ -->
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">Відгук очікується</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start'>
-                                Так
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                        </tr>
+                        <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start '
+                            data-href="/admin/review/{{ $item.id }}">
+                            {{ $item.consultation_review }}
+                        </td>
+                        <td class='text-left pt-4 pb-4' data-href="/admin/review/{{ $item.id }}">
+                            <p class="cell mb-0 pt-2">{{ $item.expert_point }}</p>
+                        </td>
+                        <td class='text-left pt-4 pb-4' data-href="/admin/review/{{ $item.id }}">
+                            <p class="cell mb-0 pt-2">{{ $item.consultation_count }}</p>
+                        </td>
+                    </tr>
+                    {{ end }}
                     </tbody>
                 </table>
+                <div style="flex-direction: row; justify-content: space-between">
+                    <div>
+                        {{ template "review_pagging.html" .pagination }}
+                    </div>
+                    <div class="alert alert-secondary" role="alert">
+                        Всього вибрано: {{ .data.total }} відгуків. {{ .pagination.page.TotalPages }} сторінок.
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 <!-- CLIENTS -->
+<!--
+//:TODO у нас есть css, нужно с помощбю его делать моб версию. Можно конечно и так сделать, но это дублирование инфы
 <section class="feedbacks">
     <div class="container">
         <div class="feedbacks__wrap">
@@ -291,7 +154,7 @@
             </div>
         </div>
     </div>
-</section>
+</section>-->
 
 <!-- reviewPAGGING -->
 
