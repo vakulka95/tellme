@@ -43,19 +43,20 @@ user.onclick = () => {
 }
 
 
+if(filter_btn){
+    filter_btn.onclick = showModal;
 
-filter_btn.onclick = showModal;
-
-function showModal(){
-    modal.classList.add('show');
-    body.style.overflowY = 'hidden';
-}
-
-close_btn.onclick = closeModal;
-
-function closeModal(){
-    modal.classList.remove('show');
-    body.style.overflowY = 'scroll';
+    function showModal(){
+        modal.classList.add('show');
+        body.style.overflowY = 'hidden';
+    }
+    
+    close_btn.onclick = closeModal;
+    
+    function closeModal(){
+        modal.classList.remove('show');
+        body.style.overflowY = 'scroll';
+    }    
 }
 
 // Active nav link
