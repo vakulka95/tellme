@@ -95,6 +95,9 @@ img{
     color: #131E52;
 }
 
+.app__title{
+    background: white;
+}
 
 /********* FILTER *********/
 .filter{
@@ -102,15 +105,16 @@ img{
 }
 .filter-btn{
     background-color: #44B2BD;
+    color: #fff;
     padding: 15px 0;
     border: none;
     outline: none;
     position: relative;
+    border-radius: 5px;
 
     font-size: 14px;
     line-height: 16px;
     letter-spacing: 1px;
-    border-radius: 0;
 }
 
 .download-doc{
@@ -148,7 +152,10 @@ img{
 
 /********* CLIENTS *********/
 .client, .psy, .rate__block{
-    background-color: #f1f1f1;
+    background-color: #fff;
+    border: 1px solid #E3E8F5;
+    border-radius: 5px;
+    margin-top: 80px ;
 }
 
  .psy__status, .feedback__status, .add-doc-btn{
@@ -186,6 +193,13 @@ img{
     line-height: 21px;
 
     color: #454545;
+}
+
+.about__item{
+    background: #F6F9FE;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .status-btn{
@@ -345,6 +359,11 @@ img{
 
 .filter-search::after{
     display: none;
+
+}
+
+.filter-search{
+    background-color: #37A8FA;
 }
 
 .modal__close{
@@ -612,7 +631,7 @@ img{
     font-size: 14px;
     line-height: 16px;
     
-    color: rgba(0, 0, 0, 0.5);
+    color: #9BA8E3;
 }
 .feedbacks{
     display: none;
@@ -768,9 +787,7 @@ thead th{
         display: block;
 
     }
-    .gender{
-        display: none;
-    }
+    
     .drag{
         display: none;
     }
