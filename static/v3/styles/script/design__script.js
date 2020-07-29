@@ -32,7 +32,7 @@ const filterMobSearch = document.querySelector('.filter-mob-input');
 const nameMob = document.querySelectorAll('.name-mob');
 const eyeClose = document.querySelector('.eye-close');
 const eyeOpen = document.querySelector('.eye-open');
-const signInPass = document.getElementById('pass');
+const signInPass = document.getElementById('password');
 
 // show modal menu
 if(user){
@@ -173,9 +173,7 @@ if(filterMobSearch){
 
 
 
-function onSubmitLogin(token) {
-    document.getElementById('reCaptchaForm').submit();
-}
+
 
 $(document).ready(function($) {
     $(".clickable-row").click(function() {
@@ -200,7 +198,9 @@ if(eyeClose){
 
 }
 
-    
+function onSubmitLogin(token) {
+    document.getElementById('reCaptchaForm').submit();
+}
 
 
 
