@@ -3,205 +3,72 @@
 {{ template "header.html" . }}
 
 <!-- TITLE -->
- <!-- MAIN TABLE desktop version-->
- <section class="main mt-3">
+<!-- MAIN TABLE desktop version-->
+<section class="main mt-3">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
+                {{ template "expert_rating_filters.html" . }}
+            </div>
+            <div class="col-lg-12">
                 <table class="table table-require">
                     <thead>
-                        <tr>
-                            <th class='pl-3'>Психолог</th>
-                            <th class='pl-2'>Кількість відгуків</th>
-                            <th class='pl-2'>Середня оцінка</th>
-                            <th class='pl-2'>Сесій проведено</th>
-                            <th class='pl-2'>Заявок завершено</th>
-                            <th class='pl-2'>Заявок в роботі</th>
-                            <th class='pl-3'>Статус</th>
-                        </tr>
+                    <tr>
+                        <th class='pl-3'>Психолог</th>
+                        <th class='pl-2'>Кількість відгуків</th>
+                        <th class='pl-2'>Середня оцінка</th>
+                        <th class='pl-2'>Сесій проведено</th>
+                        <th class='pl-2'>Заявок завершено</th>
+                        <th class='pl-2'>Заявок в роботі</th>
+                        <th class='pl-3'>Статус</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2 ">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">20</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start '>
-                            100
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">на модерації</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">заблокований</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">заблокований</p>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">20</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start '>
-                            100
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">на модерації</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">заблокований</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">активний</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">20</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start '>
-                            100
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">на модерації</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">заблокований</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">активний</p>
-                            </td>
-                        </tr> <tr>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">20</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start '>
-                            100
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">на модерації</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">заблокований</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">активний</p>
-                            </td>
-                        </tr> <tr>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">20</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start '>
-                            100
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">на модерації</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">заблокований</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">активний</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">20</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start '>
-                            100
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">на модерації</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">заблокований</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">активний</p>
-                            </td>
-                        </tr>
-                         <tr>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">20</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start '>
-                            100
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">100</p>
-                            </td>
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">50</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">на модерації</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">заблокований</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">активний</p>
-                            </td>
-                        </tr>
+                    {{ range $i, $item := .data.items }}
+                    <tr>
+                        <td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                            <p class="cell mb-0 pt-2">{{ $item.username }}</p>
+                        </td>
+                        <td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                            <p class="cell mb-0 pt-2">{{ $item.review_count }}</p>
+                        </td>
+                        <td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                            <p class="cell mb-0 pt-2">{{ $item.average_rating }}</p>
+                        </td>
+                        <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start ' data-href="/admin/expert/{{ $item.id }}">
+                            {{ $item.session_count }}
+                        </td>
+                        <td class='text-left pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                            <p class="cell mb-0 pt-2">{{ $item.completed_count }}</p>
+                        </td>
+                        <td class='text-left pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                            <p class="cell mb-0 pt-2">{{ $item.processing_count }}</p>
+                        </td>
+                        <td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                            {{ $status := $item.status }}
+                            {{ with (eq $status "on_review") }}<p class="cell mb-0 table-require-cell table-cell-status created">на модерації</p>{{ end }}
+                            {{ with (eq $status "blocked") }}<p class="cell mb-0 table-require-cell table-cell-status completed">заблокований</p>{{ end }}
+                            {{ with (eq $status "active") }}<p class="cell mb-0 table-require-cell table-cell-status no_answer">активний</p>{{ end }}
+                        </td>
+                    </tr>
+                    {{ end }}
                     </tbody>
                 </table>
+                <div style="flex-direction: row; justify-content: space-between">
+                    <div>
+                        {{ template "expert_rating_pagging.html" .pagination }}
+                    </div>
+                    <div class="alert alert-secondary" role="alert">
+                        Всього вибрано: {{ .data.total }} психологів. {{ .pagination.page.TotalPages }} сторінок.
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 <!-- CLIENTS mobile version -->
+<!--
+//:TODO если тяжко сделать все через css, можно и дублировать данные и относительно размера экраны показывать тот или инной контейнер, но как по мне это не правильно
 <section class="rate">
     <div class="container">
         <div class="rate__wrap">
@@ -323,7 +190,7 @@
             </div>
         </div>
     </div>
-</section>
+</section>-->
 
 
 <!-- FOOTER -->
