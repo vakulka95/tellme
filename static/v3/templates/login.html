@@ -7,14 +7,14 @@
                     <div class="title ml-auto mr-auto mb-5 ">
                         <h1 class='font-weight-bold' >Вхід</h1>
                     </div>
-                    <form  class="bg-white pt-5 pb-5" id="reCaptchaForm" action="/admin/login" method="POST" >
+                    <form  class="bg-white pt-5 pb-5" id="reCaptchaForm" action="/admin/login" method="POST">
                         <div class="form-group w-75 ml-auto mr-auto">
                             <label for="login">Логін</label>
-                            <input type="text" name="login" id="login" class='form-control' placeholder="Логін">
+                            <input type="text" id="login" name="login" placeholder="Логін" class='form-control'>
                         </div>
                         <div class="form-group w-75 ml-auto mr-auto">
                             <label for="pass">Пароль</label>
-                            <input type="password" id="password" name="password"   class='form-control' placeholder="Пароль">
+                            <input type="password" id="password" name="password" class='form-control' placeholder="Пароль">
                             <img src="/static/styles/images/form/eye.svg" alt="close-eye" class='eye-close'>
                             <img src="/static/styles/images/form/open-eye.svg" alt="open-eye" class='eye-open hide'>
                         </div>
@@ -23,7 +23,7 @@
                                 Невірний логін або пароль
                             </div>
                         </div> -->
-                        <button type="submit" class='download-btn d-block text-center w-75 mt-5 ml-auto mr-auto form-btn' data-sitekey="6LeHwKYZAAAAABAzPuWRa4uvw9Fnkbt3D-R8yj9J" data-callback='onSubmitLogin' >
+                        <button type="submit" class='g-recaptcha download-btn d-block text-center w-75 mt-5 ml-auto mr-auto form-btn' data-sitekey="6LeHwKYZAAAAABAzPuWRa4uvw9Fnkbt3D-R8yj9J" data-callback='onSubmitLogin' >
                             Вхід
                         </button>
                     </form>
