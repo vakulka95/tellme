@@ -35,11 +35,14 @@ const eyeOpen = document.querySelector('.eye-open');
 const signInPass = document.getElementById('pass');
 
 // show modal menu
-user.onclick = () => {
-    menuModal.classList.toggle('show');
-    menuModal.onclick = () => { 
-    menuModal.classList.remove('show');
+if(user){
+    user.onclick = () => {
+        menuModal.classList.toggle('show');
+        menuModal.onclick = () => { 
+        menuModal.classList.remove('show');
+        }
     }
+    
 }
 
 
@@ -61,14 +64,16 @@ if(filter_btn){
 
 // Active nav link
 
-menuLink.forEach(el => {
+if(menuLink){
+    menuLink.forEach(el => {
     el.onclick = () => {
         if(!el.classList.contains('menu--link--active')){
             menuLink.forEach(link => link.classList.remove('menu--link--active'));
             el.classList.add('menu--link--active');
         }
     }
-})
+})}
+
 
 // Background table
 
@@ -84,85 +89,89 @@ function spillTr(){
 spillTr();
 
 // SEARCH NAME 
-
-filterSearch.oninput = function(){
-    let val = this.value.trim();
-    console.log(val)
-
-    if(val != ''){
-        nameInput.forEach(el => {
-            if(el.innerText.search(val) == -1 ){
-                el.parentElement.parentElement.classList.add('hide')
-            }
-            else{
-                el.parentElement.parentElement.classList.remove('hide');
-            }
-        });
-        // phoneInput.forEach(el => {
-        //     if(el.innerText.search(val) == -1 ){
-        //         el.parentElement.parentElement.classList.add('hide')
-        //     }
-        //     else{
-        //         el.parentElement.parentElement.classList.remove('hide');
-        //     }
-        // });
-    }else{
-        nameInput.forEach(el => {
-            el.parentElement.parentElement.classList.remove('hide')
-        });
-        // phoneInput.forEach(el => {
-        //     el.parentElement.parentElement.classList.remove('hide')
-        // });
+if(filterSearch){
+    filterSearch.oninput = function(){
+        let val = this.value.trim();
+        console.log(val)
+    
+        if(val != ''){
+            nameInput.forEach(el => {
+                if(el.innerText.search(val) == -1 ){
+                    el.parentElement.parentElement.classList.add('hide')
+                }
+                else{
+                    el.parentElement.parentElement.classList.remove('hide');
+                }
+            });
+            // phoneInput.forEach(el => {
+            //     if(el.innerText.search(val) == -1 ){
+            //         el.parentElement.parentElement.classList.add('hide')
+            //     }
+            //     else{
+            //         el.parentElement.parentElement.classList.remove('hide');
+            //     }
+            // });
+        }else{
+            nameInput.forEach(el => {
+                el.parentElement.parentElement.classList.remove('hide')
+            });
+            // phoneInput.forEach(el => {
+            //     el.parentElement.parentElement.classList.remove('hide')
+            // });
+        }
     }
 }
+// filterSearch.oninput = function(){
+//     let val = this.value.trim();
+//     console.log(val)
+
+//     if(val != ''){
+//         nameInput.forEach(el => {
+//             if(el.innerText.search(val) == -1 ){
+//                 console.log( el.parentElement.parentElement);
+//                 el.parentElement.parentElement.parentElement.classList.add('hide')
+//             }
+//             else{
+//                 el.parentElement.parentElement.parentElement.classList.remove('hide');
+//             }
+//         });
+    
+//     }else{
+//         nameInput.forEach(el => {
+//             el.parentElement.parentElement.parentElement.classList.remove('hide')
+//         });
+        
+//     }
+// }
+
 
 // Search application in search input
 
 
-    filterSearch.oninput = function(){
+  
+if(filterMobSearch){
+    filterMobSearch.oninput = function(){
         let val = this.value.trim();
-        console.log(val)
-
         if(val != ''){
-            nameInput.forEach(el => {
+            nameMob.forEach(el => {
                 if(el.innerText.search(val) == -1 ){
-                    console.log( el.parentElement.parentElement);
-                    el.parentElement.parentElement.parentElement.classList.add('hide')
+                    el.parentElement.parentElement.parentElement.parentElement.parentElement.classList.add('hide')
                 }
                 else{
-                    el.parentElement.parentElement.parentElement.classList.remove('hide');
+                    el.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('hide');
                 }
             });
-        
+            
         }else{
-            nameInput.forEach(el => {
-                el.parentElement.parentElement.parentElement.classList.remove('hide')
+            nameMob.forEach(el => {
+                el.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('hide')
             });
             
         }
     }
-
-
-
-filterMobSearch.oninput = function(){
-    let val = this.value.trim();
-    if(val != ''){
-        nameMob.forEach(el => {
-            if(el.innerText.search(val) == -1 ){
-                el.parentElement.parentElement.parentElement.parentElement.parentElement.classList.add('hide')
-            }
-            else{
-                el.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('hide');
-            }
-        });
-        
-    }else{
-        nameMob.forEach(el => {
-            el.parentElement.parentElement.parentElement.parentElement.parentElement.classList.remove('hide')
-        });
-        
-    }
 }
+
+
 
 function onSubmitLogin(token) {
     document.getElementById('reCaptchaForm').submit();
@@ -174,7 +183,7 @@ $(document).ready(function($) {
     });
 });
 
-
+if(eyeClose){
     eyeClose.onclick = function(){
         if( !eyeClose.classList.contains('hide')){
             eyeClose.classList.add('hide');
@@ -189,6 +198,9 @@ $(document).ready(function($) {
         }
     }
 
+}
+
+    
 
 
 
