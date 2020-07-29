@@ -1,10 +1,16 @@
-<!-- Header -->
+<!--expert_list.html-->
+
+{{ template "header.html" . }}
+
 <!-- title -->
 
  <!-- MAIN TABLE -->
  <section class="main mt-3">
     <div class="container">
         <div class="row">
+            <div class="col-lg-12">
+                {{ template "expert_filters.html" . }}
+            </div>
             <div class="col-lg-12">
                 <table class="table table-require">
                     <thead>
@@ -17,149 +23,76 @@
                         </tr>
                     </thead>
                     <tbody>
+                    {{ range $i, $item := .data.items }}
                         <tr>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">Активний</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">099 00 00 00</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">deni.design88@gmail.com</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">Активний</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">099 00 00 00</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">deni.design88@gmail.com</p>
-                            </td>
-                        </tr>
-                        <tr>
+                            {{ $status := $item.status }}
+                            {{ with (eq $status "on_review") }}
                             <td class='text-center pt-4 pb-4'>
                                 <p class="cell mb-0 table-require-cell table-cell-status created">На модерації</p>
                             </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">099 00 00 00</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">deni.design88@gmail.com</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status created">На модерації</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">099 00 00 00</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">deni.design88@gmail.com</p>
-                            </td>
-                        </tr>
-                        <tr>
+                            {{ end }}
+                            {{ with (eq $status "blocked") }}
                             <td class='text-center pt-4 pb-4'>
                                 <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
                             </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
+                            {{ end }}
+                            {{ with (eq $status "active") }}
+                                <td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                                    <p class="cell mb-0 table-require-cell table-cell-status completed">Активний</p>
+                                </td>
+                            {{ end }}
+
+                            <td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                                <p class="cell mb-0 pt-2">{{ $item.username }}</p>
                             </td>
-                            <td class='text-center pt-4 pb-4 d-flex align-items-center justify-content-center'>
+                            {{ $gender := $item.gender }}
+                            {{ with (eq $gender "male") }}
+                            <td class='text-center pt-4 pb-4 d-flex align-items-center justify-content-center'
+                                data-href="/admin/expert/{{ $item.id }}">
+                                <span class='gender mb-0'>чол.</span>
+                            </td>
+                            {{ end }}
+                            {{ with (eq $gender "female") }}
+                            <td class='text-center pt-4 pb-4 d-flex align-items-center justify-content-center'
+                                data-href="/admin/expert/{{ $item.id }}">
                                 <span class='gender mb-0'>жін.</span>
                             </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">099 00 00 00</p>
+                            {{ end }}
+                            <td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                                <p class="cell mb-0 pt-2">{{ $item.phone }}</p>
                             </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">deni.design88@gmail.com</p>
+                            <td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                                <p class="cell mb-0 pt-2">{{ $item.email }}</p>
                             </td>
+
+                            <!--
+                            //:TODO хоть и данного функционала нет в новом дизайне, оставлю это тут.
+                            <td class="text-center">
+                                &lt;!&ndash; Button trigger modal &ndash;&gt;
+                                <a class="btn btn-secondary btn-sm {{ if (eq $item.status "blocked")}} disabled{{ end }}" data-expert-id="{{ $item.id }}" onclick="blockExpertAPI(this)" role="button">Блокувати</a>
+                                <a class="btn btn-success btn-sm {{ if (eq $item.status "active")}} disabled{{ end }}" data-expert-id="{{ $item.id }}" onclick="activateExpertAPI(this)" role="button">Активувати</a>
+                            </td>-->
+
+
                         </tr>
-                        <tr>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">Активний</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">099 00 00 00</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">deni.design88@gmail.com</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">099 00 00 00</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">deni.design88@gmail.com</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status completed">Активний</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">Танюша Некрасова</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4 d-flex align-items-center justify-content-center'>
-                                <span class='gender mb-0'>жін.</span>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">099 00 00 00</p>
-                            </td>
-                            <td class='text-center pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">deni.design88@gmail.com</p>
-                            </td>
-                        </tr>
+                    {{ end }}
                     </tbody>
                 </table>
+                <div style="flex-direction: row; justify-content: space-between">
+                    <div>
+                        {{ template "expert_pagging.html" .pagination }}
+                    </div>
+                    <div class="alert alert-secondary" role="alert">
+                        Всього вибрано: {{ .data.total }} психологів. {{ .pagination.page.TotalPages }} сторінок.
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
-<!-- CLIENTS block for mobuile-->
+<!-- CLIENTS block for mobuile
+//:TODO создавать для мобилки отдельный блок - очень глупо. Как его применять во время дизайна
+
 <section class="psychologists">
 <div class="container">
     <div class="psychologists__wrap">
@@ -170,18 +103,18 @@
             <div class="about">
                 <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
                     <li class="about__item d-flex mb-1 align-items-center">
-                        <img src="/static/style/images/about/about-man.svg" class='menu--icon mr-3' alt="about-icon-person">
-                        <a href="#" class="about__link mr-2">Танюша Некрасова</a> 
+                        <img src="/static/style/images/about/about-man.svg" class='menu&#45;&#45;icon mr-3' alt="about-icon-person">
+                        <a href="#" class="about__link mr-2">Танюша Некрасова</a>
                         <div class="gender">
                             жін.
-                        </div>   
+                        </div>
                     </li>
                     <li class="about__item d-flex mb-2">
-                        <img src="/static/style/images/about/about-phone.svg" class='menu--icon mr-2' alt="about-icon-phone">
+                        <img src="/static/style/images/about/about-phone.svg" class='menu&#45;&#45;icon mr-2' alt="about-icon-phone">
                         <a href="#" class="about__link">099 000 00 00</a>
                     </li>
                     <li class="about__item d-flex mb-2">
-                        <img src="/static/style/images/about/about-mail.svg" class='menu--icon mr-3' alt="about-icon-mail">
+                        <img src="/static/style/images/about/about-mail.svg" class='menu&#45;&#45;icon mr-3' alt="about-icon-mail">
                         <a href="#" class="about__link">deni.design88@gmail.com</a>
                     </li>
                 </ul>
@@ -194,18 +127,18 @@
             <div class="about">
                 <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
                     <li class="about__item d-flex mb-1 align-items-center">
-                        <img src="/static/style/images/about/about-man.svg" class='menu--icon mr-3' alt="about-icon-person">
-                        <a href="#" class="about__link mr-2">Танюша Некрасова</a> 
+                        <img src="/static/style/images/about/about-man.svg" class='menu&#45;&#45;icon mr-3' alt="about-icon-person">
+                        <a href="#" class="about__link mr-2">Танюша Некрасова</a>
                         <div class="gender">
                             жін.
-                        </div>   
+                        </div>
                     </li>
                     <li class="about__item d-flex mb-2">
-                        <img src="/static/style/images/about/about-phone.svg" class='menu--icon mr-2' alt="about-icon-phone">
+                        <img src="/static/style/images/about/about-phone.svg" class='menu&#45;&#45;icon mr-2' alt="about-icon-phone">
                         <a href="#" class="about__link">099 000 00 00</a>
                     </li>
                     <li class="about__item d-flex mb-2">
-                        <img src="/static/style/images/about/about-mail.svg" class='menu--icon mr-3' alt="about-icon-mail">
+                        <img src="/static/style/images/about/about-mail.svg" class='menu&#45;&#45;icon mr-3' alt="about-icon-mail">
                         <a href="#" class="about__link">deni.design88@gmail.com</a>
                     </li>
                 </ul>
@@ -218,18 +151,18 @@
             <div class="about">
                 <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
                     <li class="about__item d-flex mb-1 align-items-center">
-                        <img src="/static/style/images/about/about-man.svg" class='menu--icon mr-3' alt="about-icon-person">
-                        <a href="#" class="about__link mr-2">Танюша Некрасова</a> 
+                        <img src="/static/style/images/about/about-man.svg" class='menu&#45;&#45;icon mr-3' alt="about-icon-person">
+                        <a href="#" class="about__link mr-2">Танюша Некрасова</a>
                         <div class="gender">
                             жін.
-                        </div>   
+                        </div>
                     </li>
                     <li class="about__item d-flex mb-2">
-                        <img src="/static/style/images/about/about-phone.svg" class='menu--icon mr-2' alt="about-icon-phone">
+                        <img src="/static/style/images/about/about-phone.svg" class='menu&#45;&#45;icon mr-2' alt="about-icon-phone">
                         <a href="#" class="about__link">099 000 00 00</a>
                     </li>
                     <li class="about__item d-flex mb-2">
-                        <img src="/static/style/images/about/about-mail.svg" class='menu--icon mr-3' alt="about-icon-mail">
+                        <img src="/static/style/images/about/about-mail.svg" class='menu&#45;&#45;icon mr-3' alt="about-icon-mail">
                         <a href="#" class="about__link">deni.design88@gmail.com</a>
                     </li>
                 </ul>
@@ -242,18 +175,18 @@
             <div class="about">
                 <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
                     <li class="about__item d-flex mb-1 align-items-center">
-                        <img src="/static/style/images/about/about-man.svg" class='menu--icon mr-3' alt="about-icon-person">
-                        <a href="#" class="about__link mr-2">Танюша Некрасова</a> 
+                        <img src="/static/style/images/about/about-man.svg" class='menu&#45;&#45;icon mr-3' alt="about-icon-person">
+                        <a href="#" class="about__link mr-2">Танюша Некрасова</a>
                         <div class="gender">
                             жін.
-                        </div>   
+                        </div>
                     </li>
                     <li class="about__item d-flex mb-2">
-                        <img src="/static/style/images/about/about-phone.svg" class='menu--icon mr-2' alt="about-icon-phone">
+                        <img src="/static/style/images/about/about-phone.svg" class='menu&#45;&#45;icon mr-2' alt="about-icon-phone">
                         <a href="#" class="about__link">099 000 00 00</a>
                     </li>
                     <li class="about__item d-flex mb-2">
-                        <img src="/static/style/images/about/about-mail.svg" class='menu--icon mr-3' alt="about-icon-mail">
+                        <img src="/static/style/images/about/about-mail.svg" class='menu&#45;&#45;icon mr-3' alt="about-icon-mail">
                         <a href="#" class="about__link">deni.design88@gmail.com</a>
                     </li>
                 </ul>
@@ -266,18 +199,18 @@
             <div class="about">
                 <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
                     <li class="about__item d-flex mb-1 align-items-center">
-                        <img src="/static/style/images/about/about-man.svg" class='menu--icon mr-3' alt="about-icon-person">
-                        <a href="#" class="about__link mr-2">Танюша Некрасова</a> 
+                        <img src="/static/style/images/about/about-man.svg" class='menu&#45;&#45;icon mr-3' alt="about-icon-person">
+                        <a href="#" class="about__link mr-2">Танюша Некрасова</a>
                         <div class="gender">
                             жін.
-                        </div>   
+                        </div>
                     </li>
                     <li class="about__item d-flex mb-2">
-                        <img src="/static/style/images/about/about-phone.svg" class='menu--icon mr-2' alt="about-icon-phone">
+                        <img src="/static/style/images/about/about-phone.svg" class='menu&#45;&#45;icon mr-2' alt="about-icon-phone">
                         <a href="#" class="about__link">099 000 00 00</a>
                     </li>
                     <li class="about__item d-flex mb-2">
-                        <img src="/static/style/images/about/about-mail.svg" class='menu--icon mr-3' alt="about-icon-mail">
+                        <img src="/static/style/images/about/about-mail.svg" class='menu&#45;&#45;icon mr-3' alt="about-icon-mail">
                         <a href="#" class="about__link">deni.design88@gmail.com</a>
                     </li>
                 </ul>
@@ -290,18 +223,18 @@
             <div class="about">
                 <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
                     <li class="about__item d-flex mb-1 align-items-center">
-                        <img src="/static/style/images/about/about-man.svg" class='menu--icon mr-3' alt="about-icon-person">
-                        <a href="#" class="about__link mr-2">Танюша Некрасова</a> 
+                        <img src="/static/style/images/about/about-man.svg" class='menu&#45;&#45;icon mr-3' alt="about-icon-person">
+                        <a href="#" class="about__link mr-2">Танюша Некрасова</a>
                         <div class="gender">
                             жін.
-                        </div>   
+                        </div>
                     </li>
                     <li class="about__item d-flex mb-2">
-                        <img src="/static/style/images/about/about-phone.svg" class='menu--icon mr-2' alt="about-icon-phone">
+                        <img src="/static/style/images/about/about-phone.svg" class='menu&#45;&#45;icon mr-2' alt="about-icon-phone">
                         <a href="#" class="about__link">099 000 00 00</a>
                     </li>
                     <li class="about__item d-flex mb-2">
-                        <img src="/static/style/images/about/about-mail.svg" class='menu--icon mr-3' alt="about-icon-mail">
+                        <img src="/static/style/images/about/about-mail.svg" class='menu&#45;&#45;icon mr-3' alt="about-icon-mail">
                         <a href="#" class="about__link">deni.design88@gmail.com</a>
                     </li>
                 </ul>
@@ -309,7 +242,8 @@
         </div>
     </div>
 </div>
-</section>
+</section>-->
 
 <!-- expert pagging -->
 <!-- footer -->
+{{ template "footer.html" . }}
