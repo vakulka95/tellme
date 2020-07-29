@@ -35,3 +35,4 @@ dist/
 app/config/.env.prod
 endurance/venv
 *.dump%
+.DS_Store
