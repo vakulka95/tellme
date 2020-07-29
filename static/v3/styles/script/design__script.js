@@ -175,11 +175,11 @@ if(filterMobSearch){
 
 
 
-$(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.document.location = $(this).data("href");
-    });
-});
+// $(document).ready(function($) {
+//     $(".clickable-row").click(function() {
+//         window.document.location = $(this).data("href");
+//     });
+// });
 
 if(eyeClose){
     eyeClose.onclick = function(){
@@ -198,9 +198,9 @@ if(eyeClose){
 
 }
 
-function onSubmitLogin(token) {
-    document.getElementById('reCaptchaForm').submit();
-}
+// function onSubmitLogin(token) {
+//     document.getElementById('reCaptchaForm').submit();
+// }
 
 
 
