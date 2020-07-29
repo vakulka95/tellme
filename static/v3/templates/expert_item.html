@@ -1,4 +1,7 @@
-<!-- header.html -->
+<!--expert_item.html-->
+
+{{ template "header.html" . }}
+
 <!-- title.html -->
 <section class='form col-12 col-lg-9 ml-auto mr-auto'>
     <div class="container">
@@ -18,7 +21,7 @@
                                 <button class='btn-in-input edit edit-phone'>Редагувати</button>
                                 <div class="apply-block-phone hide">
                                     <button class="btn-in-input bg-danger text-white denied">X</button>
-                                      
+
                                 </div>
                             </div>
                             <div class='input__block'>
@@ -36,7 +39,7 @@
                                         <button class='btn-in-input edit change'>Редагувати</button>
                                     </div>
                             </div>
-                        
+
                             <div class='input__block'>
                                 <p class="title-input">Заявок завершено</p>
                                 <input type="number" name="request" class='input-over-request form-control'
@@ -58,7 +61,7 @@
                                     <option value="Generalized-Anxiety-Disorder">Генералізований тривожний розлад</option>
                                 </select>
                             </div>
-                            
+
                         </div>
 
                         <div class="col-lg-6">
@@ -67,20 +70,20 @@
                                 <input type="text" name="name" class="input-name form-control"
                                     placeholder="Тетяна Шаригіна" disabled='disabled'>
                                 <button class='btn-in-input edit edit-name'>Редагувати</button>
-                                
+
 
                             </div>
                             <div class='input__block'>
                                 <p class="title-input">Стать</p>
                                 <input type="text" name="gender" class="input-gender form-control" disabled='disabled'>
                                 <button class='btn-in-input edit edit-gender'>Редагувати</button>
-                                
+
                             </div>
                             <div class='input__block '>
                                 <p class="title-input">Освіта</p>
                                 <input type="text" name="education" class="input-education form-control" disabled='disabled'>
                                 <button class='btn-in-input edit edit-education'>Редагувати</button>
-                                
+
                             </div>
                             <div class='input__block'>
                                 <p class="title-input">Заявок в роботі</p>
@@ -96,7 +99,7 @@
                                     <p class='date-time'>14:53</p>
                                 </div>
                             </div>
-                        </div>   
+                        </div>
                         <div class="col-lg-12">
                             <div class="list__spec d-flex flex-wrap">
                                 <p class='cell table-require-cell'>Важке переживання втрати<p>
@@ -170,3 +173,4 @@
 
 
 <!-- Footer -->
+{{ template "footer.html" . }}
