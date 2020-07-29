@@ -97,7 +97,9 @@ img{
 
 
 /********* FILTER *********/
-
+.filter{
+    display: none;
+}
 .filter-btn{
     background-color: #44B2BD;
     padding: 15px 0;
@@ -139,7 +141,10 @@ img{
 }
 
 
+.desktop-nav{
+    display: block;
 
+}
 
 /********* CLIENTS *********/
 .client, .psy, .rate__block{
@@ -524,6 +529,27 @@ img{
     background: rgba(55, 168, 250, .8);
 }
 
+.consultation-title{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-style: normal;
+    color: #131E52;
+}
+.change{
+    background-color: rgba(55, 168, 250, 0.2);
+    color: #2A7FBD;
+}
+.change:hover{
+    color: #fff
+}
+.rate{
+    display: none;
+}
+
 /********* PSYCHOLOGIESTS *********/
 
 .remove-doc{
@@ -543,6 +569,10 @@ img{
 }
 .drag-title{
     display: block;
+}
+
+.psychologists{
+    display: none;
 }
 
 /********* EDIT *********/
@@ -583,6 +613,9 @@ img{
     line-height: 16px;
     
     color: rgba(0, 0, 0, 0.5);
+}
+.feedbacks{
+    display: none;
 }
 
 /********* RATE FORM ********/
@@ -635,12 +668,25 @@ thead th{
     border-radius: 100px;
 }
 .table-cell-status{
-    background: #FAAC37;
     font-weight: bold;
     font-size: 14px;
     letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+.processing{
+   background:  #37A8FA;
 }
 
+.completed{
+    background-color:#1EC661;
+}
+.no_answer{
+    background-color: #DB866D;
+}
+
+.created{
+    background-color: #FAAC37;;
+}
 .consultation{
     background: #F6F9FE;
     border: 1px solid #E3E8F5;
@@ -665,10 +711,24 @@ thead th{
 .log-in button{
     font-size: 20px;
 }
-
+.user{
+    display: none;
+}
+.user img{
+    display: none;
+}
+.app__clients{
+    display: none;
+}
 
 
 @media only screen and (max-width: 1024px){
+    .app__clients{
+        display: block;
+    }
+    .table{
+        display: none;
+    }
     .sign-in{
         background: #fff;
     }
@@ -676,12 +736,9 @@ thead th{
         width: 100%;
     }
     .filter{
-        display: none;
+        display: block;
     } 
     .filter-desktop {
-        display: block;
-    }
-    .app__clients{
         display: none;
     }
     .header{
@@ -691,22 +748,24 @@ thead th{
         display: block;
     }
     .user img{
-        display: none;
+        display: block;
     }
     .user{
-        display: none;
-
-    }
-    .desktop-nav{
         display: block;
 
     }
-    .psychologists{
+    .desktop-nav{
         display: none;
 
     }
+    .psychologists{
+        display: block;
+    }
+    .rate{
+        display: block;
+    }
     .feedbacks{
-        display: none;
+        display: block;
 
     }
     .gender{
@@ -718,11 +777,14 @@ thead th{
     .drag-title{
         display: none;
     }
+    
+    
+    
 }
 
-@media only screen and (min-width: 320px){
+@media only screen and (min-width: 300px){
     .menu--link{
-        font-size: 17px;
+        font-size: 16px;
     }
     .reason{
         display: inline;
@@ -730,6 +792,7 @@ thead th{
         padding-top: 6px;
         padding-bottom: 6px;
     }
+    
     
 }
 
