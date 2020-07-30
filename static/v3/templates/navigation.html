@@ -1,9 +1,8 @@
 <nav class="menu mt-4">
     <ul class="nav menu__list d-flex justify-content-between">
-        <!-- Єто активная ссілка -->
         {{ if eq .metadata.status "active" }}
         <li class="nav-item menu__item ">
-            <a href="/admin/requisition" class="nav-link menu--link menu--link--active pb-2 mr-4">Заявки</a>
+            <a href="/admin/requisition" class="nav-link menu--link  pb-2 mr-4">Заявки</a><!--menu--link--active-->
         </li>
         {{ end }}
         {{ if eq .metadata.role "admin" }}
@@ -23,6 +22,9 @@
         </li>
         <li class="nav-item menu__item">
             <a class="nav-link menu--link pb-2 mr-4 " href="/admin/review?limit=10&offset=0">Мої відгуки</a>
+        </li>
+        <li class="nav-item menu__item">
+            <a class="nav-link menu--link pb-2 mr-4 " href="/admin/logout">Вихід</a>
         </li>
         {{ end }}
     </ul>

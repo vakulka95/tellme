@@ -1,6 +1,6 @@
 <!--
 
-//:TODO я так понял этодля мобилки сделано?
+//:TODO я так понял это для мобилки сделано?
 <section class='app__title bg-white pt-3 pb-2'>
     <div class="container">
         <div class="row d-flex-lg flex-lg-row">
@@ -25,14 +25,12 @@
     <div class="container">
         <div class="row ">
             <div class="title__item col-12 col-lg-6">
-                <h1 class="title">Сюда надо динамический заголовок</h1>
+                <h1 class="title">----------</h1><!--//:TODO ожидает переменную-->
             </div>
-            {{ if .metadata.logged_in }}
-                {{ template "admin_navigation.html" . }}
-            {{ else }}
+            {{ if eq .metadata.role "expert" }}
             <div class="me mt-2 col-12 col-lg-6 d-flex flex-column justify-content-end align-items-lg-end">
-                <p class='me-prof mb-2'><span>Психолог</span></p>
-                <p class="me-name">Вакуленко Роман</p>
+                <p class='me-prof mb-2'><span>Психолог</span></p><!--//:TODO тут хз, скорее всего так и остается. Мы все же под проверкой.-->
+                <p class="me-name">Вакуленко Роман</p><!--//:TODO ожидает переменную-->
             </div>
             {{ end }}
             <!-- ************************** -->

@@ -6,33 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/styles/css/noah/noah.css">
     <link rel="stylesheet" href="/static/styles/css/style.css">
     <title>Заявки</title>
 </head>
 <body>
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container">
-            <div class="row d-flex justify-content-between">
-                <div class="col-6">
-                    <div class="header__logo w-25">
-                        <img class='logo w-50' src="/static/styles/images/logo.svg" alt="header-logo">
-                    </div>
-                </div>
-                <!-- Такой себе бургер меню для психолога на мобильном при разрешении более 1024 он скрыт-->
-                <div class="user d-flex justify-content-center">
-                    <img src="/static/styles/images/user.svg" alt="user">
-                </div>
-                <!-- ************** -->
-                <!-- Меню для психолога expert__navigation.html Кнопка Выход так же в навигации есть. -->
-               
-                <div class="col-6 d-flex justify-content-end mt-auto mb-auto">
-                    <div class="esc">
-                        <a href="#" class='exit__link'>Вихід</a>
-                    </div>
+<!-- HEADER -->
+<header class="header">
+    <div class="container">
+        <div class="row d-flex justify-content-between">
+            <div class="col-6">
+                <div class="header__logo w-25">
+                    <img class='logo w-50' src="/static/styles/images/logo.svg" alt="header-logo">
                 </div>
             </div>
+
+            {{ if .metadata.logged_in }}
+                {{ template "navigation.html" . }}
+            {{ end }}
+
+            <!-- Такой себе бургер меню для психолога на мобильном при разрешении более 1024 он скрыт-->
+            <div class="user d-flex justify-content-center">
+                <img src="/static/styles/images/user.svg" alt="user">
+            </div>
+            <!-- ************** -->
+
         </div>
-    </header>
+    </div>
+</header>
