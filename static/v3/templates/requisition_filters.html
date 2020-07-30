@@ -1,0 +1,68 @@
+<!-- requisition_filters.html-->
+
+<div class="card shadow">
+    <article class="card-group-item">
+        <header class="card-header">
+            <h3 class="title">Фільтри</h3>
+        </header>
+        <div class="filter-content">
+            <div class="card-body">
+                <form class="form" action="/admin/requisition" method="GET">
+                    <label for="search">ID, Ім'я або Телефон</label>
+                    <input class="form-control clearable" id="search" name="search" type="text" placeholder="Пошук" value="{{ .queries.search }}">
+                    <hr/>
+                    {{/*                    <label for="feedback_week_day">День</label>*/}}
+                    {{/*                    <select class="custom-select" id="feedback_week_day" name="feedback_week_day">*/}}
+                    {{/*                        <option {{ if (eq .queries.feedback_week_day "") }} selected {{ end }} value="">Всі</option>*/}}
+                    {{/*                        <option {{ if (eq .queries.feedback_week_day "mon") }} selected {{ end }} value="mon">Понеділок</option>*/}}
+                    {{/*                        <option {{ if (eq .queries.feedback_week_day "tue") }} selected {{ end }} value="tue">Вівторок</option>*/}}
+                    {{/*                        <option {{ if (eq .queries.feedback_week_day "wed") }} selected {{ end }} value="wed">Середа</option>*/}}
+                    {{/*                        <option {{ if (eq .queries.feedback_week_day "thu") }} selected {{ end }} value="thu">Четвер</option>*/}}
+                    {{/*                        <option {{ if (eq .queries.feedback_week_day "fri") }} selected {{ end }} value="fri">П'ятниця</option>*/}}
+                    {{/*                        <option {{ if (eq .queries.feedback_week_day "sat") }} selected {{ end }} value="sat">Субота</option>*/}}
+                    {{/*                        <option {{ if (eq .queries.feedback_week_day "sun") }} selected {{ end }} value="sun">Неділя</option>*/}}
+                    {{/*                    </select>*/}}
+                    {{/*                    <br/>*/}}
+                    {{/*                    <hr/>*/}}
+                    {{/*                    <label for="feedback_time">Час</label>*/}}
+                    {{/*                    <select class="custom-select" id="feedback_time" name="feedback_time">*/}}
+                    {{/*                        <option {{ if (eq .queries.feedback_time "") }} selected {{ end }} value="">Всі</option>*/}}
+                    {{/*                        <option {{ if (eq .queries.feedback_time "8:00") }} selected {{ end }} value="8:00">8:00-13:00</option>*/}}
+                    {{/*                        <option {{ if (eq .queries.feedback_time "13:00") }} selected {{ end }} value="13:00">13:00-18:00</option>*/}}
+                    {{/*                        <option {{ if (eq .queries.feedback_time "18:00") }} selected {{ end }} value="18:00">18:00-21:00</option>*/}}
+                    {{/*                    </select>*/}}
+                    {{/*                    <br/>*/}}
+                    {{/*                    <hr/>*/}}
+                    <label for="status">Статус</label>
+                    <select class="custom-select" id="status" name="status">
+                        {{ if (eq .metadata.role "admin") }}
+                        <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                        {{ end }}
+                        <option {{ if (eq .queries.status "created") }} selected {{ end }} value="created">Не в роботі</option>
+                        <option {{ if (eq .queries.status "processing") }} selected {{ end }} value="processing">В роботі</option>
+                        <option {{ if (eq .queries.status "completed") }} selected {{ end }} value="completed">Виконаний</option>
+                        <option {{ if (eq .queries.status "no_answer") }} selected {{ end }} value="no_answer">Не актуально</option>
+                    </select>
+                    <br/>
+                    <hr/>
+                    <label for="specializations">Спеціалізації</label>
+                    <select multiple class="custom-select" id="specializations" name="specializations">
+                        {{ range $spec, $specOpt := .queries.specializations }}
+                        <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
+                        {{ end }}
+                    </select>
+                    <br/>
+                    <hr/>
+                    <label for="datetime_from">Дата/час від</label>
+                    <input id="datetime_from" name="datetime_from" placeholder="yyyy-mm-ddT00:00" type="datetime-local" value="{{ .queries.datetime_from }}">
+                    <br/>
+                    <label for="datetime_to">Дата/час  до</label>
+                    <input id="datetime_to" name="datetime_to" placeholder="yyyy-mm-ddT00:00" type="datetime-local" value="{{ .queries.datetime_to }}">
+                    <br/>
+                    <hr/>
+                    <button type="submit" class="btn btn-primary">Вибрати</button>
+                </form>
+            </div>
+        </div>
+    </article>
+</div>
