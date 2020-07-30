@@ -53,8 +53,7 @@
                         {{ end }}
 
                         <td class='text-center border-0 pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
-                            <p class="cell mb-0 pt-2">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else
-                                }}Недоступно{{ end }}</p>
+                            <p class="cell mb-0 pt-2">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</p>
                         </td>
                         <td class='text-left border-0 d-flex align-items-center justify-content-left  ml-3'>
                             {{ $status := $item.status }}
