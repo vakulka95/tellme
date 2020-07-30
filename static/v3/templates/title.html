@@ -1,3 +1,6 @@
+<!--
+
+//:TODO я так понял этодля мобилки сделано?
 <section class='app__title bg-white pt-3 pb-2'>
     <div class="container">
         <div class="row d-flex-lg flex-lg-row">
@@ -6,29 +9,32 @@
             </div>
             <div class="title__item col-12 col-lg-6">
                 <h1 class="title">Заявки</h1>
-            </div> 
-            <!-- У психолога данный вариант  У админа вместо этого  admin__navigation.html-->
-            
+            </div>
+            &lt;!&ndash; У психолога данный вариант  У админа вместо этого  admin__navigation.html&ndash;&gt;
+
             <div class="me mt-2 col-12 col-lg-6 d-flex flex-column justify-content-end align-items-lg-end">
                 <p class='me-prof mb-2'><span>Психолог</span></p>
                 <p class="me-name">Вакуленко Роман</p>
             </div>
-            <!-- ************************* -->
-            
+            &lt;!&ndash; ************************* &ndash;&gt;
+
         </div>
     </div>
-</section>
+</section>-->
 <section class='app__title pt-3 pb-2'>
     <div class="container">
         <div class="row ">
             <div class="title__item col-12 col-lg-6">
-                <h1 class="title">Заявки</h1>
-            </div> 
-            <!-- Если Психолог то то что снизу, если Админ то admin__navigation -->
+                <h1 class="title">Сюда надо динамический заголовок</h1>
+            </div>
+            {{ if .metadata.logged_in }}
+                {{ template "admin_navigation.html" . }}>
+            {{ else }}
             <div class="me mt-2 col-12 col-lg-6 d-flex flex-column justify-content-end align-items-lg-end">
                 <p class='me-prof mb-2'><span>Психолог</span></p>
                 <p class="me-name">Вакуленко Роман</p>
             </div>
+            {{ end }}
             <!-- ************************** -->
         </div>
     </div>

@@ -1,18 +1,29 @@
 <nav class="menu mt-4">
     <ul class="nav menu__list d-flex justify-content-between">
         <!-- Єто активная ссілка -->
+        {{ if eq .metadata.status "active" }}
         <li class="nav-item menu__item ">
-            <a href="#" class="nav-link menu--link menu--link--active pb-2 mr-4">Заявки</a>
+            <a href="/admin/requisition" class="nav-link menu--link menu--link--active pb-2 mr-4">Заявки</a>
         </li>
-        <!-- ***************** -->
+        {{ end }}
+        {{ if eq .metadata.role "admin" }}
         <li class="nav-item menu__item">
-            <a href="../Psychologists/psy.html" class="nav-link menu--link pb-2 mr-4">Психологи</a>
-        </li>
-        <li class="nav-item menu__item">
-            <a href="../Feedbacks/feedbacks.html" class="nav-link menu--link pb-2 mr-4">Відгуки</a>
+            <a class="nav-link menu--link pb-2 mr-4 " href="/admin/expert?limit=10&offset=0">Психологи</a>
         </li>
         <li class="nav-item menu__item">
-            <a href="../Rate/rate.html" class="nav-link menu--link pb-2 mr-4">Рейтинг</a>
+            <a class="nav-link menu--link pb-2 mr-4" href="/admin/review?limit=10&offset=0">Відгуки</a>
         </li>
+        <li class="nav-item menu__item">
+            <a class="nav-link menu--link pb-2 mr-4" href="/admin/expert_rating?limit=10&offset=0">Рейтинги</a>
+        </li>
+        {{ end }}
+        {{ if eq .metadata.role "expert" }}
+        <li class="nav-item menu__item">
+            <a class="nav-link menu--link pb-2 mr-4 " href="/admin/profile">Мій профіль</a>
+        </li>
+        <li class="nav-item menu__item">
+            <a class="nav-link menu--link pb-2 mr-4 " href="/admin/review?limit=10&offset=0">Мої відгуки</a>
+        </li>
+        {{ end }}
     </ul>
 </nav>
