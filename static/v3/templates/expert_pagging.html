@@ -1,31 +1,75 @@
 <!--expert_pagging.html-->
 
-<nav>
-    <ul class="pagination justify-content-end">
+<nav aria-label="footer__nav">
+    <ul class="pagination">
         {{ if .page.IsFirst }}
-        <li class="page-item disabled"><a class="page-link" href="">На початок</a></li>
+        <li class="page-item">
+                            <span class="page-link h-100 text-center">
+                                <img class='mt-1 ml-1' src="/static/styles/images/footer/first-page.svg" alt="start">
+                            </span>
+        </li>
         {{ else }}
-        <li class="page-item"><a class="page-link" href="/admin/expert{{ .firstQuery }}">На початок</a></li>
+        <li class="page-item">
+            <a class="page-link h-100 text-center" href="/admin/expert{{ .firstQuery }}">
+                <img class='mt-1 ml-1' src="/static/styles/images/footer/first-page.svg" alt="start">
+            </a>
+        </li>
         {{ end }}
         {{ if .page.HasPrevious }}
-        <li class="page-item"><a class="page-link" href="/admin/expert{{ .prevQuery }}">Назад</a></li>
+        <li class="page-item">
+            <a class="page-link h-100 text-center" href="/admin/expert{{ .prevQuery }}">
+                <img class='mt-1 ml-1' src="/static/styles/images/footer/prev-page.svg" alt="prev">
+            </a>
+        </li>
         {{ else }}
-        <li class="page-item disabled"><a class="page-link" href="">Назад</a></li>
+        <li class="page-item">
+                            <span class="page-link h-100 text-center">
+                                <img class='mt-1 ml-1' src="/static/styles/images/footer/prev-page.svg" alt="prev">
+                            </span>
+        </li>
         {{ end }}
         {{ range .page.Pages }}
         {{ if ne .Num -1 }}
-        {{ if .IsCurrent }}<li class="page-item disabled"><a class="page-link" href="">{{ .Num }}</a></li>{{ end }}
+        {{ if .IsCurrent }}
+        <li class="page-item"><span class="page-link h-100 text-center page-link--active">{{ .Num }}</span></li>
         {{ end }}
         {{ end }}
+        {{ end }}
+        <!--                        <li class="page-item">
+                                    <a class="page-link h-100 text-center" href="#">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link page-link&#45;&#45;active h-100 text-center" href="#">2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link h-100 text-center" href="#">3</a>
+                                </li>-->
+
         {{ if .page.HasNext }}
-        <li class="page-item"><a class="page-link" href="/admin/expert{{ .nextQuery }}">Далі</a></li>
+        <li class="page-item">
+            <a class="page-link h-100 text-center" href="/admin/expert{{ .nextQuery }}">
+                <img class='mt-1 ml-1' src="/static/styles/images/footer/next-page.svg" alt="next">
+            </a>
+        </li>
         {{ else }}
-        <li class="page-item disabled"><a class="page-link" href="">Далі</a></li>
+        <li class="page-item">
+                            <span class="page-link h-100 text-center">
+                                <img class='mt-1 ml-1' src="/static/styles/images/footer/next-page.svg" alt="next">
+                            </span>
+        </li>
         {{ end }}
         {{ if .page.IsLast }}
-        <li class="page-item disabled"><a class="page-link" href="">В кінець</a></li>
+        <li class="page-item">
+                            <span class="page-link h-100 text-center">
+                                <img class='mt-1 ml-1' src="/static/styles/images/footer/last-page.svg" alt="end">
+                            </span>
+        </li>
         {{ else }}
-        <li class="page-item"><a class="page-link" href="/admin/expert{{ .lastQuery }}">В кінець</a></li>
+        <li class="page-item">
+            <a class="page-link h-100 text-center" href="/admin/expert{{ .lastQuery }}">
+                <img class='mt-1 ml-1' src="/static/styles/images/footer/last-page.svg" alt="end">
+            </a>
+        </li>
         {{ end }}
     </ul>
 </nav>

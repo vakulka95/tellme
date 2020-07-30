@@ -1,3 +1,5 @@
+<!--expert_rating_pagging.html-->
+
 <nav aria-label="footer__nav">
     <ul class="pagination">
         {{ if .page.IsFirst }}
@@ -29,9 +31,7 @@
         {{ range .page.Pages }}
         {{ if ne .Num -1 }}
         {{ if .IsCurrent }}
-        <li class="page-item"><span class="page-link h-100 text-center page-link--active">{{ .Num }}</span></li>
-        {{ else }}
-        <li class="page-item"><span class="page-link h-100 text-center">{{ .Num }}</span></li>
+            <li class="page-item"><span class="page-link h-100 text-center page-link--active">{{ .Num }}</span></li>
         {{ end }}
         {{ end }}
         {{ end }}
@@ -73,6 +73,3 @@
         {{ end }}
     </ul>
 </nav>
-
-
-
