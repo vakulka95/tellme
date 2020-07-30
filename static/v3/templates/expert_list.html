@@ -24,7 +24,7 @@
                     </thead>
                     <tbody>
                     {{ range $i, $item := .data.items }}
-                        <tr>
+                        <tr class="row-custom" data-href="/admin/expert/{{ $item.id }}">
                             {{ $status := $item.status }}
                             {{ with (eq $status "on_review") }}
                             <td class='text-center pt-4 pb-4'>

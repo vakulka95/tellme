@@ -25,26 +25,26 @@
                     </thead>
                     <tbody>
                     {{ range $i, $item := .data.items }}
-                    <tr>
-                        <td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                    <tr class="row-custom" data-href="/admin/expert/{{ $item.id }}">
+                        <td class='text-center pt-4 pb-4' >
                             <p class="cell mb-0 pt-2">{{ $item.username }}</p>
                         </td>
-                        <td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                        <td class='text-center pt-4 pb-4' >
                             <p class="cell mb-0 pt-2">{{ $item.review_count }}</p>
                         </td>
-                        <td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                        <td class='text-center pt-4 pb-4' >
                             <p class="cell mb-0 pt-2">{{ $item.average_rating }}</p>
                         </td>
-                        <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start ' data-href="/admin/expert/{{ $item.id }}">
+                        <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start ' >
                             {{ $item.session_count }}
                         </td>
-                        <td class='text-left pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                        <td class='text-left pt-4 pb-4' >
                             <p class="cell mb-0 pt-2">{{ $item.completed_count }}</p>
                         </td>
-                        <td class='text-left pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                        <td class='text-left pt-4 pb-4' >
                             <p class="cell mb-0 pt-2">{{ $item.processing_count }}</p>
                         </td>
-                        <td class='text-center pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                        <td class='text-center pt-4 pb-4'>
                             {{ $status := $item.status }}
                             {{ with (eq $status "on_review") }}<p class="cell mb-0 table-require-cell table-cell-status created">на модерації</p>{{ end }}
                             {{ with (eq $status "blocked") }}<p class="cell mb-0 table-require-cell table-cell-status completed">заблокований</p>{{ end }}

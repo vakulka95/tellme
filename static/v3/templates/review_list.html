@@ -23,8 +23,8 @@
                     </thead>
                     <tbody>
                     {{ range $i, $item := .data.items }}
-                    <tr>
-                        <td class='text-center pt-4 pb-4' data-href="/admin/review/{{ $item.id }}">
+                    <tr class="row-custom" data-href="/admin/review/{{ $item.id }}">
+                        <td class='text-center pt-4 pb-4' >
                             {{ $status := $item.status }}
                             {{ with (eq $status "requested") }}
                             <p class="cell mb-0 table-require-cell table-cell-status created">Відгук очікується</p>
@@ -33,17 +33,16 @@
                             <p class="cell mb-0 table-require-cell table-cell-status completed">Відповів</p>
                             {{ end }}
                         </td>
-                        <td class='text-center pt-4 pb-4' data-href="/admin/review/{{ $item.id }}">
+                        <td class='text-center pt-4 pb-4' >
                             <p class="cell mb-0 pt-2">{{ $item.expert_username }}</p>
                         </td>
-                        <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start '
-                            data-href="/admin/review/{{ $item.id }}">
+                        <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start '>
                             {{ $item.consultation_review }}
                         </td>
-                        <td class='text-left pt-4 pb-4' data-href="/admin/review/{{ $item.id }}">
+                        <td class='text-left pt-4 pb-4' >
                             <p class="cell mb-0 pt-2">{{ $item.expert_point }}</p>
                         </td>
-                        <td class='text-left pt-4 pb-4' data-href="/admin/review/{{ $item.id }}">
+                        <td class='text-left pt-4 pb-4' >
                             <p class="cell mb-0 pt-2">{{ $item.consultation_count }}</p>
                         </td>
                     </tr>

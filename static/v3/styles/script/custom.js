@@ -204,7 +204,7 @@ function discardSessionRequisitionAPI(requisition){
 }
 
 $(document).ready(function($) {
-    $(".table-div").click(function() {
+    $(".row-custom").click(function() {
         window.document.location = $(this).data("href");
     });
 });
