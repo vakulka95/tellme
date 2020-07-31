@@ -27,7 +27,10 @@ func (s *apiserver) webAdminReviewList(c *gin.Context) {
 		return
 	}
 
-	role := iRole.(string)
+	var (
+		username string
+		role     = iRole.(string)
+	)
 	if role == UserRoleExpert {
 
 		iUserID, ok := c.Get("userID")
@@ -40,6 +43,12 @@ func (s *apiserver) webAdminReviewList(c *gin.Context) {
 		if userID != qlp.ExpertID {
 			qlp.ExpertID = userID
 		}
+
+		expert, err := s.repository.GetExpert(userID)
+		if err != nil {
+			log.Printf("(ERR) %s: failed to fetch expeert details: %v", logPref, err)
+		}
+		username = expert.Username
 	}
 
 	list, err := s.repository.GetReviewList(representation.QueryReviewAPItoPersistence(qlp))
@@ -58,6 +67,8 @@ func (s *apiserver) webAdminReviewList(c *gin.Context) {
 	c.HTML(http.StatusOK, "review_list.html",
 		gin.H{
 			"metadata": gin.H{
+				"title":     "Відгуки",
+				"username":  username,
 				"logged_in": true,
 				"role":      role,
 				"status":    iStatus.(string),

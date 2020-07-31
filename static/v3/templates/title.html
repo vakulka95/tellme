@@ -25,12 +25,12 @@
     <div class="container">
         <div class="row ">
             <div class="title__item col-12 col-lg-6">
-                <h1 class="title">----------</h1><!--//:TODO ожидает переменную-->
+                <h1 class="title">{{ .metadata.title }}</h1>
             </div>
             {{ if eq .metadata.role "expert" }}
             <div class="me mt-2 col-12 col-lg-6 d-flex flex-column justify-content-end align-items-lg-end">
                 <p class='me-prof mb-2'><span>Психолог</span></p><!--//:TODO тут хз, скорее всего так и остается. Мы все же под проверкой.-->
-                <p class="me-name">Вакуленко Роман</p><!--//:TODO ожидает переменную-->
+                <p class="me-name">{{ .metadata.username }}</p>
             </div>
             {{ end }}
             <!-- ************************** -->
