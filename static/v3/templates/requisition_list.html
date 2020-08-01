@@ -12,7 +12,7 @@
             <div class="col-lg-12">
                 {{ template "requisition_filters.html" . }}
             </div>
-            <div class="col-lg-12 table-responsive">
+            <div class="col-lg-12">
                 <table class="table table-require">
                     <thead>
                     <tr>
@@ -27,13 +27,13 @@
                     <tbody class='col-lg-12'>
                     {{ range $i, $item := .data.items }}
                     <tr class="row-custom" data-href="/admin/requisition/{{ $item.id }}">
-                        <td class='text-center border-0 pt-4 pb-4' >
-                            <p class="cell mb-0 pt-2 phone">{{ $item.created_at }}</p>
+                        <td class='text-left border-0 pt-4 pb-4' >
+                            <p class="cell mb-0 pt-2">{{ $item.created_at }}</p>
                         </td>
-                        <td class="text-center border-0 pt-4 pb-4 text-white">
-                            <p class='cell specialization table-require-cell mb-0'>{{ $item.diagnosis }}</p>
+                        <td class="text-left border-0 pt-4 pb-4 text-white">
+                            <p class='cell specialization d-inline table-require-cell mb-0'>{{ $item.diagnosis }}</p>
                         </td>
-                        <td class='text-center border-0 pt-4 pb-4'>
+                        <td class='text-left border-0 pt-4 pb-4'>
                             <p class="cell mb-0 pt-2">
                                 <span class='name cell'>{{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}</span>
                             </p>
@@ -50,19 +50,19 @@
                         </td>
                         {{ end }}
 
-                        <td class='text-center border-0 pt-4 pb-4'>
-                            <p class="cell mb-0 pt-2">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</p>
+                        <td class='text-left border-0 pt-4 pb-4'>
+                            <p class="cell mb-0 pt-2">{{ if (ne $item "") }}{{ $item }}{{ else }}Недоступно{{ end }}</p>
                         </td>
                         <td class='text-left border-0 d-flex align-items-center justify-content-left  ml-3'>
                             {{ $status := $item.status }}
-                            {{ with (eq $status "created") }}<p class="cell mb-0 table-require-cell table-cell-status search-status-sel created">Не в роботі</p>{{ end }}
-                            {{ with (eq $status "processing") }}<p class="cell mb-0 table-require-cell table-cell-status search-status-sel processing">В роботі</p>{{ end }}
-                            {{ with (eq $status "completed") }}<p class="cell mb-0 table-require-cell table-cell-status search-status-sel completed">Виконаний</p>{{ end }}
-                            {{ with (eq $status "no_answer") }}<p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Не актуально</p>{{ end }}
+                            {{ with (eq $status "created") }}<p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>{{ end }}
+                            {{ with (eq $status "processing") }}<p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>{{ end }}
+                            {{ with (eq $status "completed") }}<p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p>{{ end }}
+                            {{ with (eq $status "no_answer") }}<p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>{{ end }}
                             <!--
                             //:TODO на данный момент такого статуса не обнаружил
 
-                                <p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Заблокований</p>
+                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
                              -->
 
                         </td>
@@ -79,6 +79,38 @@
                     {{ end }}
                     </tbody>
                 </table>
+                <div class="for-mobile ">
+                    <div class="client mt-3 mb-3 pt-4">
+                        <div class="reason d-inline ml-3 mr-5">
+                            Важке переживання втрати
+                        </div>
+                        <div class="about">
+                            <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                                <li class="about__item d-flex mb-1 align-items-center">
+                                    <p class="cell mb-0 pt-2">
+                                        <a href="#" class="about__link name-mob  mr-2">
+                                            Танюша Некрасова
+                                        </a>
+                                    </p>
+                                    <div class="gender mt-2">жін.</div>
+                                </li>
+                                <li class="about__item d-flex mb-2">
+                                    <a href="#" class="about__link">099 000 00 00</a>
+                                </li>
+                                <li class="about__item d-flex mb-2">
+                                    <a href="#" class="about__link">2020, 20, 20</a>
+                                </li>
+                            </ul>
+                            <div class="d-f d-flex align-items-center justify-content-start ml-3">
+                                <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>
+                                <!-- &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>
+                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p> &ndash;&gt;
+                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>
+                                &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p> &ndash;&gt; -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div style="flex-direction: row; justify-content: space-between">
                     <div>
                         {{ template "requisition_pagging.html" .pagination }}
@@ -94,12 +126,15 @@
 </section>
 
 <!-- CLIENTS -->
-<!-- //:TODO я не понимаю что это =(
-    <section class="app__clients">
+<!-- //:TODO я не понимаю что это =( -->
+
+
+
+    <!-- <section class="app__clients">
         <div class="container">
             <div class="clients__wrap">
                 <div class="client mt-3 mb-3 pt-4">
-                    <div class="reason ml-3 mr-5">
+                    <div class="reason d-inline ml-3 mr-5">
                         Важке переживання втрати
                     </div>
                     <div class="about">
@@ -112,11 +147,11 @@
                                         Танюша Некрасова
                                     </a>
                                 </p>
-                                <div class="gender">жін.</div>
+                                <div class="gender mt-2">жін.</div>
                             </li>
                             <li class="about__item d-flex mb-2">
                                 <img src="/static/styles/images/about/about-phone.svg" class='menu&#45;&#45;icon mr-2'
-                                    alt="about-icon-phone">
+                                    alt="about-icon">
                                 <a href="#" class="about__link">099 000 00 00</a>
                             </li>
                             <li class="about__item d-flex mb-2">
@@ -125,12 +160,12 @@
                                 <a href="#" class="about__link">2020, 20, 20</a>
                             </li>
                         </ul>
-                        <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
-                            <p class="cell mb-0 table-require-cell table-cell-status search-status-sel processing">В роботі</p>
-                                    &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status search-status-sel created">Не в роботі</p>
-                                    <p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Заблокований</p> &ndash;&gt;
-                                    <p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Не актуально</p>
-                                    &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status search-status-sel completed">Виконаний</p> &ndash;&gt;
+                        <div class="button d-f d-flex align-items-center justify-content-start justify-content-start ml-3">
+                            <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p> 
+                                     &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>
+                                    <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p> &ndash;&gt;
+                                    <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>
+                                    &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p> &ndash;&gt;
                         </div>
                     </div>
                 </div>
@@ -151,8 +186,8 @@
                                 <div class="gender">жін.</div>
                             </li>
                             <li class="about__item d-flex mb-2">
-                                <img src="/static/styles/images/about/about-phone.svg" class='menu&#45;&#45;icon mr-2'
-                                    alt="about-icon-phone">
+                                <img src="/static/styles/images/about/about.svg" class='menu&#45;&#45;icon mr-2'
+                                    alt="about-icon">
                                 <a href="#" class="about__link">099 000 00 00</a>
                             </li>
                             <li class="about__item d-flex mb-2">
@@ -162,11 +197,11 @@
                             </li>
                         </ul>
                         <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
-                            <p class="cell mb-0 table-require-cell table-cell-status search-status-sel processing">В роботі</p>
-                                    &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status search-status-sel created">Не в роботі</p>
-                                    <p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Заблокований</p>
-                                    <p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Не актуально</p> &ndash;&gt;
-                                    <p class="cell mb-0 table-require-cell table-cell-status search-status-sel completed">Виконаний</p>
+                            <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>
+                                    &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>
+                                    <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
+                                    <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p> &ndash;&gt;
+                                    <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p>
                         </div>
                     </div>
                 </div>
@@ -187,8 +222,8 @@
                                 <div class="gender">жін.</div>
                             </li>
                             <li class="about__item d-flex mb-2">
-                                <img src="/static/styles/images/about/about-phone.svg" class='menu&#45;&#45;icon mr-2'
-                                    alt="about-icon-phone">
+                                <img src="/static/styles/images/about/about.svg" class='menu&#45;&#45;icon mr-2'
+                                    alt="about-icon">
                                 <a href="#" class="about__link">099 000 00 00</a>
                             </li>
                             <li class="about__item d-flex mb-2">
@@ -198,11 +233,11 @@
                             </li>
                         </ul>
                         <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
-                            <p class="cell mb-0 table-require-cell table-cell-status search-status-sel processing">В роботі</p>
-                                    <p class="cell mb-0 table-require-cell table-cell-status search-status-sel created">Не в роботі</p>
-                                    &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Заблокований</p>
-                                    <p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Не актуально</p>
-                                    <p class="cell mb-0 table-require-cell table-cell-status search-status-sel completed">Виконаний</p> &ndash;&gt;
+                            <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>
+                                    <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>
+                                    &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
+                                    <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>
+                                    <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p> &ndash;&gt;
                         </div>
                     </div>
                 </div>
@@ -225,8 +260,8 @@
                                 </div>
                             </li>
                             <li class="about__item d-flex mb c-2">
-                                <img src="/static/styles/images/about/about-phone.svg" class='menu&#45;&#45;icon mr-2'
-                                    alt="about-icon-phone">
+                                <img src="/static/styles/images/about/about.svg" class='menu&#45;&#45;icon mr-2'
+                                    alt="about-icon">
                                 <a href="#" class="about__link">099 000 00 00</a>
                             </li>
                             <li class="about__item d-flex mb-2 mt-2">
@@ -236,11 +271,11 @@
                             </li>
                         </ul>
                         <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
-                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status search-status-sel processing">В роботі</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status search-status-sel created">Не в роботі</p> &ndash;&gt;
-                            <p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Заблокований</p>
-                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Не актуально</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status search-status-sel completed">Виконаний</p>                         &ndash;&gt;
+                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>
+                            <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p> &ndash;&gt;
+                            <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
+                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>
+                            <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p>                         &ndash;&gt;
                         </div>
                     </div>
                 </div>
@@ -261,8 +296,8 @@
                                 <div class="gender">жін.</div>
                             </li>
                             <li class="about__item d-flex mb-2">
-                                <img src="/static/styles/images/about/about-phone.svg" class='menu&#45;&#45;icon mr-2'
-                                    alt="about-icon-phone">
+                                <img src="/static/styles/images/about/about.svg" class='menu&#45;&#45;icon mr-2'
+                                    alt="about-icon">
                                 <a href="#" class="about__link">099 000 00 00</a>
                             </li>
                             <li class="about__item d-flex mb-2">
@@ -272,11 +307,11 @@
                             </li>
                         </ul>
                         <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
-                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status search-status-sel processing">В роботі</p> &ndash;&gt;
-                            <p class="cell mb-0 table-require-cell table-cell-status search-status-sel created">Не в роботі</p>
-                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Заблокований</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Не актуально</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status search-status-sel completed">Виконаний</p>                        &ndash;&gt;
+                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p> &ndash;&gt;
+                            <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>
+                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
+                            <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>
+                            <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p>                        &ndash;&gt;
                         </div>
                     </div>
                 </div>
@@ -297,8 +332,8 @@
                                 <div class="gender">жін.</div>
                             </li>
                             <li class="about__item d-flex mb-2">
-                                <img src="/static/styles/images/about/about-phone.svg" class='menu&#45;&#45;icon mr-2'
-                                    alt="about-icon-phone">
+                                <img src="/static/styles/images/about/about.svg" class='menu&#45;&#45;icon mr-2'
+                                    alt="about-icon">
                                 <a href="#" class="about__link">099 000 00 00</a>
                             </li>
                             <li class="about__item d-flex mb-2">
@@ -308,17 +343,17 @@
                             </li>
                         </ul>
                         <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
-                            <p class="cell mb-0 table-require-cell table-cell-status search-status-sel processing">В роботі</p>
-                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status search-status-sel created">Не в роботі</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Заблокований</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status search-status-sel no_answer">Не актуально</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status search-status-sel completed">Виконаний</p> &ndash;&gt;
+                            <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>
+                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>
+                            <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
+                            <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>
+                            <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p> &ndash;&gt;
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>-->
+    </section> -->
 
 
 <!-- requisition pagging -->

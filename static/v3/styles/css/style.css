@@ -18,7 +18,7 @@ body{
     color: #686F91;
 }
 a{
-    font-family: 'Noah Text', sans-serif;
+    font-family: 'Noah Regular', sans-serif;
 }
 
 ul, li{
@@ -47,57 +47,52 @@ img{
     position: sticky;
     z-index: 5;
     top: 0;
+    width: 100%;
 }
 
-.exit__link{
-    color: #fff;
-    margin: auto 0;
-    cursor: pointer;
 
-    font-size: 18px;
-    line-height: 22px;
-}
-.exit__link:hover{
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-}
+
 /* *********************************************************    SUPERADMIN   **********************************************************************/
 /********* APPLICATIONS *********/
-.title__section{
-    background-color: #fff;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+.login-title{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+
+            
+}
+.title-block{
+    background: white;
+    padding-bottom: 13px;
 }
 
 .title{
-        font-weight: 900;
+        font-weight: bold;
         font-size: 49px;
         line-height: 61px;
 
-    color: #131E52;
+        color: #131E52;
 
 }
 
-.menu--link{
-    font-family: 'Noah Text', sans-serif;
-    font-style: normal;
-    font-weight: normal;
+.menu-link{
+    font-weight: 300;
     font-size: 18px;
     line-height: 22px;
 
     color: #131E52;
-    padding: 0;
 
 }
-
-.menu--link--active{
+.menu-link:hover{
+    color:#131E52; 
     text-decoration: none;
-    border-bottom: 4px solid #37A8FA;
-    color: #131E52;
+    opacity: 0.9;
 }
 
-.app__title{
-    background: white;
+.menu-link--active{
+    border-bottom: 4px solid #37A8FA;
 }
+
+
 
 /********* FILTER *********/
 .filter{
@@ -138,12 +133,13 @@ img{
     border-radius: 5px;
     outline: none;
     background: url(/static/styles/images/search/search.svg) no-repeat;
-    background-color: #fff;
+
 
     background-position-y: center;
     background-position-x: 10px;
-    padding: 18px 14px;
+    padding: 18px 35px;
     font-size: 13px;
+    margin-bottom: 10px;
 }
 
 
@@ -254,7 +250,7 @@ img{
 
 /********* MODAL MENU *********/
 .menu-modal{
-    display: none;
+    display: block;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -264,14 +260,35 @@ img{
 .menu-modal .nav{
     width: 100%;
     position: fixed;
-    top: 40px;
+    top: 65px;
     z-index: 2;
+}
+
+.menu-modal .nav-link{
+    padding-top: 19px;
+    padding-bottom: 19px;
 }
 
 .menu-modal .nav-item{
     background-color: #fff;
 }
-.menu-modal .nav-link{
+
+.menu-modal a{
+    color: #131E52;
+}
+
+.nav-link{
+    font-family: 'Noah Regular', sans-serif;
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+}
+.nav-link:hover{
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+}
+.menu-modal{
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
@@ -280,7 +297,7 @@ img{
 }
 
 .menu-modal .nav-item:last-child a{
-    color: red;
+    color: #CC532D;;
 }
 
 /********* DESKTOP FILTER*********/
@@ -289,22 +306,29 @@ img{
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
+    color: #131E52;
+    margin-bottom: 5px;
 }
 
-.filter-desktop-inp-title option, .filter-desktop-inp-title input{
+
+/* .filter-desktop-inp-title option, .filter-desktop-inp-title input{
     font-size: 16px;
     line-height: 20px;
     background-color: #fff;
     color: #686F91;
+} */
+
+.filter-desktop input, .filter-desktop select{
+    margin-bottom: 0;
 }
 
 .filter-desktop-rate select{
     width: 220px;
 }
 
-/* .status-rate{
-    width: 220px;
-} */
+.status{
+    margin-bottom: 0;
+}
 
 .download-block{
     width: 35%;
@@ -354,11 +378,6 @@ img{
     box-shadow: none;
 }
 
-
-
-.from-title, .until-title{
-    width: 40%;
-}
 
 .filter-search::after{
     display: none;
@@ -486,7 +505,7 @@ img{
     padding: 17px 25px;
 
     font-weight: 500;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 20px;
 
     color: #FFFFFF;
@@ -656,7 +675,7 @@ img{
 table{
     font-family: 'Noah Regular', sans-serif;
     font-style: normal;
-    border: 1px solid #E3E8F5;;
+    border: 1px solid #E3E8F5;
 }
 
 thead{
@@ -670,6 +689,13 @@ thead th{
     line-height: 20px;
 
     letter-spacing: 0.01em;
+}
+table tr{
+    cursor: pointer;
+}
+
+table tr:hover{
+    background-color: #ccc!important;
 }
 
 .row-custom{
@@ -746,6 +772,9 @@ thead th{
 .app__clients{
     display: none;
 }
+.for-mobile{
+    display: none;
+}
 
 
 @media only screen and (max-width: 1024px){
@@ -755,6 +784,20 @@ thead th{
     .table{
         display: none;
     }
+    .for-mobile{
+        display: block;
+    }
+/* 
+    thead{
+        display: none;
+    }*/
+    
+    /* td{
+      display: block  ;
+      padding: 0;
+      border-top: none!important; 
+      width: 100%;
+    }  */
     .sign-in{
         background: #fff;
     }
@@ -770,9 +813,7 @@ thead th{
     .header{
         position: relative;
     }
-    .main{
-        display: block;
-    }
+    
     .user img{
         display: block;
     }
@@ -806,17 +847,10 @@ thead th{
 
 }
 
-@media only screen and (max-width: 580px){
-    .header__logo{
-        margin-left: 15px;
-    }
-    .user{
-        margin-right: 15px;
-    }
-}
+ 
 
-@media only screen and (min-width: 300px){
-    .menu--link{
+@media only screen and (max-width: 390px){
+    .menu-link{
         font-size: 16px;
     }
     .reason{
