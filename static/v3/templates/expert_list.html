@@ -94,7 +94,8 @@
                         <div class="about">
                             <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
                                 <li class="about__item d-flex mb-1 align-items-center">
-                                    <a href="#" class="about__link mr-2">{{ $item.username }}</a> 
+                                    <a href="#" class="about__link mr-2">{{ $item.username }}</a>
+                                    {{ $gender := $item.gender }} 
                                     {{ with (eq $gender "female") }}
                                     <div class="gender">
                                         жін.
