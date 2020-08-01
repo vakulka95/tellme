@@ -43,7 +43,7 @@
                             {{ end }}
 
                             <td class='text-left pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
-                                <p class="cell mb-0 pt-2">{{ $item.username }}</p>
+                                <p class="cell mb-0">{{ $item.username }}</p>
                             </td>
                             {{ $gender := $item.gender }}
                             {{ with (eq $gender "male") }}
@@ -59,10 +59,10 @@
                             </td>
                             {{ end }}
                             <td class='text-left pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
-                                <p class="cell mb-0 pt-2">{{ $item.phone }}</p>
+                                <p class="cell mb-0">{{ $item.phone }}</p>
                             </td>
                             <td class='text-left pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
-                                <p class="cell mb-0 pt-2">{{ $item.email }}</p>
+                                <p class="cell mb-0">{{ $item.email }}</p>
                             </td>
 
                             <!--

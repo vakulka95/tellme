@@ -39,6 +39,13 @@ img{
    background-color:  #37A8FA;
 
 }
+.exit__link{
+    color: #fff;
+}
+.exit__link:hover{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+}
 
 /********* HEADER *********/
 
@@ -92,7 +99,9 @@ img{
     border-bottom: 4px solid #37A8FA;
 }
 
-
+.status-rate{
+    width: 20%;
+}
 
 /********* FILTER *********/
 .filter{
@@ -587,9 +596,7 @@ img{
 .change:hover{
     color: #fff
 }
-.rate{
-    display: none;
-}
+
 
 /********* PSYCHOLOGIESTS *********/
 
@@ -668,7 +675,19 @@ img{
     color: #000000;
 
 }
+.rate__block{
+    display: none;
+}
 
+.rate__block li{
+    background: #F6F9FE;
+    border: 5px;
+    margin-top: 10px;
+}
+
+.rate__block li:first-child{
+    background: none;
+}
 
 /********* TABLE ********/
 
@@ -690,11 +709,18 @@ thead th{
 
     letter-spacing: 0.01em;
 }
-table tr{
+td{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+
+    color: #686F91;
+}
+tbody tr, tbody td{
     cursor: pointer;
 }
 
-table tr:hover{
+tbody tr:hover, tbody td:hover{
     background-color: #ccc!important;
 }
 
@@ -828,7 +854,7 @@ table tr:hover{
     .psychologists{
         display: block;
     }
-    .rate{
+    .rate__block{
         display: block;
     }
     .feedbacks{
