@@ -158,13 +158,16 @@ img{
 }
 
 /********* CLIENTS *********/
-.client, .psy, .rate__block{
+.client, .feedback, .rate__block{
     background-color: #fff;
     border: 1px solid #E3E8F5;
     border-radius: 5px;
     margin-top: 80px ;
     padding-bottom: 30px;
 }
+
+
+
 
  .psy__status, .feedback__status, .add-doc-btn{
     color: #fff;
@@ -662,7 +665,7 @@ img{
 
     color: #9BA8E3;
 }
-.feedbacks{
+.feedbacks__wrap{
     display: none;
 }
 
@@ -675,17 +678,14 @@ img{
     color: #000000;
 
 }
-.rate__block{
-    display: none;
-}
 
-.rate__block li{
+.rate__block li, .feedback li{
     background: #F6F9FE;
     border: 5px;
     margin-top: 10px;
 }
 
-.rate__block li:first-child{
+.rate__block li:first-child, .feedback li:first-child{
     background: none;
 }
 
@@ -854,12 +854,9 @@ tbody tr:hover, tbody td:hover{
     .psychologists{
         display: block;
     }
-    .rate__block{
+    
+    .feedbacks__wrap{
         display: block;
-    }
-    .feedbacks{
-        display: block;
-
     }
 
     .drag{
