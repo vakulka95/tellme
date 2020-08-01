@@ -191,8 +191,8 @@ func (s *apiserver) saveUploadedFile(c *gin.Context, expertID string, lendoc int
 	mimeType := http.DetectContentType(srcBytes)
 	ext, ok := allowedExtensions[mimeType]
 	if !ok {
-		c.AbortWithStatusJSON(http.StatusBadRequest, representation.ErrInvalidRequest)
-		return "", fmt.Errorf("image mime type %s is not supported", mimeType)
+		filenameParts := strings.Split(file.Filename, ".")
+		ext = filenameParts[len(filenameParts)-1]
 	}
 
 	dir := filepath.Join(s.documentHostDir, expertID)
