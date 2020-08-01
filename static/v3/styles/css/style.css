@@ -39,6 +39,13 @@ img{
    background-color:  #37A8FA;
 
 }
+.exit__link{
+    color: #fff;
+}
+.exit__link:hover{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+}
 
 /********* HEADER *********/
 
@@ -92,7 +99,9 @@ img{
     border-bottom: 4px solid #37A8FA;
 }
 
-
+.status-rate{
+    width: 20%;
+}
 
 /********* FILTER *********/
 .filter{
@@ -149,13 +158,16 @@ img{
 }
 
 /********* CLIENTS *********/
-.client, .psy, .rate__block{
+.client, .feedback, .rate__block{
     background-color: #fff;
     border: 1px solid #E3E8F5;
     border-radius: 5px;
     margin-top: 80px ;
     padding-bottom: 30px;
 }
+
+
+
 
  .psy__status, .feedback__status, .add-doc-btn{
     color: #fff;
@@ -587,9 +599,7 @@ img{
 .change:hover{
     color: #fff
 }
-.rate{
-    display: none;
-}
+
 
 /********* PSYCHOLOGIESTS *********/
 
@@ -655,7 +665,7 @@ img{
 
     color: #9BA8E3;
 }
-.feedbacks{
+.feedbacks__wrap{
     display: none;
 }
 
@@ -669,6 +679,15 @@ img{
 
 }
 
+.rate__block li, .feedback li{
+    background: #F6F9FE;
+    border: 5px;
+    margin-top: 10px;
+}
+
+.rate__block li:first-child, .feedback li:first-child{
+    background: none;
+}
 
 /********* TABLE ********/
 
@@ -690,11 +709,18 @@ thead th{
 
     letter-spacing: 0.01em;
 }
-table tr{
+td{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+
+    color: #686F91;
+}
+tbody tr, tbody td{
     cursor: pointer;
 }
 
-table tr:hover{
+tbody tr:hover, tbody td:hover{
     background-color: #ccc!important;
 }
 
@@ -828,12 +854,9 @@ table tr:hover{
     .psychologists{
         display: block;
     }
-    .rate{
+    
+    .feedbacks__wrap{
         display: block;
-    }
-    .feedbacks{
-        display: block;
-
     }
 
     .drag{

@@ -21,29 +21,29 @@
                         <th class='pl-2'>Сесій проведено</th>
                         <th class='pl-2'>Заявок завершено</th>
                         <th class='pl-2'>Заявок в роботі</th>
-                        <th class='pl-3'>Статус</th>
+                        <th class='pl-2'>Статус</th>
                     </tr>
                     </thead>
                     <tbody>
                     {{ range $i, $item := .data.items }}
                     <tr class="row-custom" data-href="/admin/expert/{{ $item.id }}">
                         <td class='text-center pt-4 pb-4' >
-                            <p class="cell mb-0 pt-2">{{ $item.username }}</p>
+                            <p class="cell mb-0">{{ $item.username }}</p>
                         </td>
                         <td class='text-center pt-4 pb-4' >
-                            <p class="cell mb-0 pt-2">{{ $item.review_count }}</p>
+                            <p class="cell mb-0">{{ $item.review_count }}</p>
                         </td>
                         <td class='text-center pt-4 pb-4' >
-                            <p class="cell mb-0 pt-2">{{ $item.average_rating }}</p>
+                            <p class="cell mb-0">{{ $item.average_rating }}</p>
                         </td>
                         <td class='text-center pt-4 pb-4 ml-5 d-flex justify-content-start ' >
                             {{ $item.session_count }}
                         </td>
                         <td class='text-left pt-4 pb-4' >
-                            <p class="cell mb-0 pt-2">{{ $item.completed_count }}</p>
+                            <p class="cell mb-0">{{ $item.completed_count }}</p>
                         </td>
                         <td class='text-left pt-4 pb-4' >
-                            <p class="cell mb-0 pt-2">{{ $item.processing_count }}</p>
+                            <p class="cell mb-0">{{ $item.processing_count }}</p>
                         </td>
                         <td class='text-center pt-4 pb-4'>
                             {{ $status := $item.status }}
@@ -55,6 +55,43 @@
                     {{ end }}
                     </tbody>
                 </table>
+                <div class="for-mobile">
+                    {{ range $i, $item := .data.items }}
+                    <div class="row-custom rate__block about mt-3 mb-3 pb-3 pt-4"  data-href="/admin/expert/{{ $item.id }}">
+                        <ul class="about__list ml-3 mt-2 mb-2 pr-3 d-flex flex-column">
+                            <li class=" d-flex mb-3 ml-3 flex-column">
+                                <p class="item-title mb-1">Психолог</p>
+                                <a href="#" class="about__link mr-2">{{ $item.username }}</a>
+                            </li>
+                            <li class="about__item d-flex flex-column mb-1 pl-3 pt-3 pb-3">
+                                <p class="item-title mb-1">Кількість відгуків</p>
+                                <div class="count">{{ $item.review_count }}</div>
+                            </li>
+                            <li class="about__item d-flex flex-column mb-1 pl-3 pt-3 pb-3">
+                                <p class="item-title mb-1">Середня оцінка</p>
+                                <div class="count">{{ $item.average_rating }}</div>
+                            </li>
+                            <li class="about__item d-flex flex-column mb-1 pl-3 pt-3 pb-3">
+                                <p class="item-title mb-1">Сесій проведено</p>
+                                <div class="count">{{ $item.session_count }}</div>
+                            </li>
+                            <li class="about__item d-flex flex-column mb-1 pl-3 pt-3 pb-3">
+                                <p class="item-title mb-1">Заявок завершено</p>
+                                <div class="count">{{ $item.completed_count }}</div>
+                            </li>
+                            <li class="about__item d-flex flex-column mb-1 pl-3 pt-3 pb-3">
+                                <p class="item-title mb-1">Заявок в роботі</p>
+                                <div class="count">{{ $item.processing_count }</div>
+                            </li>
+                        </ul>
+                        {{ $status := $item.status }}
+                        {{ with (eq $status "on_review") }}<p class="cell mb-0 ml-3 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline created search-status-sel">на модерації</p>{{ end }}
+                        {{ with (eq $status "blocked") }}<p class="cell mb-0 ml-3 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline completed search-status-sel">заблокований</p>{{ end }}
+                        {{ with (eq $status "active") }}<p class="cell mb-0 ml-3 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline no_answer search-status-sel">активний</p>{{ end }}
+
+                    </div>
+                    {{ end }}
+                </div>
                 <div style="flex-direction: row; justify-content: space-between">
                     <div>
                         {{ template "expert_rating_pagging.html" .pagination }}

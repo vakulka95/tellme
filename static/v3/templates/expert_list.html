@@ -37,32 +37,30 @@
                             </td>
                             {{ end }}
                             {{ with (eq $status "active") }}
-                                <td class='text-left pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
+                                <td class='text-left pt-4 pb-4'>
                                     <p class="cell mb-0 table-require-cell table-cell-status d-inline completed">Активний</p>
                                 </td>
                             {{ end }}
 
-                            <td class='text-left pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
-                                <p class="cell mb-0 pt-2">{{ $item.username }}</p>
+                            <td class='text-left pt-4 pb-4'>
+                                <p class="cell mb-0">{{ $item.username }}</p>
                             </td>
                             {{ $gender := $item.gender }}
                             {{ with (eq $gender "male") }}
-                            <td class='text-left pt-4 pb-4 d-flex align-items-center justify-content-center'
-                                data-href="/admin/expert/{{ $item.id }}">
+                            <td class='text-left pt-4 pb-4'>
                                 <span class='gender mb-0'>чол.</span>
                             </td>
                             {{ end }}
                             {{ with (eq $gender "female") }}
-                            <td class='text-left pt-4 pb-4 d-flex align-items-center justify-content-center'
-                                data-href="/admin/expert/{{ $item.id }}">
+                            <td class='text-left pt-4 pb-4'>
                                 <span class='gender mb-0'>жін.</span>
                             </td>
                             {{ end }}
-                            <td class='text-left pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
-                                <p class="cell mb-0 pt-2">{{ $item.phone }}</p>
+                            <td class='text-left pt-4 pb-4'>
+                                <p class="cell mb-0">{{ $item.phone }}</p>
                             </td>
-                            <td class='text-left pt-4 pb-4' data-href="/admin/expert/{{ $item.id }}">
-                                <p class="cell mb-0 pt-2">{{ $item.email }}</p>
+                            <td class='text-left pt-4 pb-4'>
+                                <p class="cell mb-0">{{ $item.email }}</p>
                             </td>
 
                             <!--
@@ -79,11 +77,49 @@
                     </tbody>
                 </table>
                 <div class="for-mobile ">
-                    <div class=" client mt-3 mb-3 pt-4">
+                    {{ range $i, $item := .data.items }}
+                    <div class="row-custom client mt-3 mb-3 pt-4" data-href="/admin/expert/{{ $item.id }}">
+                        {{ $status := $item.status }}
+                            {{ with (eq $status "on_review") }}
                         <div class=" d-flex align-items-center justify-content-start ml-3">
                             <p class="cell mb-0 table-require-cell table-cell-status d-inline created">На модерації</p>
-                            <!-- <p class="cell mb-0 table-require-cell table-cell-status d-inline no_answer">Заблокований</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status d-inline completed">Активний</p> -->
+                            {{ end }}
+                            {{ with (eq $status "blocked") }}
+                            <p class="cell mb-0 table-require-cell table-cell-status d-inline no_answer">Заблокований</p>
+                            {{ end }}
+                            {{ with (eq $status "active") }}
+                            <p class="cell mb-0 table-require-cell table-cell-status d-inline completed">Активний</p>
+                            {{ end }}
+                        </div>
+                        <div class="about">
+                            <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                                <li class="about__item d-flex mb-1 align-items-center">
+                                    <a href="#" class="about__link mr-2">{{ $item.username }}</a> 
+                                    {{ with (eq $gender "female") }}
+                                    <div class="gender">
+                                        жін.
+                                    </div> 
+                                    {{ end }}  
+                                    {{ with (eq $gender "male") }}
+                                    <div class="gender">
+                                        чол.
+                                    </div> 
+                                    {{ end }}  
+                                </li>
+                                <li class="about__item d-flex mb-2">
+                                    <a href="#" class="about__link">{{ $item.phone }}</a>
+                                </li>
+                                <li class="about__item d-flex mb-2">
+                                    <a href="#" class="about__link">{{ $item.email }}</a>
+                                </li>
+                            </ul>
+                        </div>  
+                    </div>
+                    <!-- <div class=" client mt-3 mb-3 pt-4">
+                        <div class=" d-flex align-items-center justify-content-start ml-3">
+                            <p class="cell mb-0 table-require-cell table-cell-status d-inline created">На модерації</p>
+                            <p class="cell mb-0 table-require-cell table-cell-status d-inline no_answer">Заблокований</p>
+                            <p class="cell mb-0 table-require-cell table-cell-status d-inline completed">Активний</p>
                         </div>
                         <div class="about">
                             <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
@@ -101,30 +137,7 @@
                                 </li>
                             </ul>
                         </div>  
-                    </div>
-                    <div class=" client mt-3 mb-3 pt-4">
-                        <div class=" d-flex align-items-center justify-content-start ml-3">
-                            <p class="cell mb-0 table-require-cell table-cell-status d-inline created">На модерації</p>
-                            <!-- <p class="cell mb-0 table-require-cell table-cell-status d-inline no_answer">Заблокований</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status d-inline completed">Активний</p> -->
-                        </div>
-                        <div class="about">
-                            <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
-                                <li class="about__item d-flex mb-1 align-items-center">
-                                    <a href="#" class="about__link mr-2">Танюша Некрасова</a> 
-                                    <div class="gender">
-                                        жін.
-                                    </div>   
-                                </li>
-                                <li class="about__item d-flex mb-2">
-                                    <a href="#" class="about__link">099 000 00 00</a>
-                                </li>
-                                <li class="about__item d-flex mb-2">
-                                    <a href="#" class="about__link">deni.design88@gmail.com</a>
-                                </li>
-                            </ul>
-                        </div>  
-                    </div>
+                    </div> -->
                 </div>
                 <div style="flex-direction: row; justify-content: space-between">
                     <div>

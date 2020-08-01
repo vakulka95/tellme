@@ -16,53 +16,53 @@
                 <table class="table table-require">
                     <thead>
                     <tr>
-                        <th class='text-left pl-3'>Дата</th>
-                        <th class='text-left pl-3'>Спеціалізація</th>
-                        <th class='text-left pl-3'>Ім'я</th>
+                        <th class='text-left'>Дата</th>
+                        <th class='text-left'>Спеціалізація</th>
+                        <th class='text-left'>Ім'я</th>
                         <th class='text-left pl-3'>Стать</th>
-                        <th class='text-left pl-3'>Телефон</th>
+                        <th class='text-left'>Телефон</th>
                         <th class='text-left pl-4'>Статус</th>
                     </tr>
                     </thead>
                     <tbody class='col-lg-12'>
                     {{ range $i, $item := .data.items }}
                     <tr class="row-custom" data-href="/admin/requisition/{{ $item.id }}">
-                        <td class='text-left border-0 pt-4 pb-4' >
+                        <td class='text-left pt-4 pb-4' >
                             <p class="cell mb-0 pt-2">{{ $item.created_at }}</p>
                         </td>
-                        <td class="text-left border-0 pt-4 pb-4 text-white">
+                        <td class="text-left pt-4 pb-4 text-white">
                             <p class='cell specialization d-inline table-require-cell mb-0'>{{ $item.diagnosis }}</p>
                         </td>
-                        <td class='text-left border-0 pt-4 pb-4'>
+                        <td class='text-left pt-4 pb-4'>
                             <p class="cell mb-0 pt-2">
                                 <span class='name cell'>{{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}</span>
                             </p>
                         </td>
                         {{ $gender := $item.gender }}
                         {{ with (eq $gender "male") }}
-                        <td class='text-left border-0 pt-4 pb-4 d-flex justify-content-start'>
+                        <td class='text-left pt-4 pb-4 d-flex justify-content-start'>
                             <span class='gender mb-0'>чол.</span>
                         </td>
                         {{ end }}
                         {{ with (eq $gender "female") }}
-                        <td class='text-left border-0 pt-4 pb-4 d-flex justify-content-start'>
+                        <td class='text-left pt-4 pb-4 d-flex justify-content-start'>
                             <span class='gender mb-0'>жін.</span>
                         </td>
                         {{ end }}
 
-                        <td class='text-left border-0 pt-4 pb-4'>
+                        <td class='text-left pt-4 pb-4'>
                             <p class="cell mb-0 pt-2">{{ if (ne $item "") }}{{ $item }}{{ else }}Недоступно{{ end }}</p>
                         </td>
-                        <td class='text-left border-0 d-flex align-items-center justify-content-left  ml-3'>
+                        <td class='text-left align-items-center pt-4 pb-4'>
                             {{ $status := $item.status }}
-                            {{ with (eq $status "created") }}<p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>{{ end }}
-                            {{ with (eq $status "processing") }}<p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>{{ end }}
-                            {{ with (eq $status "completed") }}<p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p>{{ end }}
-                            {{ with (eq $status "no_answer") }}<p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>{{ end }}
+                            {{ with (eq $status "created") }}<p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>{{ end }}
+                            {{ with (eq $status "processing") }}<p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>{{ end }}
+                            {{ with (eq $status "completed") }}<p class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p>{{ end }}
+                            {{ with (eq $status "no_answer") }}<p class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально</p>{{ end }}
                             <!--
                             //:TODO на данный момент такого статуса не обнаружил
 
-                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
+                                <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p>
                              -->
 
                         </td>
@@ -80,33 +80,40 @@
                     </tbody>
                 </table>
                 <div class="for-mobile ">
-                    <div class="client mt-3 mb-3 pt-4">
+                    {{ range $i, $item := .data.items }}
+                    <div class="row-custom client mt-3 mb-3 pt-4" data-href="/admin/requisition/{{ $item.id }}">
                         <div class="reason d-inline ml-3 mr-5">
-                            Важке переживання втрати
+                            {{ $item.diagnosis }}
                         </div>
                         <div class="about">
                             <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
                                 <li class="about__item d-flex mb-1 align-items-center">
                                     <p class="cell mb-0 pt-2">
                                         <a href="#" class="about__link name-mob  mr-2">
-                                            Танюша Некрасова
+                                            {{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}
                                         </a>
                                     </p>
+                                    {{ $gender := $item.gender }}
+                                    {{ with (eq $gender "female") }}
                                     <div class="gender mt-2">жін.</div>
+                                    {{ end }}
+                                    {{ with (eq $gender "male") }}
+                                    <div class="gender mt-2">чол.</div>
+                                    {{ end }}
                                 </li>
                                 <li class="about__item d-flex mb-2">
-                                    <a href="#" class="about__link">099 000 00 00</a>
+                                    <a href="#" class="about__link">{{ if (ne $item "") }}{{ $item }}{{ else }}Недоступно{{ end }}</a>
                                 </li>
                                 <li class="about__item d-flex mb-2">
-                                    <a href="#" class="about__link">2020, 20, 20</a>
+                                    <a href="#" class="about__link">{{ $item.created_at }}</a>
                                 </li>
                             </ul>
                             <div class="d-f d-flex align-items-center justify-content-start ml-3">
-                                <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>
-                                <!-- &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>
-                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p> &ndash;&gt;
-                                <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>
-                                &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p> &ndash;&gt; -->
+                                {{ $status := $item.status }}
+                                {{ with (eq $status "created") }}<p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>{{ end }}
+                                {{ with (eq $status "processing") }}<p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>{{ end }}
+                                {{ with (eq $status "completed") }}<p class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p>{{ end }}
+                                {{ with (eq $status "no_answer") }}<p class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально</p>{{ end }}
                             </div>
                         </div>
                     </div>
@@ -161,11 +168,11 @@
                             </li>
                         </ul>
                         <div class="button d-f d-flex align-items-center justify-content-start justify-content-start ml-3">
-                            <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p> 
-                                     &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>
-                                    <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p> &ndash;&gt;
-                                    <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>
-                                    &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p> &ndash;&gt;
+                            <p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p> 
+                                     &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
+                                    <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p> &ndash;&gt;
+                                    <p class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально</p>
+                                    &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p> &ndash;&gt;
                         </div>
                     </div>
                 </div>
@@ -197,11 +204,11 @@
                             </li>
                         </ul>
                         <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
-                            <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>
-                                    &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>
-                                    <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
-                                    <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p> &ndash;&gt;
-                                    <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p>
+                            <p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>
+                                    &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
+                                    <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p>
+                                    <p class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально</p> &ndash;&gt;
+                                    <p class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p>
                         </div>
                     </div>
                 </div>
@@ -233,11 +240,11 @@
                             </li>
                         </ul>
                         <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
-                            <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>
-                                    <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>
-                                    &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
-                                    <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>
-                                    <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p> &ndash;&gt;
+                            <p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>
+                                    <p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
+                                    &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p>
+                                    <p class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально</p>
+                                    <p class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p> &ndash;&gt;
                         </div>
                     </div>
                 </div>
@@ -271,11 +278,11 @@
                             </li>
                         </ul>
                         <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
-                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p> &ndash;&gt;
-                            <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
-                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p>                         &ndash;&gt;
+                            &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>
+                            <p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p> &ndash;&gt;
+                            <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p>
+                            &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально</p>
+                            <p class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p>                         &ndash;&gt;
                         </div>
                     </div>
                 </div>
@@ -307,11 +314,11 @@
                             </li>
                         </ul>
                         <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
-                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p> &ndash;&gt;
-                            <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>
-                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p>                        &ndash;&gt;
+                            &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p> &ndash;&gt;
+                            <p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
+                            &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p>
+                            <p class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально</p>
+                            <p class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p>                        &ndash;&gt;
                         </div>
                     </div>
                 </div>
@@ -343,11 +350,11 @@
                             </li>
                         </ul>
                         <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
-                            <p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>
-                            &lt;!&ndash; <p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status no_answer">Заблокований</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>
-                            <p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p> &ndash;&gt;
+                            <p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>
+                            &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
+                            <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p>
+                            <p class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально</p>
+                            <p class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p> &ndash;&gt;
                         </div>
                     </div>
                 </div>
