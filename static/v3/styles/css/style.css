@@ -34,9 +34,11 @@ img{
 }
 .filter-submit{
     margin-left: 10px;
+    margin-bottom: 4px;
 }
 .btn-submit{
    background-color:  #37A8FA;
+
 
 }
 .exit__link{
@@ -138,18 +140,6 @@ img{
     background: url(/static/styles/images/search/filter.svg) no-repeat;
 }
 
-.app-search{
-    border-radius: 5px;
-    outline: none;
-    background: url(/static/styles/images/search/search.svg) no-repeat;
-
-
-    background-position-y: center;
-    background-position-x: 10px;
-    padding: 18px 35px;
-    font-size: 13px;
-    margin-bottom: 10px;
-}
 
 
 .desktop-nav{
@@ -334,10 +324,6 @@ img{
     margin-bottom: 0;
 }
 
-.filter-desktop-rate select{
-    width: 220px;
-}
-
 .status{
     margin-bottom: 0;
 }
@@ -375,20 +361,54 @@ img{
 
 .modal{
     position: flex;
-    top: 40px;
+    top: 48px;
     left: 0;
     right: 0;
     bottom: 0;
     height: 100%;
     padding-top: 45px;
-    background-color: #f7f7f7;
+    background-color: #fff;
 }
 
-.select{
-    border-radius: none;
+.modal p{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #131E52;
+}
+
+.modal form{
+    background: #F6F9FE;
+    padding-top: 20px;
+}
+
+
+.select, .search{
+    width: 100%;
+    padding: 9px;
+    border: 1px solid #E3E8F5;
+    border-radius: 5px;
     outline: none;
     box-shadow: none;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+
+    color: #686F91;
 }
+.search{
+    background: url(/static/styles/images/search/search.svg) no-repeat;
+    background: #fff;
+    padding-left: 35px;
+
+    background-position-y: center;
+    background-position-x: 10px;
+    margin-bottom: 10px;
+}
+
 
 
 .filter-search::after{
@@ -415,12 +435,7 @@ img{
     background-color: #fff;
 }
 
-.form-control{
-    background: #F6F9FE;
-}
-
-
- input, textarea,  select{
+ input, textarea{
 
     border: 1px solid #E3E8F5;
     box-sizing: border-box;
