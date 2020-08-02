@@ -18,5 +18,6 @@ var allowedExtensions = map[string]string{
 	"image/png":          "png",
 	"application/pdf":    "pdf",
 	"application/msword": "doc",
+	"application/zip":    "doc",
 	"application/vnd.openxmlformats-officedocument.wordprocessingml.document": "docx",
 }
