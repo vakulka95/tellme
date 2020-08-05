@@ -3,7 +3,7 @@
         <ul class="nav-list w-100 d-flex mt-auto mb-auto">
             {{ if eq .metadata.status "active" }}
             <li class="nav-item">
-                <a href='#' class="menu--link--active">Заявки</a>
+                <a href='/admin/requisition' class="nav-link menu--link--active">Заявки</a>
             </li>
             {{ end }}
             {{ if eq .metadata.role "admin" }}
@@ -31,7 +31,7 @@
         </ul>
     </nav>
     <div class="user d-flex">
-        <img src="../../images/form/user.svg" alt="user">
+        <img src="/static/styles/0images/form/user.svg" alt="user">
     </div>
 </div>
 </div>
