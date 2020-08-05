@@ -150,6 +150,7 @@
         </div>
     </div>
 </section>
+
 {{ template "footer.html" . }}
 
 
@@ -378,35 +379,18 @@
                                     <input class="form-control clearable" id="education" name="education" type="text"
                                         value="{{ .expert.education }}">
                                     <hr />
-                                    {{ end }}
-                                    <label for="specializations">Спеціалізації </label>
-                                    <select multiple class="custom-select" id="specializations" name="specializations">
-                                        {{ range $spec, $specOpt := .expert.specializations }}
-                                        <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">
-                                            {{ $specOpt.Translated }}</option>
-                                        {{ end }}
-                                    </select>
-                                    <br />
-                                    <hr />
-                                    <div class="text-right">
-                                        <button type="submit" class="btn btn-primary">Зберегти</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{ if (eq .metadata.role "admin" )}}
-                <a class="btn btn-danger" data-expert-id="{{ $expert_id }}" onclick="deleteExpertAPI(this)"
-                    role="button">Видалити</a>
-                <a class="btn btn-secondary {{ if (eq .expert.status "blocked")}} disabled{{ end }}"
-                    data-expert-id="{{ $expert_id }}" onclick="blockExpertAPI(this)" role="button">Блокувати</a>
-                <a class="btn btn-success {{ if (eq .expert.status "active")}} disabled{{ end }}"
-                    data-expert-id="{{ $expert_id }}" onclick="activateExpertAPI(this)" role="button">Активувати</a>
+=======
+
+=======
+            
                 {{ end }}
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 </div> -->
 
 <!-- {{ template "footer.html" . }} -->
+=======
+
+

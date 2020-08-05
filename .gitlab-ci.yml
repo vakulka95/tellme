@@ -22,7 +22,7 @@ build_image:
     - echo "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA" > image_ref
   only:
     - master
-    - /^RELEASE-.*$/%
+    - /^RELEASE-.*$/
     - coding-by-vakulenko
 
 deploy_staging:
@@ -42,5 +42,5 @@ deploy_staging:
     - rm -rf ~/.crts
     - rm image_ref
   only:
-    - /^RELEASE-.*$/%
+    - /^RELEASE-.*$/
     - coding-by-vakulenko

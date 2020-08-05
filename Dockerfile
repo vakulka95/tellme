@@ -49,7 +49,6 @@ ENV APP_NAME=tellme.api
 ENV APP_BIN=/usr/local/bin/${APP_NAME}
 ENV MIGRATION_FILES_DIR=/etc/${APP_NAME}/migrations
 
-
 COPY static/ /usr/share/${APP_NAME}/static
 COPY app/persistence/_migrations/* ${MIGRATION_FILES_DIR}/
 COPY --from=builder ${APP_BIN} ${APP_BIN}
