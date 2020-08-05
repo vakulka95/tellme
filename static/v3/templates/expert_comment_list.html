@@ -1,38 +1,67 @@
 <!--expert_comment_list.html-->
+<div class='input__block ml-0 w-100 d-flex flex-column'>
+    <p class="title-input mb-2">Коментарі</p>
+    <form action="/admin/expert/{{ .expert.id }}/comment" method="POST">
+        <textarea name="body" cols="50" rows="5" class='textarea-feedback form-control '
+            placeholder="Коментар..."></textarea>
+        <div class='col-lg-1 align-self-end filter-submit mt-3 mr-5'>
+            <button type="submit" class='btn btn-submit text-white mb-2'>Відправити</button>
+        </div>
+    </form>
+</div>
 
-<div class="row my-2 mx-auto">
-    <div class="col-3 text-right border-right border-dark">Коментарі</div>
-    <div class="col-9 pl-4">
-        <div class="row bootstrap snippets">
-            <div class="col-md-12">
-                <div class="comment-wrapper">
-                    <div class="panel panel-info">
-                        <div class="panel-body">
-                            <form class="form" action="/admin/expert/{{ .expert.id }}/comment" method="POST">
-                                <textarea class="form-control" placeholder="залишити коментар..." name="body" rows="3"></textarea>
-                                <br/>
-                                <button type="submit" class="btn btn-info pull-right">Коментувати</button>
-                            </form>
-                            <br>
-                            <div class="clearfix"></div>
-                            <hr>
-                            <ul class="media-list">
-                                {{ range $i, $comment := .comments }}
-                                <li class="media">
-                                    <div class="media-body">
-                                <span class="text-muted pull-right">
-                                    <small class="text-muted">{{ $comment.created_at }}</small>
-                                </span>
-                                        <strong class="text-success">{{ $comment.admin_username }}</strong>
-                                        <p>{{ $comment.body }}</p>
-                                    </div>
-                                </li>
-                                {{ end }}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="show-comments mb-5">
+    {{ range $i, $comment := .comments }}
+    <div class="user-feedback mb-3">
+        <div class="info d-flex justify-content-between align-items-center ml-2 mr-2">
+            <p class="title-input mb-0 mb-1">
+                {{ $comment.admin_username }}
+            </p>
+            <p class="time-feedback h-50 mb-0">
+                {{ $comment.created_at }}
+            </p>
+        </div>
+        <div class="text-feedback pt-3 pb-3 border-0">
+            {{ $comment.body }}
         </div>
     </div>
+    {{ end }}
 </div>
+
+
+
+    <!-- <div class="row my-2 mx-auto">
+        <div class="col-3 text-right border-right border-dark">Коментарі</div>
+        <div class="col-9 pl-4">
+            <div class="row bootstrap snippets">
+                <div class="col-md-12">
+                    <div class="comment-wrapper">
+                        <div class="panel panel-info">
+                            <div class="panel-body">
+                                <form class="form" action="/admin/expert/{{ .expert.id }}/comment" method="POST">
+                                    <textarea class="form-control" placeholder="залишити коментар..." name="body"
+                                        rows="3"></textarea>
+                                    <br />
+                                    <button type="submit" class="btn btn-info pull-right">Коментувати</button>
+                                </form>
+                                <br>
+                                <div class="clearfix"></div>
+                                <hr>
+                                <ul class="media-list">
+                                    {{ range $i, $comment := .comments }}
+                                    <li class="media">
+                                        <div class="media-body">
+                                            <span class="text-muted pull-right">
+                                                <small class="text-muted">{{ $comment.created_at }}</small>
+                                            </span>
+                                            <strong class="text-success">{{ $comment.admin_username }}</strong>
+                                            <p>{{ $comment.body }}</p>
+                                        </div>
+                                    </li>
+                                    {{ end }}
+                                </ul>
+                            </div>
+
+<<<<<<< HEAD
+    </div> -->
+

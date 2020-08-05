@@ -1,9 +1,74 @@
-<nav class="menu mt-4">
+<!-- desktop nav -->
+<nav class="nav desktop-nav">
+    <ul class="nav-list w-100 d-flex mt-auto mb-auto">
+        {{ if eq .metadata.status "active" }}
+        <li class="nav-item border-bottom border-dark border-0">
+            <a href="/admin/requisition" class="nav-link nav-link--active">Заявки</a>
+        </li>
+        {{ end }}
+        {{ if eq .metadata.role "admin" }}
+        <li class="nav-item border-bottom border-dark border-0">
+            <a href="/admin/expert?limit=10&offset=0" class="nav-link">Психологи</a>
+        </li>
+        <li class="nav-item border-bottom border-dark border-0">
+            <a href="/admin/review?limit=10&offset=0" class="nav-link">Відгуки</a>
+        </li>
+        <li class="nav-item border-bottom border-dark border-0">
+            <a href="/admin/expert_rating?limit=10&offset=0" class="nav-link">Рейтинги</a>
+        </li>
+        {{ end }}
+        {{ if eq .metadata.role "expert" }}
+        <li class="nav-item border-bottom border-dark border-0">
+            <a href="/admin/profile" class="nav-link">Мій профіль</a>
+        </li>
+        <li class="nav-item border-bottom border-dark border-0">
+            <a href="/admin/review?limit=10&offset=0" class="nav-link">Мої відгуки</a>
+        </li>
+        {{ end }}
+        <li class="nav-item border-bottom border-dark border-0">
+            <a href="#" class="nav-link">Вихід</a>
+        </li>
+    </ul>
+</nav>
+<!-- Mobile navigation -->
+<nav class="nav">
+    <ul class="nav-list w-100 ">
+        {{ if eq .metadata.role "admin" }}
+        <li class="nav-item border-bottom border-dark">
+            <a href="/admin/requisition" class="nav-link">Заявки</a>
+        </li>
+        <li class="nav-item border-bottom border-dark">
+            <a href="../myProfile/myProfile.html" class="nav-link">Психологи</a>
+        </li>
+        <li class="nav-item border-bottom border-dark">
+            <a href="../..//Psy_admin/Applications/index.html" class="nav-link">Відгуки</a>
+        </li>
+        <li class="nav-item border-bottom border-dark">
+            <a href="../..//Psy_admin/Applications/index.html" class="nav-link">Рейтинги</a>
+        </li>
+        {{ end }}
+        {{ if eq .metadata.role "expert" }}
+        <li class="nav-item border-bottom border-dark">
+            <a href="../myProfile/myProfile.html" class="nav-link">Мій профіль</a>
+        </li>
+        <li class="nav-item border-bottom border-dark ">
+            <a href="../myFeedback/myFeedback.html" class="nav-link ">Мої відгуки</a>
+        </li>
+        {{ end }}
+        <li class="nav-item border-bottom border-dark">
+            <a href="#" class="nav-link">Вихід</a>
+        </li>
+    </ul>
+</nav>
+
+
+
+
+<!-- <nav class="menu mt-4">
     <ul class="nav menu__list d-flex justify-content-between">
         {{ if eq .metadata.status "active" }}
         <li class="nav-item menu__item ">
-            <a href="/admin/requisition" class="nav-link menu--link  pb-2 mr-4">Заявки</a><!--menu--link--active-->
-        </li>
+            <a href="/admin/requisition" class="nav-link menu--link  pb-2 mr-4">Заявки</a>
         {{ end }}
         {{ if eq .metadata.role "admin" }}
         <li class="nav-item menu__item">
@@ -28,4 +93,4 @@
         </li>
         {{ end }}
     </ul>
-</nav>
+</nav> -->
