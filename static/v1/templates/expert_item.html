@@ -148,7 +148,7 @@
                             </figure>
                              {{ else if (or (eq $doc.ext "doc") (eq $doc.ext "docx")) }}
                              <figure>
-                                <iframe src="https://docs.google.com/gview?url={{ $doc.url }}&embedded=true"></iframe>
+                                <iframe src="https://docs.google.com/gview?url={{ $doc.url }}&embedded=true" width="100%" height="800px"></iframe>
                              </figure>
                              {{ else }}
                             <a href="{{ $doc.url }}">
