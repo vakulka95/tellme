@@ -59,12 +59,7 @@
                             {{ with (eq $status "processing") }}<p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>{{ end }}
                             {{ with (eq $status "completed") }}<p class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p>{{ end }}
                             {{ with (eq $status "no_answer") }}<p class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально</p>{{ end }}
-                            <!--
-                            //:TODO на данный момент такого статуса не обнаружил
-
-                                <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p>
-                             -->
-
+                            
                         </td>
 
                         <!--
