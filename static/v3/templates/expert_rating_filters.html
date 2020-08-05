@@ -1,110 +1,165 @@
-    <!-- FILTER SEARCH -->
-    <section class='filter mt-3'>
-        <div class="container">
-            <div class=" row filter__wrap">
-                <div class="col-12">
-                    <div class="filter__btn d-flex flex-column justify-content-center">
-                        <button type='button' class='filter-btn'>Фільтр</button>
-                    </div>
-                    <div class="filter__search mt-2">
-                        <input class='form-control app-search' type="text" id="search" name="search"
-                            placeholder="ID, Ім'я або Телефон">
-                    </div>
+<!--expert_rating_filters.html-->
+ <!-- FILTER SEARCH -->
+ <section class='filter mt-3'>
+    <div class="container">
+        <div class="filter__wrap">
+            <div class=" mt-2">
+                <div class="filter__btn d-flex flex-column justify-content-center">
+                    <button type='button' class='filter-btn'>Фільтр</button>
+                </div>
+                <div class="download-block d-flex">
+                    <a href="/admin/expert_rating/excel?status={{ .queries.status }}&order_by={{ .queries.order_by }}&order_dir={{ .queries.order_dir }}" role='button' class="text-center w-100 filter-btn pt-3 pb-3 mr-1">Загрузити Excel</a>
+                    <a href="/admin/expert_rating/pdf?status={{ .queries.status }}&order_by={{ .queries.order_by }}&order_dir={{ .queries.order_dir }}" role="button" class="text-center w-100 filter-btn pt-3 pb-3">Загрузити PDF</a>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- FILTER MODAL -->
-    <section class="modal">
-        <div class="container">
-            <div class="modal__wrap">
+    </div>
+</section>
+<!-- FILTER MODAL -->
+<section class="modal">
+        <div class="modal__wrap">
+            <div class="title-block pl-3 bg-white">
                 <div class="modal__close">
                     <img src="/static/styles/images/search/close.svg" class='close' alt="modal-close">
                 </div>
                 <div class="title__item mb-4">
                     <h1 class="title">Фільтр</h1>
                 </div>
-                <div class="filter__form">
-                    <div class="psy__status-filter mb-3">
-                        <p class="psy__status-filter-title mb-0">Статус</p>
-                        <select id="status" name="status" class='select psy__status-select'>
-                            <option value="">Всі</option>
-                            <option value="on_review">На модерації</option>
-                            <option value="blocked">Заблокований</option>
-                            <option value="active">Активний</option>
+            </div>
+            <form class="pl-3 pr-3" action="/admin/expert_rating" method="GET">
+                <div class="status mb-3 ">
+                    <p class=" mb-0">Статус</p>
+                    <select id="status" name="status" class='bg-white select status-select form-control mt-1'>
+                        <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                        <option {{ if (eq .queries.status "on_review") }} selected {{ end}} value="on_review">На модерації</option>
+                        <option {{ if (eq .queries.status "blocked") }} selected {{ end}} value="blocked">Заблокований</option>
+                        <option {{ if (eq .queries.status "active") }} selected {{ end}} value="active">Активний</option>
+                    </select>
+                </div>
+                <div class="sort mb-3">
+                    <p class=" mb-0">Сортувати по</p>
+                    <select id="order_by" name="order_by" class='select spec-select form-control mt-1'>
+                        <option value="created_at">Дата реєстрації(за замовчуванням)</option>
+                        <option {{ if (eq .queries.order_by "") }} selected {{ end}} value="created_at">Дата реєстраціі(за замовчуванням)</option>
+                        <option {{ if (eq .queries.order_by "review_count") }} selected {{ end}} value="review_count">Кількість відгуків</option>
+                        <option {{ if (eq .queries.order_by "average_rating") }} selected {{ end}} value="average_rating">Середня оцінка</option>
+                        <option {{ if (eq .queries.order_by "session_count") }} selected {{ end}} value="session_count">Сесій проведено</option>
+                        <option {{ if (eq .queries.order_by "completed_count") }} selected {{ end}} value="completed_count">Заявок виконано</option>
+                        <option {{ if (eq .queries.order_by "processing_count") }} selected {{ end}} value="processing_count">Заявок в роботі</option>
+                    </select>
+                </div>
+                <div>
+                    <p class=" mb-0">Напрям сортування</p>
+                    <select id="order_dir" name="order_dir" class='select spec-select form-control mt-1'>
+                        <option {{ if (eq .queries.order_dir "asc") }} selected {{ end}} value="asc">За зростанням</option>
+                        <option {{ if or (eq .queries.order_dir "desc") (eq .queries.order_dir "") }} selected {{ end}} value="desc">За спаданням</option>
+                    </select>
+                </div>
+                <div class="filter__btn d-flex flex-column justify-content-center mt-5 mb-4">
+                    <button type='submit' class='filter-btn filter-search'>Пошук</button>
+                </div>
+            </form>
+        </div>
+</section>
+<!-- Filter DESKTOP -->
+<section class='filter-desktop filter-desktop-rate'>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <form action="/admin/expert_rating" method="GET" class='d-flex'>
+                    <div class="col-lg-2 mt-3 mr-3 p-0">
+                        <p class=" mb-2 filter-desktop-inp-title">Статус</p>
+                        <select id="status" name="status" class='select status-select'>
+                            <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                            <option {{ if (eq .queries.status "on_review") }} selected {{ end}} value="on_review">На модерації</option>
+                            <option {{ if (eq .queries.status "blocked") }} selected {{ end}} value="blocked">Заблокований</option>
+                            <option {{ if (eq .queries.status "active") }} selected {{ end}} value="active">Активний</option>
                         </select>
                     </div>
-                    <div class="spec">
-                        <p class="spec-title mb-0">Спеціалізації</p>
-                        <select multiple class="custom-select" id="specializations" name="specializations">
-                            <option value="">Всі</option>
-                            <option value="Depression">Депресія</option>
-                            <option value="Eating-disorders">Розлади харчової поведінки</option>
-                            <option value="Problems-in-family ">Проблеми в сімейних стосунках</option>
-                            <option value="Anxiety-and-health">Тривога та здоров'я</option>
-                            <option value="Obsessive-compulsive disorder">Обсесивно-компульсивний розлад</option>
-                            <option value="Panic-disorder">Панічний розлад</option>
-                            <option value="Parents-and-kids">Проблеми у стосунках батьків і дітей</option>
-                            <option value="Phobias">Фобії</option>
-                            <option value="PTSD">ПТСР</option>
-                            <option value="Generalized-Anxiety-Disorder">Генералізований тривожний розлад</option>
+                    <div class="col-lg-2 mt-3 mr-3 p-0">
+                        <p class=" mb-2 filter-desktop-inp-title">Сортувати по</p>
+                        <select id="order_by" name="order_by" class='select spec-select'>
+                            <option {{ if (eq .queries.order_by "") }} selected {{ end}} value="created_at">Дата реєстраціі(за замовчуванням)</option>
+                            <option {{ if (eq .queries.order_by "review_count") }} selected {{ end}} value="review_count">Кількість відгуків</option>
+                            <option {{ if (eq .queries.order_by "average_rating") }} selected {{ end}} value="average_rating">Середня оцінка</option>
+                            <option {{ if (eq .queries.order_by "session_count") }} selected {{ end}} value="session_count">Сесій проведено</option>
+                            <option {{ if (eq .queries.order_by "completed_count") }} selected {{ end}} value="completed_count">Заявок виконано</option>
+                            <option {{ if (eq .queries.order_by "processing_count") }} selected {{ end}} value="processing_count">Заявок в роботі</option>
                         </select>
-    
                     </div>
-                    <div class="filter__btn d-flex flex-column justify-content-center mt-5">
-                        <button type='button' class='filter-btn filter-search'>Пошук</button>
+                    <div class="col-lg-2 mt-3 mr-3 p-0">
+                        <p class=" mb-2 filter-desktop-inp-title">Напрям сортування</p>
+                        <select id="order_dir" name="order_dir" class='select status-select'>
+                            <option {{ if (eq .queries.order_dir "asc") }} selected {{ end}} value="asc">За зростанням</option>
+                            <option {{ if or (eq .queries.order_dir "desc") (eq .queries.order_dir "") }} selected {{ end}} value="desc">За спаданням</option>
+                        </select>
                     </div>
-                </div>
+                    <div class='col-lg-1 filter-submit d-flex align-items-end justify-content-center mt-4'>
+                        <button type="submit" class='btn btn-submit text-white'>Вибрати</button>
+                    </div>  
+                    <div class="col-lg-4 ml-3 download-block d-flex p-0 justify-content-around align-items-end">
+                        <a href="/admin/expert_rating/excel?status={{ .queries.status }}&order_by={{ .queries.order_by }}&order_dir={{ .queries.order_dir }}" role='button' class="download-btn text-center">Загрузити Excel</a>
+                        <a href="/admin/expert_rating/pdf?status={{ .queries.status }}&order_by={{ .queries.order_by }}&order_dir={{ .queries.order_dir }}" role="button" class="download-btn text-center">Загрузить PDF</a>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
-    <!-- Filter DESKTOP -->
-    <section class='filter-desktop '>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <form action="#" class='d-flex justify-content-between'>
-                        <div class="filter__search mt-3 mr-3 w-100">
-                            <p class="search-title filter-desktop-inp-title mb-2">Пошук</p>
-                            <input class='form-control app-search' type="text" id="search" name="search">
+    </div>
+</section>
+<!-- 
+
+
+<div class="card shadow">
+    <article class="card-group-item">
+        <header class="card-header">
+            <h3 class="title">Фільтри</h3>
+        </header>
+        <div class="filter-content">
+            <div class="card-body">
+                <form class="form" action="/admin/expert_rating" method="GET">
+                    <label for="status">Статус</label>
+                    <select class="custom-select" id="status" name="status">
+                        <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                        <option {{ if (eq .queries.status "on_review") }} selected {{ end}} value="on_review">На модерації</option>
+                        <option {{ if (eq .queries.status "blocked") }} selected {{ end}} value="blocked">Заблокований</option>
+                        <option {{ if (eq .queries.status "active") }} selected {{ end}} value="active">Активний</option>
+                    </select>
+                    <br/>
+                    <hr/>
+                    <label for="status">Сортувати по</label>
+                    <select class="custom-select" id="order_by" name="order_by">
+                        <option {{ if (eq .queries.order_by "") }} selected {{ end}} value="created_at">Дата реєстраціі(за замовчуванням)</option>
+                        <option {{ if (eq .queries.order_by "review_count") }} selected {{ end}} value="review_count">Кількість відгуків</option>
+                        <option {{ if (eq .queries.order_by "average_rating") }} selected {{ end}} value="average_rating">Середня оцінка</option>
+                        <option {{ if (eq .queries.order_by "session_count") }} selected {{ end}} value="session_count">Сесій проведено</option>
+                        <option {{ if (eq .queries.order_by "completed_count") }} selected {{ end}} value="completed_count">Заявок виконано</option>
+                        <option {{ if (eq .queries.order_by "processing_count") }} selected {{ end}} value="processing_count">Заявок в роботі</option>
+                    </select>
+                    <br/>
+                    <hr/>
+                    <label for="status">Напрям сортування</label>
+                    <select class="custom-select" id="order_dir" name="order_dir">
+                        <option {{ if (eq .queries.order_dir "asc") }} selected {{ end}} value="asc">За зростанням</option>
+                        <option {{ if or (eq .queries.order_dir "desc") (eq .queries.order_dir "") }} selected {{ end}} value="desc">За спаданням</option>
+                    </select>
+                    <br/>
+                    <hr/>
+                    <button type="submit" class="btn btn-primary">Вибрати</button>
+                    <br/>
+                    <hr/>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a class="btn btn-info" href="/admin/expert_rating/excel?status={{ .queries.status }}&order_by={{ .queries.order_by }}&order_dir={{ .queries.order_dir }}" role="button">Завантажити Excel</a>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <a class="btn btn-info" href="/admin/expert_rating/pdf?status={{ .queries.status }}&order_by={{ .queries.order_by }}&order_dir={{ .queries.order_dir }}" role="button">Завантажити PDF</a>
+                            </div>
                         </div>
-                        <div class="status mr-3 mt-3 mb-2 mr-0 w-100">
-                            <p class="status-title mb-2 filter-desktop-inp-title">Статус</p>
-                            <select id="specializations" name="specializations" class='select status-select form-control'>
-                                <option value="">Всі</option>
-                                <option value="Depression">Депресія</option>
-                                <option value="Eating-disorders">Розлади харчової поведінки</option>
-                                <option value="Problems-in-family ">Проблеми в сімейних стосунках</option>
-                                <option value="Anxiety-and-health">Тривога та здоров'я</option>
-                                <option value="Obsessive-compulsive disorder">Обсесивно-компульсивний розлад</option>
-                                <option value="Panic-disorder">Панічний розлад</option>
-                                <option value="Parents-and-kids">Проблеми у стосунках батьків і дітей</option>
-                                <option value="Phobias">Фобії</option>
-                                <option value="PTSD">ПТСР</option>
-                                <option value="Generalized-Anxiety-Disorder">Генералізований тривожний розлад</option>
-                            </select>
-                        </div>
-                        <div class="spec mt-3 mb-0 mr-3 w-100">
-                            <p class="spec-title mb-2 filter-desktop-inp-title">Спеціалізація</p>
-                            <select multiple id="specializations" name="specializations" class='select spec-select form-control'>
-                                <option value="">Всі</option>
-                                <option value="Depression">Депресія</option>
-                                <option value="Eating-disorders">Розлади харчової поведінки</option>
-                                <option value="Problems-in-family ">Проблеми в сімейних стосунках</option>
-                                <option value="Anxiety-and-health">Тривога та здоров'я</option>
-                                <option value="Obsessive-compulsive disorder">Обсесивно-компульсивний розлад</option>
-                                <option value="Panic-disorder">Панічний розлад</option>
-                                <option value="Parents-and-kids">Проблеми у стосунках батьків і дітей</option>
-                                <option value="Phobias">Фобії</option>
-                                <option value="PTSD">ПТСР</option>
-                                <option value="Generalized-Anxiety-Disorder">Генералізований тривожний розлад</option>
-                            </select>
-                        </div>
-                        <div class='filter-submit d-flex align-items-center justify-content-center mt-2 '>
-                            <button type="submit" class='btn btn-submit text-white'>Вибрати</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
+    </article>
+</div> -->
