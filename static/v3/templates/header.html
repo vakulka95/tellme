@@ -7,7 +7,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/styles/css/noah/noah.css">
+    <link rel="stylesheet" href="/static/styles/css/noah/styles.css">
     <link rel="stylesheet" href="/static/styles/css/style.css">
     <title>Заявки</title>
 </head>
@@ -23,17 +23,10 @@
                     </a>
                 </div>
             </div>
+            <div class=" col-6 d-flex justify-content-end mt-auto mb-auto">
 
             {{ if .metadata.logged_in }}
                 {{ template "navigation.html" . }}
             {{ end }}
 
-            <!-- Такой себе бургер меню для психолога на мобильном при разрешении более 1024 он скрыт-->
-            <div class="user d-flex justify-content-center">
-                <img src="/static/styles/images/user.svg" alt="user">
-            </div>
-            <!-- ************** -->
-
-        </div>
-    </div>
 </header>
