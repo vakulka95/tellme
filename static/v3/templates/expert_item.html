@@ -1,12 +1,13 @@
 <!--expert_item.html-->
 
 {{ template "header.html" . }}
+
 {{ template "title.html" . }}
 
-<section class='item ml-auto mr-auto'>
+<!-- <section class='item ml-auto mr-auto'>
     <div class="container">
         <div class="row">
-            <!-- {{ $expert_id := .expert.id }} -->
+            {{ $expert_id := .expert.id }}
             <form action="#" class='d-flex flex-wrap  pb-4 w-100 mb-3' role="form">
                 <div class='input__block'>
                     <p class="title-input">ID</p>
@@ -30,14 +31,14 @@
                 <div class='input__block'>
                     <p class="title-input">Email</p>
                     <input type="email" name="last-mail" class="input-mail form-control" value='{{ .expert.email }}'
-                        readonly>
+                        readonly> -->
                     <!-- ***************************<div class="apply-block-mail hide">
                                     <button class="btn-in-input bg-danger text-white denied">X</button>
                                     <button class="btn-in-input bg-success apply p-2">
                                         <img src="/static/styles/images/form/Vector.svg" alt="">
                                     </button>
                                 </div>************************** -->
-                </div>
+                <!-- </div> -->
                 {{ if eq .metadata.role "admin" }}
                 <div class='input__block'>           
                     <p class="title-input">Пароль</p>
