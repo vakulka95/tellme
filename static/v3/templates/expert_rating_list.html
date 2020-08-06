@@ -104,6 +104,12 @@
         </div>
     </div>
 </section>
+
+
+{{ template "expert_rating_pagging.html" . }}
+
+{{ template "footer.html" . }}
+
 <!-- CLIENTS mobile version -->
 <!--
 //:TODO если тяжко сделать все через css, можно и дублировать данные и относительно размера экраны показывать тот или инной контейнер, но как по мне это не правильно
@@ -232,4 +238,3 @@
 
 
 <!-- FOOTER -->
-{{ template "footer.html" . }}
