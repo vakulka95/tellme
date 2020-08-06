@@ -9,14 +9,14 @@
                         </li>
                         {{ else }}
                         <li class="page-item">
-                            <a class="page-link h-100 text-center" href="/admin/review{{ .firstQuery }}">
+                            <a class="page-link h-100 text-center" href="/admin/requisition{{ .firstQuery }}">
                                 <img class='mt-1 ml-1' src="/static/styles/images/footer/first-page.svg" alt="start">
                             </a>
                         </li>
                         {{ end }}
                         {{ if .page.HasPrevious }}
                         <li class="page-item">
-                            <a class="page-link h-100 text-center" href="/admin/review{{ .prevQuery }}">
+                            <a class="page-link h-100 text-center" href="/admin/requisition{{ .prevQuery }}">
                                 <img class='mt-1 ml-1' src="/static/styles/images/footer/prev-page.svg" alt="prev">
                             </a>
                         </li>
@@ -46,7 +46,7 @@
                 
                         {{ if .page.HasNext }}
                         <li class="page-item">
-                            <a class="page-link h-100 text-center" href="/admin/review{{ .nextQuery }}">
+                            <a class="page-link h-100 text-center" href="/admin/requisition{{ .nextQuery }}">
                                 <img class='mt-1 ml-1' src="/static/styles/images/footer/next-page.svg" alt="next">
                             </a>
                         </li>
@@ -65,7 +65,7 @@
                         </li>
                         {{ else }}
                         <li class="page-item">
-                            <a class="page-link h-100 text-center" href="/admin/review{{ .lastQuery }}">
+                            <a class="page-link h-100 text-center" href="/admin/requisition{{ .lastQuery }}">
                                 <img class='mt-1 ml-1' src="/static/styles/images/footer/last-page.svg" alt="end">
                             </a>
                         </li>
