@@ -41,8 +41,7 @@ if(user){
         menuModal.onclick = () => { 
         menuModal.classList.remove('show');
         }
-    }
-    
+    } 
 }
 
 

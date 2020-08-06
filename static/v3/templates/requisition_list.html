@@ -5,6 +5,7 @@
 
 <!-- Title -->
 {{ template "title.html" . }}
+
 {{ template "requisition_filters.html" . }}
 
 <!-- MAIN TABLE -->
@@ -69,7 +70,6 @@
                                 {{ with (eq $status "no_answer") }}<p
                                     class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально
                                 </p>{{ end }}
-
                             </td>
 
                             <!--
