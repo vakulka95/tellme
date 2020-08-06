@@ -4,125 +4,155 @@
 {{ template "title.html" . }}
 
 
-    <section class='item ml-auto mr-auto'>
-        <div class="container">
-            <div class="row">
-                    <form action="#" class='d-flex flex-wrap  pb-4 w-100 mb-3' role="form">
-                                <div class='input__block'>
-                                    <p class="title-input">ID</p>
-                                    <input type="text" name="ID" class="input-id form-control" value='{{ .requisition.id }}' readonly>
-                                </div>
-                                <div class='input__block'>
-                                    <p class="title-input">Ім'я</p>
-                                    {{ if (ne .requisition.username "") }}
-                                    <input type="text" name="name" class="input-name form-control"
-                                        placeholder="Тетяна Шаригіна" value='{{ .requisition.username }}' readonly>
-                                    {{ else }}
-                                    <input type="text" name="name" class="input-name form-control"
-                                        placeholder="Тетяна Шаригіна" value='Недоступно' readonly>
-                                    {{ end }}
-                                </div>
+<section class='item ml-auto mr-auto'>
+    <div class="container">
+        <div class="row">
+            <form action="#" class='d-flex flex-wrap  pb-4 w-100 mb-3' role="form">
+                <div class='input__block'>
+                    <p class="title-input">ID</p>
+                    <input type="text" name="ID" class="input-id form-control" value='{{ .requisition.id }}' readonly>
+                </div>
+                <div class='input__block'>
+                    <p class="title-input">Ім'я</p>
+                    {{ if (ne .requisition.username "") }}
+                    <input type="text" name="name" class="input-name form-control" 
+                        value='{{ .requisition.username }}' readonly>
+                    {{ else }}
+                    <input type="text" name="name" class="input-name form-control" 
+                        value='Недоступно' readonly>
+                    {{ end }}
+                </div>
 
-                                <div class='input__block'>
-                                    <p class="title-input">Стать</p>
-                                    {{ $gender := .requisition.gender }}
-                                    {{ with (eq .expert.gender "male") }}<input type="text" name="gender" class="input-gender form-control" value='Чол.' readonly>{{ end }}
-                                    {{ with (eq .expert.gender "female") }}<input type="text" name="gender" class="input-gender form-control" value='Жін.' readonly>{{ end }}
-                                </div>
-                                <div class='input__block'>
-                                    <p class="title-input">День зворотнього зв'язку</p>
-                                    <input type="text" name="app-day" class="input-day form-control" value='{{ .requisition.feedback_week_day }}' readonly>
-                                </div>
-                                <div class='input__block'>
-                                    <p class="title-input">Час зворотнього зв'язку</p>
-                                    <input type="text" name="app-hour" class="input-hour form-control" value='{{ .requisition.feedback_time }}' readonly>
-                                </div>
-                               
-                                <div class='input__block'>
-                                    <p class="title-input">Телефон</p>
-                                    {{ if (ne .requisition.username "") }}
-                                    <input type="number" name="phone" class="input-phone input-for-btn form-control" placeholder="050l 000 00 00" value='{{ .requisition.phone }}' readonly>
-                                    {{ else }}
-                                    <input type="number" name="phone" class="input-phone input-for-btn form-control" placeholder="050l 000 00 00" value='Недоступно' readonly>
-                                    {{ end }}
-                                </div>
-                                <div class='input__block'>
-                                    <p class="title-input">Зворотній зв'язок</p>
-                                    <input type="text" name="app-last-call" class="input-last-call form-control" value='{{ .requisition.feedback_type }}' readonly>
-                                </div>
-                                {{ if (ne .requisition.feedback_type "phone") }}
-                                <div class='input__block'>
-                                    <p class="title-input">Зворотній зв'язок</p>
-                                    <input type="text" name="app-last-call" class="input-last-call form-control" value='{{ if (ne .requisition.feedback_contact "") }}{{ .requisition.feedback_contact }}{{ else }}Недоступно{{ end }}' readonly>
-                                </div>
-                                {{ end }}
-                                <div class='input__block'>
-                                    <p class="title-input">Спеціалізація</p>
-                                    <input type="text" name="app-specialization" class="input-spec form-control" placeholder="Фобії" value='{{ .requisition.diagnosis }}' readonly>
-                                </div>
-                                <div class="input__block">
-                                    <p class="title-input">Стать психолога</p>
-                                    {{ $expert_gender := .requisition.expert_gender }}
-                                    {{ with (eq $expert_gender "male") }}<input type="text" name="app-gender" class="input-gender form-control" value='Чол.' readonly>{{ end }}
-                                    {{ with (eq $expert_gender "female") }}<input type="text" name="app-gender" class="input-gender form-control" value='Жін.' readonly>{{ end }}
-                                    {{ with (eq $expert_gender "no_matter") }}<input type="text" name="app-gender" class="input-gender form-control" value='Байдуже' readonly>{{ end }}
-                                </div>
-                                <div class="input__block ">
-                                    <p class="title-input">Сесій проведено</p>
-                                    <input type="text" name="app-session" class="input-session form-control" placeholder="0" value='{{ .requisition.session_count }}' readonly>
-                                </div>
-                                <div class='input__block '>
-                                    <p class="title-input">Опис звернення</p>
-                                    <textarea name="app-describe" cols="30" rows="5" class='textarea-describe form-control' placeholder="Агарофобия, панический страх при переходе проезжей части, на широкой площади" value='{{ .requisition.diagnosis_description }}' readonly></textarea>
-                                </div>
-                                <div class="date-of-reg ml-4 d-flex flex-column">
-                                    <p class="title-input  mt-0">Дата  створення заявки</p>
-                                    <div class="block-date-time d-flex">
-                                        <p class='date-time mr-1'>{{ .requisition.created_at }}</p>
-                                    </div>
-                                </div>
-                                <div class="input__block mb-2">
-                                    <p class="title-input pb-2">Статус</p>
-                                    {{ $status := .requisition.status }}
-                                    {{ with (eq $status "processing") }}<p class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>{{ end }}
-                                    {{ with (eq $status "created") }}<p class="cell mb-0 table-require-cell table-cell-status created">Не в роботі</p>{{ end }}
-                                    {{ with (eq $status "no_answer") }}<p class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>{{ end }}
-                                    {{ with (eq $status "completed") }}<p class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p>{{ end }}
-                                </div>
+                <div class='input__block'>
+                    <p class="title-input">Стать</p>
+                    {{ $gender := .requisition.gender }}
+                    {{ with (eq $gender "male") }}<input type="text" name="gender" class="input-gender form-control" value='Чол.' readonly>{{ end }}
+                    {{ with (eq $gender "female") }}<input type="text" name="gender" class="input-gender form-control" value='Жін.' readonly>{{ end }}
+                </div>
+                <div class='input__block'>
+                    <p class="title-input">День зворотнього зв'язку</p>
+                    <input type="text" name="app-day" class="input-day form-control"
+                        value='{{ .requisition.feedback_week_day }}' readonly>
+                </div>
+                <div class='input__block'>
+                    <p class="title-input">Час зворотнього зв'язку</p>
+                    <input type="text" name="app-hour" class="input-hour form-control"
+                        value='{{ .requisition.feedback_time }}' readonly>
+                </div>
 
-                            
-                    {{ if eq .metadata.role "expert" }}
-                    <div class='w-75 ml-auto mr-auto mb-5 mt-5 bg-white w-100 h-100 p-3 ' role="form">
-                        <div class="row d-flex justify-content-between bg-white">
-                            <div class="col-lg-5">
-                                <div class="consultation d-flex flex-column pt-5 pb-4 pl-5">
-                                    <p class='consultation-title'>Не в роботі</p>
-                                    <p>2020-07-18 14:53 </p>
-                                </div>
-                            </div>
-                            <div class="buttons col-lg-7 mt-auto mb-auto">
-                                <button class="btn main-btn btn-success pt-3 pb-3 mt-3 mr-3">Завершити</button>
+                <div class='input__block'>
+                    <p class="title-input">Телефон</p>
+                    {{ if (ne .requisition.username "") }}
+                    <input type="number" name="phone" class="input-phone input-for-btn form-control"
+                        placeholder="050l 000 00 00" value='{{ .requisition.phone }}' readonly>
+                    {{ else }}
+                    <input type="number" name="phone" class="input-phone input-for-btn form-control"
+                        placeholder="050l 000 00 00" value='Недоступно' readonly>
+                    {{ end }}
+                </div>
+                <div class='input__block'>
+                    <p class="title-input">Зворотній зв'язок</p>
+                    <input type="text" name="app-last-call" class="input-last-call form-control"
+                        value='{{ .requisition.feedback_type }}' readonly>
+                </div>
+                {{ if (ne .requisition.feedback_type "phone") }}
+                <div class='input__block'>
+                    <p class="title-input">Зворотній зв'язок</p>
+                    <input type="text" name="app-last-call" class="input-last-call form-control"
+                        value='{{ if (ne .requisition.feedback_contact "") }}{{ .requisition.feedback_contact }}{{ else }}Недоступно{{ end }}'
+                        readonly>
+                </div>
+                {{ end }}
+                <div class='input__block'>
+                    <p class="title-input">Спеціалізація</p>
+                    <input type="text" name="app-specialization" class="input-spec form-control" placeholder="Фобії"
+                        value='{{ .requisition.diagnosis }}' readonly>
+                </div>
+                <div class="input__block">
+                    <p class="title-input">Стать психолога</p>
+                    {{ $expert_gender := .requisition.expert_gender }}
+                    {{ with (eq $expert_gender "male") }}<input type="text" name="app-gender"
+                        class="input-gender form-control" value='Чол.' readonly>{{ end }}
+                    {{ with (eq $expert_gender "female") }}<input type="text" name="app-gender"
+                        class="input-gender form-control" value='Жін.' readonly>{{ end }}
+                    {{ with (eq $expert_gender "no_matter") }}<input type="text" name="app-gender"
+                        class="input-gender form-control" value='Байдуже' readonly>{{ end }}
+                </div>
+                <div class="input__block ">
+                    <p class="title-input">Сесій проведено</p>
+                    <input type="text" name="app-session" class="input-session form-control" placeholder="0"
+                        value='{{ .requisition.session_count }}' readonly>
+                </div>
+                <div class='input__block '>
+                    <p class="title-input">Опис звернення</p>
+                    <textarea name="app-describe" cols="30" rows="5" class='textarea-describe form-control'
+                        placeholder="Агарофобия, панический страх при переходе проезжей части, на широкой площади"
+                        value='{{ .requisition.diagnosis_description }}' readonly></textarea>
+                </div>
+                <div class="date-of-reg ml-4 d-flex flex-column">
+                    <p class="title-input  mt-0">Дата створення заявки</p>
+                    <div class="block-date-time d-flex">
+                        <p class='date-time mr-1'>{{ .requisition.created_at }}</p>
+                    </div>
+                </div>
+                <div class="input__block mb-2">
+                    <p class="title-input pb-2">Статус</p>
+                    {{ $status := .requisition.status }}
+                    {{ with (eq $status "processing") }}<p
+                        class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>{{ end }}
+                    {{ with (eq $status "created") }}<p class="cell mb-0 table-require-cell table-cell-status created">
+                        Не в роботі</p>{{ end }}
+                    {{ with (eq $status "no_answer") }}<p
+                        class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>{{ end }}
+                    {{ with (eq $status "completed") }}<p
+                        class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p>{{ end }}
+                </div>
+
+
+                {{ if eq .metadata.role "expert" }}
+                <div class='w-75 ml-auto mr-auto mb-5 mt-5 bg-white w-100 h-100 p-3 ' role="form">
+                    <div class="row d-flex justify-content-between bg-white">
+                        <div class="col-lg-5">
+                            <div class="consultation d-flex flex-column pt-5 pb-4 pl-5">
+                                <p class='consultation-title'>Не в роботі</p>
+                                <p>2020-07-18 14:53 </p>
                             </div>
                         </div>
+                        <div class="buttons col-lg-7 mt-auto mb-auto">
+                            <button class="btn main-btn btn-success pt-3 pb-3 mt-3 mr-3">Завершити</button>
+                        </div>
                     </div>
-                    <div class=' align-self-end mb-3'>
-                        <a class="btn form-btn mr-3 mb-3 main-form-btn bg-success align-self-center text-white {{ if or (ne .requisition.status "processing") (ge .requisition.session_count 3) }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="createSessionRequisitionAPI(this)" role="button">Провести консультацію</a>
-                        <a class="btn form-btn mr-3 main-form-btn bg-warning align-self-center text-white {{ if or (ne .requisition.status "processing") (eq .requisition.session_count 0) }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="discardSessionRequisitionAPI(this)" role="button">Відмінити консультацію</a>
+                </div>
+                <div class=' align-self-end mb-3'>
+                    <a class="btn form-btn mr-3 mb-3 main-form-btn bg-success align-self-center text-white {{ if or (ne .requisition.status "processing") (ge .requisition.session_count 3) }} disabled{{ end }}"
+                        data-requisition-id="{{ .requisition.id }}" onclick="createSessionRequisitionAPI(this)"
+                        role="button">Провести консультацію</a>
+                    <a class="btn form-btn mr-3 main-form-btn bg-warning align-self-center text-white {{ if or (ne .requisition.status "processing") (eq .requisition.session_count 0) }} disabled{{ end }}"
+                        data-requisition-id="{{ .requisition.id }}" onclick="discardSessionRequisitionAPI(this)"
+                        role="button">Відмінити консультацію</a>
 
-                        
-                    </div>
-                    {{ end }}
 
-                    <div class=" item-btns d-flex justify-content-center align-self-center align-self-lg-end flex-lg-row">
-                        <a class="btn form-btn mr-3 main-form-btn bg-success align-self-center text-white {{ if (eq .requisition.status "processing") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="takeRequisitionAPI(this)" role="button">Взяти</a>
-                        <a class="btn form-btn mr-3 main-form-btn bg-success align-self-center text-white {{ if or (eq .requisition.status "completed") (eq .requisition.status "no_answer") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="completeRequisitionAPI(this)" role="button">Завершити</a>
-                        <a class="btn form-btn mr-3 main-form-btn bg-warning align-self-center text-white {{ if (ne .requisition.status "processing") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="noAnswerRequisitionAPI(this)" role="button"> Не актуально</a>
-                        <a class="btn form-btn main-form-btn bg-danger align-self-center text-white {{ if (eq .requisition.status "created") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="discardRequisitionAPI(this)" role="button">Відмовитися</a>
-                    </div>
+                </div>
+                {{ end }}
 
-            </div>
+                <div class=" item-btns d-flex justify-content-center align-self-center align-self-lg-end flex-lg-row">
+                    <a class="btn form-btn mr-3 main-form-btn bg-success align-self-center text-white {{ if (eq .requisition.status "processing") }} disabled{{ end }}"
+                        data-requisition-id="{{ .requisition.id }}" onclick="takeRequisitionAPI(this)"
+                        role="button">Взяти</a>
+                    <a class="btn form-btn mr-3 main-form-btn bg-success align-self-center text-white {{ if or (eq .requisition.status "completed") (eq .requisition.status "no_answer") }} disabled{{ end }}"
+                        data-requisition-id="{{ .requisition.id }}" onclick="completeRequisitionAPI(this)"
+                        role="button">Завершити</a>
+                    <a class="btn form-btn mr-3 main-form-btn bg-warning align-self-center text-white {{ if (ne .requisition.status "processing") }} disabled{{ end }}"
+                        data-requisition-id="{{ .requisition.id }}" onclick="noAnswerRequisitionAPI(this)"
+                        role="button"> Не актуально</a>
+                    <a class="btn form-btn main-form-btn bg-danger align-self-center text-white {{ if (eq .requisition.status "created") }} disabled{{ end }}"
+                        data-requisition-id="{{ .requisition.id }}" onclick="discardRequisitionAPI(this)"
+                        role="button">Відмовитися</a>
+                </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
 {{ template "footer.html" . }}
 
@@ -238,4 +268,3 @@
         </div>
     </div>
 </div> -->
-
