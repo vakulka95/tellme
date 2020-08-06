@@ -27,14 +27,14 @@
                     <tbody class='col-lg-12'>
                         {{ range $i, $item := .data.items }}
                         <tr class="row-custom" data-href="/admin/requisition/{{ $item.id }}">
-                            <td class='text-left pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
+                            <td class='text-left pt-4 pb-4'>
                                 <p class="cell mb-0 pt-2">{{ $item.created_at }}</p>
                             </td>
                             <td class="text-left pt-4 pb-4 text-white" data-href="/admin/requisition/{{ $item.id }}">
                                 <p class='cell specialization d-inline table-require-cell mb-0'>{{ $item.diagnosis }}
                                 </p>
                             </td>
-                            <td class='text-left pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
+                            <td class='text-left pt-4 pb-4'>
                                 <p class="cell mb-0 pt-2">
                                     <span
                                         class='name cell'>{{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}</span>
@@ -52,7 +52,7 @@
                             </td>
                             {{ end }}
 
-                            <td class='text-left pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
+                            <td class='text-left pt-4 pb-4'>
                                 <p class="cell mb-0 pt-2">{{ if (ne $item "") }}{{ $item }}{{ else }}Недоступно{{ end }}
                                 </p>
                             </td>
@@ -141,23 +141,19 @@
                         Всього вибрано: {{ .data.total }} заявок. {{ .pagination.page.TotalPages }} сторінок.
                     </div>
                 </div> -->
-
-            </div>
-        </div>
-    </div>
-</section>
-<footer class="footer">
-    <div class="container">
-        <div class="row d-flex justify-content-between">
-            {{ template "requisition_pagging.html" .pagination }}
-            <div class="col-12 col-lg-4">
-                <div class="all text-right">
-                    <p>Всього вибрано: {{ .data.total }} заявок. <br>{{ .pagination.page.TotalPages }} сторінок</p>
+                <div class="row d-flex justify-content-between">
+                    {{ template "requisition_pagging.html" .pagination }}
+                    <div class="col-12 col-lg-4">
+                        <div class="all text-right">
+                            <p>Всього вибрано: {{ .data.total }} заявок. <br>{{ .pagination.page.TotalPages }} сторінок</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</footer>
+</section>
+
 {{ template "footer.html" . }}
 
 <!-- CLIENTS -->

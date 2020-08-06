@@ -122,23 +122,25 @@
                     </div>
                     {{ end }}
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-<footer class="footer">
-    <div class="container">
-        <div class="row d-flex justify-content-between">
-            {{ template "expert_rating.html" .pagination }}
-            <div class="col-12 col-lg-4">
-                <div class="all text-right">
-                    <p>Всього вибрано: {{ .data.total }} заявок. <br>{{ .pagination.page.TotalPages }} сторінок</p>
+                <div class="row d-flex justify-content-between">
+                    {{ template "expert_pagging.html" .pagination }}
+                    <div class="col-12 col-lg-4">
+                        <div class="all text-right">
+                            <p>Всього вибрано: {{ .data.total }} заявок. <br>{{ .pagination.page.TotalPages }} сторінок</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</footer>
+</section>
+
 {{ template "footer.html" . }}
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <!-- CLIENTS block for mobuile
 //:TODO создавать для мобилки отдельный блок - очень глупо. Как его применять во время дизайна

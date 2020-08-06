@@ -87,24 +87,26 @@
                     </div>
                     {{ end }}
                 </div>
+                <div class="row d-flex justify-content-between">
+                    {{ template "review_pagging.html" .pagination }}
+                    <div class="col-12 col-lg-4">
+                        <div class="all text-right">
+                            <p>Всього вибрано: {{ .data.total }} заявок. <br>{{ .pagination.page.TotalPages }} сторінок</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<footer class="footer">
-    <div class="container">
-        <div class="row d-flex justify-content-between">
-            {{ template "review_pagging.html" .pagination }}
-            <div class="col-12 col-lg-4">
-                <div class="all text-right">
-                    <p>Всього вибрано: {{ .data.total }} заявок. <br>{{ .pagination.page.TotalPages }} сторінок</p>
-                </div>
+{{ template "footer.html" . }}
             </div>
         </div>
     </div>
-</footer>
-{{ template "footer.html" . }}
+</section>
+
+
 
 <!-- CLIENTS -->
 <!--
