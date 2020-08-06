@@ -112,10 +112,10 @@
                                     {{ end }}
                                 </li>
                                 <li class="about__item d-flex mb-2">
-                                    <a href="#" class="about__link">{{ $item.phone }}</a>
+                                    <p class="about__link">{{ $item.phone }}</p>
                                 </li>
                                 <li class="about__item d-flex mb-2">
-                                    <a href="#" class="about__link">{{ $item.email }}</a>
+                                    <p class="about__link">{{ $item.email }}</p>
                                 </li>
                             </ul>
                         </div>
@@ -127,7 +127,7 @@
     </div>
 </section>
 
-{{ template "expert_pagging.html" . }}
+{{ template "expert_pagging.html" .pagination }}
 
 {{ template "footer.html" . }}
 
