@@ -6,7 +6,7 @@
 <section class='item ml-auto mr-auto'>
     <div class="container">
         <div class="row">
-            {{ $expert_id := .expert.id }}
+            <!-- {{ $expert_id := .expert.id }} -->
             <form action="#" class='d-flex flex-wrap  pb-4 w-100 mb-3' role="form">
                 <div class='input__block'>
                     <p class="title-input">ID</p>
@@ -24,8 +24,8 @@
                 </div>
                 <div class='input__block'>
                     <p class="title-input">Стать</p>
-                    {{ with (eq .expert.gender "male") }}<input type="text" name="gender" class="input-gender form-control" value='Чол.' readonly>{{ end }}
-                    {{ with (eq .expert.gender "female") }}<input type="text" name="gender" class="input-gender form-control" value='Жін.' readonly>{{ end }}
+                    <!-- {{ with (eq .expert.gender "male") }}<input type="text" name="gender" class="input-gender form-control" value='Чол.' readonly>{{ end }}
+                    {{ with (eq .expert.gender "female") }}<input type="text" name="gender" class="input-gender form-control" value='Жін.' readonly>{{ end }} -->
                 </div>
                 <div class='input__block'>
                     <p class="title-input">Email</p>
