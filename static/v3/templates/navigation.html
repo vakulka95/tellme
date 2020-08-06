@@ -3,7 +3,7 @@
         <ul class="nav-list w-100 d-flex mt-auto mb-auto">
             {{ if eq .metadata.status "active" }}
             <li class="nav-item">
-                <a href='/admin/requisition' class="nav-link menu--link--active">Заявки</a>
+                <a href="/admin/requisition" class="menu--link--active">Заявки</a>
             </li>
             {{ end }}
             {{ if eq .metadata.role "admin" }}
@@ -26,12 +26,12 @@
             </li>
             {{ end }}
             <li class="nav-item">
-                <a href="#" class="nav-link">Вихід</a>
+                <a href="/admin/logout" class="nav-link">Вихід</a>
             </li>
         </ul>
     </nav>
-    <div class="user d-flex">
-        <img src="/static/styles/0images/form/user.svg" alt="user">
+    <div class="user d-flex justify-content-center">
+        <img src="../../images/user.svg" alt="user">
     </div>
 </div>
 </div>
@@ -44,28 +44,28 @@
             <a href="/admin/requisition" class="nav-link">Заявки</a>
         </li>
         <li class="nav-item border-bottom border-dark">
-            <a href="../myProfile/myProfile.html" class="nav-link">Психологи</a>
+            <a href="/admin/expert?limit=10&offset=0" class="nav-link">Психологи</a>
         </li>
         <li class="nav-item border-bottom border-dark">
-            <a href="../..//Psy_admin/Applications/index.html" class="nav-link">Відгуки</a>
+            <a href="/admin/review?limit=10&offset=0" class="nav-link">Відгуки</a>
         </li>
         <li class="nav-item border-bottom border-dark">
-            <a href="../..//Psy_admin/Applications/index.html" class="nav-link">Рейтинги</a>
+            <a href="/admin/expert_rating?limit=10&offset=0" class="nav-link">Рейтинги</a>
         </li>
         {{ end }}
         {{ if eq .metadata.role "expert" }}
             <li class="nav-item border-bottom border-dark">
-                <a href="../..//Psy_admin/Applications/index.html" class="nav-link">Заявки</a>
+                <a href="/admin/requisition" class="nav-link">Заявки</a>
             </li>
             <li class="nav-item border-bottom border-dark">
-                <a href="../myProfile/myProfile.html" class="nav-link">Мій профіль</a>
+                <a href="/admin/profile" class="nav-link">Мій профіль</a>
             </li>
             <li class="nav-item border-bottom border-dark ">
-                <a href="../myFeedback/myFeedback.html" class="nav-link ">Мої відгуки</a>
+                <a href="/admin/review?limit=10&offset=0" class="nav-link ">Мої відгуки</a>
             </li>
             {{ end }}
             <li class="nav-item border-bottom border-dark">
-                <a href="#" class="nav-link">Вихід</a>
+                <a href="/admin/logout" class="nav-link">Вихід</a>
             </li>
         </ul>
     </nav>
