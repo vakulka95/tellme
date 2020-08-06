@@ -108,7 +108,7 @@
                                 </li>
                                 <li class="about__item d-flex mb-2">
                                     <a href="#"
-                                        class="about__link">{{ if (ne $item "") }}{{ $item }}{{ else }}Недоступно{{ end }}</a>
+                                        class="about__link">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</a>
                                 </li>
                                 <li class="about__item d-flex mb-2">
                                     <a href="#" class="about__link">{{ $item.created_at }}</a>
@@ -133,14 +133,6 @@
                     </div>
                     {{ end }}
                 </div>
-                <!-- <div style="flex-direction: row; justify-content: space-between">
-                    <div>
-                        {{ template "requisition_pagging.html" .pagination }}
-                    </div>
-                    <div class="alert alert-secondary" role="alert">
-                        Всього вибрано: {{ .data.total }} заявок. {{ .pagination.page.TotalPages }} сторінок.
-                    </div>
-                </div> -->
                 <div class="row d-flex justify-content-between">
                     {{ template "requisition_pagging.html" .pagination }}
                     <div class="col-12 col-lg-4">

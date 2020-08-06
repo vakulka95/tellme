@@ -75,7 +75,7 @@
                         </div>
                         <div class="spec mt-3 mb-0 mr-3 w-100">
                             <p class="spec-title mb-2 filter-desktop-inp-title">Спеціалізація</p>
-                            <select multiple id="specializations" name="specializations" class='select spec-select'>
+                            <select id="specializations" name="specializations" class='select spec-select'>
                                 {{ range $spec, $specOpt := .queries.specializations }}
                                 <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
                                 {{ end }}
