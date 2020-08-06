@@ -31,12 +31,12 @@
                     <p class="title-input">Email</p>
                     <input type="email" name="last-mail" class="input-mail form-control" value='{{ .expert.email }}'
                         readonly>
-                    <!-- <div class="apply-block-mail hide">
+                    <!-- ***************************<div class="apply-block-mail hide">
                                     <button class="btn-in-input bg-danger text-white denied">X</button>
                                     <button class="btn-in-input bg-success apply p-2">
                                         <img src="/static/styles/images/form/Vector.svg" alt="">
                                     </button>
-                                </div> -->
+                                </div>************************** -->
                 </div>
                 {{ if eq .metadata.role "admin" }}
                 <div class='input__block'>           
@@ -46,7 +46,7 @@
                     <!-- <p class="alert" id="changePasswordBlock-{{ $expert_id }}" role="alert"><p></p> -->
                 </div>
                 {{ end }}
-                <div class='input__block '>
+                <!-- <div class='input__block '>
                     <p class="title-input">Освіта</p>
                     <input type="text" name="education" class="input-education form-control" value='{{ .expert.education }}' readonly>
                 </div>
@@ -84,7 +84,6 @@
                     <p class="title-input  mt-0">Дата реєстрації</p>
                     <div class="block-date-time d-flex">
                         <p class='date-time mr-1'>{{ .expert.created_at }}</p>
-                        <!-- <p class='date-time'>14:53</p> -->
                     </div>
                 </div>
 
@@ -92,9 +91,9 @@
                     <div class="list__spec mb-3">
                         <p class="title-input">Спеціалізація</p>
                         {{ range $spec, $specOpt := .expert.specializations }}
-                        {{ if $specOpt.Selected }}
-                        <p class='cell table-require-cell d-inline'>{{ $specOpt.Translated }}</p>
-                        {{ end }}
+                            {{ if $specOpt.Selected }}
+                                <p class='cell table-require-cell d-inline'>{{ $specOpt.Translated }}</p>
+                            {{ end }}
                         {{ end }}
                     </div>
                     <div class="list__spec mb-3">
@@ -106,7 +105,7 @@
                     </div>
                     <hr>
                     {{ if (eq .metadata.role "admin") }}
-                    {{ template "expert_comment_list.html" . }}
+                        {{ template "expert_comment_list.html" . }}
                     {{ end }}
                     <hr>
                     <div class="document d-flex flex-column flex-lg-row mt-5">
@@ -148,7 +147,7 @@
 
         </div>
     </div>
-</section>
+</section> -->
 
 {{ template "footer.html" . }}
 
