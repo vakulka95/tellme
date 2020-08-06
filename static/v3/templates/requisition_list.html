@@ -15,54 +15,65 @@
             <div class="col-lg-12">
                 <table class="table table-require">
                     <thead>
-                    <tr>
-                        <th class='text-left'>Дата</th>
-                        <th class='text-left'>Спеціалізація</th>
-                        <th class='text-left'>Ім'я</th>
-                        <th class='text-left pl-3'>Стать</th>
-                        <th class='text-left'>Телефон</th>
-                        <th class='text-left pl-4'>Статус</th>
-                    </tr>
+                        <tr>
+                            <th class='text-left'>Дата</th>
+                            <th class='text-left'>Спеціалізація</th>
+                            <th class='text-left'>Ім'я</th>
+                            <th class='text-left pl-3'>Стать</th>
+                            <th class='text-left'>Телефон</th>
+                            <th class='text-left pl-4'>Статус</th>
+                        </tr>
                     </thead>
                     <tbody class='col-lg-12'>
-                    {{ range $i, $item := .data.items }}
-                    <tr class="row-custom" data-href="/admin/requisition/{{ $item.id }}">
-                        <td class='text-left pt-4 pb-4' >
-                            <p class="cell mb-0 pt-2">{{ $item.created_at }}</p>
-                        </td>
-                        <td class="text-left pt-4 pb-4 text-white">
-                            <p class='cell specialization d-inline table-require-cell mb-0'>{{ $item.diagnosis }}</p>
-                        </td>
-                        <td class='text-left pt-4 pb-4'>
-                            <p class="cell mb-0 pt-2">
-                                <span class='name cell'>{{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}</span>
-                            </p>
-                        </td>
-                        {{ $gender := $item.gender }}
-                        {{ with (eq $gender "male") }}
-                        <td class='text-left pt-4 pb-4 d-flex justify-content-start'>
-                            <span class='gender mb-0'>чол.</span>
-                        </td>
-                        {{ end }}
-                        {{ with (eq $gender "female") }}
-                        <td class='text-left pt-4 pb-4 d-flex justify-content-start'>
-                            <span class='gender mb-0'>жін.</span>
-                        </td>
-                        {{ end }}
+                        {{ range $i, $item := .data.items }}
+                        <tr class="row-custom" data-href="/admin/requisition/{{ $item.id }}">
+                            <td class='text-left pt-4 pb-4'>
+                                <p class="cell mb-0 pt-2">{{ $item.created_at }}</p>
+                            </td>
+                            <td class="text-left pt-4 pb-4 text-white">
+                                <p class='cell specialization d-inline table-require-cell mb-0'>{{ $item.diagnosis }}
+                                </p>
+                            </td>
+                            <td class='text-left pt-4 pb-4'>
+                                <p class="cell mb-0 pt-2">
+                                    <span
+                                        class='name cell'>{{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}</span>
+                                </p>
+                            </td>
+                            {{ $gender := $item.gender }}
+                            {{ with (eq $gender "male") }}
+                            <td class='text-left pt-4 pb-4 d-flex justify-content-start'>
+                                <span class='gender mb-0'>чол.</span>
+                            </td>
+                            {{ end }}
+                            {{ with (eq $gender "female") }}
+                            <td class='text-left pt-4 pb-4 d-flex justify-content-start'>
+                                <span class='gender mb-0'>жін.</span>
+                            </td>
+                            {{ end }}
 
-                        <td class='text-left pt-4 pb-4'>
-                            <p class="cell mb-0 pt-2">{{ if (ne $item "") }}{{ $item }}{{ else }}Недоступно{{ end }}</p>
-                        </td>
-                        <td class='text-left align-items-center pt-4 pb-4'>
-                            {{ $status := $item.status }}
-                            {{ with (eq $status "created") }}<p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>{{ end }}
-                            {{ with (eq $status "processing") }}<p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>{{ end }}
-                            {{ with (eq $status "completed") }}<p class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p>{{ end }}
-                            {{ with (eq $status "no_answer") }}<p class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально</p>{{ end }}
-                            
-                        </td>
+                            <td class='text-left pt-4 pb-4'>
+                                <p class="cell mb-0 pt-2">{{ if (ne $item "") }}{{ $item }}{{ else }}Недоступно{{ end }}
+                                </p>
+                            </td>
+                            <td class='text-left align-items-center pt-4 pb-4'>
+                                {{ $status := $item.status }}
+                                {{ with (eq $status "created") }}<p
+                                    class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
+                                {{ end }}
+                                {{ with (eq $status "processing") }}<p
+                                    class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>
+                                {{ end }}
+                                {{ with (eq $status "completed") }}<p
+                                    class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p>
+                                {{ end }}
+                                {{ with (eq $status "no_answer") }}<p
+                                    class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально
+                                </p>{{ end }}
 
-                        <!--
+                            </td>
+
+                            <!--
                         //:TODO хоть и данного функционала нет в новом дизайне, оставлю это тут.
                         <td class="text-center">
                             <a class="btn btn-secondary {{ if (eq $item.status "processing") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="takeRequisitionAPI(this)" role="button">Взяти</a>
@@ -70,8 +81,8 @@
                         </td>-->
 
 
-                    </tr>
-                    {{ end }}
+                        </tr>
+                        {{ end }}
                     </tbody>
                 </table>
                 <div class="for-mobile ">
@@ -97,7 +108,8 @@
                                     {{ end }}
                                 </li>
                                 <li class="about__item d-flex mb-2">
-                                    <a href="#" class="about__link">{{ if (ne $item "") }}{{ $item }}{{ else }}Недоступно{{ end }}</a>
+                                    <a href="#"
+                                        class="about__link">{{ if (ne $item "") }}{{ $item }}{{ else }}Недоступно{{ end }}</a>
                                 </li>
                                 <li class="about__item d-flex mb-2">
                                     <a href="#" class="about__link">{{ $item.created_at }}</a>
@@ -105,30 +117,48 @@
                             </ul>
                             <div class="d-f d-flex align-items-center justify-content-start ml-3">
                                 {{ $status := $item.status }}
-                                {{ with (eq $status "created") }}<p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>{{ end }}
-                                {{ with (eq $status "processing") }}<p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>{{ end }}
-                                {{ with (eq $status "completed") }}<p class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p>{{ end }}
-                                {{ with (eq $status "no_answer") }}<p class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально</p>{{ end }}
+                                {{ with (eq $status "created") }}<p
+                                    class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
+                                {{ end }}
+                                {{ with (eq $status "processing") }}<p
+                                    class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>
+                                {{ end }}
+                                {{ with (eq $status "completed") }}<p
+                                    class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p>
+                                {{ end }}
+                                {{ with (eq $status "no_answer") }}<p
+                                    class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально
+                                </p>{{ end }}
                             </div>
                         </div>
                     </div>
                     {{ end }}
                 </div>
-                <div style="flex-direction: row; justify-content: space-between">
+                <!-- <div style="flex-direction: row; justify-content: space-between">
                     <div>
                         {{ template "requisition_pagging.html" .pagination }}
                     </div>
                     <div class="alert alert-secondary" role="alert">
                         Всього вибрано: {{ .data.total }} заявок. {{ .pagination.page.TotalPages }} сторінок.
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>
     </div>
 </section>
-{{ template "requisition_pagging.html" .pagination }}
-
+<footer class="footer">
+    <div class="container">
+        <div class="row d-flex justify-content-between">
+            {{ template "requisition_pagging.html" .pagination }}
+            <div class="col-12 col-lg-4">
+                <div class="all text-right">
+                    <p>Всього вибрано: {{ .data.total }} заявок. <br>{{ .pagination.page.TotalPages }} сторінок</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 {{ template "footer.html" . }}
 
 <!-- CLIENTS -->
@@ -136,7 +166,7 @@
 
 
 
-    <!-- <section class="app__clients">
+<!-- <section class="app__clients">
         <div class="container">
             <div class="clients__wrap">
                 <div class="client mt-3 mb-3 pt-4">
