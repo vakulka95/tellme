@@ -122,6 +122,9 @@ img{
     background: url(/static/styles/images/search/filter.svg) no-repeat;
 }
 
+.after-none::after{
+    display: none;
+}
 
 
 .desktop-nav{
@@ -427,7 +430,7 @@ img{
 }
 
 .filter-search{
-    background-color: #37A8FA;
+    /* background-color: #37A8FA; */
 }
 
 .modal__close{
