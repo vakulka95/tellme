@@ -3,7 +3,7 @@
  <section class='filter mt-3'>
     <div class="container">
         <div class="filter__wrap">
-            <div class=" mt-2">
+            <div class="filter-search mt-2">
                 <div class="filter__btn d-flex flex-column justify-content-center">
                     <button type='button' class='filter-btn'>Фільтр</button>
                 </div>
@@ -48,7 +48,7 @@
                         <option {{ if (eq .queries.order_by "processing_count") }} selected {{ end}} value="processing_count">Заявок в роботі</option>
                     </select>
                 </div>
-                <div>
+                <div class='sort-line'>
                     <p class=" mb-0">Напрям сортування</p>
                     <select id="order_dir" name="order_dir" class='select spec-select form-control mt-1'>
                         <option {{ if (eq .queries.order_dir "asc") }} selected {{ end}} value="asc">За зростанням</option>

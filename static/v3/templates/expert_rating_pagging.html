@@ -1,41 +1,45 @@
-<!--expert_rating_pagging.html-->
-
-<nav aria-label="footer__nav">
-    <ul class="pagination">
-        {{ if .page.IsFirst }}
-        <li class="page-item">
+<footer class="footer">
+    <div class="container">
+        <div class="row d-flex justify-content-between">
+            <div class="col-12 col-lg-4">
+                {{ if .page.IsFirst }}
+                <nav aria-label="footer__nav">
+                    <ul class="pagination">
+                        {{ if .page.IsFirst }}
+                        <li class="page-item">
                             <span class="page-link h-100 text-center">
                                 <img class='mt-1 ml-1' src="/static/styles/images/footer/first-page.svg" alt="start">
                             </span>
-        </li>
-        {{ else }}
-        <li class="page-item">
-            <a class="page-link h-100 text-center" href="/admin/expert_rating{{ .firstQuery }}">
-                <img class='mt-1 ml-1' src="/static/styles/images/footer/first-page.svg" alt="start">
-            </a>
-        </li>
-        {{ end }}
-        {{ if .page.HasPrevious }}
-        <li class="page-item">
-            <a class="page-link h-100 text-center" href="/admin/expert_rating{{ .prevQuery }}">
-                <img class='mt-1 ml-1' src="/static/styles/images/footer/prev-page.svg" alt="prev">
-            </a>
-        </li>
-        {{ else }}
-        <li class="page-item">
+                        </li>
+                        {{ else }}
+                        <li class="page-item">
+                            <a class="page-link h-100 text-center" href="/admin/expert{{ .firstQuery }}">
+                                <img class='mt-1 ml-1' src="/static/styles/images/footer/first-page.svg" alt="start">
+                            </a>
+                        </li>
+                        {{ end }}
+                        {{ if .page.HasPrevious }}
+                        <li class="page-item">
+                            <a class="page-link h-100 text-center" href="/admin/expert{{ .prevQuery }}">
+                                <img class='mt-1 ml-1' src="/static/styles/images/footer/prev-page.svg" alt="prev">
+                            </a>
+                        </li>
+                        {{ else }}
+                        <li class="page-item">
                             <span class="page-link h-100 text-center">
                                 <img class='mt-1 ml-1' src="/static/styles/images/footer/prev-page.svg" alt="prev">
                             </span>
-        </li>
-        {{ end }}
-        {{ range .page.Pages }}
-        {{ if ne .Num -1 }}
-        {{ if .IsCurrent }}
-            <li class="page-item"><span class="page-link h-100 text-center page-link--active">{{ .Num }}</span></li>
-        {{ end }}
-        {{ end }}
-        {{ end }}
-        <!--                        <li class="page-item">
+                        </li>
+                        {{ end }}
+                        {{ range .page.Pages }}
+                        {{ if ne .Num -1 }}
+                        {{ if .IsCurrent }}
+                        <li class="page-item"><span
+                                class="page-link h-100 text-center page-link--active">{{ .Num }}</span></li>
+                        {{ end }}
+                        {{ end }}
+                        {{ end }}
+                        <!--                        <li class="page-item">
                                     <a class="page-link h-100 text-center" href="#">1</a>
                                 </li>
                                 <li class="page-item">
@@ -45,31 +49,41 @@
                                     <a class="page-link h-100 text-center" href="#">3</a>
                                 </li>-->
 
-        {{ if .page.HasNext }}
-        <li class="page-item">
-            <a class="page-link h-100 text-center" href="/admin/expert_rating{{ .nextQuery }}">
-                <img class='mt-1 ml-1' src="/static/styles/images/footer/next-page.svg" alt="next">
-            </a>
-        </li>
-        {{ else }}
-        <li class="page-item">
+                        {{ if .page.HasNext }}
+                        <li class="page-item">
+                            <a class="page-link h-100 text-center" href="/admin/expert{{ .nextQuery }}">
+                                <img class='mt-1 ml-1' src="/static/styles/images/footer/next-page.svg" alt="next">
+                            </a>
+                        </li>
+                        {{ else }}
+                        <li class="page-item">
                             <span class="page-link h-100 text-center">
                                 <img class='mt-1 ml-1' src="/static/styles/images/footer/next-page.svg" alt="next">
                             </span>
-        </li>
-        {{ end }}
-        {{ if .page.IsLast }}
-        <li class="page-item">
+                        </li>
+                        {{ end }}
+                        {{ if .page.IsLast }}
+                        <li class="page-item">
                             <span class="page-link h-100 text-center">
                                 <img class='mt-1 ml-1' src="/static/styles/images/footer/last-page.svg" alt="end">
                             </span>
-        </li>
-        {{ else }}
-        <li class="page-item">
-            <a class="page-link h-100 text-center" href="/admin/expert_rating{{ .lastQuery }}">
-                <img class='mt-1 ml-1' src="/static/styles/images/footer/last-page.svg" alt="end">
-            </a>
-        </li>
-        {{ end }}
-    </ul>
-</nav>
+                        </li>
+                        {{ else }}
+                        <li class="page-item">
+                            <a class="page-link h-100 text-center" href="/admin/expert{{ .lastQuery }}">
+                                <img class='mt-1 ml-1' src="/static/styles/images/footer/last-page.svg" alt="end">
+                            </a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="all text-right">
+                    <p>Всього вибрано: {{ .data.total }} заявок. <br>{{ .pagination.page.TotalPages }} сторінок</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--expert_pagging.html-->
