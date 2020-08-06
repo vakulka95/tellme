@@ -1,8 +1,9 @@
 <!--requisition_item.html-->
 
 {{ template "header.html" . }}
-{{ template "title.html" . }}
 
+
+{{ template "title.html" . }}
 
 <section class='item ml-auto mr-auto'>
     <div class="container">
@@ -99,15 +100,15 @@
                     <p class="title-input pb-2">Статус</p>
                     {{ $status := .requisition.status }}
                     {{ with (eq $status "processing") }}<p
-                        class="cell mb-0 table-require-cell table-cell-status processing">В роботі</p>{{ end }}
+                        class="cell mb-0 table-require-cell table-cell-status d-inline processing">В роботі</p>{{ end }}
                     {{ with (eq $status "created") }}<p class="cell mb-0 table-require-cell table-cell-status created">
                         Не в роботі</p>{{ end }}
                     {{ with (eq $status "no_answer") }}<p
-                        class="cell mb-0 table-require-cell table-cell-status no_answer">Не актуально</p>{{ end }}
+                        class="cell mb-0 table-require-cell table-cell-status d-inline no_answer">Не актуально</p>{{ end }}
                     {{ with (eq $status "completed") }}<p
-                        class="cell mb-0 table-require-cell table-cell-status completed">Виконаний</p>{{ end }}
+                        class="cell mb-0 table-require-cell table-cell-status d-inline completed">Виконаний</p>{{ end }}
                 </div>
-
+            </form>
 
                 {{ if eq .metadata.role "expert" }}
                 <div class='w-75 ml-auto mr-auto mb-5 mt-5 bg-white w-100 h-100 p-3 ' role="form">
