@@ -66,14 +66,14 @@
                                 <p class="cell mb-0">{{ $item.email }}</p>
                             </td>
 
-                            <!--
+{{/*
                             //:TODO хоть и данного функционала нет в новом дизайне, оставлю это тут.
                             <td class="text-left">
                                 &lt;!&ndash; Button trigger modal &ndash;&gt;
                                 <a class="btn btn-secondary btn-sm {{ if (eq $item.status "blocked")}} disabled{{ end }}" data-expert-id="{{ $item.id }}" onclick="blockExpertAPI(this)" role="button">Блокувати</a>
                                 <a class="btn btn-success btn-sm {{ if (eq $item.status "active")}} disabled{{ end }}" data-expert-id="{{ $item.id }}" onclick="activateExpertAPI(this)" role="button">Активувати</a>
-                            </td>-->
-
+                            </td>
+*/}}
 
                         </tr>
                         {{ end }}
@@ -140,6 +140,7 @@
     </div>
 </section>
 
+{{/*
 
 <!-- CLIENTS block for mobuile
 //:TODO создавать для мобилки отдельный блок - очень глупо. Как его применять во время дизайна
@@ -197,5 +198,5 @@
 </div>
 </section>-->
 
-<!-- expert pagging -->
-<!-- footer -->
+
+*/}}
