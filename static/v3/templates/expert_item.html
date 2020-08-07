@@ -115,7 +115,7 @@
                             <p class="title-input mb-2">Документи</p>
                             {{ range $i, $doc := .expert.documents }}
                             {{ if (eq $doc.ext "pdf") }}
-                            <div class="show-document">
+                            <div class="show-document mb-3">
                                <object data="{{ $doc.url }}" type="application/pdf" width="100%" height="800px"></object>
                                <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
                                onclick="deleteExpertDocumentAPI(this)" role="button" class='delete text-white'>
