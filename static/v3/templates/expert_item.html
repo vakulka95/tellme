@@ -115,13 +115,21 @@
                             <p class="title-input">Документи</p>
                             {{ range $i, $doc := .expert.documents }}
                             {{ if (eq $doc.ext "pdf") }}
-                            <figure>
+                            <figure class="show-document">
                                <object data="{{ $doc.url }}" type="application/pdf" width="100%" height="800px"></object>
-                           </figure>
-                            {{ else if (or (eq $doc.ext "doc") (eq $doc.ext "docx")) }}
-                            <figure>
-                               <iframe src="https://docs.google.com/gview?url={{ $doc.url }}&embedded=true" width="100%" height="800px"></iframe>
+                               <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
+                               onclick="deleteExpertDocumentAPI(this)" role="button" class='delete text-white'>
+                                   X
+                               </a>
                             </figure>
+                            {{ else if (or (eq $doc.ext "doc") (eq $doc.ext "docx")) }}
+                            <figure class='show-document'>
+                               <iframe src="https://docs.google.com/gview?url={{ $doc.url }}&embedded=true" width="100%" height="800px"></iframe>
+                               <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
+                               onclick="deleteExpertDocumentAPI(this)" role="button" class='delete text-white'>
+                                   X
+                               </a>
+                            </figure >
                             {{ else }}
                             <div class="show-document d-flex justify-content-center align-items-center mt-1">
                                 <img src="/static/styles/images/form/image-form.svg" alt="image-form">
