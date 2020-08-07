@@ -381,7 +381,7 @@ img{
 .item{
     width: 70%;
 }
-.item form{
+.item .item-inputs{
     padding-top: 40px;
     background-color: #fff;
     margin-left: auto;
@@ -946,7 +946,7 @@ tbody tr:hover, tbody td:hover{
     .item{
         width: 100%;
     }
-    .item form{
+    .item .item-inputs{
         margin-left: 0;
         margin-right: 0;
     }
