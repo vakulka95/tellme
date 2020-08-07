@@ -91,7 +91,7 @@
 
                 <div class="col-lg-12">
                     <div class="list__spec mb-3">
-                        <p class="title-input">Спеціалізація</p>
+                        <p class="title-input mb-3">Спеціалізація</p>
                         {{ range $spec, $specOpt := .expert.specializations }}
                             {{ if $specOpt.Selected }}
                                 <p class='cell table-require-cell d-inline'>{{ $specOpt.Translated }}</p>
@@ -99,7 +99,7 @@
                         {{ end }}
                     </div>
                     <div class="list__spec mb-3">
-                        <p class="title-input">Статус</p>
+                        <p class="title-input mb-3">Статус</p>
                         {{ $status := .expert.status }}
                         {{ with (eq $status "on_review") }}<p class="cell mb-0 table-require-cell table-cell-status d-inline created">На модерації</p>{{ end }}
                         {{ with (eq $status "blocked") }}<p class="cell mb-0 table-require-cell table-cell-status d-inline no_answer">Заблокований</p>{{ end }}
@@ -114,6 +114,15 @@
                         <div class='input__block col-12 col-lg-6'>
                             <p class="title-input">Документи</p>
                             {{ range $i, $doc := .expert.documents }}
+                            {{ if (eq $doc.ext "pdf") }}
+                            <figure>
+                               <object data="{{ $doc.url }}" type="application/pdf" width="100%" height="800px"></object>
+                           </figure>
+                            {{ else if (or (eq $doc.ext "doc") (eq $doc.ext "docx")) }}
+                            <figure>
+                               <iframe src="https://docs.google.com/gview?url={{ $doc.url }}&embedded=true" width="100%" height="800px"></iframe>
+                            </figure>
+                            {{ else }}
                             <div class="show-document d-flex justify-content-center align-items-center mt-1">
                                 <img src="/static/styles/images/form/image-form.svg" alt="image-form">
                             </div>
