@@ -82,7 +82,7 @@
                         <a class='btn-in-input edit' href="/admin/review?expert_id={{ $expert_id }}" role="button">Детальніше</a>
                     </div>
                 </div>
-                <div class="date-of-reg ml-4 d-flex flex-column justify-content-center">
+                <div class="date-of-reg ml-4 mb-3 d-flex flex-column justify-content-center">
                     <p class="title-input  mt-0">Дата реєстрації</p>
                     <div class="block-date-time d-flex">
                         <p class='date-time mr-1'>{{ .expert.created_at }}</p>
@@ -94,7 +94,7 @@
                         <p class="title-input mb-3">Спеціалізація</p>
                         {{ range $spec, $specOpt := .expert.specializations }}
                             {{ if $specOpt.Selected }}
-                                <p class='cell table-require-cell d-inline'>{{ $specOpt.Translated }}</p>
+                                <p class='cell table-require-cell d-inline-block'>{{ $specOpt.Translated }}</p>
                             {{ end }}
                         {{ end }}
                     </div>
@@ -112,7 +112,7 @@
                     <hr>
                     <div class="document d-flex flex-column flex-lg-row mt-5">
                         <div class='input__block col-12 col-lg-6'>
-                            <p class="title-input">Документи</p>
+                            <p class="title-input mb-2">Документи</p>
                             {{ range $i, $doc := .expert.documents }}
                             {{ if (eq $doc.ext "pdf") }}
                             <div class="show-document">
