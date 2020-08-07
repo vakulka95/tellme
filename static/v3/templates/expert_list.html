@@ -1,13 +1,16 @@
-<!--expert_list.html-->
+{{/*<!--expert_list.html-->*/}}
+
 
 {{ template "header.html" . }}
 
-<!-- title -->
+{{/*<!-- title -->*/}}
+
 {{ template "title.html" . }}
 
 {{ template "expert_filters.html" . }}
 
-<!-- MAIN TABLE -->
+{{/* <!-- MAIN TABLE -->*/}}
+
 <section class="main mt-3">
     <div class="container">
         <div class="row">
@@ -67,12 +70,12 @@
                             </td>
 
 {{/*
-                            //:TODO хоть и данного функционала нет в новом дизайне, оставлю это тут.
+                            <!-- //:TODO хоть и данного функционала нет в новом дизайне, оставлю это тут.
                             <td class="text-left">
                                 &lt;!&ndash; Button trigger modal &ndash;&gt;
                                 <a class="btn btn-secondary btn-sm {{ if (eq $item.status "blocked")}} disabled{{ end }}" data-expert-id="{{ $item.id }}" onclick="blockExpertAPI(this)" role="button">Блокувати</a>
                                 <a class="btn btn-success btn-sm {{ if (eq $item.status "active")}} disabled{{ end }}" data-expert-id="{{ $item.id }}" onclick="activateExpertAPI(this)" role="button">Активувати</a>
-                            </td>
+                            </td> -->
 */}}
 
                         </tr>

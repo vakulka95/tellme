@@ -1,14 +1,14 @@
-<!-- requisition_list.html-->
+{{/*<!-- requisition_list.html-->*/}}
 
 {{ template "header.html" .}}
 
 
-<!-- Title -->
+{{/*<!-- Title -->*/}}
 {{ template "title.html" . }}
 
 {{ template "requisition_filters.html" . }}
 
-<!-- MAIN TABLE -->
+{{/*<!-- MAIN TABLE -->*/}}
 <section class="main mt-3">
     <div class="container">
         <div class="row">
@@ -71,7 +71,7 @@
                                     class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально
                                 </p>{{ end }}
                             </td>
-
+{{/*
                             <!--
                         //:TODO хоть и данного функционала нет в новом дизайне, оставлю это тут.
                         <td class="text-center">
@@ -79,7 +79,7 @@
                             <a class="btn btn-success {{ if (eq $item.status "completed") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="completeRequisitionAPI(this)" role="button">Завершити</a>
                         </td>-->
 
-
+*/}}
                         </tr>
                         {{ end }}
                     </tbody>
@@ -147,7 +147,7 @@
 </section>
 
 {{ template "footer.html" . }}
-
+{{/*
 <!-- CLIENTS -->
 <!-- //:TODO я не понимаю что это =( -->
 
@@ -382,3 +382,5 @@
 <!-- requisition pagging -->
 
 <!-- footer -->
+
+*/}}
