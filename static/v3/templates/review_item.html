@@ -8,45 +8,44 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class='item-inputs d-flex flex-wrap  pb-4 w-100 mb-3'>
+                <div class='6 d-flex flex-wrap  pb-4 w-100 mb-3'>
                     <div class='input__block'>
                         <p class="title-input">ID</p>
-                        <input type="text" name="ID" class="input-id form-control" readonly>
+                        <input type="text" name="ID" class="input-id form-control" value="{{ .review.id }}" readonly>
                     </div>
 
-                    <div class='input__block order-lg-2'>
+                    <div class='input__block '>
                         <p class="title-input">Задоволення від консультації</p>
-                        <input type="text" name="pleasure" class=" form-control" readonly>
+                        <input type="text" name="pleasure" class=" form-control" value="{{ .review.consultation_review }}" readonly>
 
                     </div>
-                    <div class='input__block order-lg-3'>
+                    <div class='input__block '>
                         <p class="title-input">Кількість наданих консультацій</p>
-                        <input type="number" name="created consultation" class=" input-for-btn form-control" readonly>
+                        <input type="number" name="created consultation" class=" input-for-btn form-control" value='{{ .review.consultation_count }}' readonly>
                     </div>
-                    <div class='input__block order-lg-4'>
+                    <div class='input__block '>
                         <p class="title-input">Враження від роботи з психологом</p>
-                        <input type="text" name="impression expert" class=" form-control" readonly>
-
+                       <textarea name="review expert" id="review_expert" cols="30" rows="10" class=" form-control" readonly>{{ .review.expert_review }}</textarea> 
                     </div>
-                    <div class='input__block order-lg-5'>
+                    <div class='input__block '>
+                        <p class="title-input">Враження від роботи з платформи</p>
+                       <textarea name="review platorm" id="review_platorm" cols="30" rows="10" class=" form-control" readonly>{{ .review.platform_review }}</textarea> 
+                    </div>
+                    <div class='input__block '>
                         <p class="title-input">Оцінка психолога</p>
-                        <input type="text" name="points" class=" form-control" readonly>
+                        <input type="text" name="points" class=" form-control" value="{{ .review.expert_point }}" readonly>
                     </div>
-                    <div class='input__block order-lg-6'>
-                        <p class="title-input">Враження від платформима</p>
-                        <input type="text" name="impression platorm" class=" form-control" readonly>
-
-                    </div>
-                    <div class="input__block d-flex flex-column justify-content-around order-lg-1 flex-lg-row">
+                    
+                    <div class="input__block d-flex flex-column justify-content-around  flex-lg-row">
                         <div>
                             <p class="title-input">Заявка</p>
-                            <a href="#" class='detail-btn text-center d-block w-100 p-2 pr-4 pl-4'>
+                            <a href="/admin/requisition/{{ .review.requisition_id }}" role="button" class='detail-btn text-center d-block w-100 p-2 pr-4 pl-4'>
                                 Детальніше
                             </a>
                         </div>
                         <div>
                             <p class="title-input">Психолог</p>
-                            <a href="#" class='detail-btn text-center d-block w-100 p-2 pr-4 pl-4'>
+                            <a href="/admin/expert/{{ .review.expert_id }}" role="button" class='detail-btn text-center d-block w-100 p-2 pr-4 pl-4'>
                                 Детальніше
                             </a>
                         </div>
@@ -55,21 +54,19 @@
                     <div class="date-of-create">
                         <p class="title-input mt-0">Дата запиту</p>
                         <div class="block-date-time d-flex">
-                            <p class='date-time p-3 mr-1'>2020-07-18</p>
+                            <p class='date-time p-3 mr-1'>{{ .review.created_at }}</p>
                         </div>
                     </div>
                     <div class='mb-3'>
                         <p class="title-input mb-3">Статус</p>
-                        <p class="cell mb-0 table-require-cell table-cell-status d-inline created">
-                            ВІДГУК ОЧІКУЄТЬСЯ</p>
-                        {{/* 
-                               <!-- <p class="cell mb-0 table-require-cell table-cell-status d-inline completed">
-                                ВІДПОВІВ</p> -->
-*/}}
+                        {{ $status := .review.status }}
+                        {{ with (eq $status "requested") }}<p class="cell mb-0 table-require-cell table-cell-status d-inline created">
+                            ВІДГУК ОЧІКУЄТЬСЯ</p>{{ end }}
+                        {{ with (eq $status "completed") }}<p class="cell mb-0 table-require-cell table-cell-status d-inline completed">ВІДПОВІВ</p>{{ end }}
                     </div>
                     {{/*
                     <!-- <div
-                        class="col order-last order-lg-first feedback__detail-btn d-flex w-100 flex-column flex-lg-row justify-content-lg-left pl-0 align-items-center mt-0 ">
+                        class="col  irst feedback__detail-btn d-flex w-100 flex-column flex-lg-row justify-content-lg-left pl-0 align-items-center mt-0 ">
                         <div class='col-12 col-lg-5 d-flex flex-column pl-0'>
                             <p class="title-input">Заявка</p>
                             <button class='detail-btn align-self-center text-center w-100 p-2 pr-4 pl-4'>
