@@ -458,7 +458,7 @@ img{
     padding: 7px 14px;
     resize: none;
 }
-.review-buttons a{
+.review-buttons div{
     margin-right: 15px;
 }
 .review-buttons a:hover{
@@ -1020,7 +1020,7 @@ tbody tr:hover, tbody td:hover{
     .delete:hover{
         text-decoration: none;
     }
-    .review-buttons a{
+    .review-buttons div{
         margin-right: 0;
     }
 }
