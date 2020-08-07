@@ -7,7 +7,7 @@
 <section class='item ml-auto mr-auto'>
     <div class="container">
         <div class="row">
-            <form action="#" class='d-flex flex-wrap  pb-4 w-100 mb-3' role="form">
+            <div class='d-flex flex-wrap  pb-4 w-100 mb-3'>
                 <div class='input__block'>
                     <p class="title-input">ID</p>
                     <input type="text" name="ID" class="input-id form-control" value='{{ .requisition.id }}' readonly>
@@ -109,9 +109,9 @@
                     {{ with (eq $status "completed") }}<p
                         class="cell d-inline mb-0 table-require-cell table-cell-status  completed">Виконаний</p>{{ end }}
                 </div>
-            </form>
+            </div>
             {{ if eq .metadata.role "expert" }}
-            <div class='w-75 ml-auto mr-auto mb-5 mt-5 bg-white w-100 h-100 p-3 ' role="form">
+            <div class='w-75 ml-auto mr-auto mb-5 mt-5 bg-white w-100 h-100 p-3 '>
                 <div class="row d-flex justify-content-between bg-white">
                     <div class="col-lg-5">
                         <div class="consultation d-flex flex-column pt-5 pb-4 pl-5">

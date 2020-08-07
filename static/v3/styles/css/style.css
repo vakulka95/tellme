@@ -522,10 +522,12 @@ img{
 
 
 .show-document{
+    position: relative;
     background: #F6F9FE;
     border-radius: 5px;
     margin-right: 20px;
-    height: 87%;
+    /* height: 87%; */
+    height: 190px;
 }
 .download-document{
 
@@ -549,6 +551,9 @@ img{
     background-color: #37A8FA;;
 }
 
+.form-control[readonly]{
+    background-color: #F6F9FE;
+}
 .main-form-btn{
     width:100%;
     padding: 17px 30px;
