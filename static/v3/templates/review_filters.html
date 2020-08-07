@@ -4,7 +4,7 @@
             <div class="col-lg-3 mt-3 ">
                 <label for="status" class=" mb-1">Статус</label>
                 <form action="/admin/review" method="GET" class='d-flex status mr-3 mr-0 w-100'>
-                        <select  id="status" name="status" class='select status-select mb-0 form-control'>
+                        <select  id="status" name="status" class='select status-select mb-0 form-control mr-3'>
                             <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
                             <option {{ if (eq .queries.status "requested") }} selected {{ end}} value="requested">Відгук очікується</option>
                             <option {{ if (eq .queries.status "completed") }} selected {{ end}} value="completed">Відповів</option>

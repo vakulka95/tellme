@@ -139,12 +139,14 @@
                 <button class='btn form-btn w-100 main-form-btn bg-danger'>Відмовитися</button>
             </div>
             {{ if (eq .metadata.role "admin" )}}
-            <a class="btn btn-danger" data-expert-id="{{ $expert_id }}" onclick="deleteExpertAPI(this)"
+            <div class='align-self-end mt-3 d-inline'>
+            <a class="btn btn-danger text-white" data-expert-id="{{ $expert_id }}" onclick="deleteExpertAPI(this)"
                 role="button">Видалити</a>
-            <a class="btn btn-secondary {{ if (eq .expert.status "blocked")}} disabled{{ end }}"
+            <a class="btn btn-secondary text-white {{ if (eq .expert.status "blocked")}} disabled{{ end }}"
                 data-expert-id="{{ $expert_id }}" onclick="blockExpertAPI(this)" role="button">Блокувати</a>
-            <a class="btn btn-success {{ if (eq .expert.status "active")}} disabled{{ end }}"
+            <a class="btn btn-success text-white {{ if (eq .expert.status "active")}} disabled{{ end }}"
                 data-expert-id="{{ $expert_id }}" onclick="activateExpertAPI(this)" role="button">Активувати</a>
+            </div>
             {{ end }}
 
         </div>
