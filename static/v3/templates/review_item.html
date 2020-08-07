@@ -1,68 +1,96 @@
-{{/*<!--review_item.html-->*/}}
+<!--review_item.html-->
 
 {{ template "header.html" .}}
-<div class="container">
-    <div class="card shadow">
-        <div class="card-header">
-            <div class="d-inline-block">
-                <h3 class="panel-title">Відгук {{ .review.id }}</h3>
-            </div>
-            <div class="d-inline-block float-right">
-                <button type="button" class="btn btn-secondary" onclick="javascript:history.back()">Назад</button>
-            </div>
-        </div>
-        <div class="card-body">
-            <span class="bottom-line d-block mx-auto mt-3 mb-4"></span>
-            <div class="row my-2 mx-auto">
-                <div class="col-3 text-right border-right border-dark">ID</div>
-                <div class="col-9 pl-4">{{ .review.id }}</div>
-            </div>
-            <div class="row my-2 mx-auto">
-                <div class="col-3 text-right border-right border-dark">Заявка</div>
-                <div class="col-9 pl-4">
-                    <a class="badge badge-pill badge-info" href="/admin/requisition/{{ .review.requisition_id }}" role="button">Детальніше</a>
-                </div>
-            </div>
-            <div class="row my-2 mx-auto">
-                <div class="col-3 text-right border-right border-dark">Психолог</div>
-                <div class="col-9 pl-4">
-                    <a class="badge badge-pill badge-info" href="/admin/expert/{{ .review.expert_id }}" role="button">Детальніше</a>
-                </div>
-            </div>
-            <div class="row my-2 mx-auto">
-                <div class="col-3 text-right border-right border-dark">Задоволення від консультації</div>
-                <div class="col-9 pl-4">{{ .review.consultation_review }}</div>
-            </div>
-            <div class="row my-2 mx-auto">
-                <div class="col-3 text-right border-right border-dark">Кількість наданих консультацій</div>
-                <div class="col-9 pl-4">{{ .review.consultation_count }}</div>
-            </div>
-            <div class="row my-2 mx-auto">
-                <div class="col-3 text-right border-right border-dark">Враження від роботи з психологом</div>
-                <div class="col-9 pl-4">{{ .review.expert_review }}</div>
-            </div>
-            <div class="row my-2 mx-auto">
-                <div class="col-3 text-right border-right border-dark">Оцінка психолога</div>
-                <div class="col-9 pl-4">{{ .review.expert_point }}</div>
-            </div>
-            <div class="row my-2 mx-auto">
-                <div class="col-3 text-right border-right border-dark">Враження від платформи</div>
-                <div class="col-9 pl-4">{{ .review.platform_review }}</div>
-            </div>
-            <div class="row my-2 mx-auto">
-                <div class="col-3 text-right border-right border-dark">Статус</div>
-                <div class="col-9 pl-4">
-                    {{ $status := .review.status }}
-                    {{ with (eq $status "requested") }}<td class="text-center"><span class="badge badge-pill badge-warning">Відгук очікується</span></td>{{ end }}
-                    {{ with (eq $status "completed") }}<td class="text-center"><span class="badge badge-pill badge-success">Відповів</span></td>{{ end }}
-                </div>
-            </div>
-            <div class="row my-2 mx-auto">
-                <div class="col-3 text-right border-right border-dark">Дата запиту</div>
-                <div class="col-9 pl-4">{{ .review.created_at }}</div>
+{{ template "title.html" .}}
+
+<!-- Title -->
+<section class='item ml-auto mr-auto'>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form action="#" class='d-flex flex-wrap  pb-4 w-100 mb-3' role="form">
+
+                    <div class='input__block'>
+                        <p class="title-input">ID</p>
+                        <input type="text" name="ID" class="input-id form-control" readonly>
+                    </div>
+
+                    <div class='input__block order-lg-2'>
+                        <p class="title-input">Задоволення від консультації</p>
+                        <input type="text" name="pleasure" class=" form-control" readonly>
+
+                    </div>
+                    <div class='input__block order-lg-3'>
+                        <p class="title-input">Кількість наданих консультацій</p>
+                        <input type="number" name="created consultation" class=" input-for-btn form-control" readonly>
+                    </div>
+                    <div class='input__block order-lg-4'>
+                        <p class="title-input">Враження від роботи з психологом</p>
+                        <input type="text" name="impression expert" class=" form-control" readonly>
+
+                    </div>
+                    <div class='input__block order-lg-5'>
+                        <p class="title-input">Оцінка психолога</p>
+                        <input type="text" name="points" class=" form-control" readonly>
+                    </div>
+                    <div class='input__block order-lg-6'>
+                        <p class="title-input">Враження від платформима</p>
+                        <input type="text" name="impression platorm" class=" form-control" readonly>
+
+                    </div>
+                    <div class="input__block d-flex flex-column justify-content-around order-lg-1 flex-lg-row">
+                        <div>
+                            <p class="title-input">Заявка</p>
+                            <a href="#" class='detail-btn text-center d-block w-100 p-2 pr-4 pl-4'>
+                                Детальніше
+                            </a>
+                        </div>
+                        <div>
+                            <p class="title-input">Психолог</p>
+                            <a href="#" class='detail-btn text-center d-block w-100 p-2 pr-4 pl-4'>
+                                Детальніше
+                            </a>
+                        </div>
+                    </div>
+                    <div class="input__block order-lg-8">
+                        <div class='mb-3'>
+                            <p class="title-input mb-3">Статус</p>
+                            <p class="cell mb-0 table-require-cell table-cell-status d-inline created">
+                                ВІДГУК ОЧІКУЄТЬСЯ</p>
+{{/* 
+                               <!-- <p class="cell mb-0 table-require-cell table-cell-status d-inline completed">
+                                ВІДПОВІВ</p> -->
+*/}}
+                        </div>
+                        <div class="date-of-create">
+                            <p class="title-input mt-0">Дата запиту</p>
+                            <div class="block-date-time d-flex">
+                                <p class='date-time p-3 mr-1'>2020-07-18</p>
+                            </div>
+                        </div>
+                    </div>
+{{/*
+                    <!-- <div
+                        class="col order-last order-lg-first feedback__detail-btn d-flex w-100 flex-column flex-lg-row justify-content-lg-left pl-0 align-items-center mt-0 ">
+                        <div class='col-12 col-lg-5 d-flex flex-column pl-0'>
+                            <p class="title-input">Заявка</p>
+                            <button class='detail-btn align-self-center text-center w-100 p-2 pr-4 pl-4'>
+                                Детальніше
+                            </button>
+                        </div>
+
+                        <div class='col-12 col-lg-5 d-flex flex-column pl-0'>
+                            <p class="title-input">Психолог</p>
+                            <button class='detail-btn align-self-center text-center w-100 p-2 pr-4 pl-4'>
+                                Детальніше
+                            </button>
+                        </div>
+                    </div> -->
+*/}}
+                </form>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 {{ template "footer.html" . }}
