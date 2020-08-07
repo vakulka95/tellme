@@ -13,29 +13,7 @@
                         <p class="title-input">ID</p>
                         <input type="text" name="ID" class="input-id form-control" value="{{ .review.id }}" readonly>
                     </div>
-
-                    <div class='input__block order-lg-7'>
-                        <p class="title-input">Задоволення від консультації</p>
-                        <input type="text" name="pleasure" class=" form-control" value="{{ .review.consultation_review }}" readonly>
-                    </div>
-                    <div class='input__block '>
-                        <p class="title-input">Враження від роботи з психологом</p>
-                       <textarea name="review expert" id="review_expert" cols="30" rows="10" class=" form-control" readonly>{{ .review.expert_review }}</textarea> 
-                    </div>
-                    <div class='input__block '>
-                        <p class="title-input">Враження від роботи з платформи</p>
-                       <textarea name="review platorm" id="review_platorm" cols="30" rows="10" class=" form-control" readonly>{{ .review.platform_review }}</textarea> 
-                    </div>
-                    <div class='input__block '>
-                        <p class="title-input">Кількість наданих консультацій</p>
-                        <input type="number" name="created consultation" class=" input-for-btn form-control" value='{{ .review.consultation_count }}' readonly>
-                    </div>
-                    <div class='input__block '>
-                        <p class="title-input">Оцінка психолога</p>
-                        <input type="text" name="points" class=" form-control" value="{{ .review.expert_point }}" readonly>
-                    </div>
-                    
-                    <div class="input__block d-flex order-lg-2 flex-column flex-lg-row">
+                    <div class="input__block d-flex flex-column flex-lg-row">
                         <div>
                             <p class="title-input">Заявка</p>
                             <a href="/admin/requisition/{{ .review.requisition_id }}" role="button" class='detail-btn text-center d-block w-100 p-2 pr-4 pl-4'>
@@ -49,14 +27,37 @@
                             </a>
                         </div>
                     </div>
+                    
+                    <div class='input__block '>
+                        <p class="title-input">Враження від роботи з психологом</p>
+                       <textarea name="review expert" id="review_expert" cols="30" rows="10" class=" form-control" readonly>{{ .review.expert_review }}</textarea> 
+                    </div>
+                    <div class='input__block '>
+                        <p class="title-input">Враження від роботи з платформи</p>
+                       <textarea name="review platorm" id="review_platorm" cols="30" rows="10" class=" form-control" readonly>{{ .review.platform_review }}</textarea> 
+                    </div>
+                    <div class='input__block'>
+                        <p class="title-input">Задоволення від консультації</p>
+                        <input type="text" name="pleasure" class=" form-control" value="{{ .review.consultation_review }}" readonly>
+                    </div>
+                    <div class='input__block '>
+                        <p class="title-input">Кількість наданих консультацій</p>
+                        <input type="number" name="created consultation" class=" input-for-btn form-control" value='{{ .review.consultation_count }}' readonly>
+                    </div>
+                    <div class='input__block '>
+                        <p class="title-input">Оцінка психолога</p>
+                        <input type="text" name="points" class=" form-control" value="{{ .review.expert_point }}" readonly>
+                    </div>
+                    
+                    
 
-                    <div class="date-of-create">
+                    <div class="date-of-create input__block">
                         <p class="title-input mt-0">Дата запиту</p>
                         <div class="block-date-time d-flex">
                             <p class='date-time p-3 mr-1'>{{ .review.created_at }}</p>
                         </div>
                     </div>
-                    <div class='mb-3'>
+                    <div class='mb-3 input__block'>
                         <p class="title-input mb-3">Статус</p>
                         {{ $status := .review.status }}
                         {{ with (eq $status "requested") }}<p class="cell mb-0 table-require-cell table-cell-status d-inline created">
