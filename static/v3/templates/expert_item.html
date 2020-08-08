@@ -44,7 +44,7 @@
                 <div class='input__block'>           
                     <p class="title-input">Пароль</p>
                     <input type="password" id="pwd-{{ $expert_id }}" name="password" class="input-password form-control">
-                    <a data-expert-id="{{ $expert_id }}" onclick="changePasswordExpertAPI(this)" role="button" class='btn-in-input edit change'>Редагувати</a>
+                    <a data-expert-id="{{ $expert_id }}" onclick="changePasswordExpertAPI(this)" role="button" class='btn-in-input edit change'>Змінити пароль</a>
                     <p class="alert" id="changePasswordBlock-{{ $expert_id }}" role="alert"></p>
                 </div>
                 {{ end }}
@@ -146,24 +146,25 @@
                                 <input type="hidden" name="token" value="" />
                                 <input type="submit" class="btn btn-secondary" value="Завантажити" />
                             </form>
+                            <div class=" item-btns d-flex justify-content-between align-self-center align-self-lg-end flex-lg-row">
+                                <button class='btn form-btn w-100 main-form-btn bg-success'>Завершити</button>
+                                <button class='btn form-btn w-100 main-form-btn bg-danger'>Відмовитися</button>
+                            </div>
+                            {{ if (eq .metadata.role "admin" )}}
+                            <div class='align-self-end mt-3 d-inline'>
+                            <a class="btn btn-danger text-white" data-expert-id="{{ $expert_id }}" onclick="deleteExpertAPI(this)"
+                                role="button">Видалити</a>
+                            <a class="btn btn-secondary text-white {{ if (eq .expert.status "blocked")}} disabled{{ end }}"
+                                data-expert-id="{{ $expert_id }}" onclick="blockExpertAPI(this)" role="button">Блокувати</a>
+                            <a class="btn btn-success text-white {{ if (eq .expert.status "active")}} disabled{{ end }}"
+                                data-expert-id="{{ $expert_id }}" onclick="activateExpertAPI(this)" role="button">Активувати</a>
+                            </div>
+                            {{ end }}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class=" item-btns d-flex justify-content-between align-self-center align-self-lg-end flex-lg-row">
-                <button class='btn form-btn w-100 main-form-btn bg-success'>Завершити</button>
-                <button class='btn form-btn w-100 main-form-btn bg-danger'>Відмовитися</button>
-            </div>
-            {{ if (eq .metadata.role "admin" )}}
-            <div class='align-self-end mt-3 d-inline'>
-            <a class="btn btn-danger text-white" data-expert-id="{{ $expert_id }}" onclick="deleteExpertAPI(this)"
-                role="button">Видалити</a>
-            <a class="btn btn-secondary text-white {{ if (eq .expert.status "blocked")}} disabled{{ end }}"
-                data-expert-id="{{ $expert_id }}" onclick="blockExpertAPI(this)" role="button">Блокувати</a>
-            <a class="btn btn-success text-white {{ if (eq .expert.status "active")}} disabled{{ end }}"
-                data-expert-id="{{ $expert_id }}" onclick="activateExpertAPI(this)" role="button">Активувати</a>
-            </div>
-            {{ end }}
+          
 
         </div>
     </div>
