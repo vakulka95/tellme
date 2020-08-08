@@ -146,8 +146,9 @@ func (s *apiserver) webAdminRequisitionItem(c *gin.Context) {
 	}
 
 	var (
-		item gin.H
-		role = iRole.(string)
+		item     gin.H
+		username string
+		role     = iRole.(string)
 	)
 
 	if role == UserRoleAdmin {
@@ -158,7 +159,14 @@ func (s *apiserver) webAdminRequisitionItem(c *gin.Context) {
 			c.Redirect(http.StatusFound, "/admin/login")
 			return
 		}
-		item = representation.RequisitionItemPersistenceToAPIForExpert(requisitionRes, iUserID.(string))
+		userID := iUserID.(string)
+		item = representation.RequisitionItemPersistenceToAPIForExpert(requisitionRes, userID)
+
+		expert, err := s.repository.GetExpert(userID)
+		if err != nil {
+			log.Printf("(ERR) Failed to fetch expeert details: %v", err)
+		}
+		username = expert.Username
 	}
 
 	iStatus, ok := c.Get("status")
@@ -170,6 +178,8 @@ func (s *apiserver) webAdminRequisitionItem(c *gin.Context) {
 	c.HTML(http.StatusOK, "requisition_item.html",
 		gin.H{
 			"metadata": gin.H{
+				"title":     "Заявка",
+				"username":  username,
 				"logged_in": true,
 				"role":      role,
 				"status":    iStatus.(string),

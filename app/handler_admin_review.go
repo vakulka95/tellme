@@ -129,6 +129,7 @@ func (s *apiserver) webAdminReviewItem(c *gin.Context) {
 	c.HTML(http.StatusOK, "review_item.html",
 		gin.H{
 			"metadata": gin.H{
+				"title":     "Відгук",
 				"logged_in": true,
 				"role":      role,
 				"status":    iStatus.(string),

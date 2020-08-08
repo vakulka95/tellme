@@ -153,6 +153,7 @@ func (s *apiserver) webAdminExpertItem(c *gin.Context) {
 	c.HTML(http.StatusOK, "expert_item.html",
 		gin.H{
 			"metadata": gin.H{
+				"title":     "Психолог",
 				"logged_in": true,
 				"role":      iRole.(string),
 				"status":    iStatus.(string),
