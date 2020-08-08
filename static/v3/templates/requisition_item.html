@@ -111,7 +111,7 @@
                 </div>
             </div>
             {{ if eq .metadata.role "expert" }}
-            <div class='w-75 ml-auto mr-auto mb-5 mt-5 bg-white w-100 h-100 p-3 '>
+          {{/*  <!-- <div class='w-75 ml-auto mr-auto mb-5 mt-5 bg-white w-100 h-100 p-3 '>
                 <div class="row d-flex justify-content-between bg-white">
                     <div class="col-lg-5">
                         <div class="consultation d-flex flex-column pt-5 pb-4 pl-5">
@@ -123,7 +123,7 @@
                         <button class="btn main-btn btn-success pt-3 pb-3 mt-3 mr-3">Завершити</button>
                     </div>
                 </div>
-            </div>
+            </div> -->*/}}
             <div class=' align-self-end mb-3'>
                 <a class="btn form-btn mr-3 mb-3 main-form-btn bg-success align-self-center text-white {{ if or (ne .requisition.status "processing") (ge .requisition.session_count 3) }} disabled{{ end }}"
                     data-requisition-id="{{ .requisition.id }}" onclick="createSessionRequisitionAPI(this)"
