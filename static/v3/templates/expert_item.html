@@ -43,9 +43,9 @@
                 {{ if eq .metadata.role "admin" }}
                 <div class='input__block'>           
                     <p class="title-input">Пароль</p>
-                    <input type="password" id="pwd-{{ $expert_id }}" name="password" class="input-password form-control" readonly>
+                    <input type="password" id="pwd-{{ $expert_id }}" name="password" class="input-password form-control">
                     <a data-expert-id="{{ $expert_id }}" onclick="changePasswordExpertAPI(this)" role="button" class='btn-in-input edit change'>Редагувати</a>
-{{/*        <!-- <p class="alert" id="changePasswordBlock-{{ $expert_id }}" role="alert"><p></p> -->*/}}
+                    <p class="alert" id="changePasswordBlock-{{ $expert_id }}" role="alert"></p>
                 </div>
                 {{ end }}
                 <div class='input__block '>
