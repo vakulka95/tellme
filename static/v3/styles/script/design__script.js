@@ -37,7 +37,7 @@ const logoBlock = document.querySelector('.logo-row')
 
 
 // Logo in log-in page
-if(window.location.hash == 'https://staging.tellme.com.ua/admin/login'){
+if(window.location.href == 'https://staging.tellme.com.ua/admin/login'){
     logoBlock.classList.remove('col-6');
     logoBlock.classList.add('col-12');
     logoBlock.classList.add('d-flex');
