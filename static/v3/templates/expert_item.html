@@ -148,10 +148,18 @@
                                     class='delete text-white'>X</a>
                             </div>
                             {{ else }}
-                            <a href="{{ $doc.url }}">
-                                <img alt="picture" src="{{ $doc.url }}" class="img-fluid mb-3">
-                            </a>
+                            <div class='show-document'>
+                                <a href="{{ $doc.url }}">
+                                    <img alt="picture" src="{{ $doc.url }}" class="img-fluid mb-3">
+                                </a>
+                                <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
+                                onclick="deleteExpertDocumentAPI(this)" role="button"
+                                class='delete text-white'>X</a>
+                            </div>
                             {{ end }}
+                            <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
+                                    onclick="deleteExpertDocumentAPI(this)" role="button"
+                                    class='delete text-white'>X</a>
                             {{ end }}
                         </div>
                         <div class='input__block drag-block d-flex flex-column col-12 col-lg-6'>
