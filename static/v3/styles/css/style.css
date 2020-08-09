@@ -388,6 +388,11 @@ img{
     margin-right: auto;
 }
 
+.item-inputs{
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
 .item .row{
     display: flex; 
     flex-direction: column;
@@ -961,6 +966,7 @@ tbody tr:hover, tbody td:hover{
         margin-left: 0;
         margin-right: 0;
     }
+
     .title-input{
         margin: 0;
     }
