@@ -1033,11 +1033,7 @@ tbody tr:hover, tbody td:hover{
     .expert-card{
         position: relative;
     }
-    .modal-content {
-        position: sticky;
-        top: 0;
-        width: 100%;
-    }
+    
     .save{
         width: 100%;
     }
@@ -1078,9 +1074,11 @@ tbody tr:hover, tbody td:hover{
         position: sticky;
         top: 100px;
         /* margin-top: 100px;     */
-        width: 60%;
         height: 30%;
+        width: 100%;
+        display: block;
     }
+    
 }
 
 @media only screen and (max-width: 990px){
