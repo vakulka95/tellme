@@ -42,14 +42,18 @@ if(edit){
     edit.onclick = function(){
         modalEdit.style.display = 'flex';
         body.style.overflowY = 'hidden';
-        document.onclick = function(){
-            modalEdit.style.display = 'none';
-            body.style.overflowY = 'scroll';
-        }
-        close.onclick = function (){
-            modalEdit.style.display = 'none';
-            body.style.overflowY = 'scroll';
-        }
+       
+    }
+}
+
+if(close){
+    // document.onclick = function(){
+    //     modalEdit.style.display = 'none';
+    //     body.style.overflowY = 'scroll';
+    // }
+    close.onclick = function (){
+        modalEdit.style.display = 'none';
+        body.style.overflowY = 'scroll';
     }
 }
 
