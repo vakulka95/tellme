@@ -33,6 +33,22 @@ const nameMob = document.querySelectorAll('.name-mob');
 const eyeClose = document.querySelector('.eye-close');
 const eyeOpen = document.querySelector('.eye-open');
 const signInPass = document.getElementById('password');
+const logoBlock = document.querySelector('.logo-row')
+
+
+// Logo in log-in page
+if(window.location.hash == 'https://staging.tellme.com.ua/admin/login'){
+    logoBlock.classList.remove('col-6');
+    logoBlock.classList.add('col-12');
+    logoBlock.classList.add('d-flex');
+    logoBlock.classList.add('justify-content-center');
+}else{
+    logoBlock.classList.remove('col-12');
+    logoBlock.classList.remove('d-flex');
+    logoBlock.classList.remove('justify-content-center');
+    logoBlock.classList.add('col-6');
+
+}
 
 // show modal menu
 if(user){
