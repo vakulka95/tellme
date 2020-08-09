@@ -904,6 +904,7 @@ tbody tr:hover, tbody td:hover{
     /* margin-top: 100px;     */
     width: 60%;
     height: 30%;
+    z-index: 50;
 }
 
 .modal-content form{
