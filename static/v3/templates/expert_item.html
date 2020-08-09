@@ -138,7 +138,7 @@
                             </div>
                             <div class="modal-body">
                                 <form class="form d-flex flex-wrap" action="/admin/expert/{{ $expert_id }}" method="POST">
-                                    <!-- {{ if (eq .metadata.role "expert") }} -->
+                                    {{ if (eq .metadata.role "expert") }}
                                     <div class='input__block'>
                                         <label for="name">Ім'я</label>
                                         <input class="form-control clearable" id="name" name="username" type="text"
@@ -172,6 +172,7 @@
                                         value="{{ .expert.education }}">
                                     </div>
                                     <div class='input__block'>
+                                    {{ end }}
                                     <label for="specializations">Спеціалізації </label>
                                     <select class="custom-select" id="specializations" name="specializations">
                                         {{ range $spec, $specOpt := .expert.specializations }}
