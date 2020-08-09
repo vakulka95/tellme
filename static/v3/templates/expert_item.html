@@ -126,7 +126,7 @@
                     {{ if (eq .metadata.role "admin") }}
                     {{ template "expert_comment_list.html" . }}
                     {{ end }}
-                    <div class="modal-edit">
+                    {{/*     <!--    <div class="modal-edit">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <div class="modal-expert">
@@ -136,7 +136,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            {{/*     <!-- <div class="modal-body">
+                            <div class="modal-body">
                                 <form class="form d-flex flex-wrap expert-cardo6" action="/admin/expert/{{ $expert_id }}" method="POST">
                                     {{ if (eq .metadata.role "expert") }}
                                     <div class='input__block'>
