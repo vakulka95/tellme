@@ -42,7 +42,7 @@
                                         <img src="/static/styles/images/form/Vector.svg" alt="">
                                     </button>
                                 </div> --> 
-*/}}
+                    */}}
                 </div>
                 {{ if eq .metadata.role "admin" }}
                 <div class='input__block'>
@@ -126,7 +126,7 @@
                     {{ if (eq .metadata.role "admin") }}
                     {{ template "expert_comment_list.html" . }}
                     {{ end }}
-                    {<div class="modal-edit">
+                    <div class="modal-edit">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <div class="modal-expert">
@@ -237,6 +237,8 @@
                                 <input type="hidden" name="token" value="" />
                                 <input type="submit" class="btn btn-secondary" value="Завантажити" />
                             </form>
+                            <button type="button" class="btn btn-info edit-btn" data-toggle="modal" data-target="#expertEdit">Редагувати</button>
+
                             {{/*  
                                 <!-- <div class=" item-btns d-flex justify-content-between align-self-center align-self-lg-end flex-lg-row">
                                 <button class='btn form-btn w-100 main-form-btn bg-success'>Завершити</button>
@@ -246,7 +248,6 @@
                             <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#expertEdit">Редагувати</button> -->
                             {{ if (eq .metadata.role "admin" )}}
                             <div class='align-self-end mt-3 d-inline'>
-                                <button type="button" class="btn btn-info edit-btn" data-toggle="modal" data-target="#expertEdit">Редагувати</button>
                                 <a class="btn btn-danger text-white" data-expert-id="{{ $expert_id }}"
                                     onclick="deleteExpertAPI(this)" role="button">Видалити</a>
                                 <a class="btn btn-secondary     text-white {{ if (eq .expert.status "blocked")}} disabled{{ end }}"
