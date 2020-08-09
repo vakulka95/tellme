@@ -33,14 +33,23 @@ const nameMob = document.querySelectorAll('.name-mob');
 const eyeClose = document.querySelector('.eye-close');
 const eyeOpen = document.querySelector('.eye-open');
 const signInPass = document.getElementById('password');
-const logoBlock = document.querySelector('.logo-row')
+const logoBlock = document.querySelector('.logo-row');
 const modalEdit = document.querySelector('.modal-edit');
-const edit = document.querySelector('.edit-btn')
-
+const edit = document.querySelector('.edit-btn');
+const close = document.querySelector('.close');
 // Edit block in expert item
 if(edit){
     edit.onclick = function(){
         modalEdit.style.display = 'flex';
+        body.style.overflowY = 'hidden';
+        document.onclick = function(){
+            modalEdit.style.display = 'none';
+            body.style.overflowY = 'scroll';
+        }
+        close.onclick = function (){
+            modalEdit.style.display = 'none';
+            body.style.overflowY = 'scroll';
+        }
     }
 }
 
