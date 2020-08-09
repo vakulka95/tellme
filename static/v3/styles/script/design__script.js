@@ -31,10 +31,6 @@ const nameInput = document.querySelectorAll('.name');
 const filterMobSearch = document.querySelector('.filter-mob-input');
 const nameMob = document.querySelectorAll('.name-mob');
 const eyeClose = document.querySelector('.eye-close');
-const eyeOpen = document.querySelector('.eye-open');
-const signInPass = document.getElementById('password');
-const logoBlock = document.querySelector('.logo-row')
-// const modalEdit = document.querySelector('.modal-edit');
 // const edit = document.querySelector('.edit-btn')
 
 // Edit block in expert item
