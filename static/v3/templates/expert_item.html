@@ -246,7 +246,7 @@
                             <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#expertEdit">Редагувати</button> -->
                             {{ if (eq .metadata.role "admin" )}}
                             <div class='align-self-end mt-3 d-inline'>
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#expertEdit">Редагувати</button>
+                                <button type="button" class="btn btn-info edit-btn" data-toggle="modal" data-target="#expertEdit">Редагувати</button>
                                 <a class="btn btn-danger text-white" data-expert-id="{{ $expert_id }}"
                                     onclick="deleteExpertAPI(this)" role="button">Видалити</a>
                                 <a class="btn btn-secondary     text-white {{ if (eq .expert.status "blocked")}} disabled{{ end }}"
