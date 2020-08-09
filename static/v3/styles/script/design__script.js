@@ -41,7 +41,6 @@ const edit = document.querySelector('.edit-btn')
 if(edit){
     edit.onclick = function(){
         modalEdit.style.display = 'flex';
-        // body.style.overflowY = 'hidden';
     }
 }
 
