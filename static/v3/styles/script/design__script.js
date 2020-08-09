@@ -34,15 +34,15 @@ const eyeClose = document.querySelector('.eye-close');
 const eyeOpen = document.querySelector('.eye-open');
 const signInPass = document.getElementById('password');
 const logoBlock = document.querySelector('.logo-row')
-const modalEdit = document.querySelector('.modal-edit');
-const edit = document.querySelector('.edit-btn')
+// const modalEdit = document.querySelector('.modal-edit');
+// const edit = document.querySelector('.edit-btn')
 
 // Edit block in expert item
-if(edit){
-    edit.onclick = function(){
-        modalEdit.style.display = 'flex';
-    }
-}
+// if(edit){
+//     edit.onclick = function(){
+//         modalEdit.style.display = 'flex';
+//     }
+// }
 
 // Logo in log-in page
 if(window.location.href == 'https://staging.tellme.com.ua/admin/login'){
