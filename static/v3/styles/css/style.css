@@ -766,13 +766,15 @@ a:not([href]):hover{
 table{
     font-family: 'Noah Regular', sans-serif;
     font-style: normal;
-    border: none;
+    border: none!important;
     border-radius: 35px;
 }
 
 thead{
     background: #37A8FA;
     color: #fff;
+    border: none!important;
+
 }
 
 thead th{
@@ -781,7 +783,7 @@ thead th{
     line-height: 20px;
 
     letter-spacing: 0.01em;
-    border: none;
+    border: none!important;
 }
 td{
     font-weight: 500;
@@ -789,7 +791,7 @@ td{
     line-height: 22px;
 
     color: #686F91;
-    border: none;
+    border: none!important;
 
 }
 tbody tr, tbody td{
