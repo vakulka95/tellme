@@ -1098,7 +1098,7 @@ tbody tr:hover, tbody td:hover{
     .choose-file{
         width: 50%!;
     }
-    .edit-spec{
+    .modal-content .edit-spec{
         width: 100%!important;
     }
     
