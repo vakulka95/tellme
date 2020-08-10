@@ -53,6 +53,9 @@ if(edit){
         body.style.overflowY = 'hidden';
        
     }
+        if(!editName && document.clientWidth <= 1024){
+            modalContent.style.height = '50%';
+        }
 }
 
 if(close){
