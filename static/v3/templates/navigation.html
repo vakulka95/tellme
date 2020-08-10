@@ -3,30 +3,44 @@
         <ul class="nav-list w-100 d-flex mt-auto mb-auto">
             {{ if eq .metadata.status "active" }}
             <li class="nav-item">
-                <a href="/admin/requisition" class="nav-link menu--link--active">Заявки</a>
+                <a href="/admin/requisition" class="nav-link menu--link--active">
+                    <i class="fa fa-telegram"></i>Заявки
+                </a>
             </li>
             {{ end }}
             {{ if eq .metadata.role "admin" }}
             <li class="nav-item border-bottom border-dark border-0">
-                <a href="/admin/expert?limit=10&offset=0" class="nav-link">Психологи</a>
+                <a href="/admin/expert?limit=10&offset=0" class="nav-link">
+                    <i class="fa fa-address-card-o"></i>Психологи
+                </a>
             </li>
             <li class="nav-item border-bottom border-dark border-0">
-                <a href="/admin/review?limit=10&offset=0" class="nav-link">Відгуки</a>
+                <a href="/admin/review?limit=10&offset=0" class="nav-link">
+                    <i class="fa fa-commenting-o" aria-hidden="true"></i>Відгуки
+                </a>
             </li>
             <li class="nav-item border-bottom border-dark border-0">
-                <a href="/admin/expert_rating?limit=10&offset=0" class="nav-link">Рейтинги</a>
+                <a href="/admin/expert_rating?limit=10&offset=0" class="nav-link">
+                    <i class="fa fa-bar-chart-o" aria-hidden="true"></i>Рейтинги
+                </a>
             </li>
             {{ end }}
             {{ if eq .metadata.role "expert" }}
             <li class="nav-item border-bottom border-dark border-0">
-                <a href="/admin/profile" class="nav-link">Мій профіль</a>
+                <a href="/admin/profile" class="nav-link">
+                    <i class="fa fa-address-card-o"></i>Мій профіль
+                </a>
             </li>
             <li class="nav-item border-bottom border-dark border-0">
-                <a href="/admin/review?limit=10&offset=0" class="nav-link">Мої відгуки</a>
+                <a href="/admin/review?limit=10&offset=0" class="nav-link">
+                    <i class="fa fa-commenting-o" aria-hidden="true"></i>Мої відгуки
+                </a>
             </li>
             {{ end }}
             <li class="nav-item">
-                <a href="/admin/logout" class="nav-link">Вихід</a>
+                <a href="/admin/logout" class="nav-link">
+                    <i class="fa fa-user"></i>Вихід
+                </a>
             </li>
         </ul>
     </nav>
