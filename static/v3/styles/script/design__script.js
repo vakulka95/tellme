@@ -38,6 +38,9 @@ const modalEdit = document.querySelector('.modal-edit');
 const modalContent = document.querySelector('.modal-content')
 const edit = document.querySelector('.edit-btn');
 const close = document.querySelector('.close');
+const clearable = document.querySelectorAll('.clearable');
+const editSpec = document.querySelectorAll('.edit-spec');
+
 // Edit block in expert item
 if(edit){
     edit.onclick = function(){
@@ -58,7 +61,11 @@ if(close){
     }
 }
 
-// if(window.location.href == 'https://staging.tellme.com.ua/admin/login'){
+if(!clearable){
+    editSpec.style.width = '100%';
+}else{
+    editSpec.style.width = '47%';
+}
 
 
 // Logo in log-in page
