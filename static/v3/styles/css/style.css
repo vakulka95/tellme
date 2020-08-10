@@ -1167,7 +1167,13 @@ tbody tr:hover, tbody td:hover{
         padding-bottom: 6px;
     }
     .modal-content {
-        height: 30%;
+        height: 40%;
+    }
+    .choose-file{
+        width: 50%;
+    }
+    .modal-edit .input__block{
+        margin: 0px auto 10px;
     }
 }
 
