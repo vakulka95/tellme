@@ -48,14 +48,17 @@ if(edit){
         }else{
             editSpec.style.width = '47%';
         }
+
+        
+        if(!editName && document.clientWidth <= 1024){
+            modalContent.style.height = '50%';
+        }
     edit.onclick = function(){
         modalEdit.style.display = 'flex';
         body.style.overflowY = 'hidden';
        
     }
-        if(!editName && document.clientWidth <= 1024){
-            modalContent.style.height = '50%';
-        }
+        
 }
 
 if(close){
