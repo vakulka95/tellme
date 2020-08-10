@@ -4,42 +4,42 @@
             {{ if eq .metadata.status "active" }}
             <li class="nav-item mt-auto mb-auto">
                 <a href="/admin/requisition" class="nav-link d-flex align-items-center menu--link--active">
-                    <i class="fa fa-telegram"></i>Заявки
+                    <i class="fa fa-telegram mr-2"></i>Заявки
                 </a>
             </li>
             {{ end }}
             {{ if eq .metadata.role "admin" }}
             <li class="nav-item mt-auto mb-auto">
                 <a href="/admin/expert?limit=10&offset=0" class="nav-link d-flex align-items-center">
-                    <i class="fa fa-address-card-o"></i>Психологи
+                    <i class="fa fa-address-card-o mr-2"></i>Психологи
                 </a>
             </li>
             <li class="nav-item mt-auto mb-auto">
                 <a href="/admin/review?limit=10&offset=0" class="nav-link d-flex align-items-center">
-                    <i class="fa fa-commenting-o" aria-hidden="true"></i>Відгуки
+                    <i class="fa fa-commenting-o mr-2" aria-hidden="true"></i>Відгуки
                 </a>
             </li>
             <li class="nav-item mt-auto mb-auto">
                 <a href="/admin/expert_rating?limit=10&offset=0" class="nav-link d-flex align-items-center">
-                    <i class="fa fa-bar-chart-o" aria-hidden="true"></i>Рейтинги
+                    <i class="fa fa-bar-chart-o mr-2" aria-hidden="true"></i>Рейтинги
                 </a>
             </li>
             {{ end }}
             {{ if eq .metadata.role "expert" }}
             <li class="nav-item mt-auto mb-auto">
                 <a href="/admin/profile" class="nav-link d-flex align-items-center">
-                    <i class="fa fa-address-card-o"></i>Мій профіль
+                    <i class="fa fa-address-card-o mr-2"></i>Мій профіль
                 </a>
             </li>
             <li class="nav-item mt-auto mb-auto">
                 <a href="/admin/review?limit=10&offset=0" class="nav-link d-flex align-items-center">
-                    <i class="fa fa-commenting-o" aria-hidden="true"></i>Мої відгуки
+                    <i class="fa fa-commenting-o mr-2" aria-hidden="true"></i>Мої відгуки
                 </a>
             </li>
             {{ end }}
             <li class="nav-item">
                 <a href="/admin/logout" class="nav-link d-flex align-items-center">
-                    <i class="fa fa-user"></i>Вихід
+                    <i class="fa fa-user mr-2"></i>Вихід
                 </a>
             </li>
         </ul>
