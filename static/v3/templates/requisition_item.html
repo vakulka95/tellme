@@ -100,10 +100,11 @@
                     <p class="title-input pb-2">Статус</p>
                     {{ $status := .requisition.status }}
                     {{ with (eq $status "processing") }}<p
-                        class="cell d-inline mb-0 table-require-cell table-cell-status  processing">В роботі</p>{{ end }}
+                        class="cell d-inline mb-0 table-require-cell table-cell-status  processing">В роботі</p>
+                    {{ end }}
                     {{ with (eq $status "created") }}<p 
-                    class="cell d-inline mb-0 table-require-cell table-cell-status created">
-                        Не в роботі</p>{{ end }}
+                    class="cell d-inline mb-0 table-require-cell table-cell-status created">Не в роботі</p>
+                    {{ end }}
                     {{ with (eq $status "no_answer") }}<p
                         class="cell d-inline mb-0 table-require-cell table-cell-status  no_answer">Не актуально</p>
                     {{ end }}
