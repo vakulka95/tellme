@@ -1101,13 +1101,6 @@ tbody tr:hover, tbody td:hover{
     
 }
 
-@media only screen and (max-width: 990px){
-    .delete{
-        padding-right: 8px;
-
-    }
-
-}
 
 @media only screen and (max-width: 990px){
     .delete{
@@ -1146,6 +1139,9 @@ tbody tr:hover, tbody td:hover{
     }
     .save{
         margin-top: 20px!important;
+    }
+    .modal-edit{
+        height: 60%;
     }
 
 

@@ -35,6 +35,7 @@ const eyeOpen = document.querySelector('.eye-open');
 const signInPass = document.getElementById('password');
 const logoBlock = document.querySelector('.logo-row');
 const modalEdit = document.querySelector('.modal-edit');
+const modalContent = document.querySelector('.modal-content')
 const edit = document.querySelector('.edit-btn');
 const close = document.querySelector('.close');
 // Edit block in expert item
@@ -56,6 +57,9 @@ if(close){
         body.style.overflowY = 'scroll';
     }
 }
+
+// if(window.location.href == 'https://staging.tellme.com.ua/admin/login'){
+
 
 // Logo in log-in page
 if(window.location.href == 'https://staging.tellme.com.ua/admin/login'){
