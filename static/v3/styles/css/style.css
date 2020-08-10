@@ -767,7 +767,7 @@ table{
     font-family: 'Noah Regular', sans-serif;
     font-style: normal;
     border: none!important;
-    border-radius: 35px;
+    border-radius: 35px!important;
 }
 
 thead{
