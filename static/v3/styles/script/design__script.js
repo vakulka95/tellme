@@ -39,7 +39,7 @@ const modalContent = document.querySelector('.modal-content')
 const edit = document.querySelector('.edit-btn');
 const close = document.querySelector('.close');
 const clearable = document.querySelectorAll('.clearable');
-const editSpec = document.querySelectorAll('.edit-spec');
+const editSpec = document.querySelector('.edit-spec');
 
 // Edit block in expert item
 if(edit){
