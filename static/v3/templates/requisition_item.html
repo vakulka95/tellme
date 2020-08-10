@@ -134,13 +134,13 @@
             </div>
             {{ end }}
             <div class=" item-btns d-flex justify-content-center align-self-center align-self-lg-end flex-lg-row">
-                <a class="btn form-btn mr-3 main-form-btn bg-success align-self-center text-white {{ if (eq .requisition.status "processing") }} disabled{{ end }}"
+                <a class="btn form-btn main-form-btn bg-success align-self-center text-white {{ if (eq .requisition.status "processing") }} disabled{{ end }}"
                     data-requisition-id="{{ .requisition.id }}" onclick="takeRequisitionAPI(this)"
                     role="button">Взяти</a>
-                <a class="btn form-btn mr-3 main-form-btn bg-success align-self-center text-white {{ if or (eq .requisition.status "completed") (eq .requisition.status "no_answer") }} disabled{{ end }}"
+                <a class="btn form-btn main-form-btn bg-success align-self-center text-white {{ if or (eq .requisition.status "completed") (eq .requisition.status "no_answer") }} disabled{{ end }}"
                     data-requisition-id="{{ .requisition.id }}" onclick="completeRequisitionAPI(this)"
                     role="button">Завершити</a>
-                <a class="btn form-btn mr-3 main-form-btn bg-warning align-self-center text-white {{ if (ne .requisition.status "processing") }} disabled{{ end }}"
+                <a class="btn form-btn main-form-btn bg-warning align-self-center text-white {{ if (ne .requisition.status "processing") }} disabled{{ end }}"
                     data-requisition-id="{{ .requisition.id }}" onclick="noAnswerRequisitionAPI(this)" role="button"> Не
                     актуально</a>
                 <a class="btn form-btn main-form-btn bg-danger align-self-center text-white {{ if (eq .requisition.status "created") }} disabled{{ end }}"

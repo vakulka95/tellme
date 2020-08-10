@@ -794,6 +794,10 @@ td{
     border: none!important;
 
 }
+th{
+    border: none!important;
+
+}
 tbody tr, tbody td{
     cursor: pointer;
 }
