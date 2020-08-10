@@ -1098,6 +1098,9 @@ tbody tr:hover, tbody td:hover{
     .choose-file{
         width: 50%!;
     }
+    .edit-spec{
+        width: 100%!important;
+    }
     
 }
 
