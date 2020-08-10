@@ -43,6 +43,13 @@ const editSpec = document.querySelectorAll('.edit-spec');
 
 // Edit block in expert item
 if(edit){
+    clearable.forEach(el => {
+        if(!el){
+            editSpec.style.width = '100%';
+        }else{
+            editSpec.style.width = '47%';
+        }
+    })
     edit.onclick = function(){
         modalEdit.style.display = 'flex';
         body.style.overflowY = 'hidden';
@@ -61,11 +68,11 @@ if(close){
     }
 }
 
-if(!clearable){
-    editSpec.style.width = '100%';
-}else{
-    editSpec.style.width = '47%';
-}
+// if(!clearable){
+//     editSpec.style.width = '100%';
+// }else{
+//     editSpec.style.width = '47%';
+// }
 
 
 // Logo in log-in page
