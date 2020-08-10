@@ -245,18 +245,18 @@
                                 <input class="form-control clearable" id="education" name="education" type="text"
                                     value="{{ .expert.education }}">
                                 </div>
-                                <div class='input__block'>
-                                {{ end }}
-                                <label for="specializations">Спеціалізації </label>
-                                <select class="custom-select" id="specializations" name="specializations">
-                                    {{ range $spec, $specOpt := .expert.specializations }}
-                                    <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">
-                                        {{ $specOpt.Translated }}</option>
                                     {{ end }}
-                                </select>
-                                <div class=" save w-100 text-right mt-5">
-                                    <button type="submit" class="btn btn-primary">Зберегти</button>
-                                </div>
+                                <div class='input__block'></div>
+                                    <label for="specializations">Спеціалізації </label>
+                                    <select class="custom-select" id="specializations" name="specializations">
+                                        {{ range $spec, $specOpt := .expert.specializations }}
+                                        <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">
+                                            {{ $specOpt.Translated }}</option>
+                                        {{ end }}
+                                    </select>
+                                    <div class=" save w-100 text-right mt-5">
+                                        <button type="submit" class="btn btn-primary">Зберегти</button>
+                                    </div>
                                 </div>
                                 
                             </form>
