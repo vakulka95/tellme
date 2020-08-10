@@ -36,7 +36,8 @@ img{
 
 .btn-submit{
    background-color:  #37A8FA;
-   padding: 6.5px 10px;
+   padding: 7.5px 10px;
+   margin-bottom: 2px;
 
 
 }
@@ -327,7 +328,7 @@ img{
 
 .download-btn{
     width: 45%;
-    padding: 15px 14px;
+    padding: 12px 14px;
 
     border: none;
 
