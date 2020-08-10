@@ -771,6 +771,11 @@ table{
     border-radius: 35px!important;
 }
 
+.rounded, .rounded-left, .rounded-right{
+    border-bottom-left-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+}
+
 thead{
     background: #37A8FA;
     color: #fff;
