@@ -781,6 +781,7 @@ thead th{
     line-height: 20px;
 
     letter-spacing: 0.01em;
+    border: none;
 }
 td{
     font-weight: 500;
@@ -788,6 +789,8 @@ td{
     line-height: 22px;
 
     color: #686F91;
+    border: none;
+
 }
 tbody tr, tbody td{
     cursor: pointer;
