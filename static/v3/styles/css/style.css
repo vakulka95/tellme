@@ -930,7 +930,13 @@ tbody tr:hover, tbody td:hover{
     height: 50%;
 }
 
-
+.expert-btn{
+    justify-content: space-between;
+}
+.expert-btn a{
+    display: block;
+    padding: 6px 27px;
+}
 @media only screen and (max-width: 1024px){
     .app__clients{
         display: block;
@@ -1117,6 +1123,13 @@ tbody tr:hover, tbody td:hover{
     }
     .modal-content .edit-spec{
         width: 100%!important;
+    }
+    .expert-btn{
+        flex-wrap: wrap;
+    }
+    .expert-btn a{
+        width: 100%;
+        margin: 10px 15px;
     }
     
 }
