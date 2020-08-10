@@ -1089,6 +1089,9 @@ tbody tr:hover, tbody td:hover{
     .modal-edit .input__block{
         margin-top: 10px;
     }
+    .choose-file{
+        width: 50%;
+    }
     
 }
 
