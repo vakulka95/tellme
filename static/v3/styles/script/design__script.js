@@ -38,18 +38,16 @@ const modalEdit = document.querySelector('.modal-edit');
 const modalContent = document.querySelector('.modal-content')
 const edit = document.querySelector('.edit-btn');
 const close = document.querySelector('.close');
-const clearable = document.querySelectorAll('.clearable');
+const editName = document.querySelector('.edit-name');
 const editSpec = document.querySelector('.edit-spec');
 
 // Edit block in expert item
 if(edit){
-    clearable.forEach(el => {
-        if(!el){
+        if(!editName){
             editSpec.style.width = '100%';
         }else{
             editSpec.style.width = '47%';
         }
-    })
     edit.onclick = function(){
         modalEdit.style.display = 'flex';
         body.style.overflowY = 'hidden';
