@@ -771,10 +771,7 @@ table{
     border-radius: 35px!important;
 }
 
-.rounded, .rounded-left, .rounded-right{
-    border-bottom-left-radius: 0!important;
-    border-bottom-right-radius: 0!important;
-}
+
 
 thead{
     background: #37A8FA;
@@ -810,6 +807,10 @@ tbody tr, tbody td{
 
 tbody tr:hover, tbody td:hover{
     background-color: #ccc!important;
+}
+.rounded, .rounded-left, .rounded-right{
+    border-bottom-left-radius: 0!important;
+    border-bottom-right-radius: 0!important;
 }
 
 .row-custom{
