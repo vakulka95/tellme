@@ -1116,11 +1116,11 @@ tbody tr:hover, tbody td:hover{
         padding-right: 14px;
     }
 }
-/* @media only screen and (max-width: 450px){
+@media only screen and (max-width: 450px){
     .modal-edit{
-        height: 50%;
+        height: 60%;
     }
-} */
+}
 
 @media only screen and (max-width: 390px){
     .menu-link{
@@ -1163,7 +1163,7 @@ tbody tr:hover, tbody td:hover{
         padding-bottom: 6px;
     }
     /* .modal-content {
-        height: 40%;
+        height: 60%;
     } */
     .choose-file{
         width: 50%;
