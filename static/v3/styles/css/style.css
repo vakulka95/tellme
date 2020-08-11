@@ -569,6 +569,9 @@ img{
     background-color: #F6F9FE;
     cursor: default;
 }
+.form-control{
+    border: 1px solid #E3E8F5!important;
+}
 .main-form-btn{
     width:100%;
     padding: 17px 30px;

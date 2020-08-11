@@ -52,11 +52,11 @@
                 </div>
                 <div class="from mt-3">
                     <p class="spec-title mb-0">Дата/час від</p>
-                    <input id="datetime_from" name="datetime_from" type="datetime-local" value="{{ .queries.datetime_from }}"  class='from-input mb-1 form-control'>
+                    <input id="datetime_from" name="datetime_from" type="date" value="{{ .queries.datetime_from }}"  class='from-input mb-1 form-control'>
                 </div>
                 <div class="until mt-3">
                     <p class="spec-title mb-0">Дата/час до</p>
-                    <input id="datetime_to" name="datetime_to" type="datetime-local" value="{{ .queries.datetime_to }}" class='until-input mb-1 form-control'>
+                    <input id="datetime_to" name="datetime_to" type="date" value="{{ .queries.datetime_to }}" class='until-input mb-1 form-control'>
                 </div>
                 <div class="filter__btn d-flex flex-column justify-content-center mt-3">
                     <button type='button' class='filter-btn filter-search'>Пошук</button>
