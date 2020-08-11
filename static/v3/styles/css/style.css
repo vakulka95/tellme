@@ -423,6 +423,7 @@ img{
     line-height: 20px;
 
     color: #686F91;
+    appearance: none;
 }
 .search{
     background: url(/static/styles/images/search/search.svg) no-repeat, #fff;
@@ -433,11 +434,6 @@ img{
     margin-bottom: 10px;
 }
 
-.select{
-    -webkit-appearance: none;
-    padding: 7px;
-
-}
 
 
 .filter-search::after{
