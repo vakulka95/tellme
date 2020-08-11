@@ -317,8 +317,6 @@ img{
 
 .filter-desktop input, .filter-desktop select{
     margin-bottom: 0;
-    -webkit-appearance: none;
-    padding: 7px;
 
 }
 
@@ -435,6 +433,11 @@ img{
     margin-bottom: 10px;
 }
 
+.select{
+    -webkit-appearance: none;
+    padding: 7px;
+
+}
 
 
 .filter-search::after{
