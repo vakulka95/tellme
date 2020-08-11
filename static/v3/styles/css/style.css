@@ -427,6 +427,10 @@ img{
 
     color: #686F91;
 }
+.select{
+    background-image: url(/static/styles/images/form/select.svg) no-repeat;
+    background-position-x: right;
+}
 .search{
     background: url(/static/styles/images/search/search.svg) no-repeat, #fff;
     padding-left: 35px;
