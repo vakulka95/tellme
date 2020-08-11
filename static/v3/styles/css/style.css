@@ -319,6 +319,11 @@ img{
     margin-bottom: 0;
 }
 
+.filter-desktop input, .filter-desktop select{
+    -webkit-appearance: none;
+    padding: 7px;
+}
+
 .status{
     margin-bottom: 0;
 }
