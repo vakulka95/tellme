@@ -949,7 +949,7 @@ tbody tr:hover, tbody td:hover{
 }
 .expert-btn a{
     display: block;
-    padding: 6px 27px;
+    padding: 6px 14px;
 }
 
 #datetime_from, #datetime_to{
