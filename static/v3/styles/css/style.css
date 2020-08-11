@@ -430,6 +430,7 @@ img{
 .select{
     background-image: url(/static/styles/images/form/select.svg) no-repeat;
     background-position-x: right;
+    background-size: cover;
 }
 .search{
     background: url(/static/styles/images/search/search.svg) no-repeat, #fff;
