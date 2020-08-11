@@ -955,6 +955,13 @@ tbody tr:hover, tbody td:hover{
 #datetime_from, #datetime_to{
     /* -webkit-appearance: menulist; */
 }
+@media (min-width: 1200px){
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 80%;
+    }
+}
+
+
 @media only screen and (max-width: 1024px){
     .app__clients{
         display: block;
