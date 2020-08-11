@@ -95,6 +95,7 @@ func (s *apiserver) webAdminExpertRatingList(c *gin.Context) {
 	c.HTML(http.StatusOK, "expert_rating_list.html",
 		gin.H{
 			"metadata": gin.H{
+				"title":     "Рейтинг",
 				"logged_in": true,
 				"role":      iRole.(string),
 				"status":    iStatus.(string),
