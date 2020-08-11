@@ -354,6 +354,6 @@ if(eyeClose){
 
 // window.addEventListener('resize', hideFilterBlock);
 
-// $(function(){
-//     $('#datetime_from').datepicker();
-// })
+$(function(){
+    $('#datetime_from').datepicker();
+});
