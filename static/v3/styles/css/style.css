@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-appearance: none;
+    /* -webkit-appearance: none; */
 }
 
 body{
@@ -945,7 +945,7 @@ tbody tr:hover, tbody td:hover{
 }
 
 #datetime_from, #datetime_to{
-    -webkit-appearance: menulist;
+    /* -webkit-appearance: menulist; */
 }
 @media only screen and (max-width: 1024px){
     .app__clients{
