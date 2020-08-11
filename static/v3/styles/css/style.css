@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-appearance: none;
 }
 
 body{
@@ -423,7 +424,6 @@ img{
     line-height: 20px;
 
     color: #686F91;
-    appearance: none;
 }
 .search{
     background: url(/static/styles/images/search/search.svg) no-repeat, #fff;
