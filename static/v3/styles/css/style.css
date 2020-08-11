@@ -50,6 +50,8 @@ img{
     color: rgba(255, 255, 255, 0.7);
 }
 
+
+
 /********* HEADER *********/
 
 .header{
@@ -940,6 +942,10 @@ tbody tr:hover, tbody td:hover{
 .expert-btn a{
     display: block;
     padding: 6px 27px;
+}
+
+#datetime_from, #datetime_to{
+    -webkit-appearance: menulist;
 }
 @media only screen and (max-width: 1024px){
     .app__clients{
