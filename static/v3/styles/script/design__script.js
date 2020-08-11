@@ -49,7 +49,7 @@ if(edit){
             editSpec.style.width = '47%';
         }
 
-        
+
         if(!editName && document.clientWidth <= 1024){
             modalContent.style.height = '50%';
         }
@@ -353,3 +353,6 @@ if(eyeClose){
 // hideFilterBlock();
 
 // window.addEventListener('resize', hideFilterBlock);
+
+
+$('#datetime_from').datepicker();
