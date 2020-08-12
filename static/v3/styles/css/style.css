@@ -38,7 +38,8 @@ img{
 .btn-submit{
     background-color: #37A8FA;
     padding: 5px 10px;
-    margin-bottom: 6px;
+    /* margin-bottom: 6px; */
+    height: 48px;
 }
 
 .exit__link{
@@ -350,7 +351,6 @@ img{
 }
 .filter-desktop .download-btn{
     padding: 10px 14px;
-    height: 39px;
 }
 .download-btn:hover{
     text-decoration: none;
