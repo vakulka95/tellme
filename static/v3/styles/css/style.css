@@ -575,7 +575,6 @@ img{
     cursor: default;
 }
 .form-control{
-    height: 48px;
     border: 1px solid #E3E8F5!important;
 }
 .main-form-btn{
@@ -888,9 +887,12 @@ tbody tr:hover, tbody td:hover{
     right: 20px;
     cursor: pointer;
 }
-
+.log-in input{
+    height: 48px;
+}
 .log-in button{
     font-size: 20px;
+    height: 56px;
 }
 .user{
     display: none;
