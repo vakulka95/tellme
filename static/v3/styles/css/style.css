@@ -334,7 +334,7 @@ img{
 
 .download-btn{
     width: 45%;
-    padding: 10px 14px;
+    padding: 18px 14px;
 
     border: none;
 
@@ -883,7 +883,7 @@ tbody tr:hover, tbody td:hover{
 }
 .eye-close, .eye-open{
     position: absolute;
-    top: 40px;
+    top: 45px;
     right: 20px;
     cursor: pointer;
 }
@@ -955,11 +955,11 @@ tbody tr:hover, tbody td:hover{
 #datetime_from, #datetime_to{
     /* -webkit-appearance: menulist; */
 }
-@media (min-width: 1200px){
+/* @media (min-width: 1200px){
     .container, .container-lg, .container-md, .container-sm, .container-xl {
         max-width: 80%;
     }
-}
+} */
 
 
 @media only screen and (max-width: 1024px){
