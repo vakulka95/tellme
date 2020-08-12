@@ -573,7 +573,7 @@
 
 
 @font-face {
-    font-family: 'noahregular_italic';
+    font-family: 'Noah Regular Italic';
     src: url('fontfabric_-_noah_regular_italic-webfont.woff2') format('woff2'),
          url('fontfabric_-_noah_regular_italic-webfont.woff') format('woff');
     font-weight: normal;
@@ -585,7 +585,7 @@
 
 
 @font-face {
-    font-family: 'noahregular';
+    font-family: 'Noah Regular';
     src: url('fontfabric_-_noah_regular-webfont.woff2') format('woff2'),
          url('fontfabric_-_noah_regular-webfont.woff') format('woff');
     font-weight: normal;
@@ -657,7 +657,7 @@
 
 
 @font-face {
-    font-family: 'noah_textextrabold';
+    font-family: 'Noah Text Extra Bold';
     src: url('fontfabric_-_noah_text_extrabold-webfont.woff2') format('woff2'),
          url('fontfabric_-_noah_text_extrabold-webfont.woff') format('woff');
     font-weight: normal;
@@ -681,7 +681,7 @@
 
 
 @font-face {
-    font-family: 'noah_textheavy';
+    font-family: 'Noah Text Heavy';
     src: url('fontfabric_-_noah_text_heavy-webfont.woff2') format('woff2'),
          url('fontfabric_-_noah_text_heavy-webfont.woff') format('woff');
     font-weight: normal;
@@ -705,7 +705,7 @@
 
 
 @font-face {
-    font-family: 'noah_textlight';
+    font-family: 'Noah Text Light';
     src: url('fontfabric_-_noah_text_light-webfont.woff2') format('woff2'),
          url('fontfabric_-_noah_text_light-webfont.woff') format('woff');
     font-weight: normal;
@@ -729,7 +729,7 @@
 
 
 @font-face {
-    font-family: 'noah_textmedium';
+    font-family: 'Noah Text Medium';
     src: url('fontfabric_-_noah_text_medium-webfont.woff2') format('woff2'),
          url('fontfabric_-_noah_text_medium-webfont.woff') format('woff');
     font-weight: normal;
@@ -741,7 +741,7 @@
 
 
 @font-face {
-    font-family: 'noah_textregular_italic';
+    font-family: 'Noah Text Regular Italic';
     src: url('fontfabric_-_noah_text_regular_italic-webfont.woff2') format('woff2'),
          url('fontfabric_-_noah_text_regular_italic-webfont.woff') format('woff');
     font-weight: normal;
@@ -753,7 +753,7 @@
 
 
 @font-face {
-    font-family: 'noah_textregular';
+    font-family: 'Noah Text Regular';
     src: url('fontfabric_-_noah_text_regular-webfont.woff2') format('woff2'),
          url('fontfabric_-_noah_text_regular-webfont.woff') format('woff');
     font-weight: normal;
