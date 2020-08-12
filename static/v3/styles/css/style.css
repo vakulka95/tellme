@@ -878,7 +878,7 @@ tbody tr:hover, tbody td:hover{
     border-radius: 100px;
 }
 .table-cell-status{
-    font-family: 'Noah Text Medium';
+    font-family: 'Noah Text Medium', sans-serif;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 0.03em;
