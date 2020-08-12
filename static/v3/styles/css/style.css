@@ -76,6 +76,7 @@ img{
 .title-block{
     background: white;
     padding-bottom: 13px;
+    border-bottom: 1px solid #E3E8F5;
 }
 
 .title{
@@ -462,6 +463,7 @@ img{
 .form{
     background-color: #fff;
     border-radius: 5px;
+    border: 1px solid #E3E8F5;
 }
 
  input, textarea{
@@ -781,7 +783,6 @@ a:not([href]):hover{
 table{
     font-family: 'Noah Regular', sans-serif;
     font-style: normal;
-    border: none!important;
     border-radius: 35px!important;
 }
 
@@ -955,7 +956,9 @@ tbody tr:hover, tbody td:hover{
     padding: 6px 14px;
 }
 
-
+.container-fluid{
+    padding-left: 0 48px;
+}
 @media only screen and (max-width: 1024px){
     .app__clients{
         display: block;
