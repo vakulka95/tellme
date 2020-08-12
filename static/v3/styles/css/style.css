@@ -820,8 +820,12 @@ thead th{
     line-height: 20px;
 
     letter-spacing: 0.01em;
-    border: none!important;
 }
+
+th:first-child{
+    padding-left: 30px;
+}
+
 td{
     font-weight: 500;
     font-size: 18px;
@@ -829,12 +833,16 @@ td{
 
     color: #686F91;
     border: none!important;
-
 }
+
+tr td:first-child{
+    padding-left: 30px;
+}
+
 th{
     border: none!important;
-
 }
+
 tbody tr, tbody td{
     cursor: pointer;
 }
