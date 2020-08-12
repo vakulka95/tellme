@@ -225,7 +225,9 @@ img{
     width: 48px;
     height: 48px;
     background-color: #fff;
-    border-left: 1px solid #E3E8F5;
+    border: 1px solid #E3E8F5;
+    border-right: none;
+    border-radius: 5px;
 
 }
 
