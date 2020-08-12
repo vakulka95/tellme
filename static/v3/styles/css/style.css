@@ -20,7 +20,7 @@ body{
     color: #686F91;
 }
 a{
-    font-family: 'Noah regular', sans-serif;
+    font-family: 'Noah Regular', sans-serif;
 }
 
 ul, li{
@@ -672,7 +672,7 @@ img{
 }
 
 .consultation-title{
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
     font-size: 20px;
     line-height: 25px;
     letter-spacing: 0.02em;
@@ -878,7 +878,7 @@ tbody tr:hover, tbody td:hover{
     border-radius: 100px;
 }
 .table-cell-status{
-    font-family: 'Noah Text Medium', sans-serif;
+    font-family: 'Noah Regular', sans-serif;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 0.03em;

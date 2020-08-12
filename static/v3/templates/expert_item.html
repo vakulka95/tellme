@@ -186,15 +186,16 @@
                             */}}
                             <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#expertEdit">Редагувати</button> -->
                             {{ if (eq .metadata.role "admin" )}}
-                            <div class='expert-btn mt-3 d-flex '>
-                                <a class="btn btn-danger text-white" data-expert-id="{{ $expert_id }}"
-                                    onclick="deleteExpertAPI(this)" role="button">Видалити</a>
-                                <a class="btn btn-secondary     text-white {{ if (eq .expert.status "blocked")}} disabled{{ end }}"
-                                    data-expert-id="{{ $expert_id }}" onclick="blockExpertAPI(this)"
-                                    role="button">Блокувати</a>
-                                <a class="btn btn-success text-white {{ if (eq .expert.status "active")}} disabled{{ end }}"
-                                    data-expert-id="{{ $expert_id }}" onclick="activateExpertAPI(this)"
-                                    role="button">Активувати</a>
+                            
+                            <div class=" item-btns d-flex justify-content-center align-self-center align-self-lg-end flex-lg-row">
+                                <a class="btn form-btn main-form-btn bg-success align-self-center text-white {{ if (eq .expert.status "active")}} disabled{{ end }}"
+                                data-expert-id="{{ $expert_id }}" onclick="activateExpertAPI(this)"
+                                role="button">Активувати</a>
+                                <a class="btn form-btn main-form-btn bg-warning align-self-center text-white data-expert-id="{{ $expert_id }}"
+                                onclick="deleteExpertAPI(this)" role="button">Видалити</a>
+                                <a class="btn form-btn main-form-btn bg-danger align-self-center text-white {{ if (eq .expert.status "blocked")}} disabled{{ end }}"
+                                data-expert-id="{{ $expert_id }}" onclick="blockExpertAPI(this)"
+                                role="button">Блокувати</a>
                             </div>
                             {{ end }}
                         </div>
