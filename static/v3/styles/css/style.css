@@ -229,7 +229,7 @@ img{
 
 }
 
-.page-item:last-child{
+.pagination li:last-child{
     border-right: 1px solid #E3E8F5;
 }
 
