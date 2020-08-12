@@ -36,12 +36,11 @@ img{
 }
 
 .btn-submit{
-   background-color:  #37A8FA;
-   padding: 5px 10px;
-   margin-bottom: 4px;
-
-
+    background-color: #37A8FA;
+    padding: 5px 10px;
+    margin-bottom: 6px;
 }
+
 .exit__link{
     color: #fff;
 }
@@ -958,6 +957,10 @@ tbody tr:hover, tbody td:hover{
 
 .container-fluid{
     padding: 0 48px;
+}
+
+label{
+    margin-bottom: 4px;
 }
 
 @media only screen and (max-width: 1024px){
