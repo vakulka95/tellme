@@ -892,7 +892,7 @@ tbody tr:hover, tbody td:hover{
     right: 20px;
     cursor: pointer;
 }
-.log-in input{
+.log-in input, .filter-desktop input, .filter-desktop select{
     height: 48px;
 }
 .log-in button{
