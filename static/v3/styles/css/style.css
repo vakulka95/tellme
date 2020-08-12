@@ -892,7 +892,7 @@ tbody tr:hover, tbody td:hover{
 }
 .log-in button{
     font-size: 20px;
-    height: 56px!important;
+    height: 56px;
 }
 .user{
     display: none;
@@ -954,15 +954,6 @@ tbody tr:hover, tbody td:hover{
     display: block;
     padding: 6px 14px;
 }
-
-#datetime_from, #datetime_to{
-    /* -webkit-appearance: menulist; */
-}
-/* @media (min-width: 1200px){
-    .container, .container-lg, .container-md, .container-sm, .container-xl {
-        max-width: 80%;
-    }
-} */
 
 
 @media only screen and (max-width: 1024px){
