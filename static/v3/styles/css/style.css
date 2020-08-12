@@ -68,7 +68,7 @@ img{
 /* *********************************************************    SUPERADMIN   **********************************************************************/
 /********* APPLICATIONS *********/
 .login-title{
-    font-family: 'Noah Regular', Helvetica, sans-serif;
+    font-family: 'Noah Bold', sans-serif;
     font-weight: 500;
 
             
@@ -344,6 +344,7 @@ img{
 
 .status{
     margin-bottom: 0;
+    
 }
 .document .download-btn{
     width: 75%;
@@ -877,7 +878,8 @@ tbody tr:hover, tbody td:hover{
     border-radius: 100px;
 }
 .table-cell-status{
-    font-weight: bold;
+    font-family: 'Noah Text Medium';
+    font-weight: 500;
     font-size: 14px;
     letter-spacing: 0.03em;
     text-transform: uppercase;
