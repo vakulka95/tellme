@@ -782,6 +782,7 @@ a:not([href]):hover{
 table{
     font-family: 'Noah Regular', sans-serif;
     font-style: normal;
+    border: 1px solid #E3E8F5;
     border-radius: 35px!important;
 }
 
