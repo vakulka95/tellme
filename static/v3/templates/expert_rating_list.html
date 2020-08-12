@@ -47,9 +47,9 @@
                         </td>
                         <td class='text-left pt-4 pb-4'>
                             {{ $status := $item.status }}
-                            {{ with (eq $status "on_review") }}<p class="cell mb-0 table-require-cell table-cell-status created">на модерації</p>{{ end }}
-                            {{ with (eq $status "blocked") }}<p class="cell mb-0 table-require-cell table-cell-status completed">заблокований</p>{{ end }}
-                            {{ with (eq $status "active") }}<p class="cell mb-0 table-require-cell table-cell-status no_answer">активний</p>{{ end }}
+                            {{ with (eq $status "on_review") }}<p class="cell mb-0 table-require-cell d-inline table-cell-status created">на модерації</p>{{ end }}
+                            {{ with (eq $status "blocked") }}<p class="cell mb-0 table-require-cell d-inline table-cell-status completed">заблокований</p>{{ end }}
+                            {{ with (eq $status "active") }}<p class="cell mb-0 table-require-cell d-inline table-cell-status no_answer">активний</p>{{ end }}
                         </td>
                     </tr>
                     {{ end }}

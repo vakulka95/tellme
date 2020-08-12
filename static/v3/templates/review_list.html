@@ -25,13 +25,13 @@
                     <tbody>
                     {{ range $i, $item := .data.items }}
                     <tr class="row-custom" data-href="/admin/review/{{ $item.id }}">
-                        <td class='text-center pt-4 pb-4' >
+                        <td class='text-left pt-4 pb-4' >
                             {{ $status := $item.status }}
                             {{ with (eq $status "requested") }}
-                            <p class="cell mb-0 table-require-cell table-cell-status created">Відгук очікується</p>
+                            <p class="cell mb-0 table-require-cell d-inline table-cell-status created">Відгук очікується</p>
                             {{ end }}
                             {{ with (eq $status "completed") }}
-                            <p class="cell mb-0 table-require-cell table-cell-status completed">Відповів</p>
+                            <p class="cell mb-0 table-require-cell d-inline table-cell-status completed">Відповів</p>
                             {{ end }}
                         </td>
                         <td class='text-left pt-4 pb-4' >
