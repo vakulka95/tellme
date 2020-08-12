@@ -892,7 +892,7 @@ tbody tr:hover, tbody td:hover{
 }
 .log-in button{
     font-size: 20px;
-    height: 56px;
+    height: 56px!important;
 }
 .user{
     display: none;
