@@ -88,7 +88,7 @@
                     {{ range $i, $item := .data.items }}
                     <div class="row-custom client mt-3 mb-3 pt-4" data-href="/admin/requisition/{{ $item.id }}">
                         <div class="about__item d-flex ml-4 mb-3">
-                            <a href="#" class="about__link">{{ $item.created_at }}</a>
+                            <p class="about__link">{{ $item.created_at }}</p>
                         </div>
                         <div class="reason d-inline ml-4 mr-5">
                             {{ $item.diagnosis }}
@@ -96,11 +96,11 @@
                         <div class="about mt-3">
                             <ul class="about__list ml-4 d-flex flex-column">
                                 <li class="about__item d-flex align-items-center">
-                                    <p class="cell">
-                                        <a href="#" class="about__link name-mob  mr-2">
+        
+                                        <p class="about__link name-mob  mr-2">
                                             {{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}
-                                        </a>
-                                    </p>
+                                        </p>
+
                                     {{ $gender := $item.gender }}
                                     {{ with (eq $gender "female") }}
                                     <div class="gender">жін.</div>
@@ -110,12 +110,12 @@
                                     {{ end }}
                                 </li>
                                 <li class="about__item d-flex">
-                                    <a href="#"
-                                        class="about__link">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</a>
+                                    <p
+                                        class="about__link">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</p>
                                 </li>
                                 
                             </ul>
-                            <div class="d-f d-flex align-items-center justify-content-start mt-2 ml-4">
+                            <div class="d-flex align-items-center justify-content-start mt-2 ml-4">
                                 {{ $status := $item.status }}
                                 {{ with (eq $status "created") }}<p
                                     class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
