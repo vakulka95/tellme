@@ -1027,6 +1027,8 @@ label{
     }
     .container-fluid{
         padding: 0;
+        margin-left: 12px;
+        margin-right: 12px;
     }
     
 /* 
