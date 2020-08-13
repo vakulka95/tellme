@@ -199,7 +199,14 @@ h1{
 .feedback .about__item{
     height: 60px;
 }
+.about__item{
+    margin-top: 4px;
+    margin-bottom: 0;
+}
 
+.client .about__item{
+    margin-bottom: 10px;
+}
 .about .reason{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -1034,10 +1041,7 @@ label{
         padding-top: 15px;
     }
 
-    .about__item{
-        margin-top: 4px;
-        margin-bottom: 0;
-    }
+    
 
     .feedback li {
         margin-top: 0;
