@@ -183,6 +183,8 @@ h1{
 }
 .about__list{
     margin-bottom: 0;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .about .cell{
