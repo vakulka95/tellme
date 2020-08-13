@@ -1025,6 +1025,10 @@ label{
     .for-mobile{
         display: block;
     }
+    .container-fluid{
+        padding: 0;
+    }
+    
 /* 
     thead{
         display: none;
