@@ -191,8 +191,7 @@ img{
 .about__item{
     background: #fff;
     border-radius: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .status-btn{
@@ -424,6 +423,7 @@ img{
     padding-right: 64px;
 }
 
+
 .item .row{
     display: flex; 
     flex-direction: column;
@@ -508,6 +508,9 @@ img{
     position: relative;
     width: 47%;
     margin-left: 20px;
+}
+.input__block input{
+    color: #686F91;
 }
 .delete{
     position: absolute;

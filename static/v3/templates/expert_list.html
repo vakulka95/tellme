@@ -99,7 +99,7 @@
                         </div>
                         <div class="about">
                             <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
-                                <li class="about__item d-flex mb-1 align-items-center">
+                                <li class="about__item d-flex align-items-center">
                                     <p class="about__link mr-2">{{ $item.username }}</p>
                                     {{ $gender := $item.gender }}
                                     {{ with (eq $gender "female") }}
@@ -113,10 +113,10 @@
                                     </div>
                                     {{ end }}
                                 </li>
-                                <li class="about__item d-flex mb-2">
+                                <li class="about__item d-flex">
                                     <p class="about__link">{{ $item.phone }}</p>
                                 </li>
-                                <li class="about__item d-flex mb-2">
+                                <li class="about__item d-flex">
                                     <p class="about__link">{{ $item.email }}</p>
                                 </li>
                             </ul>
