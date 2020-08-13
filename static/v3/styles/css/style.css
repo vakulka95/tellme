@@ -1241,6 +1241,15 @@ label{
     .modal-content{
         height: 50%;
     }
+    .page-item{
+        width: 100%;
+    }
+
+    .page-link--active{
+        width: 85%;
+        height: 85%;
+    }
+    
 }
 
 @media only screen and (max-width: 390px){
