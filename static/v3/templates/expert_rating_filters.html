@@ -28,7 +28,6 @@
             </div>
             <form class="pl-3 pr-3" action="/admin/expert_rating" method="GET">
                 <div class="status mb-3 ">
-                    
                     <p class=" mb-0">Статус</p>
                     <select id="status" name="status" class='bg-white select status-select form-control mt-1'>
                         <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
