@@ -3,12 +3,14 @@
         <div class="row">
             <div class="col-lg-3 mt-3 ">
                 <form action="/admin/review" method="GET" class='d-flex status mr-3 mr-0 w-100'>
-                    <label for="status" class=" mb-1">Статус</label>
-                        <select  id="status" name="status" class='select status-select mb-0 form-control mr-3'>
-                            <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
-                            <option {{ if (eq .queries.status "requested") }} selected {{ end}} value="requested">Відгук очікується</option>
-                            <option {{ if (eq .queries.status "completed") }} selected {{ end}} value="completed">Відповів</option>
-                        </select>
+                    <div>
+                        <label for="status" class=" mb-1">Статус</label>
+                            <select  id="status" name="status" class='select status-select mb-0 form-control mr-3'>
+                                <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                                <option {{ if (eq .queries.status "requested") }} selected {{ end}} value="requested">Відгук очікується</option>
+                                <option {{ if (eq .queries.status "completed") }} selected {{ end}} value="completed">Відповів</option>
+                            </select>
+                    </div>
                         <div class='filter-submit d-flex align-items-center justify-content-center '>
                             <button type="submit" class='btn btn-submit text-white'>Вибрати</button>
                         </div>
