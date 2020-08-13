@@ -137,7 +137,10 @@ h1{
 
 .desktop-nav{
     display: block;
+}
 
+.nav .fa{
+    color:  #9396A7;
 }
 
 /********* CLIENTS *********/
@@ -791,8 +794,8 @@ a:not([href]):hover{
 /********* FEEDBACK   ********/
 
 .item-title{
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 18px;
+    line-height: 18px;
 
     color: #9BA8E3;
 }
