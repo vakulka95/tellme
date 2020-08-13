@@ -368,9 +368,6 @@ h1{
 
 }
 
-.filter-desktop form{
-    margin-top: 40px;
-}
 
 
 
@@ -1029,6 +1026,9 @@ tbody tr:hover, tbody td:hover{
 
 label{
     margin-bottom: 4px;
+}
+.filter-desktop form{
+    margin-top: 40px;
 }
 
 @media only screen and (max-width: 1024px){
