@@ -126,7 +126,7 @@ h1{
     bottom: 0;
     content: '';
     z-index: 0;
-    background: url(/static/styles/images/search/filter.svg) no-repeat;
+    background: url(/static/styles/images/search/Group.png) no-repeat;
 }
 
 .after-none::after{
