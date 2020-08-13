@@ -1030,6 +1030,13 @@ label{
         padding-right: 15px;
 
     }
+    .about{
+        padding-top: 15px;
+    }
+
+    .about__item{
+        margin-top: 4px;
+    }
     
 /* 
     thead{
