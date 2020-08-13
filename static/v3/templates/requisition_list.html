@@ -87,7 +87,7 @@
                 <div class="for-mobile ">
                     {{ range $i, $item := .data.items }}
                     <div class="row-custom client mt-3 mb-3 pt-4" data-href="/admin/requisition/{{ $item.id }}">
-                        <div class="about__item d-flex mb-2 ml-3">
+                        <div class="about__item d-flex ml-3">
                             <a href="#" class="about__link">{{ $item.created_at }}</a>
                         </div>
                         <div class="reason d-inline ml-3 mr-5">
@@ -95,21 +95,21 @@
                         </div>
                         <div class="about">
                             <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
-                                <li class="about__item d-flex mb-1 align-items-center">
-                                    <p class="cell mb-0 pt-2">
+                                <li class="about__item d-flex align-items-center">
+                                    <p class="cell">
                                         <a href="#" class="about__link name-mob  mr-2">
                                             {{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}
                                         </a>
                                     </p>
                                     {{ $gender := $item.gender }}
                                     {{ with (eq $gender "female") }}
-                                    <div class="gender mt-2">жін.</div>
+                                    <div class="gender">жін.</div>
                                     {{ end }}
                                     {{ with (eq $gender "male") }}
-                                    <div class="gender mt-2">чол.</div>
+                                    <div class="gender">чол.</div>
                                     {{ end }}
                                 </li>
-                                <li class="about__item d-flex mb-2">
+                                <li class="about__item d-flex">
                                     <a href="#"
                                         class="about__link">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</a>
                                 </li>
