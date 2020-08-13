@@ -26,7 +26,7 @@
                     <h1 class="title">Фільтр</h1>
                 </div>
             </div>
-            <form class="pl-3 pr-3" action="/admin/expert_rating" method="GET">
+            <form class="pl-3 pr-3 d-flex justify-content-between" action="/admin/expert_rating" method="GET">
                 <div class="status mb-3 ">
                     <p class=" mb-0">Статус</p>
                     <select id="status" name="status" class='bg-white select status-select form-control mt-1'>
@@ -94,7 +94,7 @@
                             <option {{ if or (eq .queries.order_dir "desc") (eq .queries.order_dir "") }} selected {{ end}} value="desc">За спаданням</option>
                         </select>
                     </div>
-                    <div class='col-lg-1 filter-submit d-flex align-items-end justify-content-center mt-4'>
+                    <div class='col-lg-1 filter-submit d-flex align-items-end justify-content-start pl-0 mt-4'>
                         <button type="submit" class='btn btn-submit text-white'>Вибрати</button>
                     </div>  
                     <div class="col-lg-4 ml-3 download-block d-flex p-0 justify-content-around align-items-end">
