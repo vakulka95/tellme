@@ -183,6 +183,10 @@ img{
 .about__list{
     margin-bottom: 0;
 }
+
+.about .cell{
+    margin-bottom: 0;
+}
 .about__link{
     font-size: 16px;
     line-height: 21px;
