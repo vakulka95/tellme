@@ -187,13 +187,13 @@
                             <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#expertEdit">Редагувати</button> -->
                             {{ if (eq .metadata.role "admin" )}}
                             <div class=" item-btns d-flex justify-content-center align-self-center w-100 m-0 mt-4 flex-lg-row">
-                                <a class="btn form-btn main-form-btn bg-success align-self-center text-white"
+                                <a class="btn form-btn main-form-btn bg-success align-self-center text-white pl-3 pr-3"
                                     data-expert-id="{{ $expert_id }}" onclick="activateExpertAPI(this)"
                                     role="button">Активувати</a>
-                                <a class="btn form-btn main-form-btn bg-warning align-self-center text-white"
+                                <a class="btn form-btn main-form-btn bg-warning align-self-center text-white pl-3 pr-3"
                                     data-expert-id="{{ $expert_id }}" onclick="deleteExpertAPI(this)"
                                     role="button">Видалити</a>
-                                <a class="btn form-btn main-form-btn m-0 bg-danger align-self-center text-white"
+                                <a class="btn form-btn main-form-btn m-0 bg-danger align-self-center text-white pl-3 pr-3"
                                     data-expert-id="{{ $expert_id }}" onclick="blockExpertAPI(this)"
                                     role="button">Блокувати</a>
                                 {{ end }}
