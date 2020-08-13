@@ -188,7 +188,7 @@ img{
     margin-bottom: 0;
 }
 .about__link{
-    font-size: 16px;
+    font-size: 18px;
     line-height: 21px;
 
     color: #454545;
@@ -1029,6 +1029,10 @@ label{
         padding: 0;
         margin-left: 12px;
         margin-right: 12px;
+    }
+
+    .title__item{
+        padding-left: 15px;
     }
     
 /* 
