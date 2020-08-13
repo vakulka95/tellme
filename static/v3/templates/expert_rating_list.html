@@ -58,8 +58,8 @@
                 <div class="for-mobile">
                     {{ range $i, $item := .data.items }}
                     <div class="row-custom rate__block about mt-3 mb-3 pb-3 pt-4"  data-href="/admin/expert/{{ $item.id }}">
-                        <ul class="about__list ml-3 mt-2 mb-2 pr-3 d-flex flex-column">
-                            <li class=" d-flex mb-3 ml-3 flex-column">
+                        <ul class="about__list ml-4 mt-2 mb-2 pr-3 d-flex flex-column">
+                            <li class=" d-flex mb-3 ml-4 flex-column">
                                 <p class="item-title mb-1">Психолог</p>
                                 <a href="#" class="about__link mr-2">{{ $item.username }}</a>
                             </li>
@@ -85,9 +85,9 @@
                             </li>
                         </ul>
                         {{ $status := $item.status }}
-                        {{ with (eq $status "on_review") }}<p class="cell mb-0 ml-3 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline created search-status-sel">на модерації</p>{{ end }}
-                        {{ with (eq $status "blocked") }}<p class="cell mb-0 ml-3 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline completed search-status-sel">заблокований</p>{{ end }}
-                        {{ with (eq $status "active") }}<p class="cell mb-0 ml-3 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline no_answer search-status-sel">активний</p>{{ end }}
+                        {{ with (eq $status "on_review") }}<p class="cell mb-0 ml-4 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline created search-status-sel">на модерації</p>{{ end }}
+                        {{ with (eq $status "blocked") }}<p class="cell mb-0 ml-4 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline completed search-status-sel">заблокований</p>{{ end }}
+                        {{ with (eq $status "active") }}<p class="cell mb-0 ml-4 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline no_answer search-status-sel">активний</p>{{ end }}
 
                     </div>
                     {{ end }}
@@ -115,8 +115,8 @@
     <div class="container">
         <div class="rate__wrap">
             <div class="rate__block about mt-3 mb-3 pb-3 pt-4">
-                <ul class="about__list ml-3 mt-2 mb-2 pr-3 d-flex flex-column">
-                    <li class=" d-flex mb-3 ml-3 flex-column">
+                <ul class="about__list ml-4 mt-2 mb-2 pr-3 d-flex flex-column">
+                    <li class=" d-flex mb-3 ml-4 flex-column">
                         <p class="item-title mb-1">Психолог</p>
                         <a href="#" class="about__link mr-2">Танюша Некрасова</a>
                     </li>
@@ -141,11 +141,11 @@
                         <div class="count">0</div>
                     </li>
                 </ul>
-                <p class="cell mb-0 ml-3 about table-require-cell text-weight-normal created search-status-sel w-50">Не в роботі</p>
+                <p class="cell mb-0 ml-4 about table-require-cell text-weight-normal created search-status-sel w-50">Не в роботі</p>
             </div>
             <div class="rate__block about mt-3 mb-3 pb-3 pt-4">
-                <ul class="about__list ml-3 mt-2 mb-2 pr-3 d-flex flex-column">
-                    <li class=" d-flex mb-3 ml-3 flex-column">
+                <ul class="about__list ml-4 mt-2 mb-2 pr-3 d-flex flex-column">
+                    <li class=" d-flex mb-3 ml-4 flex-column">
                         <p class="item-title mb-1">Психолог</p>
                         <a href="#" class="about__link mr-2">Танюша Некрасова</a>
                     </li>
@@ -170,11 +170,11 @@
                         <div class="count">0</div>
                     </li>
                 </ul>
-                <p class="cell mb-0 ml-3 about table-require-cell text-weight-normal completed search-status-sel w-50">Виконаний</p>
+                <p class="cell mb-0 ml-4 about table-require-cell text-weight-normal completed search-status-sel w-50">Виконаний</p>
             </div>
             <div class="rate__block about mt-3 mb-3 pb-3 pt-4">
-                <ul class="about__list ml-3 mt-2 mb-2 pr-3 d-flex flex-column">
-                    <li class=" d-flex mb-3 ml-3 flex-column">
+                <ul class="about__list ml-4 mt-2 mb-2 pr-3 d-flex flex-column">
+                    <li class=" d-flex mb-3 ml-4 flex-column">
                         <p class="item-title mb-1">Психолог</p>
                         <a href="#" class="about__link mr-2">Танюша Некрасова</a>
                     </li>
@@ -199,11 +199,11 @@
                         <div class="count">0</div>
                     </li>
                 </ul>
-                <p class="cell mb-0 ml-3 about table-require-cell text-weight-normal processing search-status-sel w-50">В роботі</p>
+                <p class="cell mb-0 ml-4 about table-require-cell text-weight-normal processing search-status-sel w-50">В роботі</p>
             </div>
             <div class="rate__block about mt-3 mb-3 pb-3 pt-4">
-                <ul class="about__list ml-3 mt-2 mb-2 pr-3 d-flex flex-column">
-                    <li class=" d-flex mb-3 ml-3 flex-column">
+                <ul class="about__list ml-4 mt-2 mb-2 pr-3 d-flex flex-column">
+                    <li class=" d-flex mb-3 ml-4 flex-column">
                         <p class="item-title mb-1">Психолог</p>
                         <a href="#" class="about__link mr-2">Танюша Некрасова</a>
                     </li>
@@ -228,7 +228,7 @@
                         <div class="count">0</div>
                     </li>
                 </ul>
-                <p class="cell mb-0 ml-3 about table-require-cell text-weight-normal no_answer search-status-sel w-50">Не актуально</p>
+                <p class="cell mb-0 ml-4 about table-require-cell text-weight-normal no_answer search-status-sel w-50">Не актуально</p>
             </div>
         </div>
     </div>

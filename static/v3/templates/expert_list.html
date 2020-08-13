@@ -85,7 +85,7 @@
                 <div class="for-mobile ">
                     {{ range $i, $item := .data.items }}
                     <div class="row-custom client mt-3 mb-3 pt-4" data-href="/admin/expert/{{ $item.id }}">
-                        <div class=" d-flex align-items-center justify-content-start ml-3">
+                        <div class=" d-flex align-items-center justify-content-start ml-4">
                             {{ $status := $item.status }}
                             {{ with (eq $status "on_review") }}
                             <p class="cell mb-0 table-require-cell table-cell-status d-inline created">На модерації</p>
@@ -98,7 +98,7 @@
                             {{ end }}
                         </div>
                         <div class="about">
-                            <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                            <ul class="about__list ml-4 mt-2 mb-2 d-flex flex-column">
                                 <li class="about__item d-flex align-items-center">
                                     <p class="about__link mr-2">{{ $item.username }}</p>
                                     {{ $gender := $item.gender }}
@@ -152,13 +152,13 @@
 <div class="container">
     <div class="psychologists__wrap">
         <div class="psy mt-3 mb-3 pt-4">
-            <div class=" d-flex align-items-center justify-content-start ml-3">
+            <div class=" d-flex align-items-center justify-content-start ml-4">
                 <p class="cell mb-0 table-require-cell table-cell-status d-inline created">На модерації</p>
                 <p class="cell mb-0 table-require-cell table-cell-status d-inline no_answer">Заблокований</p> 
                 <p class="cell mb-0 table-require-cell table-cell-status d-inline completed">Активний</p> 
                 </div>
             <div class="about">
-                <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                <ul class="about__list ml-4 mt-2 mb-2 d-flex flex-column">
                     <li class="about__item d-flex mb-1 align-items-center">
                         <a href="#" class="about__link mr-2">Танюша Некрасова</a> 
                         <div class="gender">
@@ -175,13 +175,13 @@
             </div>
         </div>
         <div class="psy mt-3 mb-3 pt-4">
-            <div class=" d-flex align-items-center justify-content-start ml-3">
+            <div class=" d-flex align-items-center justify-content-start ml-4">
                 <p class="cell mb-0 table-require-cell table-cell-status d-inline created">На модерації</p>
                 <p class="cell mb-0 table-require-cell table-cell-status d-inline no_answer">Заблокований</p> 
                 <p class="cell mb-0 table-require-cell table-cell-status d-inline completed">Активний</p> 
                 </div>
             <div class="about">
-                <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                <ul class="about__list ml-4 mt-2 mb-2 d-flex flex-column">
                     <li class="about__item d-flex mb-1 align-items-center">
                         <a href="#" class="about__link mr-2">Танюша Некрасова</a> 
                         <div class="gender">

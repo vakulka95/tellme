@@ -54,7 +54,7 @@
                     {{ range $i, $item := .data.items }}
                     <div class="row-custom feedback mt-1 mb-3 " data-href="/admin/review/{{ $item.id }}">
                         <div class="about">
-                            <ul class="about__list ml-3 mt-2 mb-2  mr-3 d-flex flex-column">
+                            <ul class="about__list ml-4 mt-2 mb-2  mr-3 d-flex flex-column">
                                 <li class="about__item d-flex mb-1 flex-column">
                                     <p class="item-title mb-0">Психолог</p>
                                     <a href="#" class="about__link mr-2">{{ $item.expert_username }}</a>  
@@ -76,12 +76,12 @@
                         {{ $status := $item.status }}
                         {{ with (eq $status "requested") }}
                         <div class='mt-3'> 
-                            <p class="cell mb-0 table-require-cell ml-3 table-cell-status d-inline created">Відгук очікується</p>
+                            <p class="cell mb-0 table-require-cell ml-4 table-cell-status d-inline created">Відгук очікується</p>
                         </div>
                         {{ end }}
                         {{ with (eq $status "completed") }}
                         <div class='mt-3'> 
-                            <p class="cell mb-0 table-require-cell ml-3 table-cell-status d-inline completed">Відповів</p>
+                            <p class="cell mb-0 table-require-cell ml-4 table-cell-status d-inline completed">Відповів</p>
                         </div>
                         {{ end }}
                     </div>
@@ -116,14 +116,14 @@
     <div class="container">
         <div class="feedbacks__wrap">
             <div class="psy mt-3 mb-3 pt-4">
-                <div class="feedback__status ml-3 mr-5 mb-3 created">
+                <div class="feedback__status ml-4 mr-5 mb-3 created">
                     Відгук очікується
                 </div>
-                <div class="feedback__status ml-3 mr-5 mb-3 completed">
+                <div class="feedback__status ml-4 mr-5 mb-3 completed">
                     Відповів
                 </div>
                 <div class="about">
-                    <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                    <ul class="about__list ml-4 mt-2 mb-2 d-flex flex-column">
                         <li class="about__item d-flex mb-3 flex-column">
                             <p class="item-title mb-0">Психолог</p>
                             <a href="#" class="about__link mr-2">Танюша Некрасова</a>
@@ -144,14 +144,14 @@
                 </div>
             </div>
             <div class="psy mt-3 mb-3 pt-4">
-                <div class="feedback__status ml-3 mr-5 mb-3 created">
+                <div class="feedback__status ml-4 mr-5 mb-3 created">
                     Відгук очікується
                 </div>
-                <div class="feedback__status ml-3 mr-5 mb-3 completed">
+                <div class="feedback__status ml-4 mr-5 mb-3 completed">
                     Відповів
                 </div>
                 <div class="about">
-                    <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                    <ul class="about__list ml-4 mt-2 mb-2 d-flex flex-column">
                         <li class="about__item d-flex mb-3 flex-column">
                             <p class="item-title mb-0">Психолог</p>
                             <a href="#" class="about__link mr-2">Танюша Некрасова</a>
@@ -172,14 +172,14 @@
                 </div>
             </div>
             <div class="psy mt-3 mb-3 pt-4">
-                <div class="feedback__status ml-3 mr-5 mb-3 created">
+                <div class="feedback__status ml-4 mr-5 mb-3 created">
                     Відгук очікується
                 </div>
-                <div class="feedback__status ml-3 mr-5 mb-3 completed">
+                <div class="feedback__status ml-4 mr-5 mb-3 completed">
                     Відповів
                 </div>
                 <div class="about">
-                    <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                    <ul class="about__list ml-4 mt-2 mb-2 d-flex flex-column">
                         <li class="about__item d-flex mb-3 flex-column">
                             <p class="item-title mb-0">Психолог</p>
                             <a href="#" class="about__link mr-2">Танюша Некрасова</a>

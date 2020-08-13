@@ -87,14 +87,14 @@
                 <div class="for-mobile ">
                     {{ range $i, $item := .data.items }}
                     <div class="row-custom client mt-3 mb-3 pt-4" data-href="/admin/requisition/{{ $item.id }}">
-                        <div class="about__item d-flex ml-3 mb-3">
+                        <div class="about__item d-flex ml-4 mb-3">
                             <a href="#" class="about__link">{{ $item.created_at }}</a>
                         </div>
-                        <div class="reason d-inline ml-3 mr-5">
+                        <div class="reason d-inline ml-4 mr-5">
                             {{ $item.diagnosis }}
                         </div>
                         <div class="about mt-3">
-                            <ul class="about__list ml-3 d-flex flex-column">
+                            <ul class="about__list ml-4 d-flex flex-column">
                                 <li class="about__item d-flex align-items-center">
                                     <p class="cell">
                                         <a href="#" class="about__link name-mob  mr-2">
@@ -115,7 +115,7 @@
                                 </li>
                                 
                             </ul>
-                            <div class="d-f d-flex align-items-center justify-content-start mt-2 ml-3">
+                            <div class="d-f d-flex align-items-center justify-content-start mt-2 ml-4">
                                 {{ $status := $item.status }}
                                 {{ with (eq $status "created") }}<p
                                     class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
@@ -158,11 +158,11 @@
         <div class="container">
             <div class="clients__wrap">
                 <div class="client mt-3 mb-3 pt-4">
-                    <div class="reason d-inline ml-3 mr-5">
+                    <div class="reason d-inline ml-4 mr-5">
                         Важке переживання втрати
                     </div>
                     <div class="about">
-                        <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                        <ul class="about__list ml-4 mt-2 mb-2 d-flex flex-column">
                             <li class="about__item d-flex mb-1 align-items-center">
                                 <img src="/static/styles/images/about/about-man.svg" class='menu&#45;&#45;icon mr-3'
                                     alt="about-icon-person">
@@ -184,7 +184,7 @@
                                 <a href="#" class="about__link">2020, 20, 20</a>
                             </li>
                         </ul>
-                        <div class="button d-f d-flex align-items-center justify-content-start justify-content-start ml-3">
+                        <div class="button d-f d-flex align-items-center justify-content-start justify-content-start ml-4">
                             <p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p> 
                                      &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
                                     <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p> &ndash;&gt;
@@ -194,11 +194,11 @@
                     </div>
                 </div>
                 <div class="client mt-3 mb-3 pt-4">
-                    <div class="reason ml-3 mr-5">
+                    <div class="reason ml-4 mr-5">
                         Важке переживання втрати
                     </div>
                     <div class="about">
-                        <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                        <ul class="about__list ml-4 mt-2 mb-2 d-flex flex-column">
                             <li class="about__item d-flex mb-1 align-items-center">
                                 <img src="/static/styles/images/about/about-man.svg" class='menu&#45;&#45;icon mr-3'
                                     alt="about-icon-person">
@@ -220,7 +220,7 @@
                                 <a href="#" class="about__link">2020, 20, 20</a>
                             </li>
                         </ul>
-                        <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
+                        <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-4">
                             <p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>
                                     &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
                                     <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p>
@@ -230,11 +230,11 @@
                     </div>
                 </div>
                 <div class="client mt-3 mb-3 pt-4">
-                    <div class="reason ml-3 mr-5">
+                    <div class="reason ml-4 mr-5">
                         Важке переживання втрати
                     </div>
                     <div class="about">
-                        <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                        <ul class="about__list ml-4 mt-2 mb-2 d-flex flex-column">
                             <li class="about__item d-flex mb-1 align-items-center">
                                 <img src="/static/styles/images/about/about-man.svg" class='menu&#45;&#45;icon mr-3'
                                     alt="about-icon-person">
@@ -256,7 +256,7 @@
                                 <a href="#" class="about__link">2020, 20, 20</a>
                             </li>
                         </ul>
-                        <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
+                        <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-4">
                             <p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>
                                     <p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
                                     &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p>
@@ -266,11 +266,11 @@
                     </div>
                 </div>
                 <div class="client mt-3 mb-3 pt-4">
-                    <div class="reason ml-3 mr-5">
+                    <div class="reason ml-4 mr-5">
                         Важке переживання втрати
                     </div>
                     <div class="about">
-                        <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                        <ul class="about__list ml-4 mt-2 mb-2 d-flex flex-column">
                             <li class="about__item d-flex mb-1 align-items-center">
                                 <img src="/static/styles/images/about/about-man.svg" class='menu&#45;&#45;icon mr-3'
                                     alt="about-icon-person">
@@ -294,7 +294,7 @@
                                 <a href="#" class="about__link">2020, 20, 20</a>
                             </li>
                         </ul>
-                        <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
+                        <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-4">
                             &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>
                             <p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p> &ndash;&gt;
                             <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p>
@@ -304,11 +304,11 @@
                     </div>
                 </div>
                 <div class="client mt-3 mb-3 pt-4">
-                    <div class="reason ml-3 mr-5">
+                    <div class="reason ml-4 mr-5">
                         Важке переживання втрати
                     </div>
                     <div class="about">
-                        <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                        <ul class="about__list ml-4 mt-2 mb-2 d-flex flex-column">
                             <li class="about__item d-flex mb-1 align-items-center">
                                 <img src="/static/styles/images/about/about-man.svg" class='menu&#45;&#45;icon mr-3'
                                     alt="about-icon-person">
@@ -330,7 +330,7 @@
                                 <a href="#" class="about__link">2020, 20, 20</a>
                             </li>
                         </ul>
-                        <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
+                        <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-4">
                             &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p> &ndash;&gt;
                             <p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
                             &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p>
@@ -340,11 +340,11 @@
                     </div>
                 </div>
                 <div class="client mt-3 mb-3 pt-4">
-                    <div class="reason ml-3 mr-5">
+                    <div class="reason ml-4 mr-5">
                         Важке переживання втрати
                     </div>
                     <div class="about">
-                        <ul class="about__list ml-3 mt-2 mb-2 d-flex flex-column">
+                        <ul class="about__list ml-4 mt-2 mb-2 d-flex flex-column">
                             <li class="about__item d-flex mb-1 align-items-center">
                                 <img src="/static/styles/images/about/about-man.svg" class='menu&#45;&#45;icon mr-3'
                                     alt="about-icon-person">
@@ -366,7 +366,7 @@
                                 <a href="#" class="about__link">2020, 20, 20</a>
                             </li>
                         </ul>
-                        <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-3">
+                        <div class="button d-f d-flex align-items-center justify-content-center justify-content-start ml-4">
                             <p class="cell d-inline table-require-cell table-cell-status processing">В роботі</p>
                             &lt;!&ndash; <p class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
                             <p class="cell d-inline table-require-cell table-cell-status no_answer">Заблокований</p>
