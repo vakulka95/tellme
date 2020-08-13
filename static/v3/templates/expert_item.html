@@ -50,7 +50,7 @@
                     <input type="password" id="pwd-{{ $expert_id }}" name="password"
                         class="input-password form-control">
                     <a data-expert-id="{{ $expert_id }}" onclick="changePasswordExpertAPI(this)" role="button"
-                        class='btn-in-input edit change'>Змінити пароль</a>
+                        class='btn-in-input edit change' id="changePasswordBlock-{{ $expert_id }}">Змінити пароль</a>
                     <!-- <p class="alert" id="changePasswordBlock-{{ $expert_id }}" role="alert"></p> -->
                 </div>
                 {{ end }}
@@ -174,7 +174,7 @@
                                 {{/*                                <!-- <input type='file' name='image' class='download-btn align-self-center text-center mt-3 form-btn' value="Завантажити з комп'ютера"> --> */}}
                                 <input type="file" name="image" class="border-0 choose-file pl-0 mt-3" />
                                 <input type="hidden" name="token" value="" />
-                                <input type="submit" class="btn btn-secondary text-white" value="Завантажити" />
+                                <input type="submit" class="btn btn-secondary" value="Завантажити" />
                             </form>
                             <button type="button" class="btn btn-info edit-btn">Редагувати</button>
 
