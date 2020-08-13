@@ -195,6 +195,10 @@ img{
     margin-bottom: 0;
 }
 
+.feedback .about__item{
+    height: 60px;
+}
+
 .about .reason{
     margin-top: 10px;
     margin-bottom: 10px;
