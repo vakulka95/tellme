@@ -114,6 +114,8 @@ function spillTr(){
     for(let i = 1; i < tablesTr.length; i++){
         if(i % 2 === 0 ){
             tablesTr[i].style.backgroundColor = '#F2F6FF';
+        }else{
+            tablesTr[i].style.backgroundColor = '#fff';
         }
     }
 }
