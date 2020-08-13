@@ -1038,6 +1038,11 @@ label{
         margin-top: 4px;
         margin-bottom: 0;
     }
+
+    .feedback li {
+        margin-top: 0;
+    }
+
     
 /* 
     thead{
