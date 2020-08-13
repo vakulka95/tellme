@@ -1026,13 +1026,9 @@ label{
         display: block;
     }
     .container-fluid{
-        padding: 0;
-        margin-left: 12px;
-        margin-right: 12px;
-    }
-
-    .title__item{
         padding-left: 15px;
+        padding-right: 15px;
+
     }
     
 /* 
