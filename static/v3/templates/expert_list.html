@@ -99,20 +99,18 @@
                         </div>
                         <div class="about">
                             <ul class="about__list ml-4 mt-2 mb-2 d-flex flex-column">
-                                <li class="about__link name-mob  mr-2">
-                                    <p class="about__link mr-2">{{ $item.username }}</p>
-                                    {{ $gender := $item.gender }}
-                                    {{ with (eq $gender "female") }}
-                                    <div class="gender">
-                                        жін.
-                                    </div>
-                                    {{ end }}
-                                    {{ with (eq $gender "male") }}
-                                    <div class="gender">
-                                        чол.
-                                    </div>
-                                    {{ end }}
-                                </li>
+                                <li class="about__item d-flex align-items-center">
+                                    <p class="about__link name-mob  mr-2">
+                                       {{ $item.username }}
+                                    </p>
+                                {{ $gender := $item.gender }}
+                                {{ with (eq $gender "female") }}
+                                <div class="gender">жін.</div>
+                                {{ end }}
+                                {{ with (eq $gender "male") }}
+                                <div class="gender">чол.</div>
+                                {{ end }}
+                            </li>
                                 <li class="about__item d-flex">
                                     <p class="about__link">{{ $item.phone }}</p>
                                 </li>
