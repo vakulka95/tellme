@@ -683,7 +683,7 @@ h1{
 .btn-in-input{
     position: absolute;
     right: 5px;
-    top: 24px;
+    top: 32px;
     background: #2A7FBD;
     color: #fff;
     padding: 3px 11px;
@@ -724,7 +724,7 @@ b{
     line-height: 20px;
 }
 
-.edit:hover{
+.edit:hover, .detail-btn:hover{
     background: rgba(55, 168, 250, .8);
     text-decoration: none;
     color: #fff;
