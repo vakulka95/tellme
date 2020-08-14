@@ -96,7 +96,7 @@
                         <p class='date-time mr-1'>{{ .requisition.created_at }}</p>
                     </div>
                 </div>
-                <div class="input__block">
+                <div class="input__block ">
                     <p class="title-input">Статус</p>
                     {{ $status := .requisition.status }}
                     {{ with (eq $status "processing") }}<p
