@@ -691,9 +691,7 @@ b{
     right: 13px;
 }
 
-.pad-right{
-    padding-right: 25px;
-}
+
 
 .denied{
     right: 40px;
@@ -1046,6 +1044,10 @@ label{
 }
 .filter-desktop form{
     margin-top: 40px;
+}
+
+.pad-right{
+    padding-right: 25px;
 }
 
 @media only screen and (max-width: 1024px){
