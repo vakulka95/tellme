@@ -691,6 +691,10 @@ b{
     right: 13px;
 }
 
+.pad-right{
+    padding-right: 25px;
+}
+
 .denied{
     right: 40px;
 }
