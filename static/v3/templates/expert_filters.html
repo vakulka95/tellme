@@ -64,7 +64,7 @@
                     <form action="/admin/expert" method="GET" class='d-flex align-items-center justify-content-between'>
                         <div class="filter__search mt-3 mr-3 w-100">
                             <p class="search-title filter-desktop-inp-title mb-2">Пошук</p>
-                            <input class='search' type="text" name="app-Search" placeholder="ID. Ім'я. Тлф">
+                            <input class='search' type="text" id="search" name="search" placeholder="ID. Ім'я. Тлф" value="{{ .queries.search }}">
                         </div>
                         <div class="status mr-3 mt-3 mr-0 w-100">
                             <p class="status-title mb-2 filter-desktop-inp-title">Статус</p>
