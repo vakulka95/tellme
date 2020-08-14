@@ -50,13 +50,13 @@
                         {{ with (eq $status "completed") }}<p class="cell mb-0 table-require-cell table-cell-status d-inline completed">ВІДПОВІВ</p>{{ end }}
                     </div>
                     <div class="input__block review-buttons order-lg-2 d-flex flex-column flex-lg-row">
-                        <div>
+                        <div class='detail-block-review'>
                             <p class="title-input">Заявка</p>
                             <a href="/admin/requisition/{{ .review.requisition_id }}" role="button" class='detail-btn text-center pad-right d-block w-100 p-2 pr-4 pl-4'>
                                 Детальніше<b>&#8250;</b></a>
                             
                         </div>
-                        <div>
+                        <div class='detail-block-review'>
                             <p class="title-input">Психолог</p>
                             <a href="/admin/expert/{{ .review.expert_id }}" role="button" class='detail-btn text-center pad-right d-block w-100 p-2 pr-4 pl-4'>
                                 Детальніше<b>&#8250;</b></a>

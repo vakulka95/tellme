@@ -657,7 +657,9 @@ h1{
 .feedback__detail-btn{
     margin-top: 36px;
 }
-
+.detail-block-review{
+    position: relative;
+}
 .detail-btn{
     border: none;
     border-radius: 5px;
@@ -668,7 +670,6 @@ h1{
 
 .detail-btn b{
     margin-left: 5px;
-    right: 255px;
 }
 .input-vs-btn{
     position: relative;
