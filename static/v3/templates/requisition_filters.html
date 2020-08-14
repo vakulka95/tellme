@@ -11,9 +11,9 @@
                     <form class="mb-2 mt-2" action="/admin/requisition" method="GET">
                         <p class="status-title mb-0 text-dark">Пошук</p>
                         <input class='search bg-white' type="text" id="search" name="search"
-                        placeholder="ID, Ім'я або Телефон" value="{{ .queries.search }}">
+                            placeholder="ID, Ім'я або Телефон" value="{{ .queries.search }}">
                         <div class="filter__btn d-flex flex-column justify-content-center mt-1">
-                            <button type='submit' class='filter-btn btn-submit filter-search'>Пошук</button>
+                            <button type='submit' class='filter-btn processing filter-search'>Пошук</button>
                         </div>
                     </form>
                 </div>
@@ -62,7 +62,7 @@
                     <input id="datetime_to" name="datetime_to" type="date" value="{{ .queries.datetime_to }}" class='until-input mb-1 form-control'>
                 </div>
                 <div class="filter__btn d-flex flex-column justify-content-center mt-3">
-                    <button type='submit' class='filter-btn filter-search'>Пошук</button>
+                    <button type='submit' class='filter-btn processing filter-search'>Пошук</button>
                 </div>
                 
             </form>
