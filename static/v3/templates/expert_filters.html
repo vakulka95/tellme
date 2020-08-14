@@ -6,11 +6,12 @@
                     <div class="filter__btn d-flex flex-column justify-content-center">
                         <button type='button' class='filter-btn'>Фільтр</button>
                     </div>
-                    <div class="filter__search mt-2">
+                    <form class="mb-2 mt-2" action="/admin/expert" method="GET">
                         <p class="status-title mb-0 text-dark">Пошук</p>
-                        <input class='search' type="text" name="app-Search"
-                            placeholder="ID, Ім'я або Телефон">
-                    </div>
+                        <div class="filter__btn d-flex flex-column justify-content-center mt-1">
+                            <button type='submit' class='filter-btn processing filter-search'>Пошук</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -46,7 +47,7 @@
                     </select>
                 </div>
                 <div class="filter__btn d-flex flex-column justify-content-center mt-5 mb-4">
-                    <button type='submit' class='filter-btn filter-search'>Пошук</button>
+                    <button type='submit' class='filter-btn processing filter-search'>Пошук</button>
                 </div>
                 
             </form>
