@@ -783,11 +783,7 @@ a:not([href]):hover{
     padding-left: 0;
 }
 
-.upload-btn{
-    height: 27px;
-    margin-top: 24px;
-    padding: 0px 6px;
-}
+
 
 .psychologists{
     display: none;
@@ -1075,6 +1071,11 @@ label{
 .choose-file{
     margin-bottom: 0;
     width: 75%;
+}
+.upload-btn{
+    height: 27px;
+    margin-top: 24px;
+    padding: 0px 6px;
 }
 
 @media only screen and (max-width: 1024px){
