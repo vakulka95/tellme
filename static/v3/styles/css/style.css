@@ -685,7 +685,10 @@ h1{
 }
 
 .btn-in-input::after{
-    
+    position: absolute;
+    z-index: 60;
+    top: 0;
+    right: 0;
     background: url(/static/styles/images/form/detail.svg);
 }
 
