@@ -29,6 +29,7 @@
                         {{ end }}
                         {{ range .page.Pages }}
                         {{ if ne .Num -1 }}
+                        <li class="page-item"><span class="page-link text-center page-link--active">{{ .Num }}</span></li>
                         {{ if .IsCurrent }}
                         <li class="page-item"><span class="page-link text-center page-link--active">{{ .Num }}</span></li>
                         {{ end }}
