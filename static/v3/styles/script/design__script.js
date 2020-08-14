@@ -32,6 +32,15 @@ for(let i = 0; i < navLink.length; i++){
     if(href.indexOf('/requisition') > 0){
         navLink[0].classList.add('nav-link--active');
     }
+    else if(href.indexOf('/expert?') > 0){
+        navLink[1].classList.add('nav-link--active');
+    }
+    else if(href.indexOf('/review') > 0){
+        navLink[2].classList.add('nav-link--active');
+    }
+    else if(href.indexOf('/expert_rating') > 0){
+        navLink[3].classList.add('nav-link--active');
+    }
 }
 
 
