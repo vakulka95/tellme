@@ -911,7 +911,7 @@ tbody tr, tbody td{
 }
 
 tbody tr:hover, tbody td:hover{
-    background-color: #ccc!important;
+    background-color:  #DBE2F3!important;
 }
 .rounded, .rounded-left, .rounded-right{
     border-bottom-left-radius: 0!important;
