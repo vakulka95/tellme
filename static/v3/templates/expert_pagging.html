@@ -4,26 +4,26 @@
             {{ if .page.IsFirst }}
             <li class="page-item">
                 <span class="page-link h-100 text-center">
-                    <img class='mt-1 ml-1' src="/static/styles/images/footer/first-page.svg" alt="start">
+                    <img class='mt-1 ml-auto mr-auto' src="/static/styles/images/footer/first-page.svg" alt="start">
                 </span>
             </li>
             {{ else }}
             <li class="page-item">
                 <a class="page-link h-100 text-center" href="/admin/expert{{ .firstQuery }}">
-                    <img class='mt-1 ml-1' src="/static/styles/images/footer/first-page.svg" alt="start">
+                    <img class='mt-1 ml-auto mr-auto' src="/static/styles/images/footer/first-page.svg" alt="start">
                 </a>
             </li>
             {{ end }}
             {{ if .page.HasPrevious }}
             <li class="page-item">
                 <a class="page-link h-100 text-center" href="/admin/expert{{ .prevQuery }}">
-                    <img class='mt-1 ml-1' src="/static/styles/images/footer/prev-page.svg" alt="prev">
+                    <img class='mt-1 ml-auto mr-auto' src="/static/styles/images/footer/prev-page.svg" alt="prev">
                 </a>
             </li>
             {{ else }}
             <li class="page-item">
                 <span class="page-link h-100 text-center">
-                    <img class='mt-1 ml-1' src="/static/styles/images/footer/prev-page.svg" alt="prev">
+                    <img class='mt-1 ml-auto mr-auto' src="/static/styles/images/footer/prev-page.svg" alt="prev">
                 </span>
             </li>
             {{ end }}
@@ -48,26 +48,26 @@
             {{ if .page.HasNext }}
             <li class="page-item">
                 <a class="page-link h-100 text-center" href="/admin/expert{{ .nextQuery }}">
-                    <img class='mt-1 ml-1' src="/static/styles/images/footer/next-page.svg" alt="next">
+                    <img class='mt-1 ml-auto mr-auto' src="/static/styles/images/footer/next-page.svg" alt="next">
                 </a>
             </li>
             {{ else }}
             <li class="page-item">
                 <span class="page-link h-100 text-center">
-                    <img class='mt-1 ml-1' src="/static/styles/images/footer/next-page.svg" alt="next">
+                    <img class='mt-1 ml-auto mr-auto' src="/static/styles/images/footer/next-page.svg" alt="next">
                 </span>
             </li>
             {{ end }}
             {{ if .page.IsLast }}
             <li class="page-item">
                 <span class="page-link h-100 text-center">
-                    <img class='mt-1 ml-1' src="/static/styles/images/footer/last-page.svg" alt="end">
+                    <img class='mt-1 ml-auto mr-auto' src="/static/styles/images/footer/last-page.svg" alt="end">
                 </span>
             </li>
             {{ else }}
             <li class="page-item">
                 <a class="page-link h-100 text-center" href="/admin/expert{{ .lastQuery }}">
-                    <img class='mt-1 ml-1' src="/static/styles/images/footer/last-page.svg" alt="end">
+                    <img class='mt-1 ml-auto mr-auto' src="/static/styles/images/footer/last-page.svg" alt="end">
                 </a>
             </li>
             {{ end }}
