@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class='mb-3 input__block order-lg-9'>
-                        <p class="title-input mb-3">Статус</p>
+                        <p class="title-input">Статус</p>
                         {{ $status := .review.status }}
                         {{ with (eq $status "requested") }}<p class="cell mb-0 table-require-cell table-cell-status d-inline created">
                             ВІДГУК ОЧІКУЄТЬСЯ</p>{{ end }}
