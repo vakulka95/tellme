@@ -591,6 +591,7 @@ h1{
     box-sizing: border-box;
     border-radius: 5px;
     padding: 7px 16px;
+    height: 48px;
 }
 
 .list__spec .table-require-cell{
@@ -684,7 +685,7 @@ h1{
 .btn-in-input{
     position: absolute;
     right: 5px;
-    top: 32px;
+    top: 33px;
     background: #2A7FBD;
     color: #fff;
     padding: 3px 11px;
@@ -717,7 +718,7 @@ b{
 .edit{
     background-color: #37A8FA;
     color: #fff;
-    padding: 5px 20px 5px 20px;
+    padding: 9px 20px 9px 20px;
     /* top: 39px; */
     right: 3px;
     font-weight: 500;
