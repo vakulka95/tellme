@@ -668,6 +668,7 @@ h1{
 
 .detail-btn b{
     margin-left: 5px;
+    right: 255px;
 }
 .input-vs-btn{
     position: relative;
