@@ -1073,7 +1073,7 @@ label{
     width: 75%;
 }
 .upload-btn{
-    height: 27px;
+    height: 27px!important;
     margin-top: 24px;
     padding: 0px 6px;
 }
