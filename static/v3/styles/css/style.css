@@ -684,12 +684,11 @@ h1{
     border-radius: 5px;
 }
 
-.btn-in-input::after{
+b{
+    font-weight: bolder;
+    font-size: 25px;
     position: absolute;
-    z-index: 60;
-    top: 0;
-    right: 0;
-    background: url(/static/styles/images/form/detail.svg);
+    right: 13px;
 }
 
 .denied{

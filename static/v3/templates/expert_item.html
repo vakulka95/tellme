@@ -66,7 +66,7 @@
                             placeholder="0" value='{{ .expert.processing_count }}' readonly>
                         <a class='btn-in-input edit'
                             href="/admin/requisition?expert_id={{ $expert_id }}&status=processing"
-                            role="button">Детальніше <b>&rsaquo;</b></a>
+                            role="button">Детальніше <b>&#8250;</b></a>
                     </div>
                 </div>
 
@@ -75,7 +75,7 @@
                     <input type="number" name="over-request" class='input-over-request form-control' placeholder="0"
                         value='{{ .expert.completed_count }}' readonly>
                     <a class='btn-in-input edit' href="/admin/requisition?expert_id={{ $expert_id }}&status=completed"
-                        role="button">Детальніше</a>
+                        role="button">Детальніше <b>&#8250;</b></a>
                 </div>
                 <div class='input__block'>
                     <p class="title-input">Сесій проведено</p>
@@ -90,7 +90,7 @@
                         <input type="number" name="active-request" class='input-active-request form-control'
                             placeholder="0" value='{{ .expert.review_count }}' readonly>
                         <a class='btn-in-input edit' href="/admin/review?expert_id={{ $expert_id }}"
-                            role="button">Детальніше</a>
+                            role="button">Детальніше <b>&#8250;</b></a>
                     </div>
                 </div>
                 <div class="input__block date-of-reg ml-4 mb-3 d-flex flex-column justify-content-center">
