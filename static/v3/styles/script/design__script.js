@@ -30,9 +30,7 @@ let href = window.location.href;
 
 for(let i = 0; i < navLink.length; i++){
     if(href.indexOf('/requisition') > 0){
-        if(navLink[i].indexOf('Заявки') > 0){
-            navLink[i].classList.add('nav-link--active');
-        }
+        navLink[0].classList.add('nav-link--active');
     }
 }
 
