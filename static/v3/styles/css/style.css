@@ -1054,6 +1054,9 @@ label{
 .pad-right{
     padding-right: 25px;
 }
+.padding{
+    padding: 8px 25px 8px 20px;
+}
 
 @media only screen and (max-width: 1024px){
     .app__clients{
