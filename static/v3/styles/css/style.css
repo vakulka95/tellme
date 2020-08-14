@@ -693,7 +693,7 @@ h1{
     font-size: 16px;
     line-height: 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 b{
@@ -720,7 +720,7 @@ b{
     color: #fff;
     padding: 9px 20px 9px 20px;
     /* top: 39px; */
-    right: 3px;
+    right: 4px;
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
