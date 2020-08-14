@@ -1066,6 +1066,10 @@ label{
 .padding{
     padding: 14px 36px 14px 23px;
 }
+.choose-file{
+    margin-bottom: 0;
+    width: 75%;
+}
 
 @media only screen and (max-width: 1024px){
     .app__clients{
@@ -1268,6 +1272,7 @@ label{
     }
     .choose-file{
         width: 50%!;
+
     }
     .modal-content .edit-spec{
         width: 100%!important;
