@@ -10,11 +10,12 @@
                     </div>
                     <form class="pl-3 pr-3 mt-2" action="/admin/requisition" method="GET">
                         <p class="status-title mb-0 text-dark">Пошук</p>
+                        <input class='search bg-white' type="text" id="search" name="search"
+                        placeholder="ID, Ім'я або Телефон" value="{{ .queries.search }}">
                         <div class="filter__btn d-flex flex-column justify-content-center mt-3">
                             <button type='submit' class='filter-btn filter-search'>Пошук</button>
                         </div>
-                        <input class='search bg-white' type="text" id="search" name="search"
-                            placeholder="ID, Ім'я або Телефон" value="{{ .queries.search }}">
+                       
                     </form>
                 </div>
             </div>
