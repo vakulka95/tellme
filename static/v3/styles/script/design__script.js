@@ -8,6 +8,7 @@ const userImg = document.querySelector('.user img');
 const menuModal = document.querySelector('.menu-modal');
 const desktopNav = document.querySelector('.desktop-nav')
 const menuLink= document.querySelectorAll('.menu--link');
+const navLink = document.querySelectorAll('.nav-link');
 const tablesTr = document.querySelectorAll('table tr');
 const filterSearch = document.querySelector('.search');
 const nameInput = document.querySelectorAll('.name');
@@ -23,6 +24,16 @@ const edit = document.querySelector('.edit-btn');
 const close = document.querySelector('.close');
 const editName = document.querySelector('.edit-name');
 const editSpec = document.querySelector('.edit-spec');
+
+// Active link
+let href = window.location.href;
+
+for(let i = 0; i < navLink.length; i++){
+    if(href.indexOf('/requisition') > 0){
+        link[i].classList.add('nav-link--active');
+    }
+}
+
 
 // Edit block in expert item
 if(edit){
