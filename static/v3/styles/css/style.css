@@ -1099,8 +1099,9 @@ label{
 }
 
 select{
-    background-image: url(/static/styles/images/form/select.svg) no-repeat;
-    /* background-position-x: center right; */
+    background: url(/static/styles/images/form/select.svg) no-repeat;
+    background-position-x: right;
+    background-position-y: center;
 }
 
 @media only screen and (max-width: 1024px){
