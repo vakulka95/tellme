@@ -504,7 +504,7 @@ h1{
     height: 200px;
     background: red;
 }
-.search{
+select{
     background: url(/static/styles/images/search/search.svg) no-repeat, #fff;
     padding-left: 35px;
 
