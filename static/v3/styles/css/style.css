@@ -1099,7 +1099,8 @@ label{
 }
 
 select{
-    background-image: url(/static/styles/images/form/select.svg);
+    background-image: url(/static/styles/images/form/select.svg) no-repeat;
+    background-position-x: center right;
 }
 
 @media only screen and (max-width: 1024px){
