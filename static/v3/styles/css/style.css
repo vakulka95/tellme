@@ -551,6 +551,9 @@ h1{
     color: #686F91;
     height: 48px;
 }
+.input__block select{
+    height: 48px;
+}
 .delete{
     position: absolute;
     top: -8px;
@@ -1187,7 +1190,6 @@ label{
     }
     .input__block input{
         margin-bottom: 0;
-        height: 38px;
     }
     .item .container{
         padding: 0;
