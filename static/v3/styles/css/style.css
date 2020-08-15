@@ -7,7 +7,7 @@
 
 body{
     position: relative;
-    font-family: 'Noah Text', sans-serif;
+    font-family: 'Noah Regular', sans-serif;
     font-style: normal;
     font-weight: normal;
 
@@ -20,7 +20,7 @@ body{
     color: #686F91;
 }
 a{
-    font-family: 'Noah Text', sans-serif;
+    font-family: 'Noah Regular', sans-serif;
 }
 
 ul, li{
@@ -184,8 +184,9 @@ h1{
 }
 
 .me-name{
-    font-family: 'Noah Text', sans-serif;
-    font-weight: 500;
+    font-family: 'Noah Text Medium';
+    font-style: normal;
+    /* font-weight: 500; */
     font-size: 18px;
     line-height: 22px;
     text-align: center;
@@ -341,7 +342,7 @@ h1{
 }
 
 .nav-link{
-    font-family: 'Noah Text', sans-serif;
+    font-family: 'Noah Regular', sans-serif;
     color: #fff;
     font-weight: 500;
     font-size: 18px;
@@ -875,7 +876,7 @@ a:not([href]):hover{
 /********* TABLE ********/
 
 table{
-    font-family: 'Noah Text', sans-serif;
+    font-family: 'Noah Regular', sans-serif;
     font-style: normal;
     border-radius: 35px!important;
 
@@ -955,7 +956,7 @@ tbody tr:hover, tbody td:hover{
     border-radius: 100px;
 }
 .table-cell-status{
-    font-family: 'Noah Text', sans-serif;
+    font-family: 'Noah Regular', sans-serif;
     font-weight: bold;
     font-size: 14px;
     letter-spacing: 0.03em;
