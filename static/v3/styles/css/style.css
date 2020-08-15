@@ -1035,7 +1035,7 @@ tbody tr:hover, tbody td:hover{
 }
 .modal-content{
     position: sticky;
-    top: 68px;
+    top: 65px;
     width: 60%;
     height: 40%;
     z-index: 50;
