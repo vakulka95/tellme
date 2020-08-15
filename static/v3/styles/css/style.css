@@ -20,7 +20,8 @@ body{
     color: #686F91;
 }
 a{
-    font-family: 'Noah Medium', sans-serif;
+    font-family: 'Noah', sans-serif;
+    font-weight: 400;
 }
 
 ul, li{
