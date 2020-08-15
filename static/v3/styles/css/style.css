@@ -7,7 +7,7 @@
 
 body{
     position: relative;
-    font-family: 'Noah', sans-serif;
+    font-family: Noah, sans-serif;
     font-style: normal;
     font-weight: normal;
 
@@ -20,7 +20,7 @@ body{
     color: #686F91;
 }
 a{
-    font-family: 'Noah', sans-serif;
+    font-family: Noah, sans-serif;
     font-weight: 400;
 }
 
