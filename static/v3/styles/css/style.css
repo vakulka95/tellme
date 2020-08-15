@@ -184,7 +184,7 @@ h1{
 }
 
 .me-name{
-    font-family: 'Noah Text';
+    font-family: 'Noah Text', sans-serif;
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
