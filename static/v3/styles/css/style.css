@@ -183,6 +183,16 @@ h1{
     background-color: #53B526;
 }
 
+.me-name{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+
+    color: #131E52;
+}
+
 .gender, .me-prof span{
     background-color: #9BA8E3;
     border-radius: 100px;
