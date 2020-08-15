@@ -669,10 +669,6 @@ h1{
     color:#fff;
 }
 
-.item-btns{
-    margin-right: 15px;
-    margin-left: 15px;
-}
 
 .item-btns .btn{
     margin-right: 5px;
@@ -1226,10 +1222,17 @@ select{
     }
     .item-btns{
         flex-wrap: wrap;
+        margin-right: 15px;
+        margin-left: 15px;
     }
+    
     .item-btns .btn{
         margin-bottom: 15px;
         margin-right: 0;
+    }
+
+    .me-name{
+        text-align: left;
     }
     
     .download-document{
