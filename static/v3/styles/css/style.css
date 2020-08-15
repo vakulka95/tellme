@@ -601,6 +601,10 @@ h1{
     height: 48px;
 }
 
+.list__spec{
+    margin-bottom: 31px;
+}
+
 .list__spec .table-require-cell{
     margin-right: 6px;
     margin-bottom: 8px;

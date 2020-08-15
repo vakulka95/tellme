@@ -1,4 +1,4 @@
-<div class='input__block ml-0 w-100 d-flex flex-column'>
+<div class='input__block ml-0 w-100 d-flex flex-column mb-4'>
     <p class="title-input mb-2">Коментарі</p>
     <form action="/admin/expert/{{ .expert.id }}/comment" method="POST">
         <textarea name="body" cols="50" rows="5" class='textarea-feedback form-control '
@@ -9,7 +9,7 @@
     </form>
 </div>
 
-<div class="show-comments mb-5">
+<div class="show-comments mb-5 w-100">
     {{ range $i, $comment := .comments }}
     <div class="user-feedback mb-3">
         <div class="info d-flex justify-content-between align-items-center ml-2 mr-2">
