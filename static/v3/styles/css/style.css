@@ -1100,7 +1100,7 @@ label{
 
 select{
     background: url(/static/styles/images/form/select.svg) no-repeat;
-    background-position-x: right;
+    background-position-x: 95%;
     background-position-y: center;
 }
 
