@@ -544,7 +544,7 @@ h1{
 
 .input__block{
     position: relative;
-    width: 49%;
+    width: 48%;
     margin-left: 20px;
 }
 .item-inputs .input__block{
@@ -602,8 +602,8 @@ h1{
 }
 
 .list__spec .table-require-cell{
-    margin-right: 10px;
-
+    margin-right: 6px;
+    margin-bottom: 8px;
 }
 
 
