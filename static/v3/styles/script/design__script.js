@@ -24,6 +24,7 @@ const edit = document.querySelector('.edit-btn');
 const close = document.querySelector('.close');
 const editName = document.querySelector('.edit-name');
 const editSpec = document.querySelector('.edit-spec');
+const dateOfReg = document.querySelector('.date-of-reg')
 
 // Active link
 let href = window.location.href;
@@ -37,6 +38,7 @@ for(let i = 0; i < navLink.length; i++){
     }
     else if(href.indexOf('/profile') > 0){
         navLink[1].classList.add('nav-link--active');
+        dateOfReg.style.width = '100%';
     }
     else if(href.indexOf('/review') > 0){
         navLink[2].classList.add('nav-link--active');
