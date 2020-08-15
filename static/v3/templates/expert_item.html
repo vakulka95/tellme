@@ -128,7 +128,7 @@
                 {{ if (eq .metadata.role "admin") }}
                 {{ template "expert_comment_list.html" . }}
                 {{ end }}
-
+                <div>
                     <div class="document d-flex flex-column-reverse flex-lg-row mt-5">
                         <div class='input__block col-12 col-lg-6'>
                             <p class="title-input mb-2">Документи</p>
@@ -204,75 +204,75 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-edit">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <div class="modal-expert">
-                                    <h5 class="modal-title" id="expertEdit">Психолог - {{ .expert.username }}</h5>
+                    
+                </div>
+                <div class="modal-edit">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-expert">
+                                <h5 class="modal-title" id="expertEdit">Психолог - {{ .expert.username }}</h5>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Закрити">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form border-0 d-flex flex-wrap expert-card"
+                                action="/admin/expert/{{ $expert_id }}" method="POST">
+                                {{ if (eq .metadata.role "expert") }}
+                                <div class='input__block edit-name'>
+                                    <label for="name">Ім'я</label>
+                                    <input class="form-control clearable" id="name" name="username" type="text"
+                                        value="{{ .expert.username }}">
                                 </div>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Закрити">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form border-0 d-flex flex-wrap expert-card"
-                                    action="/admin/expert/{{ $expert_id }}" method="POST">
-                                    {{ if (eq .metadata.role "expert") }}
-                                    <div class='input__block edit-name'>
-                                        <label for="name">Ім'я</label>
-                                        <input class="form-control clearable" id="name" name="username" type="text"
-                                            value="{{ .expert.username }}">
-                                    </div>
 
-                                    <div class='input__block'>
-                                        <label for="gender">Стать</label>
-                                        <select class="custom-select form-control" id="gender" name="gender">
-                                            <option {{ if (eq .expert.gender "male") }} selected {{ end}} value="male">
-                                                Чол.</option>
-                                            <option {{ if (eq .expert.gender "female") }} selected {{ end}}
-                                                value="female">Жін.</option>
-                                        </select>
-                                    </div>
-                                    <div class='input__block'>
+                                <div class='input__block'>
+                                    <label for="gender">Стать</label>
+                                    <select class="custom-select form-control" id="gender" name="gender">
+                                        <option {{ if (eq .expert.gender "male") }} selected {{ end}} value="male">
+                                            Чол.</option>
+                                        <option {{ if (eq .expert.gender "female") }} selected {{ end}}
+                                            value="female">Жін.</option>
+                                    </select>
+                                </div>
+                                <div class='input__block'>
 
-                                        <label for="phone">Телефон</label>
-                                        <input class="form-control clearable" id="phone" name="phone" type="text"
-                                            value="{{ .expert.phone }}">
+                                    <label for="phone">Телефон</label>
+                                    <input class="form-control clearable" id="phone" name="phone" type="text"
+                                        value="{{ .expert.phone }}">
 
-                                    </div>
-                                    <div class='input__block'>
+                                </div>
+                                <div class='input__block'>
 
-                                        <label for="email">Email</label>
-                                        <input class="form-control clearable" id="email" name="email" type="text"
-                                            disabled value="{{ .expert.email }}">
-                                    </div>
-                                    <div class='input__block'>
+                                    <label for="email">Email</label>
+                                    <input class="form-control clearable" id="email" name="email" type="text"
+                                        disabled value="{{ .expert.email }}">
+                                </div>
+                                <div class='input__block'>
 
-                                        <label for="education">Освіта</label>
-                                        <input class="form-control clearable" id="education" name="education"
-                                            type="text" value="{{ .expert.education }}">
+                                    <label for="education">Освіта</label>
+                                    <input class="form-control clearable" id="education" name="education"
+                                        type="text" value="{{ .expert.education }}">
+                                </div>
+                                {{ end }}
+                                <div class='input__block edit-spec'>
+                                    <label for="specializations">Спеціалізації </label>
+                                    <select class="custom-select  form-control" id="specializations"
+                                        name="specializations">
+                                        {{ range $spec, $specOpt := .expert.specializations }}
+                                        <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">
+                                            {{ $specOpt.Translated }}</option>
+                                        {{ end }}
+                                    </select>
+                                    <div class=" save w-100 text-right mt-5">
+                                        <button type="submit" class="btn btn-primary">Зберегти</button>
                                     </div>
-                                    {{ end }}
-                                    <div class='input__block edit-spec'>
-                                        <label for="specializations">Спеціалізації </label>
-                                        <select class="custom-select  form-control" id="specializations"
-                                            name="specializations">
-                                            {{ range $spec, $specOpt := .expert.specializations }}
-                                            <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">
-                                                {{ $specOpt.Translated }}</option>
-                                            {{ end }}
-                                        </select>
-                                        <div class=" save w-100 text-right mt-5">
-                                            <button type="submit" class="btn btn-primary">Зберегти</button>
-                                        </div>
-                                    </div>
+                                </div>
 
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                
-
+                </div>
 
             </div>
         </div>
