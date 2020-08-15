@@ -67,7 +67,7 @@
                         </div>
                         <div class="status mr-3 mt-3 mr-0 w-100">
                             <p class="status-title mb-2 filter-desktop-inp-title">Статус</p>
-                            <select id="status" name="status" class='select status-select'>
+                            <select id="status" name="status" class='select bg-white status-select'>
                                 <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
                                 <option {{ if (eq .queries.status "on_review") }} selected {{ end}} value="on_review">На модерації</option>
                                 <option {{ if (eq .queries.status "blocked") }} selected {{ end}} value="blocked">Заблокований</option>
@@ -76,7 +76,7 @@
                         </div>
                         <div class="spec mt-3 mb-0 mr-3 w-100">
                             <p class="spec-title mb-2 filter-desktop-inp-title">Спеціалізація</p>
-                            <select id="specializations" name="specializations" class='select spec-select'>
+                            <select id="specializations" name="specializations" class='select  bg-white spec-select'>
                                 {{ range $spec, $specOpt := .queries.specializations }}
                                 <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
                                 {{ end }}
