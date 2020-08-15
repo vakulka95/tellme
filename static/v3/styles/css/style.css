@@ -551,7 +551,7 @@ h1{
     color: #686F91;
     height: 48px;
 }
-.input__block select{
+.custom-select{
     height: 48px;
 }
 .delete{

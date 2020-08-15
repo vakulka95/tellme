@@ -222,7 +222,7 @@
 
                                     <div class='input__block'>
                                         <label for="gender">Стать</label>
-                                        <select class="custom-select" id="gender" name="gender">
+                                        <select class="custom-select form-control" id="gender" name="gender">
                                             <option {{ if (eq .expert.gender "male") }} selected {{ end}} value="male">
                                                 Чол.</option>
                                             <option {{ if (eq .expert.gender "female") }} selected {{ end}}
@@ -251,7 +251,7 @@
                                     {{ end }}
                                     <div class='input__block edit-spec'>
                                         <label for="specializations">Спеціалізації </label>
-                                        <select class="custom-select" id="specializations" name="specializations">
+                                        <select class="custom-select  form-control" id="specializations" name="specializations">
                                             {{ range $spec, $specOpt := .expert.specializations }}
                                             <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">
                                                 {{ $specOpt.Translated }}</option>
