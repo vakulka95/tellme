@@ -63,7 +63,7 @@ h1{
 
 .header{
     background-color: #272E50;
-    position: sticky;
+    position: relative;
     z-index: 5;
     top: 0;
     width: 100%;
@@ -1160,7 +1160,7 @@ select{
     }
     .header{
         padding: 8px 10px;
-        position: sticky!important;
+        position: sticky;
         top: 0;
     }
     
