@@ -1206,13 +1206,14 @@ label{
         padding: 0;
     }
     .btn-in-input{
-        top: 25px;
+        top: 29px;
     }
     .item-btns{
         flex-wrap: wrap;
     }
     .item-btns .btn{
         margin-bottom: 15px;
+        margin-right: 0;
     }
     
     .download-document{
@@ -1301,6 +1302,7 @@ label{
     }
     .edit-btn{
         margin-top: 5px;
+        padding: 17px 30px;
     }
     .expert-btn{
         flex-wrap: wrap;
