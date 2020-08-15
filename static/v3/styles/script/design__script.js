@@ -32,7 +32,7 @@ for(let i = 0; i < navLink.length; i++){
     if(href.indexOf('/requisition') > 0){
         navLink[0].classList.add('nav-link--active');
     }
-    else if(href.indexOf('/expert?') > 0){
+    else if(href.indexOf('/expert?') > 0 || href.indexOf('/expert/') > 0){
         navLink[1].classList.add('nav-link--active');
     }
     else if(href.indexOf('/profile') > 0){

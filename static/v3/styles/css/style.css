@@ -1187,13 +1187,17 @@ label{
     }
 
     .title-input{
-        margin: 0;
+        margin-bottom: 4px;
+    }
+
+    .list__spec .title-input{
+        margin-bottom: 8px;
+
     }
 
     .input__block{
         width: 100%;
         margin-bottom: 15px;
-        margin-right: 15px;
     }
     .input__block input{
         margin-bottom: 0;
