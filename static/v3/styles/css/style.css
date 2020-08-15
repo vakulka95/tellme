@@ -497,10 +497,12 @@ h1{
 
     color: #686F91;
 }
-.select{
-    background-image: url(/static/styles/images/form/select.svg) no-repeat;
-    background-position-x: right;
-    background-size: cover;
+.select::after{
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: red;
 }
 .search{
     background: url(/static/styles/images/search/search.svg) no-repeat, #fff;
