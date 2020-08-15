@@ -1187,6 +1187,7 @@ label{
     }
     .input__block input{
         margin-bottom: 0;
+        height: 38px;
     }
     .item .container{
         padding: 0;
