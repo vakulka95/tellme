@@ -547,6 +547,11 @@ h1{
     width: 47%;
     margin-left: 20px;
 }
+
+.item-inputs .input__block{
+    margin-left: 0;
+}
+
 .input__block input{
     color: #686F91;
     height: 48px;
