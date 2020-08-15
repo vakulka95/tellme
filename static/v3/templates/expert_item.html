@@ -100,7 +100,7 @@
                     </div>
                 </div>
 
-                <div class="">
+                <div>
                     <div class="list__spec mb-3">
                         <p class="title-input">Спеціалізація</p>
                         {{ range $spec, $specOpt := .expert.specializations }}
@@ -122,11 +122,12 @@
                             class="cell mb-0 table-require-cell table-cell-status d-inline completed">Активний</p>
                         {{ end }}
                     </div>
+                </div>    
                     <hr>
                     {{ if (eq .metadata.role "admin") }}
                     {{ template "expert_comment_list.html" . }}
                     {{ end }}
-
+                <div>
                     <div class="document d-flex flex-column-reverse flex-lg-row mt-5">
                         <div class='input__block col-12 col-lg-6'>
                             <p class="title-input mb-2">Документи</p>
