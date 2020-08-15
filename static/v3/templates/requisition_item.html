@@ -126,11 +126,11 @@
                     </div>
                 </div>
             </div> -->*/}}
-            <div class=' align-self-end mb-3'>
-                <a class="btn form-btn mr-3 mb-3 main-form-btn bg-success align-self-center text-white {{ if or (ne .requisition.status "processing") (ge .requisition.session_count 3) }} disabled{{ end }}"
+            <div class='item-btns align-self-end mb-3'>
+                <a class="btn form-btn mb-3 main-form-btn bg-success align-self-center text-white {{ if or (ne .requisition.status "processing") (ge .requisition.session_count 3) }} disabled{{ end }}"
                     data-requisition-id="{{ .requisition.id }}" onclick="createSessionRequisitionAPI(this)"
                     role="button">Провести консультацію</a>
-                <a class="btn form-btn mr-3 main-form-btn bg-warning align-self-center text-white {{ if or (ne .requisition.status "processing") (eq .requisition.session_count 0) }} disabled{{ end }}"
+                <a class="btn form-btn main-form-btn bg-warning align-self-center text-white {{ if or (ne .requisition.status "processing") (eq .requisition.session_count 0) }} disabled{{ end }}"
                     data-requisition-id="{{ .requisition.id }}" onclick="discardSessionRequisitionAPI(this)"
                     role="button">Відмінити консультацію</a>
             </div>
