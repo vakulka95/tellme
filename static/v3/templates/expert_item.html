@@ -136,7 +136,9 @@
                                     height="700px"></object>
                                 <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
                                     onclick="deleteExpertDocumentAPI(this)" role="button"
-                                    class='delete text-white'>X</a>
+                                    class='delete text-white'>
+                                    <img src="/static/styles/images/cross.svg" alt="cross">
+                                </a>
                             </div>
                             {{ else if (or (eq $doc.ext "doc") (eq $doc.ext "docx")) }}
                             <div class='show-document'>
@@ -144,7 +146,9 @@
                                     width="100%" height="700px"></iframe>
                                 <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
                                     onclick="deleteExpertDocumentAPI(this)" role="button"
-                                    class='delete text-white'>X</a>
+                                    class='delete text-white'>
+                                    <img src="/static/styles/images/cross.svg" alt="cross">
+                                </a>
                             </div>
                             {{ else }}
                             <div class='show-document'>
@@ -153,7 +157,9 @@
                                 </a>
                                 <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
                                     onclick="deleteExpertDocumentAPI(this)" role="button"
-                                    class='delete text-white'>X</a>
+                                    class='delete text-white'>
+                                    <img src="/static/styles/images/cross.svg" alt="cross">
+                                </a>
                             </div>
                             {{ end }}
                             <!-- <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
