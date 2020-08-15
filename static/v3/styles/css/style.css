@@ -1059,6 +1059,10 @@ tbody tr:hover, tbody td:hover{
     z-index: 50;
 }
 
+.modal-content .input__block{
+    width: 46%;
+}
+
 .modal-content form{
     height: 50%;
 }
