@@ -1109,10 +1109,7 @@ select{
 }
 
 @media only screen and (max-width: 1024px){
-    .header{
-        position: sticky;
-        top: 0;
-    }
+    
     .app__clients{
         display: block;
     }
@@ -1163,7 +1160,8 @@ select{
     }
     .header{
         padding: 8px 10px;
-        position: relative;
+        position: sticky!important;
+        top: 0;
     }
     
     .user img{
