@@ -497,14 +497,14 @@ h1{
 
     color: #686F91;
 }
-.select::after{
+select::after{
     content: '';
     position: absolute;
     width: 200px;
     height: 200px;
     background: red;
 }
-select{
+.search{
     background: url(/static/styles/images/search/search.svg) no-repeat, #fff;
     padding-left: 35px;
 
