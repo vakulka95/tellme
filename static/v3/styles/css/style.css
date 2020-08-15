@@ -552,7 +552,7 @@ h1{
     height: 48px;
 }
 .custom-select{
-    height: 48px;
+    height: 48px!important;
 }
 .delete{
     position: absolute;
