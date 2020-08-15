@@ -661,7 +661,7 @@ h1{
 }
 .main-form-btn{
     width:100%;
-    padding: 17px 30px;
+    padding: 18px 30px;
 }
 
 .main-form-btn:hover{
@@ -1273,15 +1273,6 @@ select{
         padding-top: 50px;
         padding-bottom: 50px;
     }
-    .delete{
-        right: 5px;
-        width: 4.5%;
-        position: absolute;
-        padding: 5px 15px;
-        padding-left: 10px;
-        padding-right: 18px;
-        border-radius: 100%;
-    }
 
     .delete:hover{
         text-decoration: none;
@@ -1332,7 +1323,7 @@ select{
     }
     .edit-btn{
         margin-top: 5px;
-        padding: 17px 30px;
+        padding: 18px 30px;
     }
     .expert-btn{
         flex-wrap: wrap;
@@ -1349,21 +1340,6 @@ select{
     
 }
 
-
-@media only screen and (max-width: 990px){
-    .delete{
-        padding-right: 8px;
-
-    }
-}
-
-@media only screen and (max-width: 780px){
-    .delete{
-        padding: 2px 0;
-        padding-left: 8px;
-        padding-right: 14px;
-    }
-}
 @media only screen and (max-width: 450px){
     .modal-content{
         height: 50%;
@@ -1388,11 +1364,6 @@ select{
         font-size: 15px;
         padding-top: 6px;
         padding-bottom: 6px;
-    }
-    .delete{
-        padding: 2px 0;
-        padding-left: 8px;
-        padding-right: 16px;
     }
     .save{
         margin-top: 20px!important;
