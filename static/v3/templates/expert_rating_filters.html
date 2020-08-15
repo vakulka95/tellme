@@ -79,7 +79,7 @@
                     <div class="col-lg-2 mt-3 mr-3 p-0">
                         <p class=" mb-2 filter-desktop-inp-title">Сортувати по</p>
                         <select id="order_by" name="order_by" class='select spec-select'>
-                            <option {{ if (eq .queries.order_by "") }} selected {{ end}} value="created_at">Дата реєстраціі(за замовчуванням)</option>
+                            <option {{ if (eq .queries.order_by "") }} selected {{ end}} value="created_at">Дата реєстраціі</option>
                             <option {{ if (eq .queries.order_by "review_count") }} selected {{ end}} value="review_count">Кількість відгуків</option>
                             <option {{ if (eq .queries.order_by "average_rating") }} selected {{ end}} value="average_rating">Середня оцінка</option>
                             <option {{ if (eq .queries.order_by "session_count") }} selected {{ end}} value="session_count">Сесій проведено</option>
