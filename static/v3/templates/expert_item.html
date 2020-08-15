@@ -74,9 +74,8 @@
                     <p class="title-input">Заявок завершено</p>
                     <input type="number" name="over-request" class='input-over-request form-control' placeholder="0"
                         value='{{ .expert.completed_count }}' readonly>
-                    <a class='btn-in-input edit pad-right '
-                        href="/admin/requisition?expert_id={{ $expert_id }}&status=completed" role="button">Детальніше
-                        <b>&#8250;</b></a>
+                    <a class='btn-in-input edit pad-right ' href="/admin/requisition?expert_id={{ $expert_id }}&status=completed"
+                        role="button">Детальніше <b>&#8250;</b></a>
                 </div>
                 <div class='input__block'>
                     <p class="title-input">Сесій проведено</p>
@@ -123,12 +122,11 @@
                             class="cell mb-0 table-require-cell table-cell-status d-inline completed">Активний</p>
                         {{ end }}
                     </div>
-                </div>
-                <hr>
-                {{ if (eq .metadata.role "admin") }}
-                {{ template "expert_comment_list.html" . }}
-                {{ end }}
-                <div>
+                    
+                    {{ if (eq .metadata.role "admin") }}
+                    {{ template "expert_comment_list.html" . }}
+                    {{ end }}
+
                     <div class="document d-flex flex-column-reverse flex-lg-row mt-5">
                         <div class='input__block col-12 col-lg-6'>
                             <p class="title-input mb-2">Документи</p>
@@ -176,8 +174,7 @@
                                 {{/*                                <!-- <input type='file' name='image' class='download-btn align-self-center text-center mt-3 form-btn' value="Завантажити з комп'ютера"> --> */}}
                                 <input type="file" name="image" class="border-0 choose-file pl-0 mt-3" />
                                 <input type="hidden" name="token" value="" />
-                                <input type="submit" class="btn btn-secondary upload-btn text-white"
-                                    value="Завантажити" />
+                                <input type="submit" class="btn btn-secondary upload-btn text-white"value="Завантажити" />
                             </form>
                             <button type="button" class="btn btn-info edit-btn">Редагувати</button>
 
@@ -189,8 +186,7 @@
                             */}}
                             <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#expertEdit">Редагувати</button> -->
                             {{ if (eq .metadata.role "admin" )}}
-                            <div
-                                class=" item-btns d-flex justify-content-center align-self-center w-100 m-0 mt-4 flex-lg-row">
+                            <div class=" item-btns d-flex justify-content-center align-self-center w-100 m-0 mt-4 flex-lg-row">
                                 <a class="btn form-btn main-form-btn bg-success align-self-center text-white pl-3 pr-3"
                                     data-expert-id="{{ $expert_id }}" onclick="activateExpertAPI(this)"
                                     role="button">Активувати</a>
@@ -217,8 +213,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form class="form border-0 d-flex flex-wrap expert-card"
-                                action="/admin/expert/{{ $expert_id }}" method="POST">
+                            <form class="form border-0 d-flex flex-wrap expert-card" action="/admin/expert/{{ $expert_id }}"
+                                method="POST">
                                 {{ if (eq .metadata.role "expert") }}
                                 <div class='input__block edit-name'>
                                     <label for="name">Ім'я</label>
@@ -257,8 +253,7 @@
                                 {{ end }}
                                 <div class='input__block edit-spec'>
                                     <label for="specializations">Спеціалізації </label>
-                                    <select class="custom-select  form-control" id="specializations"
-                                        name="specializations">
+                                    <select class="custom-select  form-control" id="specializations" name="specializations">
                                         {{ range $spec, $specOpt := .expert.specializations }}
                                         <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">
                                             {{ $specOpt.Translated }}</option>
