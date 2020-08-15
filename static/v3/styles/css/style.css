@@ -567,12 +567,11 @@ h1{
 .delete{
     position: absolute;
     top: -8px;
-    left: -10px;
-    background-color: red;
-    padding: 5px 10px;
+    right: -11px;
+    background-color: #DB866D;
+    padding: 5px 6px;
     border-radius: 100%;
     cursor: pointer;
-    color: #fff;
 }
 
 
