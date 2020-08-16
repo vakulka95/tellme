@@ -21,6 +21,7 @@
                             <th class='text-left'>Ім'я</th>
                             <th class='text-left pl-3'>Стать</th>
                             <th class='text-left'>Телефон</th>
+                            <th class='text-left'>Опис звернення</th>
                             <th class='text-left rounded-right pl-3'>Статус</th>
                         </tr>
                     </thead>
@@ -53,8 +54,10 @@
                             {{ end }}
 
                             <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}
-                                </p>
+                                <p class="cell mb-0 pt-2">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</p>
+                            </td>
+                            <td class='text-left pt-4 pb-4'>
+                                <p class="req-description cell mb-0 pt-2">{{ .requisition.diagnosis_description }}</p>
                             </td>
                             <td class='text-left align-items-center pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
                                 {{ $status := $item.status }}

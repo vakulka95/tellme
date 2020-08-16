@@ -881,6 +881,12 @@ table{
 
 }
 
+.req-description{
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+
 tbody{
     border-left: 1px solid #E3E8F5;
     border-right: 1px solid #E3E8F5;
