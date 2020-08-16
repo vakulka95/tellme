@@ -35,6 +35,8 @@ const forMobile = document.querySelector('.for-mobile');
             if(el.innerHTML.length > 55){
                let des = el.innerHTML.substr(0, 55) + '...';
                el.innerHTML = des;
+            }else{
+                el.innerHTML
             }
         })
     }

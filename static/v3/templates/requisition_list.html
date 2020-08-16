@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <table class="table table-require">
-                    <thead >
+                    <thead>
                         <tr>
                             <th class='text-left rounded-left'>Дата</th>
                             <th class='text-left'>Спеціалізація</th>
@@ -43,23 +43,27 @@
                             </td>
                             {{ $gender := $item.gender }}
                             {{ with (eq $gender "male") }}
-                            <td class='text-left pt-4 pb-4 d-flex justify-content-start' data-href="/admin/requisition/{{ $item.id }}">
+                            <td class='text-left pt-4 pb-4 d-flex justify-content-start'
+                                data-href="/admin/requisition/{{ $item.id }}">
                                 <span class='gender mb-0'>чол.</span>
                             </td>
                             {{ end }}
                             {{ with (eq $gender "female") }}
-                            <td class='text-left pt-4 pb-4 d-flex justify-content-start' data-href="/admin/requisition/{{ $item.id }}">
+                            <td class='text-left pt-4 pb-4 d-flex justify-content-start'
+                                data-href="/admin/requisition/{{ $item.id }}">
                                 <span class='gender mb-0'>жін.</span>
                             </td>
                             {{ end }}
 
                             <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 pt-2">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</p>
+                                <p class="cell mb-0 pt-2">
+                                    {{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</p>
                             </td>
                             <td class='text-left pt-4 pb-4'>
                                 <p class="req-description cell mb-0 pt-2">{{ $item.diagnosis_description }}</p>
                             </td>
-                            <td class='text-left align-items-center pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
+                            <td class='text-left align-items-center pt-4 pb-4'
+                                data-href="/admin/requisition/{{ $item.id }}">
                                 {{ $status := $item.status }}
                                 {{ with (eq $status "created") }}<p
                                     class="cell d-inline table-require-cell table-cell-status created">Не в роботі</p>
@@ -71,18 +75,23 @@
                                     class="cell d-inline table-require-cell table-cell-status completed">Виконаний</p>
                                 {{ end }}
                                 {{ with (eq $status "no_answer") }}<p
-                                    class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально</p>
+                                    class="cell d-inline table-require-cell table-cell-status no_answer">Не актуально
+                                </p>
                                 {{ end }}
                             </td>
-{{/*
+                            {{/*
                             <!--
                         //:TODO хоть и данного функционала нет в новом дизайне, оставлю это тут.
                         <td class="text-center">
-                            <a class="btn btn-secondary {{ if (eq $item.status "processing") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="takeRequisitionAPI(this)" role="button">Взяти</a>
-                            <a class="btn btn-success {{ if (eq $item.status "completed") }} disabled{{ end }}" data-requisition-id="{{ $item.id }}" onclick="completeRequisitionAPI(this)" role="button">Завершити</a>
-                        </td>-->
+                            <a class="btn btn-secondary {{ if (eq $item.status "processing") }} disabled{{ end }}"
+                            data-requisition-id="{{ $item.id }}" onclick="takeRequisitionAPI(this)"
+                            role="button">Взяти</a>
+                            <a class="btn btn-success {{ if (eq $item.status "completed") }} disabled{{ end }}"
+                                data-requisition-id="{{ $item.id }}" onclick="completeRequisitionAPI(this)"
+                                role="button">Завершити</a>
+                            </td>-->
 
-*/}}
+                            */}}
                         </tr>
                         {{ end }}
                     </tbody>
@@ -99,11 +108,9 @@
                         <div class="about">
                             <ul class="about__list ml-4 d-flex flex-column">
                                 <li class="about__item d-flex align-items-center">
-        
-                                        <p class="about__link name-mob  mr-2">
-                                            {{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}
-                                        </p>
-
+                                    <p class="about__link name-mob  mr-2">
+                                        {{ if (ne $item.username "") }}{{ $item.username }}{{ else }}Недоступно{{ end }}
+                                    </p>
                                     {{ $gender := $item.gender }}
                                     {{ with (eq $gender "female") }}
                                     <div class="gender">жін.</div>
@@ -113,10 +120,10 @@
                                     {{ end }}
                                 </li>
                                 <li class="about__item d-flex">
-                                    <p
-                                        class="about__link">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</p>
+                                    <p class="about__link">
+                                        {{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</p>
                                 </li>
-                                
+
                             </ul>
                             <div class='input__block description__block'>
                                 <p class="title-input">Опис звернення</p>
@@ -147,7 +154,8 @@
                     {{ template "requisition_pagging.html" .pagination }}
                     <div class="col-12 col-lg-4">
                         <div class="all text-center text-lg-right">
-                            <p>Всього вибрано: {{ .data.total }} заявок. <br>{{ .pagination.page.TotalPages }} сторінок</p>
+                            <p>Всього вибрано: {{ .data.total }} заявок. <br>{{ .pagination.page.TotalPages }} сторінок
+                            </p>
                         </div>
                     </div>
                 </div>
