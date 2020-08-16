@@ -1288,7 +1288,9 @@ select{
         height: 50%;
         border: none;
     }
-    
+    .modal-content .save{
+        padding: 0;
+    }
     .save .btn{
         width: 100%;
     }
@@ -1343,7 +1345,7 @@ select{
 
 @media only screen and (max-width: 450px){
     .modal-content{
-        height: 50%;
+        height: 48%;
     }
     .page-item{
         width: 100%;
