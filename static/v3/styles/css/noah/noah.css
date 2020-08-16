@@ -53,32 +53,28 @@
 } */
 
 @font-face {
-    font-family: 'Noah';
+    font-family: 'Noah Regular';
     font-style: normal;
-    font-weight: 400;
+    font-weight: normal;
     src: local('Noah Regular'), url('noah-regular.woff') format('woff');
     }
     
     
+    
+    
     @font-face {
-    font-family: 'Noah Regular Italic';
+    font-family: 'Noah Bold';
     font-style: normal;
-    font-weight: normal;
-    src: local('Noah Regular Italic'), url('noah-regularitalic.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'Noah';
-    font-style: 700;
     font-weight: normal;
     src: local('Noah Bold'), url('noah-bold.woff') format('woff');
     }
     
-    
     @font-face {
-    font-family: 'Noah Bold Italic';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Noah Bold Italic'), url('noah-bolditalic.woff') format('woff');
+        font-family: 'Noah Medium';
+        src: local("Noah Medium"),
+            url('fontfabric_-_noah_text_medium-webfont.woff') format('woff'),
+            url('fontfabric_-_noah_text_medium-webfont.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    
     }
