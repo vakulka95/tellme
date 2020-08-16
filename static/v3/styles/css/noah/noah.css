@@ -2,39 +2,35 @@
 
 
 
-/* 
+
 @font-face {
-    font-family: 'Noah Bold';
-    src: local("Noah"),
+    font-family: 'Noah Text';
+    src: local("Noah Text"),
         url('fontfabric_-_noah_text_bold-webfont.woff2') format('woff2'),
         url('fontfabric_-_noah_text_bold-webfont.woff') format('woff');
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 
 }
 
 
-
-
 @font-face {
-    font-family: 'Noah';
-    src: local("Noah"),
+    font-family: 'Noah Text';
+    src: local("Noah Text"),
         url('fontfabric_-_noah_text_light-webfont.woff2') format('woff2'),
         url('fontfabric_-_noah_text_light-webfont.woff') format('woff');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
 
 }
 
 
-
-
 @font-face {
-    font-family: 'Noah Medium';
-    src: local("Noah"),
+    font-family: 'Noah Text';
+    src: local("Noah Text"),
         url('fontfabric_-_noah_text_medium-webfont.woff2') format('woff2'),
         url('fontfabric_-_noah_text_medium-webfont.woff') format('woff');
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 
 }
@@ -43,37 +39,36 @@
 
 
 @font-face {
-    font-family: 'Noah Regular';
-    src: local("Noah"),
+    font-family: 'Noah Text';
+    src: local("Noah Text"),
         url('fontfabric_-_noah_text_regular-webfont.woff2') format('woff2'),
         url('fontfabric_-_noah_text_regular-webfont.woff') format('woff');
-    font-weight: normal;
+    font-weight: 400;
     font-style: normal;
 
-} */
+}
 
-@font-face {
-    font-family: 'Noah Regular';
+/* @font-face {
+    font-family: 'Noah';
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     src: local('Noah Regular'), url('noah-regular.woff') format('woff');
     }
     
     
-    
-    
     @font-face {
-    font-family: 'Noah Bold';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Noah Bold'), url('noah-bold.woff') format('woff');
-    }
-    
-    @font-face {
-        font-family: 'Noah Medium';
+        font-family: 'Noah';
         src: url('fontfabric_-_noah_medium-webfont.woff2') format('woff2'),
              url('fontfabric_-_noah_medium-webfont.woff') format('woff');
-        font-weight: normal;
+        font-weight: 600;
         font-style: normal;
     
     }
+    
+    @font-face {
+    font-family: 'Noah';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Noah Bold'), url('noah-bold.woff') format('woff');
+    }
+     */
