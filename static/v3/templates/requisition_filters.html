@@ -96,6 +96,9 @@
                             <p class="filter-desktop-inp-title">Спеціалізації</p>
                             <select id="specializations" name="specializations" class='select bg-white form-control'>
                                 {{ range $spec, $specOpt := .queries.specializations }}
+                                {{ if (eq .metadata.role "admin") }}
+                                <option {{ if $specOpt.Selected }} selected {{ end }} value="">Всі</option>
+                                {{ end }}
                                 <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
                                 {{ end }}
                             </select>
