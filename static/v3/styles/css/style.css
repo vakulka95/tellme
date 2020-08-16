@@ -883,7 +883,8 @@ table{
 
 .req-description{
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
+    border-radius: 0;
 }
 
 

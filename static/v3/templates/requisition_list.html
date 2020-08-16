@@ -57,7 +57,7 @@
                                 <p class="cell mb-0 pt-2">{{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</p>
                             </td>
                             <td class='text-left pt-4 pb-4'>
-                                <p class="req-description cell mb-0 pt-2">{{ $item.diagnosis_description }}</p>
+                                <p class="req-description cell mb-0 pt-2">{{ .requisition.diagnosis_description }}</p>
                             </td>
                             <td class='text-left align-items-center pt-4 pb-4' data-href="/admin/requisition/{{ $item.id }}">
                                 {{ $status := $item.status }}

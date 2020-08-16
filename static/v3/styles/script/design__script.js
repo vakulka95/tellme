@@ -25,6 +25,17 @@ const close = document.querySelector('.close');
 const editName = document.querySelector('.edit-name');
 const editSpec = document.querySelector('.edit-spec');
 const dateOfReg = document.querySelector('.date-of-reg')
+const description = document.querySelectorAll('.req-description');
+
+// Cut description
+    if(tablesTr){
+        description.forEach(el => {
+            if(el.length > 40){
+                el.innerHTML += '...';
+            }
+        })
+    }
+    
 
 // Active link
 let href = window.location.href;
