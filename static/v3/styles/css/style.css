@@ -194,6 +194,7 @@ h1{
 }
 
 .gender, .me-prof span{
+    font-family: 'Noah Medium', sans-serif;
     background-color: #9BA8E3;
     border-radius: 100px;
     padding: 3px 14px;
