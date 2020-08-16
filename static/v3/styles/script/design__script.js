@@ -31,27 +31,23 @@ const table = document.querySelector('.table');
 const forMobile = document.querySelector('.for-mobile');
 
 // Cut description
-    if(table){
+    if(table || forMobile){
         description.forEach(el => {
             if(el.innerHTML.length > 45){
                let des = el.innerHTML.substr(0, 45) + '...';
                el.innerHTML = des;
-            }else{
-                el.innerHTML    
             }
         })
     }
 
-    if(forMobile){
-        mobileDescription.forEach(el => {
-            if(el.innerHTML.length > 45){
-               let mobDes = el.innerHTML.substr(0, 45) + '...';
-               el.innerHTML = mobDes;
-            }else{
-                el.innerHTML
-            }
-        })
-    }
+    // if(forMobile){
+    //     mobileDescription.forEach(el => {
+    //         if(el.innerHTML.length > 45){
+    //            let mobDes = el.innerHTML.substr(0, 45) + '...';
+    //            el.innerHTML = mobDes;
+    //         }
+    //     })
+    // }
 
     
 
