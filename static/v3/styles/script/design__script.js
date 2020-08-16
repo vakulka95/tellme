@@ -26,15 +26,27 @@ const editName = document.querySelector('.edit-name');
 const editSpec = document.querySelector('.edit-spec');
 const dateOfReg = document.querySelector('.date-of-reg')
 const description = document.querySelectorAll('.req-description');
+const mobileDescription = document.querySelectorAll('.mobile-req-description');
 const table = document.querySelector('.table');
 const forMobile = document.querySelector('.for-mobile');
 
 // Cut description
-    if(table || forMobile){
+    if(table){
         description.forEach(el => {
             if(el.innerHTML.length > 45){
                let des = el.innerHTML.substr(0, 45) + '...';
                el.innerHTML = des;
+            }else{
+                el.innerHTML
+            }
+        })
+    }
+
+    if(forMobile){
+        mobileDescription.forEach(el => {
+            if(el.innerHTML.length > 45){
+               let mobDes = el.innerHTML.substr(0, 45) + '...';
+               el.innerHTML = mobDes;
             }else{
                 el.innerHTML
             }
