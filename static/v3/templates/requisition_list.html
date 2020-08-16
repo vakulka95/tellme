@@ -118,6 +118,10 @@
                                 </li>
                                 
                             </ul>
+                            <div class='input__block'>
+                                <p class="title-input">Опис звернення</p>
+                               <textarea name="review platorm" id="review_platorm" cols="20" rows="6" class=" form-control" readonly>{{ .requisition.diagnosis_description }}</textarea> 
+                            </div>
                             <div class="d-flex align-items-center justify-content-start mt-2 ml-4">
                                 {{ $status := $item.status }}
                                 {{ with (eq $status "created") }}<p
