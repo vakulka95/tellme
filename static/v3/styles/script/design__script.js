@@ -27,9 +27,10 @@ const editSpec = document.querySelector('.edit-spec');
 const dateOfReg = document.querySelector('.date-of-reg')
 const description = document.querySelectorAll('.req-description');
 const table = document.querySelector('.table');
+const forMobile = document.querySelector('.for-mobile');
 
 // Cut description
-    if(table){
+    if(table || forMobile){
         description.forEach(el => {
             if(el.innerHTML.length > 55){
                let des = el.innerHTML.substr(0, 55) + '...';
