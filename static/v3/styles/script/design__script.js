@@ -26,13 +26,14 @@ const editName = document.querySelector('.edit-name');
 const editSpec = document.querySelector('.edit-spec');
 const dateOfReg = document.querySelector('.date-of-reg')
 const description = document.querySelectorAll('.req-description');
+const table = document.querySelector('table');
 
 // Cut description
 function cutDescription(){
-    if(tablesTr){
+    if(table){
         description.forEach(el => {
-            if(el.length > 40){
-                el.innerHTML += '...';
+            if(el.innerHTML.length > 40){
+                el.innerHTML.substr(0, 40) + '...';
             }
         })
     }
