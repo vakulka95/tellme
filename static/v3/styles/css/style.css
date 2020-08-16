@@ -7,7 +7,8 @@
 
 body{
     position: relative;
-    font-family: Noah, sans-serif;
+    font-family: Noah,
+     sans-serif;
     font-style: normal;
     font-weight: normal;
 
@@ -76,7 +77,7 @@ h1{
 /* *********************************************************    SUPERADMIN   **********************************************************************/
 /********* APPLICATIONS *********/
 .login-title{
-    font-family: 'Noah', sans-serif;
+    font-family: 'Noah Regular', sans-serif;
     font-weight: 500;
 
             
@@ -87,7 +88,7 @@ h1{
 }
 
 .title{
-        font-family: 'Noah';
+        font-family: 'Noah Bold', sans-serif;
         font-weight: bold;
         font-size: 49px;
         line-height: 61px;
