@@ -887,6 +887,11 @@ table{
     border-radius: 0!important;
 }
 
+.mobile-req-description{
+    background: #F6F9FE;
+    border: 1px solid #E3E8F5;
+    border-radius: 5px;
+}
 
 tbody{
     border-left: 1px solid #E3E8F5;

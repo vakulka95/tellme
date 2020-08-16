@@ -33,7 +33,7 @@ const table = document.querySelector('.table');
         description.forEach(el => {
             if(el.innerHTML.length > 55){
                let des = el.innerHTML.substr(0, 55) + '...';
-               el.parentElement.innerHTML = des;
+               el.innerHTML = des;
             }
         })
     }
