@@ -71,9 +71,8 @@
     
     @font-face {
         font-family: 'Noah Medium';
-        src: local("Noah Medium"),
-            url('fontfabric_-_noah_text_medium-webfont.woff') format('woff'),
-            url('fontfabric_-_noah_text_medium-webfont.woff2') format('woff2');
+        src: url('fontfabric_-_noah_medium-webfont.woff2') format('woff2'),
+             url('fontfabric_-_noah_medium-webfont.woff') format('woff');
         font-weight: normal;
         font-style: normal;
     
