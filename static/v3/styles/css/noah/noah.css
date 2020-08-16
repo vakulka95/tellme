@@ -1,32 +1,32 @@
 
 @font-face {
-    font-family: 'Noah Text';
-    src: local("Noah Text"),
+    font-family: 'Noah Bold';
+    src: local("Noah Bold"),
         url('noah-text-bold.woff2') format('woff2'),
         url('noah-text-bold.woff') format('woff');
-    font-weight: bold;
+    font-weight: normal;
     font-style: normal;
 
 }
 
 
 @font-face {
-    font-family: 'Noah Text';
-    src: local("Noah Text"),
+    font-family: 'Noah Light';
+    src: local("Noah Light"),
         url('noah-text-light.woff2') format('woff2'),
         url('noah-text-light.woff') format('woff');
-    font-weight: lighter;
+    font-weight: normal;
     font-style: normal;
 
 }
 
 
 @font-face {
-    font-family: 'Noah Text';
-    src: local("Noah Text"),
+    font-family: 'Noah Medium';
+    src: local("Noah Medium"),
         url('noah-text-medium.woff2') format('woff2'),
         url('noah-text-medium.woff') format('woff');
-    font-weight: medium;
+    font-weight: normal;
     font-style: normal;
 
 }
@@ -35,16 +35,16 @@
 
 
 @font-face {
-    font-family: 'Noah Text';
-    src: local("Noah Text"),
+    font-family: 'Noah Regular';
+    src: local("Noah Regular"),
         url('noah-text-regular.woff2') format('woff2'),
         url('noah-text-regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
-
-/* @font-face {
+/* 
+@font-face {
     font-family: 'Noah';
     font-style: normal;
     font-weight: 400;
