@@ -7,7 +7,7 @@
 
 body{
     position: relative;
-    font-family: 'Noah', sans-serif;
+    font-family: 'Noah Regular', sans-serif;
     font-style: normal;
     font-weight: normal;
 
@@ -20,8 +20,7 @@ body{
     color: #686F91;
 }
 a{
-    font-family: Noah, sans-serif;
-    font-weight: 400;
+    font-family: 'Noah Regular', sans-serif;
 }
 
 ul, li{
@@ -76,7 +75,7 @@ h1{
 /* *********************************************************    SUPERADMIN   **********************************************************************/
 /********* APPLICATIONS *********/
 .login-title{
-    font-family: 'Noah Regular', sans-serif;
+    font-family: 'Noah Bold', sans-serif;
     font-weight: 500;
 
             
@@ -87,7 +86,7 @@ h1{
 }
 
 .title{
-        font-family: 'Noah Bold', sans-serif;
+        font-family: 'Noah Bold';
         font-weight: bold;
         font-size: 49px;
         line-height: 61px;
@@ -342,7 +341,7 @@ h1{
 }
 
 .nav-link{
-    font-family: 'Noah', sans-serif;
+    font-family: 'Noah Regular', sans-serif;
     color: #fff;
     font-weight: 500;
     font-size: 18px;
@@ -746,6 +745,7 @@ b{
 }
 
 .consultation-title{
+    /* font-family: Arial, Helvetica, sans-serif; */
     font-size: 20px;
     line-height: 25px;
     letter-spacing: 0.02em;
@@ -875,7 +875,7 @@ a:not([href]):hover{
 /********* TABLE ********/
 
 table{
-    font-family: 'Noah', sans-serif;
+    font-family: 'Noah Regular', sans-serif;
     font-style: normal;
     border-radius: 35px!important;
 
@@ -955,7 +955,7 @@ tbody tr:hover, tbody td:hover{
     border-radius: 100px;
 }
 .table-cell-status{
-    font-family: 'Noah', sans-serif;
+    font-family: 'Noah Regular', sans-serif;
     font-weight: bold;
     font-size: 14px;
     letter-spacing: 0.03em;
