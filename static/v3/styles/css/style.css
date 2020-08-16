@@ -890,7 +890,11 @@ table{
 .mobile-req-description{
     background: #F6F9FE;
     border: 1px solid #E3E8F5;
-    border-radius: 5px;
+    border-radius: 5px!important;
+}
+
+.description__block{
+    width: 88%;
 }
 
 tbody{
