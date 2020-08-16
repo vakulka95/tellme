@@ -28,6 +28,7 @@ const dateOfReg = document.querySelector('.date-of-reg')
 const description = document.querySelectorAll('.req-description');
 
 // Cut description
+function cutDescription(){
     if(tablesTr){
         description.forEach(el => {
             if(el.length > 40){
@@ -35,6 +36,8 @@ const description = document.querySelectorAll('.req-description');
             }
         })
     }
+}
+    
     
 
 // Active link
