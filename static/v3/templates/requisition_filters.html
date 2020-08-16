@@ -95,6 +95,7 @@
                         <div class="col-lg-2 p-0 spec mb-0 mr-3">
                             <p class="filter-desktop-inp-title">Спеціалізації</p>
                             <select id="specializations" name="specializations" class='select bg-white form-control'>
+                                <option {{ if not .queries.specializations }} selected {{ end}} value="">Всі</option>
                                 {{ range $spec, $specOpt := .queries.specializations }}
                                 <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
                                 {{ end }}
