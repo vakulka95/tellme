@@ -1,121 +1,134 @@
 {{/*<!-- requisition_filters.html-->
     <!-- FILTER SEARCH -->
 */}}
-    <section class='filter mt-3'>
-        <div class="container">
-            <div class=" row filter__wrap">
-                <div class="col-12 d-flex flex-column-reverse">
-                    <div class="filter__btn d-flex flex-column justify-content-center">
-                        <button type='button' class='filter-btn'>Фільтр</button>
+<section class='filter mt-3'>
+    <div class="container">
+        <div class=" row filter__wrap">
+            <div class="col-12 d-flex flex-column-reverse">
+                <div class="filter__btn d-flex flex-column justify-content-center">
+                    <button type='button' class='filter-btn'>Фільтр</button>
+                </div>
+                <form class="mb-2 mt-2" action="/admin/requisition" method="GET">
+                    <p class="status-title mb-0 text-dark">Пошук</p>
+                    <input class='search bg-white' type="text" id="search" name="search"
+                        placeholder="ID, Ім'я або Телефон" value="{{ .queries.search }}">
+                    <div class="filter__btn d-flex flex-column justify-content-center mt-1">
+                        <button type='submit' class='filter-btn processing filter-search'>Пошук</button>
                     </div>
-                    <form class="mb-2 mt-2" action="/admin/requisition" method="GET">
-                        <p class="status-title mb-0 text-dark">Пошук</p>
-                        <input class='search bg-white' type="text" id="search" name="search"
-                            placeholder="ID, Ім'я або Телефон" value="{{ .queries.search }}">
-                        <div class="filter__btn d-flex flex-column justify-content-center mt-1">
-                            <button type='submit' class='filter-btn processing filter-search'>Пошук</button>
-                        </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
-    </section>
-    {{/*    <!-- FILTER MODAL --> */}}
+    </div>
+</section>
+{{/*    <!-- FILTER MODAL --> */}}
 
-    <section class="modal">
-        <div class="modal__wrap">
-            <div class="title-block pl-3 bg-white">
-                <div class="modal__close">
-                    <img src="/static/styles/images/search/close.svg" class='close' alt="modal-close">
-                </div>
-                <div class="title__item mb-4">
-                    <h1 class="title">Фільтр</h1>
-                </div>
+<section class="modal">
+    <div class="modal__wrap">
+        <div class="title-block pl-3 bg-white">
+            <div class="modal__close">
+                <img src="/static/styles/images/search/close.svg" class='close' alt="modal-close">
             </div>
-            <form class="pl-3 pr-3" action="/admin/requisition" method="GET">
-                <div class="status mb-3">
-                    <p class="status-title mb-0">Статус</p>
-                    <select id="status" name="status" class='select status-select mb-1 form-control'>
-                        {{ if (eq .metadata.role "admin") }}
-                        <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
-                        {{ end }}
-                        <option {{ if (eq .queries.status "created") }} selected {{ end }} value="created">Не в роботі</option>
-                        <option {{ if (eq .queries.status "processing") }} selected {{ end }} value="processing">В роботі</option>
-                        <option {{ if (eq .queries.status "completed") }} selected {{ end }} value="completed">Виконаний</option>
-                        <option {{ if (eq .queries.status "no_answer") }} selected {{ end }} value="no_answer">Не актуально</option>
-                    </select>
-                </div>
-                <div class="spec">
-                    <p class="spec-title mb-0">Спеціалізації</p>
-                    <select id="specializations" name="specializations" class='select spec-select mb-1 form-control'>
-                        {{ range $spec, $specOpt := .queries.specializations }}
-                        <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
-                        {{ end }}
-                    </select>
-                </div>
-                <div class="from mt-3">
-                    <p class="spec-title mb-0">Дата/час від</p>
-                    <input id="datetime_from" name="datetime_from" type="date" value="{{ .queries.datetime_from }}"  class='from-input mb-1 form-control'>
-                </div>
-                <div class="until mt-3">
-                    <p class="spec-title mb-0">Дата/час до</p>
-                    <input id="datetime_to" name="datetime_to" type="date" value="{{ .queries.datetime_to }}" class='until-input mb-1 form-control'>
-                </div>
-                <div class="filter__btn d-flex flex-column justify-content-center mt-3">
-                    <button type='submit' class='filter-btn processing filter-search'>Пошук</button>
-                </div>
-                
-            </form>
+            <div class="title__item mb-4">
+                <h1 class="title">Фільтр</h1>
+            </div>
         </div>
+        <form class="pl-3 pr-3" action="/admin/requisition" method="GET">
+            <div class="status mb-3">
+                <p class="status-title mb-0">Статус</p>
+                <select id="status" name="status" class='select status-select mb-1 form-control'>
+                    {{ if (eq .metadata.role "admin") }}
+                    <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                    {{ end }}
+                    <option {{ if (eq .queries.status "created") }} selected {{ end }} value="created">Не в роботі
+                    </option>
+                    <option {{ if (eq .queries.status "processing") }} selected {{ end }} value="processing">В роботі
+                    </option>
+                    <option {{ if (eq .queries.status "completed") }} selected {{ end }} value="completed">Виконаний
+                    </option>
+                    <option {{ if (eq .queries.status "no_answer") }} selected {{ end }} value="no_answer">Не актуально
+                    </option>
+                </select>
+            </div>
+            <div class="spec">
+                <p class="spec-title mb-0">Спеціалізації</p>
+                <select id="specializations" name="specializations" class='select spec-select mb-1 form-control'>
+                    {{ range $spec, $specOpt := .queries.specializations }}
+                    <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}
+                    </option>
+                    {{ end }}
+                </select>
+            </div>
+            <div class="from mt-3">
+                <p class="spec-title mb-0">Дата/час від</p>
+                <input id="datetime_from" name="datetime_from" type="date" value="{{ .queries.datetime_from }}"
+                    class='from-input mb-1 form-control'>
+            </div>
+            <div class="until mt-3">
+                <p class="spec-title mb-0">Дата/час до</p>
+                <input id="datetime_to" name="datetime_to" type="date" value="{{ .queries.datetime_to }}"
+                    class='until-input mb-1 form-control'>
+            </div>
+            <div class="filter__btn d-flex flex-column justify-content-center mt-3">
+                <button type='submit' class='filter-btn processing filter-search'>Пошук</button>
+            </div>
+
+        </form>
+    </div>
 </section>
 
 
 {{/*    <!-- FILTER DESKTOP --> */}}
-    <section class='filter-desktop '>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <form action="/admin/requisition" method="GET" class='d-flex flex-row justify-content-between align-items-center mt-5'>
-                        <div class="mr-3 w-100">
-                            <p class="search-title filter-desktop-inp-title mb-1">Пошук</p>
-                            <input class='search' type="text" id="search" name="search" placeholder="ID. Ім'я. Тлф" value="{{ .queries.search }}">
-                        </div>
-                        <div class="col-lg-2 p-0 status mr-3 mr-0 ">
-                            <p class=" filter-desktop-inp-title ">Статус</p>
-                            <select id="status" name="status" class='select bg-white form-control'>
-                                {{ if (eq .metadata.role "admin") }}
-                        <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
-                        {{ end }}
-                        <option {{ if (eq .queries.status "created") }} selected {{ end }} value="created">Не в роботі</option>
-                        <option {{ if (eq .queries.status "processing") }} selected {{ end }} value="processing">В роботі</option>
-                        <option {{ if (eq .queries.status "completed") }} selected {{ end }} value="completed">Виконаний</option>
-                        <option {{ if (eq .queries.status "no_answer") }} selected {{ end }} value="no_answer">Не актуально</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-2 p-0 spec mb-0 mr-3">
-                            <p class="filter-desktop-inp-title">Спеціалізації</p>
-                            <select id="specializations" name="specializations" class='select bg-white form-control'>
-                                <option {{ if not .queries.specializations }} selected {{ end}} value="">Всі</option>
-                                {{ range $spec, $specOpt := .queries.specializations }}
-                                <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
-                                {{ end }}
-                            </select>
-                        </div>
-                        <div class="col-lg-2  p-0 from d-flex mr-3 flex-column">
-                            <p class="from-title align-self-start filter-desktop-inp-title">Дата/час від</p>
-                          <input id="datetime_from" name="datetime_from" type="datetime-local" value="{{ .queries.datetime_from }}" class='from-input bg-white form-control select align-self-start'> 
-                        </div>
-                        <div class="col-lg-2  p-0 until d-flex flex-column mr-3">
-                            <p class="until-title  align-self-start filter-desktop-inp-title">Дата/час до</p>
-                            <input id="datetime_to" name="datetime_to" type="datetime-local" value="{{ .queries.datetime_to }}" class='until-input select bg-white align-self-start form-control '>
-                        </div>
-                        <div class='col-lg-1  filter-submit d-flex justify-content-center mt-4'>
-                            <button type="submit" class='requisition-btn btn btn-submit text-white'>Вибрати</button>
-                        </div>
-                        
-                    </form>
-                </div>
+<section class='filter-desktop '>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <form action="/admin/requisition" method="GET"
+                    class='d-flex flex-row justify-content-between align-items-center mt-5'>
+                    <div class="mr-3 w-100">
+                        <p class="search-title filter-desktop-inp-title mb-1">Пошук</p>
+                        <input class='search' type="text" id="search" name="search" placeholder="ID. Ім'я. Тлф"
+                            value="{{ .queries.search }}">
+                    </div>
+                    <div class="col-lg-2 p-0 status mr-3 mr-0 ">
+                        <p class=" filter-desktop-inp-title ">Статус</p>
+                        <select id="status" name="status" class='select bg-white form-control'>
+                            {{ if (eq .metadata.role "admin") }}
+                            <option {{ if (eq .queries.status "") }} selected {{ end}} value="">Всі</option>
+                            {{ end }}
+                            <option {{ if (eq .queries.status "created") }} selected {{ end }} value="created">Не в роботі</option>
+                            <option {{ if (eq .queries.status "processing") }} selected {{ end }} value="processing">В роботі</option>
+                            <option {{ if (eq .queries.status "completed") }} selected {{ end }} value="completed"> Виконаний</option>
+                            <option {{ if (eq .queries.status "no_answer") }} selected {{ end }} value="no_answer">Не актуально</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 p-0 spec mb-0 mr-3">
+                        <p class="filter-desktop-inp-title">Спеціалізації</p>
+                        <select id="specializations" name="specializations" class='select bg-white form-control'>
+                            <option {{ if not .queries.specializations }} selected {{ end}} value="">Всі</option>
+                            {{ range $spec, $specOpt := .queries.specializations }}
+                            <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">
+                                {{ $specOpt.Translated }}</option>
+                            {{ end }}
+                        </select>
+                    </div>
+                    <div class="col-lg-2  p-0 from d-flex mr-3 flex-column">
+                        <p class="from-title align-self-start filter-desktop-inp-title">Дата/час від</p>
+                        <input id="datetime_from" name="datetime_from" type="datetime-local"
+                            value="{{ .queries.datetime_from }}"
+                            class='from-input bg-white form-control select align-self-start'>
+                    </div>
+                    <div class="col-lg-2  p-0 until d-flex flex-column mr-3">
+                        <p class="until-title  align-self-start filter-desktop-inp-title">Дата/час до</p>
+                        <input id="datetime_to" name="datetime_to" type="datetime-local"
+                            value="{{ .queries.datetime_to }}"
+                            class='until-input select bg-white align-self-start form-control '>
+                    </div>
+                    <div class='col-lg-1  filter-submit d-flex justify-content-center mt-4'>
+                        <button type="submit" class='requisition-btn btn btn-submit text-white'>Вибрати</button>
+                    </div>
+
+                </form>
             </div>
         </div>
-    </section>
-
+    </div>
+</section>

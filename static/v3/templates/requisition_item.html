@@ -13,6 +13,12 @@
                     <input type="text" name="ID" class="input-id form-control" value='{{ .requisition.id }}' readonly>
                 </div>
                 <div class='input__block'>
+                    <div class='detail-block-review'>
+                        <p class="title-input">Психолог</p>
+                        <a href="/admin/expert/{{ .requisition.expert_id }}" role="button" class='detail-btn text-center padding d-block w-100'>Детальніше<b>&#8250;</b></a>
+                    </div>
+                </div>
+                <div class='input__block'>
                     <p class="title-input">Ім'я</p>
                     {{ if (ne .requisition.username "") }}
                     <input type="text" name="name" class="input-name form-control" value='{{ .requisition.username }}'
