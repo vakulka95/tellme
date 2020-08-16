@@ -31,7 +31,7 @@
                             <td class='text-left pt-4 pb-4'>
                                 <p class="cell mb-0 pt-2">{{ $item.created_at }}</p>
                             </td>
-                            <td class="text-left pt-4 pb-4 text-white" data-href="/admin/requisition/{{ $item.id }}">
+                            <td class="text-left pt-4 pb-4 d-flex align-items-center text-white" data-href="/admin/requisition/{{ $item.id }}">
                                 <p class='cell specialization d-inline table-require-cell mb-0'>{{ $item.diagnosis }}
                                 </p>
                             </td>
@@ -59,10 +59,10 @@
                                 <p class="cell mb-0 pt-2">
                                     {{ if (ne $item.phone "") }}{{ $item.phone }}{{ else }}Недоступно{{ end }}</p>
                             </td>
-                            <td class='text-left pt-4 pb-4'>
+                            <td class='text-left pt-4 pb-4 w-25'>
                                 <p class="req-description cell mb-0 pt-2">{{ $item.diagnosis_description }}</p>
                             </td>
-                            <td class='text-left align-items-center pt-4 pb-4'
+                            <td class='text-left d-flex align-items-center pt-4 pb-4'
                                 data-href="/admin/requisition/{{ $item.id }}">
                                 {{ $status := $item.status }}
                                 {{ with (eq $status "created") }}<p

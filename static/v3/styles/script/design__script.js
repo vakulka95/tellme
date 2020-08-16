@@ -32,8 +32,8 @@ const forMobile = document.querySelector('.for-mobile');
 // Cut description
     if(table || forMobile){
         description.forEach(el => {
-            if(el.innerHTML.length > 55){
-               let des = el.innerHTML.substr(0, 55) + '...';
+            if(el.innerHTML.length > 45){
+               let des = el.innerHTML.substr(0, 45) + '...';
                el.innerHTML = des;
             }else{
                 el.innerHTML
