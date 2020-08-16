@@ -893,7 +893,9 @@ table{
     border-radius: 5px!important;
     padding: 6px 14px;
 }
-
+.mobile-req-description p{
+    overflow-wrap: break-word;
+}
 .description__block{
     width: 88%!important;
     margin-top: 8px;
