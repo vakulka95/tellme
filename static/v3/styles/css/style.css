@@ -891,12 +891,16 @@ table{
     background: #F6F9FE;
     border: 1px solid #E3E8F5;
     border-radius: 5px!important;
+    padding: 6px 14px;
 }
 
 .description__block{
-    width: 88%;
+    width: 88%!important;
+    margin-top: 8px;
 }
-
+.description__block p{
+    font-size: 18px;
+}
 tbody{
     border-left: 1px solid #E3E8F5;
     border-right: 1px solid #E3E8F5;
