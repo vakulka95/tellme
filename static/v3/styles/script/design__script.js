@@ -26,19 +26,18 @@ const editName = document.querySelector('.edit-name');
 const editSpec = document.querySelector('.edit-spec');
 const dateOfReg = document.querySelector('.date-of-reg')
 const description = document.querySelectorAll('.req-description');
-const table = document.querySelector('table');
+const table = document.querySelector('.table');
 
 // Cut description
-function cutDescription(){
     if(table){
         description.forEach(el => {
-            if(el.innerHTML.length > 40){
-                el.innerHTML.substr(0, 40) + '...';
+            if(el.innerHTML.length > 55){
+               let des = el.innerHTML.substr(0, 55) + '...';
+               el.parentElement.innerHTML = des;
             }
         })
     }
-}
-cutDescription();
+
     
 
 // Active link
