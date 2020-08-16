@@ -68,7 +68,7 @@ func QueryRequisitionAPItoPersistence(q *QueryListParams) *model.QueryRequisitio
 		Status:          q.Status,
 		FeedbackTime:    q.FeedbackTime,
 		FeedbackWeekDay: q.FeedbackWeekDay,
-		Specializations: q.Specializations,
+		Specializations: validateSpecializations(q.Specializations),
 		ExpertID:        q.ExpertID,
 		Search:          q.Search,
 		CreatedAtFrom:   q.CreatedAtFrom,
@@ -138,4 +138,14 @@ func (q *QueryListParams) GeneratePagination(total int) gin.H {
 		"lastQuery":    fmt.Sprintf("%s&limit=%d&offset=%d", query, q.Limit, q.Limit*(paginator.TotalPages()-1)),
 		"page":         paginator,
 	}
+}
+
+func validateSpecializations(s []string) []string {
+	ss := make([]string, 0, len(s))
+	for _, item := range s {
+		if _, ok := Diagnoses[item]; ok {
+			ss = append(ss, item)
+		}
+	}
+	return ss
 }
