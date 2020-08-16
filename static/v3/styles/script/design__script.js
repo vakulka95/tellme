@@ -37,7 +37,7 @@ function cutDescription(){
         })
     }
 }
-    
+cutDescription();
     
 
 // Active link
