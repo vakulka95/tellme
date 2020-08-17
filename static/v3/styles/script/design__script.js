@@ -40,15 +40,15 @@ const forMobile = document.querySelector('.for-mobile');
         })
     }
 
-    if(forMobile){
-        mobileDescription.forEach(el => {
-            console.log(el.innerText);
-            if(el.innerHTML.length > 45){
-               let mobDes = el.innerText.substr(0, 45) + '...';
-               el.innerText = mobDes;
-            }
-        })
-    }
+    // if(forMobile){
+    //     mobileDescription.forEach(el => {
+    //         console.log(el.innerText);
+    //         if(el.innerHTML.length > 45){
+    //            let mobDes = el.innerText.substr(0, 45) + '...';
+    //            el.innerText = mobDes;
+    //         }
+    //     })
+    // }
 
     
 
