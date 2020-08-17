@@ -129,9 +129,9 @@
                     <div class="document d-flex flex-column-reverse flex-lg-row mt-5 w-100">
                         <div class='input__block col-12 col-lg-6'>
                             <p class="title-input mb-2">Документи</p>
+                            <div class="show-document mb-3"></div>
                             {{ range $i, $doc := .expert.documents }}
                             {{ if (eq $doc.ext "pdf") }}
-                            <div class="show-document mb-3">
                                 <object data="{{ $doc.url }}" type="application/pdf" width="100%"
                                     height="700px"></object>
                                 <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
@@ -139,19 +139,14 @@
                                     class='delete text-white'>
                                     <img src="/static/styles/images/cross.svg" alt="cross">
                                 </a>
-                            </div>
-                            {{ else if (or (eq $doc.ext "doc") (eq $doc.ext "docx")) }}
-                            <div class='show-document'>
-                                <iframe src="https://docs.google.com/gview?url={{ $doc.url }}&embedded=true"
-                                    width="100%" height="700px"></iframe>
+                                {{ else if (or (eq $doc.ext "doc") (eq $doc.ext "docx")) }}
+                            <iframe src="https://docs.google.com/gview?url={{ $doc.url }}&embedded=true" width="100%" height="800px"></iframe>
                                 <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
                                     onclick="deleteExpertDocumentAPI(this)" role="button"
                                     class='delete text-white'>
                                     <img src="/static/styles/images/cross.svg" alt="cross">
                                 </a>
-                            </div>
                             {{ else }}
-                            <div class='show-document'>
                                 <a href="{{ $doc.url }}">
                                     <img alt="picture" src="{{ $doc.url }}" class="img-fluid mb-3">
                                 </a>
@@ -160,12 +155,10 @@
                                     class='delete text-white'>
                                     <img src="/static/styles/images/cross.svg" alt="cross">
                                 </a>
+
+                            {{ end }}
+                            {{ end }}
                             </div>
-                            {{ end }}
-                            <!-- <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
-                                    onclick="deleteExpertDocumentAPI(this)" role="button"
-                                    class='delete text-white'>X</a> -->
-                            {{ end }}
                         </div>
                         <div class='input__block drag-block d-flex flex-column col-12 col-lg-6'>
                             {{/*                    <!-- <p class="title-input drag-title">Документи</p>
