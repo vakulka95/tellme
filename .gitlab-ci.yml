@@ -23,7 +23,6 @@ build_image:
   only:
     - master
     - /^RELEASE-.*$/
-    - coding-by-vakulenko
 
 deploy_staging:
   stage: deploy
@@ -43,4 +42,3 @@ deploy_staging:
     - rm image_ref
   only:
     - /^RELEASE-.*$/
-    - coding-by-vakulenko
