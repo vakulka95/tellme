@@ -42,3 +42,22 @@ deploy_staging:
     - rm image_ref
   only:
     - /^RELEASE-.*$/
+
+deploy_prod:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - mkdir -pv ~/.crts
+    - cat $PRODUCTION_CA_FILE > ~/.crts/ca.pem
+    - cat $PRODUCTION_CERT_FILE > ~/.crts/cert.pem
+    - cat $PRODUCTION_KEY_FILE > ~/.crts/key.pem
+    - export DOCKER_HOST=$PRODUCTION_MACHINE_ADDR DOCKER_TLS_VERIFY=1 DOCKER_CERT_PATH=~/.crts/
+  script:
+    - docker service update --image="$(cat image_ref)" production_tellme_api
+  after_script:
+    - rm -rf ~/.crts
+    - rm image_ref
+  only:
+    - master
