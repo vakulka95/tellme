@@ -34,17 +34,18 @@ const forMobile = document.querySelector('.for-mobile');
     if(table){
         description.forEach(el => {
             if(el.innerHTML.length > 45){
-               let cut = el.innerHTML.substr(0, 45) + '...';
-               el.innerHTML = cut;
+               let cut = el.innerText.substr(0, 45) + '...';
+               el.innerText = cut;
             }
         })
     }
 
     if(forMobile){
         mobileDescription.forEach(el => {
+            console.log(el.innerText);
             if(el.innerHTML.length > 45){
-               let mobDes = el.innerHTML.substr(0, 45) + '...';
-               el.innerHTML = mobDes;
+               let mobDes = el.innerText.substr(0, 45) + '...';
+               el.innerText = mobDes;
             }
         })
     }
