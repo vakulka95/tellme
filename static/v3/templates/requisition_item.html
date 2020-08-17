@@ -88,18 +88,18 @@
                     {{ with (eq $expert_gender "no_matter") }}<input type="text" name="app-gender"
                         class="input-gender form-control" value='Байдуже' readonly>{{ end }}
                 </div>
+                
+                <div class="input__block ">
+                    <p class="title-input">Сесій проведено</p>
+                    <input type="text" name="app-session" class="input-session form-control" placeholder="0"
+                        value='{{ .requisition.session_count }}' readonly>
+                </div>
                 <div class='input__block '>
                     <p class="title-input">Опис звернення</p>
                     <textarea name="app-describe" cols="30" rows="5" class='textarea-describe form-control'
                         placeholder="Агарофобия, панический страх при переходе проезжей части, на широкой площади"
                         readonly>{{ .requisition.diagnosis_description }}</textarea>
                 </div>
-                <div class="input__block ">
-                    <p class="title-input">Сесій проведено</p>
-                    <input type="text" name="app-session" class="input-session form-control" placeholder="0"
-                        value='{{ .requisition.session_count }}' readonly>
-                </div>
-               
                 <div class="input__block date-of-reg w-100 mb-3 d-flex flex-column">
                     <p class="title-input  mt-0">Дата створення заявки</p>
                     <div class="block-date-time d-flex">
