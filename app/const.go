@@ -21,3 +21,7 @@ var allowedExtensions = map[string]string{
 	"application/zip":    "doc",
 	"application/vnd.openxmlformats-officedocument.wordprocessingml.document": "docx",
 }
+
+var allowedTypes = map[string]bool{
+	"application/octet-stream": true,
+}
