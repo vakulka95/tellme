@@ -52,7 +52,7 @@ func QueryExpertAPItoPersistence(q *QueryListParams) *model.QueryExpertList {
 		Limit:           q.Limit,
 		Offset:          q.Offset,
 		Status:          q.Status,
-		Specializations: q.Specializations,
+		Specializations: validateSpecializations(q.Specializations),
 		Search:          q.Search,
 	}
 }
