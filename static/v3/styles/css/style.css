@@ -1158,7 +1158,10 @@ select{
     .about{
         padding-top: 15px;
     }
+    .for-mobile .about__list .about{
+        padding-top: 0;
 
+    }
     
 
     .feedback li {
