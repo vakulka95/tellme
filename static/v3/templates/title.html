@@ -30,6 +30,9 @@
                 <div class="title__item">
                     <h1 class="title">{{ .metadata.title }}</h1>
                 </div>
+                <div class="all">
+                    <p>Всього вибрано: {{ .data.total }} заявок.{{ .pagination.page.TotalPages }} сторінок</p>
+                </div>
             </div>
             {{ if eq .metadata.role "expert" }}
             <div class="me col-12 col-lg-6 d-flex mb-auto flex-column justify-content-end align-items-lg-end">
