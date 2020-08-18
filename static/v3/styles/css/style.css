@@ -891,6 +891,14 @@ table{
     border-radius: 0!important;
 }
 
+.date-cell{
+    width: 11%;
+}
+
+.name-cell{
+    width: 14%;
+}
+
 .mobile-req-description{
     background: #F6F9FE;
     border: 1px solid #E3E8F5;
