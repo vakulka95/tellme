@@ -881,6 +881,10 @@ table{
 
 }
 
+.description-cell{
+    width: 20%;
+}
+
 .req-description{
     overflow: hidden;
     text-overflow: ellipsis;

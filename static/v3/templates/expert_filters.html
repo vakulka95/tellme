@@ -41,7 +41,7 @@
                 <div class="sort mb-3">
                     <p class=" mb-0">Сортувати по</p>
                     <select id="specializations" name="specializations" class='select spec-select form-control mt-1'>
-                        <option value="Всі">Вибрати зі списку</option>
+                        <option {{ if not .queries.specializations }} selected {{ end}} value="">Всі</option>
                         {{ range $spec, $specOpt := .queries.specializations }}
                         <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
                         {{ end }}

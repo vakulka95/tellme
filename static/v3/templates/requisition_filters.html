@@ -52,9 +52,9 @@
             <div class="spec">
                 <p class="spec-title mb-0">Спеціалізації</p>
                 <select id="specializations" name="specializations" class='select spec-select mb-1 form-control'>
+                    <option {{ if not .queries.specializations }} selected {{ end}} value="">Всі</option>
                     {{ range $spec, $specOpt := .queries.specializations }}
-                    <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}
-                    </option>
+                    <option {{ if $specOpt.Selected }} selected {{ end }} value="{{ $spec }}">{{ $specOpt.Translated }}</option>
                     {{ end }}
                 </select>
             </div>
