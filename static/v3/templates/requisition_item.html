@@ -12,7 +12,7 @@
                     <p class="title-input">ID</p>
                     <input type="text" name="ID" class="input-id form-control" value='{{ .requisition.id }}' readonly>
                 </div>
-                {{ if (ne .requisition.expert_id "") }}
+                {{ if eq .metadata.role "admin" }}
                 <div class="input__block review-buttons d-flex flex-column flex-lg-row">
                     <div class='detail-block-review'>
                         <p class="title-input">Психолог</p>
