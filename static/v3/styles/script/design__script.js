@@ -29,6 +29,15 @@ const description = document.querySelectorAll('.req-description');
 const mobileDescription = document.querySelectorAll('.mobile-req-description');
 const table = document.querySelector('.table');
 const forMobile = document.querySelector('.for-mobile');
+const aboutExpert = document.querySelector('.about-expert');
+const status = document.querySelector('.cell');
+
+if(aboutExpert){
+    if(status.classList.contains('created')){
+        aboutExpert.style.pointerEvents = 'none';
+        aboutExpert.style.background = 'rgba(55, 169, 250, 0.5)';
+    }
+}
 
 // Cut description
     if(table){
