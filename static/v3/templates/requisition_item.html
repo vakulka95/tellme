@@ -16,8 +16,7 @@
                 <div class="input__block review-buttons d-flex flex-column flex-lg-row">
                     <div class='detail-block-review'>
                         <p class="title-input">Психолог</p>
-                        <a href="/admin/expert/{{ .requisition.expert_id }}" role="button" class="detail-btn text-center padding d-block w-100" {{ if (eq .requisition.expert_id) }}disabled{{ end }}>
-                        Детальніше<b>&#8250;</b></a>
+                        <a href="/admin/expert/{{ .requisition.expert_id }}" role="button" class="detail-btn about-expert text-center padding d-block w-100" {{ if (eq .requisition.expert_id "") }}disabled{{ end }}>Детальніше<b>&#8250;</b></a>
                     </div>
                 </div>
                 {{ end }}

@@ -3,6 +3,7 @@ package app
 import (
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -109,17 +110,27 @@ func checkPwds(rawPassword, hashedPassword string) bool {
 
 func (s *apiserver) authenticationInterceptor() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		const logpref = "authenticationInterceptor"
+
+		u, ok := c.Get("userID")
+		log.Printf("%s: 0, get from ctx: userid: %s, ok: %v", logpref, u, ok)
+		log.Printf("%s: 1", logpref)
+
 		token, err := c.Cookie(authCookieKey)
 		if err != nil {
 			c.Redirect(http.StatusFound, "/admin/login")
 			return
 		}
 
+		log.Printf("%s: 2, token: %s", logpref, token)
+
 		userID, role, err := s.checkAccessToken(token)
 		if err != nil {
 			c.Redirect(http.StatusFound, "/admin/login")
 			return
 		}
+
+		log.Printf("%s: 3, userID: %s, role: %s", logpref, userID, role)
 
 		c.Set("userID", userID)
 		c.Set("role", role)
@@ -128,22 +139,29 @@ func (s *apiserver) authenticationInterceptor() gin.HandlerFunc {
 
 		switch role {
 		case UserRoleAdmin:
+			log.Printf("%s: UserRoleAdmin", logpref)
+
 			admin, err := s.repository.GetAdmin(userID)
 			if err != nil {
 				c.Redirect(http.StatusFound, "/admin")
 				return
 			}
+			log.Printf("%s: UserRoleAdmin found", logpref)
 
 			status = admin.Status
 		case UserRoleExpert:
+			log.Printf("%s: UserRoleExpert", logpref)
+
 			expert, err := s.repository.GetExpert(userID)
 			if err != nil {
 				c.Redirect(http.StatusFound, "/admin")
 				return
 			}
+			log.Printf("%s: UserRoleExpert found", logpref)
 
 			status = expert.Status
 		default:
+			log.Printf("%s: default", logpref)
 			c.Redirect(http.StatusFound, "/admin")
 			return
 		}
@@ -151,6 +169,8 @@ func (s *apiserver) authenticationInterceptor() gin.HandlerFunc {
 		if status == "" {
 			status = model.ExpertStatusBlocked
 		}
+
+		log.Printf("%s: finish", logpref)
 
 		c.Set("status", status)
 	}
