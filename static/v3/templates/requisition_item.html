@@ -16,8 +16,8 @@
                 <div class="input__block review-buttons d-flex flex-column flex-lg-row">
                     <div class='detail-block-review'>
                         <p class="title-input">Психолог</p>
-                        <a href="/admin/expert/{{ .requisition.expert_id }}" role="button" class='detail-btn text-center padding d-block w-100'>
-                            Детальніше<b>&#8250;</b></a>
+                        <a href="/admin/expert/{{ .requisition.expert_id }}" role="button" class="detail-btn text-center padding d-block w-100" {{ if (eq .requisition.expert_id) }}disabled{{ end }}>
+                        Детальніше<b>&#8250;</b></a>
                     </div>
                 </div>
                 {{ end }}
@@ -138,12 +138,14 @@
                     role="button">Взяти</a>
                 <a class="btn form-btn main-form-btn bg-success align-self-center text-white {{ if or (eq .requisition.status "completed") (eq .requisition.status "no_answer") }} disabled{{ end }}" data-requisition-id="{{ .requisition.id }}" onclick="completeRequisitionAPI(this)"
                     role="button">Завершити</a>
+                <a class="btn form-btn main-form-btn bg-danger align-self-center text-white" data-requisition-id="{{ .requisition.id }}" onclick="deleteRequisitionAPI(this)"
+                    role="button">Видалити</a>
                 <a class="btn form-btn main-form-btn bg-warning align-self-center text-white {{ if (ne .requisition.status "processing") }} disabled{{ end }}"
-                    data-requisition-id="{{ .requisition.id }}" onclick="noAnswerRequisitionAPI(this)" role="button"> Не
-                    актуально</a>
+                    data-requisition-id="{{ .requisition.id }}" onclick="noAnswerRequisitionAPI(this)" role="button"> Не актуально</a>
                 <a class="btn form-btn main-form-btn bg-danger align-self-center text-white {{ if (eq .requisition.status "created") }} disabled{{ end }}"
                     data-requisition-id="{{ .requisition.id }}" onclick="discardRequisitionAPI(this)"
                     role="button">Відмовитися</a>
+                
             </div>
         </div>
     </div>
