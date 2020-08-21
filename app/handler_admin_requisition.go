@@ -351,24 +351,6 @@ func (s *apiserver) requestRequisitionReview(requisitionPhone, requisitionID, ex
 func (s *apiserver) webAdminRequisitionDelete(c *gin.Context) {
 	requisitionID := c.Param("requisitionId")
 
-	{
-		token, err := c.Cookie(authCookieKey)
-		if err != nil {
-			c.Redirect(http.StatusFound, "/admin/login")
-			return
-		}
-
-		log.Printf(">>> cookie: %s", token)
-
-		userID, role, err := s.checkAccessToken(token)
-		if err != nil {
-			c.Redirect(http.StatusFound, "/admin/login")
-			return
-		}
-
-		log.Printf(">>> on delete req: user_id: %s, role: %s", userID, role)
-	}
-
 	err := s.repository.DeleteRequisition(&model.Requisition{ID: requisitionID})
 	if err != nil {
 		log.Printf("(ERR) Failed to delete requisitions: %v", err)

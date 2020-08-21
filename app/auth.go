@@ -110,17 +110,23 @@ func checkPwds(rawPassword, hashedPassword string) bool {
 
 func (s *apiserver) authenticationInterceptor() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		log.Printf(">>> auth 1")
+
 		token, err := c.Cookie(authCookieKey)
 		if err != nil {
 			c.Redirect(http.StatusFound, "/admin/login")
 			return
 		}
 
+		log.Printf(">>> auth 2: token: %s", token)
+
 		userID, role, err := s.checkAccessToken(token)
 		if err != nil {
 			c.Redirect(http.StatusFound, "/admin/login")
 			return
 		}
+
+		log.Printf(">>> auth 3: user_id: %s", userID)
 
 		c.Set("userID", userID)
 		c.Set("role", role)
@@ -159,14 +165,11 @@ func (s *apiserver) authenticationInterceptor() gin.HandlerFunc {
 
 func (s *apiserver) authorizationInterceptor(roles ...string) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		log.Printf(">>> 1")
 		role, ok := c.Get("role")
 		if !ok {
 			c.Redirect(http.StatusFound, "/admin")
 			return
 		}
-
-		log.Printf(">>> 2: role: %v", role)
 
 		rolestr, ok := role.(string)
 		if !ok {
@@ -174,16 +177,11 @@ func (s *apiserver) authorizationInterceptor(roles ...string) gin.HandlerFunc {
 			return
 		}
 
-		log.Printf(">>> 2: rolestr: %v", rolestr)
-
 		for _, allowed := range roles {
-			log.Printf(">>> rolestr: %s, allowed: %s", rolestr, allowed)
 			if rolestr == allowed {
 				return
 			}
 		}
-
-		log.Printf(">>> 3")
 
 		c.Redirect(http.StatusFound, "/admin")
 		return
