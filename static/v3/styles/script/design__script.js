@@ -30,12 +30,27 @@ const mobileDescription = document.querySelectorAll('.mobile-req-description');
 const table = document.querySelector('.table');
 const forMobile = document.querySelector('.for-mobile');
 const aboutExpert = document.querySelector('.about-expert');
-const status = document.querySelector('.cell');
+const status = document.querySelector('.table-cell-status');
+const countOfPages = document.querySelector('.all');
+
+
+// Remove string with count of page
+let href = window.location.href;
+
+if(href.indexOf('/requisition/') > 0 || href.indexOf('/expert/') > 0 || href.indexOf('/review/') > 0){
+    countOfPages.classList.add('hide');
+}else{
+    countOfPages.classList.remove('hide');
+}
+
 
 if(aboutExpert){
     if(status.classList.contains('created')){
         aboutExpert.style.pointerEvents = 'none';
-        aboutExpert.style.background = 'rgba(55, 169, 250, 0.5)';
+        aboutExpert.style.background = 'rgba(55, 169, 250, 0.4)';
+    }else{
+        aboutExpert.style.pointerEvents = 'auto';
+        aboutExpert.style.background = 'rgba(55, 169, 250)';
     }
 }
 
@@ -48,21 +63,8 @@ if(aboutExpert){
             }
         })
     }
-
-    // if(forMobile){
-    //     mobileDescription.forEach(el => {
-    //         console.log(el.innerText);
-    //         if(el.innerHTML.length > 45){
-    //            let mobDes = el.innerText.substr(0, 45) + '...';
-    //            el.innerText = mobDes;
-    //         }
-    //     })
-    // }
-
-    
-
+ 
 // Active link
-let href = window.location.href;
 
 for(let i = 0; i < navLink.length; i++){
     if(href.indexOf('/requisition') > 0){
