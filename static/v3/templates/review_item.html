@@ -33,9 +33,6 @@
                         <p class="title-input">Оцінка психолога</p>
                         <input type="text" name="points" class=" form-control" value="{{ .review.expert_point }}" readonly>
                     </div>
-                    
-                    
-
                     <div class="date-of-create input__block order-lg-8">
                         <p class="title-input mt-0">Дата запиту</p>
                         <div class="block-date-time d-flex">
@@ -54,14 +51,15 @@
                             <p class="title-input">Заявка</p>
                             <a href="/admin/requisition/{{ .review.requisition_id }}" role="button" class='detail-btn text-center padding d-block w-100'>
                                 Детальніше<b>&#8250;</b></a>
-                            
                         </div>
+                        {{ if eq .metadata.role "admin" }}
                         <div class='detail-block-review'>
                             <p class="title-input">Психолог</p>
                             <a href="/admin/expert/{{ .review.expert_id }}" role="button" class='detail-btn text-center padding d-block w-100'>
-                                Детальніше<b>&#8250;</b></a>
-                            
+                                Детальніше<b>&#8250;</b>
+                            </a>
                         </div>
+                        {{ end }}
                     </div>
                     {{/*
                     <!-- <div

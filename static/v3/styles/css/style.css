@@ -881,10 +881,22 @@ table{
 
 }
 
+.description-cell{
+    width: 20%;
+}
+
 .req-description{
     overflow: hidden;
     text-overflow: ellipsis;
     border-radius: 0!important;
+}
+
+.date-cell{
+    width: 11%;
+}
+
+.name-cell{
+    width: 14%;
 }
 
 .mobile-req-description{
@@ -1154,7 +1166,10 @@ select{
     .about{
         padding-top: 15px;
     }
+    .for-mobile .about__list .about{
+        padding-top: 0;
 
+    }
     
 
     .feedback li {
@@ -1314,6 +1329,7 @@ select{
         height: 50%;
         border: none;
     }
+    
     .modal-content .save{
         padding: 0;
     }
@@ -1325,6 +1341,7 @@ select{
         display: block;
         padding: 0;
         margin-top: 10px;
+        height: 36%;
     }
     .modal-body{
         padding: 0;
@@ -1396,7 +1413,11 @@ select{
     }
 
     .save{
-        margin-top: 20px!important;
+        margin-top: 10px!important;
+    }
+    .modal-header{
+        padding: 0.4rem 1rem!important;
+        padding-bottom: 0;
     }
     /* .modal-edit{
         height: 60%;

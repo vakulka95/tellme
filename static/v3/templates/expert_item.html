@@ -129,9 +129,9 @@
                     <div class="document d-flex flex-column-reverse flex-lg-row mt-5 w-100">
                         <div class='input__block col-12 col-lg-6'>
                             <p class="title-input mb-2">Документи</p>
-                            <div class="show-document mb-3"></div>
                             {{ range $i, $doc := .expert.documents }}
                             {{ if (eq $doc.ext "pdf") }}
+                            <div class="show-document mb-3">
                                 <object data="{{ $doc.url }}" type="application/pdf" width="100%"
                                     height="700px"></object>
                                 <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
@@ -139,14 +139,18 @@
                                     class='delete text-white'>
                                     <img src="/static/styles/images/cross.svg" alt="cross">
                                 </a>
-                                {{ else if (or (eq $doc.ext "doc") (eq $doc.ext "docx")) }}
+                            </div>
+                            {{ else if (or (eq $doc.ext "doc") (eq $doc.ext "docx")) }}
+                            <div class="show-document mb-3">
                             <iframe src="https://docs.google.com/gview?url={{ $doc.url }}&embedded=true" width="100%" height="800px"></iframe>
                                 <a data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
                                     onclick="deleteExpertDocumentAPI(this)" role="button"
                                     class='delete text-white'>
                                     <img src="/static/styles/images/cross.svg" alt="cross">
                                 </a>
+                            </div>
                             {{ else }}
+                            <div class="show-document mb-3">
                                 <a href="{{ $doc.url }}">
                                     <img alt="picture" src="{{ $doc.url }}" class="img-fluid mb-3">
                                 </a>
@@ -155,10 +159,10 @@
                                     class='delete text-white'>
                                     <img src="/static/styles/images/cross.svg" alt="cross">
                                 </a>
-
-                            {{ end }}
-                            {{ end }}
                             </div>
+                            {{ end }}
+                            {{ end }}
+
                         </div>
                         <div class='input__block drag-block d-flex flex-column col-12 col-lg-6'>
                             {{/*                    <!-- <p class="title-input drag-title">Документи</p>
@@ -176,12 +180,7 @@
                             </form>
                             <button type="button" class="btn btn-info edit-btn">Редагувати</button>
 
-                            {{/*  
-                                <!-- <div class=" item-btns d-flex justify-content-between align-self-center align-self-lg-end flex-lg-row">
-                                <button class='btn form-btn w-100 main-form-btn bg-success'>Завершити</button>
-                                <button class='btn form-btn w-100 main-form-btn bg-danger'>Відмовитися</button>
-                            </div> -->
-                            */}}
+                            
                             <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#expertEdit">Редагувати</button> -->
                             {{ if (eq .metadata.role "admin" )}}
                             <div class=" item-btns input__block d-flex justify-content-center align-self-center w-100 m-0 mt-4 flex-lg-row">
@@ -279,232 +278,3 @@
 
 
 
-
-{{/*
-
-
-<!-- 
-<div class="container">
-    <div class="card shadow">
-        <div class="card-header">
-            <div class="d-inline-block">
-                <h3 class="panel-title">Психолог {{ .expert.username }}</h3>
-</div>
-
-<div class="d-inline-block float-right">
-    <button type="button" class="btn btn-secondary" onclick="javascript:history.back()">Назад</button>
-</div>
-</div>
-{{ $expert_id := .expert.id }}
-<div class="card-body">
-    <span class="bottom-line d-block mx-auto mt-3 mb-4"></span>
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">ID</div>
-        <div class="col-9 pl-4">{{ $expert_id }}</div>
-    </div>
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Ім'я</div>
-        <div class="col-9 pl-4">{{ .expert.username }}</div>
-    </div>
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Стать</div>
-        <div class="col-9 pl-4">
-            {{ with (eq .expert.gender "male") }}<span class="badge badge-pill badge-info">Чол.</span>{{ end }}
-            {{ with (eq .expert.gender "female") }}<span class="badge badge-pill badge-primary">Жін.</span>{{ end }}
-        </div>
-    </div>
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Телефон</div>
-        <div class="col-9 pl-4">{{ .expert.phone }}</div>
-    </div>
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Email</div>
-        <div class="col-9 pl-4">{{ .expert.email }}</div>
-    </div>
-    {{ if eq .metadata.role "admin" }}
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Пароль</div>
-        <div class="col-9 pl-4">
-            <p class="alert" id="changePasswordBlock-{{ $expert_id }}" role="alert">
-            <p>
-            <div class="input-group mb-3">
-                <input type="password" class="form-control" id="pwd-{{ $expert_id }}">
-                <div class="input-group-append">
-                    <a class="btn btn-secondary" data-expert-id="{{ $expert_id }}"
-                        onclick="changePasswordExpertAPI(this)" role="button">Змінити пароль</a>
-                    <button class="btn-in-input bg-danger text-white denied">X</button>
-                    <button class="btn-in-input bg-success apply p-2">
-                        <img src="../../images/form/Vector.svg" alt="">
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{ end }}
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Освіта</div>
-        <div class="col-9 pl-4">{{ .expert.education }}</div>
-    </div>
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Спеціалізації</div>
-        <div class="col-9 pl-4">
-            {{ range $spec, $specOpt := .expert.specializations }}
-            {{ if $specOpt.Selected }}
-            <div>
-                <span class="badge badge-pill badge-primary">{{ $specOpt.Translated }}</span>
-            </div>
-            {{ end }}
-            {{ end }}
-        </div>
-    </div>
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Статус</div>
-        <div class="col-9 pl-4">
-            {{ $status := .expert.status }}
-            {{ with (eq $status "on_review") }}<td class="text-center"><span class="badge badge-pill badge-warning">На
-                    модерації</span></td>{{ end }}
-            {{ with (eq $status "blocked") }}<td class="text-center"><span
-                    class="badge badge-pill badge-danger">Заблокований</span></td>{{ end }}
-            {{ with (eq $status "active") }}<td class="text-center"><span
-                    class="badge badge-pill badge-success">Активний</span></td>{{ end }}
-        </div>
-    </div>
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Заявок в роботі</div>
-        <div class="col-9 pl-4">
-            <div class="d-inline-block">
-                {{ .expert.processing_count }}
-            </div>
-            <div class="d-inline-block">
-                <a class="badge badge-pill badge-info"
-                    href="/admin/requisition?expert_id={{ $expert_id }}&status=processing" role="button">Детальніше</a>
-            </div>
-        </div>
-    </div>
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Заявок завершено</div>
-        <div class="col-9 pl-4">
-            <div class="d-inline-block">
-                {{ .expert.completed_count }}
-            </div>
-            <div class="d-inline-block">
-                <a class="badge badge-pill badge-info"
-                    href="/admin/requisition?expert_id={{ $expert_id }}&status=completed" role="button">Детальніше</a>
-            </div>
-        </div>
-    </div>
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Сесій проведено</div>
-        <div class="col-9 pl-4">
-            <div class="d-inline-block">
-                {{ .expert.session_count }}
-            </div>
-        </div>
-    </div>
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Відгуків</div>
-        <div class="col-9 pl-4">
-            <div class="d-inline-block">
-                {{ .expert.review_count }}
-            </div>
-            <div class="d-inline-block">
-                <a class="badge badge-pill badge-info" href="/admin/review?expert_id={{ $expert_id }}"
-                    role="button">Детальніше</a>
-            </div>
-        </div>
-    </div>
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Дата реєстрації</div>
-        <div class="col-9 pl-4">{{ .expert.created_at }}</div>
-    </div>
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Додати документ</div>
-        <div class="col-9 pl-4">
-            <form class="form" action="/admin/expert/{{ $expert_id }}/document" enctype="multipart/form-data"
-                method="POST">
-                <input type="file" name="image" />
-                <input type="hidden" name="token" value="" />
-                <input type="submit" class="btn btn-secondary" value="Завантажити" />
-            </form>
-        </div>
-    </div>
-    {{ if (eq .metadata.role "admin") }}
-    {{ template "expert_comment_list.html" . }}
-    {{ end }}
-    <div class="row my-2 mx-auto">
-        <div class="col-3 text-right border-right border-dark">Документи</div>
-        <div class="col-9 pl-4">
-            {{ range $i, $doc := .expert.documents }}
-            <div class="row">
-                <div class="col-10">
-                    {{ if (eq $doc.ext "pdf") }}
-                    <div>
-                        <object data="{{ $doc.url }}" type="application/pdf" width="100%" height="800px"></object>
-                    </div>
-                    {{ else }}
-                    <a href="{{ $doc.url }}">
-                        <img alt="picture" src="{{ $doc.url }}" class="img-fluid">
-                    </a>
-                    {{ end }}
-                </div>
-                <div class="col-2">
-                    <a class="btn btn-danger" data-expert-id="{{ $expert_id }}" data-document-id="{{ $doc.id }}"
-                        onclick="deleteExpertDocumentAPI(this)" role="button">Видалити</a>
-                </div>
-            </div>
-            {{ end }}
-        </div>
-    </div>
-
-    <div class="text-right">
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#expertEdit">Редагувати</button>
-        <div class="modal fade text-left" id="expertEdit" tabindex="-1" role="dialog" aria-labelledby="expertEdit"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="expertEdit">Психолог - {{ .expert.username }}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Закрити">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form" action="/admin/expert/{{ $expert_id }}" method="POST">
-                            {{ if (eq .metadata.role "expert") }}
-                            <label for="name">Ім'я</label>
-                            <input class="form-control clearable" id="name" name="username" type="text"
-                                value="{{ .expert.username }}">
-
-                            <hr />
-                            <label for="gender">Стать</label>
-                            <select class="custom-select" id="gender" name="gender">
-                                <option {{ if (eq .expert.gender "male") }} selected {{ end}} value="male">Чол.
-                                </option>
-                                <option {{ if (eq .expert.gender "female") }} selected {{ end}} value="female">
-                                    Жін.</option>
-                            </select>
-
-                            <hr />
-                            <label for="phone">Телефон</label>
-                            <input class="form-control clearable" id="phone" name="phone" type="text"
-                                value="{{ .expert.phone }}">
-
-                            <hr />
-                            <label for="email">Email</label>
-                            <input class="form-control clearable" id="email" name="email" type="text" disabled
-                                value="{{ .expert.email }}">
-
-                            <hr />
-                            <label for="education">Освіта</label>
-                            <input class="form-control clearable" id="education" name="education" type="text"
-                                value="{{ .expert.education }}">
-                            <hr />
-
-
-                            {{ end }}
-                    </div>
-                </div>
-                -->
-
-
-                */}}
