@@ -48,8 +48,8 @@
                         <td class='text-left pt-4 pb-4'>
                             {{ $status := $item.status }}
                             {{ with (eq $status "on_review") }}<p class="cell mb-0 table-require-cell d-inline table-cell-status created">на модерації</p>{{ end }}
-                            {{ with (eq $status "blocked") }}<p class="cell mb-0 table-require-cell d-inline table-cell-status completed">заблокований</p>{{ end }}
-                            {{ with (eq $status "active") }}<p class="cell mb-0 table-require-cell d-inline table-cell-status no_answer">активний</p>{{ end }}
+                            {{ with (eq $status "blocked") }}<p class="cell mb-0 table-require-cell d-inline table-cell-status no_answer">заблокований</p>{{ end }}
+                            {{ with (eq $status "active") }}<p class="cell mb-0 table-require-cell d-inline table-cell-status completed">активний</p>{{ end }}
                         </td>
                     </tr>
                     {{ end }}
@@ -86,8 +86,8 @@
                         </ul>
                         {{ $status := $item.status }}
                         {{ with (eq $status "on_review") }}<p class="cell mb-0 ml-4 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline created search-status-sel">на модерації</p>{{ end }}
-                        {{ with (eq $status "blocked") }}<p class="cell mb-0 ml-4 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline completed search-status-sel">заблокований</p>{{ end }}
-                        {{ with (eq $status "active") }}<p class="cell mb-0 ml-4 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline no_answer search-status-sel">активний</p>{{ end }}
+                        {{ with (eq $status "blocked") }}<p class="cell mb-0 ml-4 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline no_answer  search-status-sel">заблокований</p>{{ end }}
+                        {{ with (eq $status "active") }}<p class="cell mb-0 ml-4 about table-require-cell text-weight-normal text-uppercase pl-4 pr-4 d-inline completed search-status-sel">активний</p>{{ end }}
 
                     </div>
                     {{ end }}

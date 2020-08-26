@@ -1147,6 +1147,10 @@ select{
 
 }
 
+.textarea-education{
+    height: 68px;
+}
+
 @media only screen and (max-width: 1024px){
     
     .app__clients{
