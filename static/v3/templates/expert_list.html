@@ -18,36 +18,16 @@
                 <table class="table table-require">
                     <thead >
                         <tr>
-                            <th class='rounded-left'>Статус</th>
                             <th>Ім'я</th>
                             <th class='pl-2'>Стать</th>
                             <th>Телефон</th>
                             <th class='rounded-right'>Email</th>
+                            <th class='rounded-left'>Статус</th>
                         </tr>
                     </thead>
                     <tbody>
                         {{ range $i, $item := .data.items }}
                         <tr class="row-custom" data-href="/admin/expert/{{ $item.id }}">
-                            {{ $status := $item.status }}
-                            {{ with (eq $status "on_review") }}
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status d-inline created">На модерації
-                                </p>
-                            </td>
-                            {{ end }}
-                            {{ with (eq $status "blocked") }}
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status d-inline no_answer">
-                                    Заблокований</p>
-                            </td>
-                            {{ end }}
-                            {{ with (eq $status "active") }}
-                            <td class='text-left pt-4 pb-4'>
-                                <p class="cell mb-0 table-require-cell table-cell-status d-inline completed">Активний
-                                </p>
-                            </td>
-                            {{ end }}
-
                             <td class='text-left pt-4 pb-4'>
                                 <p class="cell mb-0">{{ $item.username }}</p>
                             </td>
@@ -68,6 +48,25 @@
                             <td class='text-left pt-4 pb-4'>
                                 <p class="cell mb-0">{{ $item.email }}</p>
                             </td>
+                            {{ $status := $item.status }}
+                            {{ with (eq $status "on_review") }}
+                            <td class='text-left pt-4 pb-4'>
+                                <p class="cell mb-0 table-require-cell table-cell-status d-inline created">На модерації
+                                </p>
+                            </td>
+                            {{ end }}
+                            {{ with (eq $status "blocked") }}
+                            <td class='text-left pt-4 pb-4'>
+                                <p class="cell mb-0 table-require-cell table-cell-status d-inline no_answer">
+                                    Заблокований</p>
+                            </td>
+                            {{ end }}
+                            {{ with (eq $status "active") }}
+                            <td class='text-left pt-4 pb-4'>
+                                <p class="cell mb-0 table-require-cell table-cell-status d-inline completed">Активний
+                                </p>
+                            </td>
+                            {{ end }}
 
 {{/*
                             <!-- //:TODO хоть и данного функционала нет в новом дизайне, оставлю это тут.
