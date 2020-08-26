@@ -15,25 +15,16 @@
                 <table class="table table-require">
                     <thead >
                     <tr>
-                        <th class='rounded-left'>Статус</th>
                         <th>Психолог</th>
                         <th>Задоволення від консультації</th>
                         <th>Оцінка психолога</th>
                         <th class='rounded-right'>Кількість консультацій</th>
+                        <th class='rounded-left'>Статус</th>
                     </tr>
                     </thead>
                     <tbody>
                     {{ range $i, $item := .data.items }}
                     <tr class="row-custom" data-href="/admin/review/{{ $item.id }}">
-                        <td class='text-left pt-4 pb-4' >
-                            {{ $status := $item.status }}
-                            {{ with (eq $status "requested") }}
-                            <p class="cell mb-0 table-require-cell d-inline table-cell-status created">Відгук очікується</p>
-                            {{ end }}
-                            {{ with (eq $status "completed") }}
-                            <p class="cell mb-0 table-require-cell d-inline table-cell-status completed">Відповів</p>
-                            {{ end }}
-                        </td>
                         <td class='text-left pt-4 pb-4' >
                             <p class="cell mb-0 pt-2">{{ $item.expert_username }}</p>
                         </td>
@@ -45,6 +36,15 @@
                         </td>
                         <td class='text-left pt-4 pb-4' >
                             <p class="cell mb-0 pt-2">{{ $item.consultation_count }}</p>
+                        </td>
+                        <td class='text-left pt-4 pb-4' >
+                            {{ $status := $item.status }}
+                            {{ with (eq $status "requested") }}
+                            <p class="cell mb-0 table-require-cell d-inline table-cell-status created">Відгук очікується</p>
+                            {{ end }}
+                            {{ with (eq $status "completed") }}
+                            <p class="cell mb-0 table-require-cell d-inline table-cell-status completed">Відповів</p>
+                            {{ end }}
                         </td>
                     </tr>
                     {{ end }}

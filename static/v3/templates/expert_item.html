@@ -54,11 +54,6 @@
                     <p class="alert m-0" id="changePasswordBlock-{{ $expert_id }}" role="alert"></p>
                 </div>
                 {{ end }}
-                <div class='input__block '>
-                    <p class="title-input">Освіта</p>
-                    <input type="text" name="education" class="input-education form-control"
-                        value='{{ .expert.education }}' readonly>
-                </div>
                 <div class='input__block'>
                     <p class="title-input">Заявок в роботі</p>
                     <div class="d-flex">
@@ -69,7 +64,6 @@
                             role="button">Детальніше <b>&#8250;</b></a>
                     </div>
                 </div>
-
                 <div class='input__block'>
                     <p class="title-input">Заявок завершено</p>
                     <input type="number" name="over-request" class='input-over-request form-control' placeholder="0"
@@ -92,6 +86,11 @@
                         <a class='btn-in-input edit pad-right ' href="/admin/review?expert_id={{ $expert_id }}"
                             role="button">Детальніше <b>&#8250;</b></a>
                     </div>
+                </div>
+                <div class='input__block '>
+                    <p class="title-input">Освіта</p>
+                    <textarea id="education" name="education" cols="30" rows="2" class='textarea-education form-control'
+                        readonly>{{ .expert.education }}</textarea>
                 </div>
                 <div class="input__block date-of-reg">
                     <p class="title-input  mt-0">Дата реєстрації</p>
